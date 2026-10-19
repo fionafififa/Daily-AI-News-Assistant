@@ -1,0 +1,145 @@
+{
+  "scope": "Two targeted acceptance issues; not an independent proof of all factual claims.",
+  "source_hashes_match_final_code": true,
+  "successful_scenarios": 3,
+  "items_checked": 13,
+  "date_checks": [
+    {
+      "scenario": "engineer_initial",
+      "article_id": "da92b80397690dde35e8",
+      "dates_match_source": true,
+      "publication_alias_is_first_submission": true,
+      "dates_are_distinct": true,
+      "announcement": "2026-10-19T04:00:00+00:00",
+      "first_submission": "2026-07-27T03:38:01+00:00"
+    },
+    {
+      "scenario": "engineer_initial",
+      "article_id": "f34ad45741b405ff9e69",
+      "dates_match_source": true,
+      "publication_alias_is_first_submission": true,
+      "dates_are_distinct": true,
+      "announcement": "2026-10-19T04:00:00+00:00",
+      "first_submission": "2026-10-15T17:39:38+00:00"
+    },
+    {
+      "scenario": "engineer_initial",
+      "article_id": "a97c1f5a709e4de6f7ba",
+      "dates_match_source": true,
+      "publication_alias_is_first_submission": true,
+      "dates_are_distinct": true,
+      "announcement": "2026-10-19T04:00:00+00:00",
+      "first_submission": "2026-10-15T15:26:54+00:00"
+    },
+    {
+      "scenario": "engineer_initial",
+      "article_id": "434246a93fec15537b14",
+      "dates_match_source": true,
+      "publication_alias_is_first_submission": true,
+      "dates_are_distinct": true,
+      "announcement": "2026-10-19T04:00:00+00:00",
+      "first_submission": "2026-10-15T05:03:22+00:00"
+    },
+    {
+      "scenario": "engineer_initial",
+      "article_id": "8cad1d7071d358947cb2",
+      "dates_match_source": true,
+      "publication_alias_is_first_submission": true,
+      "dates_are_distinct": true,
+      "announcement": "2026-10-19T04:00:00+00:00",
+      "first_submission": "2026-10-15T17:47:30+00:00"
+    },
+    {
+      "scenario": "engineer_history",
+      "article_id": "6ec636eceffcfb5999d5",
+      "dates_match_source": true,
+      "publication_alias_is_first_submission": true,
+      "dates_are_distinct": true,
+      "announcement": "2026-10-19T04:00:00+00:00",
+      "first_submission": "2026-10-15T18:37:41+00:00"
+    },
+    {
+      "scenario": "engineer_history",
+      "article_id": "bf13a92368f50af68cba",
+      "dates_match_source": true,
+      "publication_alias_is_first_submission": true,
+      "dates_are_distinct": true,
+      "announcement": "2026-10-19T04:00:00+00:00",
+      "first_submission": "2026-10-15T19:12:54+00:00"
+    },
+    {
+      "scenario": "engineer_history",
+      "article_id": "051009ada2a4f647f6fc",
+      "dates_match_source": true,
+      "publication_alias_is_first_submission": true,
+      "dates_are_distinct": true,
+      "announcement": "2026-10-19T04:00:00+00:00",
+      "first_submission": "2026-10-15T18:40:42+00:00"
+    },
+    {
+      "scenario": "engineer_history",
+      "article_id": "7cc78127c883714f76f3",
+      "dates_match_source": true,
+      "publication_alias_is_first_submission": true,
+      "dates_are_distinct": true,
+      "announcement": "2026-10-19T04:00:00+00:00",
+      "first_submission": "2026-10-15T17:28:51+00:00"
+    },
+    {
+      "scenario": "engineer_history",
+      "article_id": "bf28c7aa2007aa01571b",
+      "dates_match_source": true,
+      "publication_alias_is_first_submission": true,
+      "dates_are_distinct": true,
+      "announcement": "2026-10-19T04:00:00+00:00",
+      "first_submission": "2026-10-15T19:02:50+00:00"
+    },
+    {
+      "scenario": "researcher_initial",
+      "article_id": "f34ad45741b405ff9e69",
+      "dates_match_source": true,
+      "publication_alias_is_first_submission": true,
+      "dates_are_distinct": true,
+      "announcement": "2026-10-19T04:00:00+00:00",
+      "first_submission": "2026-10-15T17:39:38+00:00"
+    },
+    {
+      "scenario": "researcher_initial",
+      "article_id": "8cad1d7071d358947cb2",
+      "dates_match_source": true,
+      "publication_alias_is_first_submission": true,
+      "dates_are_distinct": true,
+      "announcement": "2026-10-19T04:00:00+00:00",
+      "first_submission": "2026-10-15T17:47:30+00:00"
+    },
+    {
+      "scenario": "researcher_initial",
+      "article_id": "2ffe5ada9085e1add46b",
+      "dates_match_source": true,
+      "publication_alias_is_first_submission": true,
+      "dates_are_distinct": true,
+      "announcement": "2026-10-19T04:00:00+00:00",
+      "first_submission": "2026-10-15T18:37:22+00:00"
+    }
+  ],
+  "historical_score_regression_passed": true,
+  "control_cases_passed": true,
+  "failed_attempts_preserved": true,
+  "browser_checks": {
+    "checks": {
+      "review_badge": true,
+      "announcement_label": true,
+      "first_submission_label": true,
+      "abstract_label": true,
+      "correct_score": true,
+      "desktop_no_overflow": true,
+      "mobile_no_overflow": true,
+      "five_items_visible": true,
+      "no_browser_errors": true
+    },
+    "errors": [],
+    "passed": true,
+    "data_source": "D:\\Develop\\CODES\\Daily-AI-News-Assistant\\ai-news-agent\\data\\acceptance\\20261019T102216Z-820d99",
+    "read_only_snapshot": true
+  }
+}

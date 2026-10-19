@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>每日 AI · 你的新闻简报</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/"><span class="brand-icon">ai<span>·</span></span><span>每日 AI<small>DAILY INTELLIGENCE</small></span></a>
+    <div class="top-right"><span id="mode-badge" class="badge">连接中</span><span class="local-label">本地工作台</span></div>
+  </header>
+  <main>
+    <section class="intro"><div><div class="eyebrow">LESS NOISE. MORE SIGNAL.</div><h1>每天一点，跟上 AI。</h1><p>订阅你关心的变化，把值得读的新闻留给你。</p></div><div class="today" id="today"></div></section>
+    <div id="mode-note" class="notice" role="status">正在连接服务…</div>
+    <div class="workspace">
+      <aside class="panel subscription-panel">
+        <div class="panel-heading"><h2>我的订阅</h2><button class="text-button" id="new-user" type="button">＋ 新建</button></div>
+        <label class="field">切换订阅<select id="user-select"><option value="">新建订阅</option></select></label>
+        <form id="subscription-form">
+          <div class="two-fields"><label class="field">称呼<input name="name" id="name" maxlength="60" required placeholder="怎么称呼你"></label><label class="field">你的身份<input name="role" id="role" maxlength="160" placeholder="如：后端工程师"></label></div>
+          <label class="field">关注话题<input name="topics" id="topics" placeholder="AI 编程、Agent、开源模型"><small>多个话题用逗号或顿号分隔</small></label>
+          <div id="topic-suggestions" class="topic-suggestions"><button type="button" data-topic="AI 编程">＋ AI 编程</button><button type="button" data-topic="Agent">＋ Agent</button><button type="button" data-topic="开源模型">＋ 开源模型</button><button type="button" data-topic="研究论文">＋ 研究论文</button></div>
+          <label class="field">关键词<input name="keywords" id="keywords" placeholder="如：工具调用、本地部署"></label>
+          <label class="field">不想看到<input name="excludes" id="excludes" placeholder="如：融资、营销活动"></label>
+          <div class="divider"></div>
+          <div class="two-fields"><label class="field">每天送达<input type="time" name="delivery_time" id="delivery_time" required value="08:00"></label><label class="field">最多条数<input type="number" name="max_items" id="max_items" min="1" max="10" value="5" required></label></div>
+          <label class="field">时区<select name="timezone" id="timezone"><option value="Asia/Shanghai">北京时间 · Asia/Shanghai</option><option value="UTC">UTC</option><option value="America/New_York">纽约 · America/New_York</option><option value="Europe/London">伦敦 · Europe/London</option></select></label>
+          <label class="field">推送到<select name="channel" id="channel"><option value="inbox">站内收件箱</option><option value="email">邮件 + 站内收件箱</option></select></label>
+          <label class="field" id="email-field" hidden>邮箱<input type="email" name="email" id="email" placeholder="you@example.com" maxlength="254"></label>
+          <label class="switch-row"><span>开启每日自动简报</span><input type="checkbox" id="enabled" name="enabled"><span class="switch-track" aria-hidden="true"></span></label>
+          <p class="field-note">定时生成需要本地服务保持运行。关闭页面后，简报仍会存入收件箱。</p>
+          <button class="primary full" id="save-button" type="submit">保存订阅</button>
+          <p id="save-message" class="form-message" role="status"></p>
+        </form>
+      </aside>
+      <section class="reading-area">
+        <div class="reading-heading"><div><div class="eyebrow">YOUR BRIEFING</div><h2>简报收件箱 <span id="brief-count" class="count">0</span></h2></div><button id="generate-button" class="primary" type="button">✦ 立即生成</button></div>
+        <div class="schedule-line"><span class="status-dot"></span><span id="schedule-text">保存订阅后，即可开始生成简报</span><button class="text-button" id="notifications-button" type="button">开启浏览器通知</button></div>
+        <div class="inbox-layout"><nav class="history" id="history" aria-label="历史简报"></nav><article class="panel brief-panel" id="brief-panel"><div class="empty-state"><span class="empty-icon">☷</span><h3>把你关心的，留在这里。</h3><p>设置左侧订阅，再点击「立即生成」。<br>每条新闻都有摘要、推荐理由和来源。</p></div></article></div>
+        <details class="panel trace-panel" id="trace-panel"><summary>查看执行记录 <span id="trace-count">0 次工具调用</span></summary><p id="trace-mode" class="field-note"></p><div id="traces" class="traces"><p class="muted">生成简报后，可以在这里查看工具调用过程。</p></div></details>
+        <div class="source-footer"><span>来源目录</span><div id="source-list"></div></div>
+      </section>
+    </div>
+  </main>
+  <footer>每日 AI <span>·</span> 为关注而筛选，为阅读而精简。</footer>
+  <div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>

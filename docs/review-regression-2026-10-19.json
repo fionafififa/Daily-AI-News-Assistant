@@ -1,0 +1,188 @@
+{
+  "model": "deepseek-flash",
+  "cases": [
+    {
+      "case": "historical_bad_score",
+      "passed": true,
+      "outcome": "reviewed",
+      "original_summary": "PRIME 要求 Agent 在检查前先固定“证据路线”，明确每种结论需要哪些检查来授权；由独立程序记录每次检查结果，并拒绝结果无法支撑的结论，还会指出可支持更强结论的检查或自行执行。在 480 个公共记录任务上，直接看到需求的 Agent 有 26.7% 的任务给出未经证明的结论，PRIME 报告为零；在“只允许拒绝”时平均得分 30.1（满分 59.2），加入其指引和补充检查后达到满分。该保证依赖需求正确、检查位置已知且预算充足。",
+      "checked": {
+        "overview": "根据论文摘要整理的实验结果。",
+        "items": [
+          {
+            "id": "434246a93fec15537b14",
+            "title": "PRIME: Towards Verifiable Evidence-Grounded Reasoning in LLM Agents",
+            "url": "https://arxiv.org/abs/2610.22426",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": "2026-10-19T04:00:00+00:00",
+            "evidence_kind": "article",
+            "demo": false,
+            "summary": "PRIME 要求 Agent 在检查前先固定“证据路线”，明确每种结论需要哪些检查来授权；由独立程序记录每次检查结果，并拒绝结果无法支撑的结论，还会指出可支持更强结论的检查或自行执行。在 480 个公共记录任务上，直接看到需求的 Agent 有 26.7% 的任务给出未经证明的结论，PRIME 报告为零；在满分 100 的评分中，仅允许拒绝时平均得分为 30.1，加入其指引和补充检查后提高到最高 59.2。该保证依赖需求正确、检查位置已知且预算充足。",
+            "why_it_matters": "漏洞报告、合规审查这类后端流程，可把“结论必须由检查账本授权”实现为独立校验服务，而不是信任模型自述。该设计适合工具调用结果的硬性把关，但前提是需求规则和检查点本身可靠。",
+            "topic": "Agent 可靠性 / 工具调用校验",
+            "relevance": 2
+          }
+        ],
+        "summary_review": {
+          "status": "checked",
+          "items": [
+            {
+              "article_id": "434246a93fec15537b14",
+              "verdict": "corrected",
+              "corrected_summary": "PRIME 要求 Agent 在检查前先固定“证据路线”，明确每种结论需要哪些检查来授权；由独立程序记录每次检查结果，并拒绝结果无法支撑的结论，还会指出可支持更强结论的检查或自行执行。在 480 个公共记录任务上，直接看到需求的 Agent 有 26.7% 的任务给出未经证明的结论，PRIME 报告为零；在满分 100 的评分中，仅允许拒绝时平均得分为 30.1，加入其指引和补充检查后提高到最高 59.2。该保证依赖需求正确、检查位置已知且预算充足。",
+              "reason": "原摘要把 59.2/100 写成“满分 59.2”并称“达到满分”，但原文只说最高为 59.2 out of 100，并非满分；其余数字与条件表述有证据支持。",
+              "evidence_quotes": [
+                "Before checking, it fixes evidence routes specifying how each conclusion may be justified. A separate program records each check result and refuses any conclusion the results do not justify. It also points the agent to checks that could justify a stronger conclusion, or runs them itself.",
+                "On 480 public-record tasks, an agent shown the requirements reported unjustified conclusions on 26.7% of tasks, while PRIME reported none. Its directions and added checks raised the average score for justified conclusions from 30.1, with refusal alone, to the maximum of 59.2 out of 100.",
+                "With correct requirements, exact checks at known locations, and sufficient budget at stopping, completion reaches the strongest supported conclusion."
+              ]
+            }
+          ],
+          "model_calls": 1,
+          "source_chars_limit": 5000
+        }
+      },
+      "observations": [
+        {
+          "phase": "summary_review",
+          "duration_seconds": 9.03,
+          "tool_names": [],
+          "usage": {
+            "input_tokens": 764,
+            "output_tokens": 2192,
+            "total_tokens": 2956,
+            "input_token_details": {
+              "cache_read": 0
+            },
+            "output_token_details": {
+              "reasoning": 1812
+            }
+          },
+          "finish_reason": "stop"
+        }
+      ]
+    },
+    {
+      "case": "correct_score_control",
+      "passed": true,
+      "outcome": "reviewed",
+      "original_summary": "在 480 个公共记录任务中，作者报告经规则和检查支持的平均得分从 30.1 提高到最高实测 59.2/100。",
+      "checked": {
+        "overview": "根据论文摘要整理的实验结果。",
+        "items": [
+          {
+            "id": "434246a93fec15537b14",
+            "title": "PRIME: Towards Verifiable Evidence-Grounded Reasoning in LLM Agents",
+            "url": "https://arxiv.org/abs/2610.22426",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": "2026-10-19T04:00:00+00:00",
+            "evidence_kind": "article",
+            "demo": false,
+            "summary": "在 480 个公共记录任务中，作者报告经规则和检查支持的平均得分从 30.1 提高到最高实测 59.2/100。",
+            "why_it_matters": "漏洞报告、合规审查这类后端流程，可把“结论必须由检查账本授权”实现为独立校验服务，而不是信任模型自述。该设计适合工具调用结果的硬性把关，但前提是需求规则和检查点本身可靠。",
+            "topic": "Agent 可靠性 / 工具调用校验",
+            "relevance": 2
+          }
+        ],
+        "summary_review": {
+          "status": "checked",
+          "items": [
+            {
+              "article_id": "434246a93fec15537b14",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "摘要中的任务数量、平均得分起点和最高得分均与原文一致。",
+              "evidence_quotes": [
+                "On 480 public-record tasks, an agent shown the requirements reported unjustified conclusions on 26.7% of tasks, while PRIME reported none. Its directions and added checks raised the average score for justified conclusions from 30.1, with refusal alone, to the maximum of 59.2 out of 100."
+              ]
+            }
+          ],
+          "model_calls": 1,
+          "source_chars_limit": 5000
+        }
+      },
+      "observations": [
+        {
+          "phase": "summary_review",
+          "duration_seconds": 3.55,
+          "tool_names": [],
+          "usage": {
+            "input_tokens": 669,
+            "output_tokens": 715,
+            "total_tokens": 1384,
+            "input_token_details": {
+              "cache_read": 128
+            },
+            "output_token_details": {
+              "reasoning": 580
+            }
+          },
+          "finish_reason": "stop"
+        }
+      ]
+    },
+    {
+      "case": "unsupported_guarantee_control",
+      "passed": false,
+      "outcome": "reviewed",
+      "original_summary": "论文证明该系统在所有生产任务上都保证 100% 准确率，无需任何前提条件。",
+      "checked": {
+        "overview": "本次简报依据提供的论文片段整理。",
+        "items": [
+          {
+            "id": "434246a93fec15537b14",
+            "title": "PRIME: Towards Verifiable Evidence-Grounded Reasoning in LLM Agents",
+            "url": "https://arxiv.org/abs/2610.22426",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": "2026-10-19T04:00:00+00:00",
+            "evidence_kind": "article",
+            "demo": false,
+            "summary": "论文在 480 个公共记录任务上报告：向代理展示要求后，代理在 26.7% 的任务上报告了未经证实的结论，而 PRIME 未报告此类结论；当要求正确、检查位置已知且停止时预算充足时，完成过程可达到有支持的最强结论。该结果并不表示系统在所有生产任务上都保证 100% 准确率，也不表示无需前提条件。",
+            "why_it_matters": "漏洞报告、合规审查这类后端流程，可把“结论必须由检查账本授权”实现为独立校验服务，而不是信任模型自述。该设计适合工具调用结果的硬性把关，但前提是需求规则和检查点本身可靠。",
+            "topic": "Agent 可靠性 / 工具调用校验",
+            "relevance": 2
+          }
+        ],
+        "summary_review": {
+          "status": "checked",
+          "items": [
+            {
+              "article_id": "434246a93fec15537b14",
+              "verdict": "corrected",
+              "corrected_summary": "论文在 480 个公共记录任务上报告：向代理展示要求后，代理在 26.7% 的任务上报告了未经证实的结论，而 PRIME 未报告此类结论；当要求正确、检查位置已知且停止时预算充足时，完成过程可达到有支持的最强结论。该结果并不表示系统在所有生产任务上都保证 100% 准确率，也不表示无需前提条件。",
+              "reason": "原文仅报告 480 个公共记录任务上的结果，并列出正确要求、已知检查位置和预算等前提；并未证明所有生产任务 100% 准确或无条件保证。",
+              "evidence_quotes": [
+                "On 480 public-record tasks, an agent shown the requirements reported unjustified conclusions on 26.7% of tasks, while PRIME reported none.",
+                "With correct requirements, exact checks at known locations, and sufficient budget at stopping, completion reaches the strongest supported conclusion."
+              ]
+            }
+          ],
+          "model_calls": 1,
+          "source_chars_limit": 5000
+        }
+      },
+      "observations": [
+        {
+          "phase": "summary_review",
+          "duration_seconds": 5.14,
+          "tool_names": [],
+          "usage": {
+            "input_tokens": 654,
+            "output_tokens": 1103,
+            "total_tokens": 1757,
+            "input_token_details": {
+              "cache_read": 128
+            },
+            "output_token_details": {
+              "reasoning": 862
+            }
+          },
+          "finish_reason": "stop"
+        }
+      ]
+    }
+  ]
+}

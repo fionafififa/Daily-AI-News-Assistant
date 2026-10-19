@@ -1,0 +1,677 @@
+{
+  "started_at": "2026-10-19T10:09:31.086342+00:00",
+  "project_root": "D:\\Develop\\CODES\\Daily-AI-News-Assistant\\ai-news-agent",
+  "source_hashes": {
+    "agent.py": "e7dc1e1dede0e8572eaaaa3d3a9e42a1417e3926774a6e58a7a612253c473008",
+    "tools.py": "d575a137d44980baa36a77d391ea30d24ce1be613deb83d972c560ed5d6cd3e6",
+    "sources.py": "279b3ca2cd89d04a6c305b5edc0219352e69efbccbb0601108041900a4f17652",
+    "service.py": "c845e271f2063a5f3900d523a2b87ab6020a10280838615481c14dcb2a2cc3a0",
+    "config.py": "d245255760e7ae5a76e8647018d92f2edd5e2e12a0babd9ddfe3c719a85f535c",
+    "summary_review.py": "70a537d57f48eb2ea8ff565300d567c27667db1f194bb7caed487d5256969783",
+    "article_time.py": "45274a72b5e772ec58151b1dfcf16e7ef2c59dda8e22ca593d47fbe7d57cbec6"
+  },
+  "dependencies": {
+    "langchain": "1.4.6",
+    "langchain-openai": "1.7.2",
+    "fastapi": "0.144.0"
+  },
+  "model": "deepseek-flash",
+  "mode": "live",
+  "delivery": "inbox",
+  "data_dir": "D:\\Develop\\CODES\\Daily-AI-News-Assistant\\ai-news-agent\\data\\acceptance\\20261019T100931Z-a9b856",
+  "semantic_review": "pending",
+  "scenarios": [
+    {
+      "scenario": "engineer_initial",
+      "run_id": "0e977eba13964a68875d985b173ff20f",
+      "elapsed_seconds": 78.31,
+      "status": "failed",
+      "error": "a97c1f5a709e4de6f7ba：复核摘要包含原文未提供的数值：15",
+      "profile": {
+        "id": "38ba140769da4e7481e40f642fc6b26c",
+        "name": "真实验收·工程师",
+        "role": "后端工程师",
+        "email": "",
+        "topics": [
+          "AI 编程",
+          "Agent",
+          "开源模型",
+          "AI 产品"
+        ],
+        "keywords": [
+          "工具调用",
+          "本地部署"
+        ],
+        "excludes": [
+          "融资",
+          "营销活动"
+        ],
+        "delivery_time": "08:00",
+        "timezone": "Asia/Shanghai",
+        "max_items": 5,
+        "enabled": false,
+        "channel": "inbox"
+      },
+      "checks": {
+        "completed": false,
+        "inbox_delivered": false,
+        "real_model_responses": true,
+        "no_demo_items": false,
+        "within_item_limit": true,
+        "selected_articles_were_fetched": true,
+        "working_sources_checked": false
+      },
+      "brief": null,
+      "tool_sequence": [
+        "list_dir",
+        "read_file",
+        "read_file",
+        "list_sources",
+        "fetch_news",
+        "fetch_news",
+        "fetch_news",
+        "fetch_news",
+        "fetch_news",
+        "fetch_news",
+        "read_article",
+        "read_article",
+        "read_article",
+        "read_article",
+        "read_article",
+        "submit_brief"
+      ],
+      "traces": [
+        {
+          "id": 1,
+          "run_id": "0e977eba13964a68875d985b173ff20f",
+          "tool": "list_dir",
+          "arguments": {
+            "path": "."
+          },
+          "result": "{\"entries\": [{\"name\": \"history.json\", \"type\": \"file\"}, {\"name\": \"profile.json\", \"type\": \"file\"}, {\"name\": \"scratch\", \"type\": \"directory\"}]}",
+          "status": "ok",
+          "duration_ms": 0,
+          "created_at": "2026-10-19T10:09:32.370983+00:00"
+        },
+        {
+          "id": 2,
+          "run_id": "0e977eba13964a68875d985b173ff20f",
+          "tool": "read_file",
+          "arguments": {
+            "path": "profile.json"
+          },
+          "result": "{\"content\": \"{\\\"name\\\": \\\"真实验收·工程师\\\", \\\"role\\\": \\\"后端工程师\\\", \\\"topics\\\": [\\\"AI 编程\\\", \\\"Agent\\\", \\\"开源模型\\\", \\\"AI 产品\\\"], \\\"keywords\\\": [\\\"工具调用\\\", \\\"本地部署\\\"], \\\"excludes\\\": [\\\"融资\\\", \\\"营销活动\\\"], \\\"delivery_time\\\": \\\"08:00\\\", \\\"timezone\\\": \\\"Asia/Shanghai\\\", \\\"max_items\\\": 5, \\\"enabled\\\": false, \\\"channel\\\": \\\"inbox\\\"}\", \"truncated\": false}",
+          "status": "ok",
+          "duration_ms": 0,
+          "created_at": "2026-10-19T10:09:32.394815+00:00"
+        },
+        {
+          "id": 3,
+          "run_id": "0e977eba13964a68875d985b173ff20f",
+          "tool": "read_file",
+          "arguments": {
+            "path": "history.json"
+          },
+          "result": "{\"content\": \"[]\", \"truncated\": false}",
+          "status": "ok",
+          "duration_ms": 0,
+          "created_at": "2026-10-19T10:09:33.326314+00:00"
+        },
+        {
+          "id": 4,
+          "run_id": "0e977eba13964a68875d985b173ff20f",
+          "tool": "list_sources",
+          "arguments": {},
+          "result": "{\"sources\": [{\"id\": \"openai\", \"name\": \"OpenAI News\", \"topics\": \"模型、AI 编程、Agent、产品\"}, {\"id\": \"google\", \"name\": \"Google AI\", \"topics\": \"模型、多模态、AI 应用、研究\"}, {\"id\": \"huggingface\", \"name\": \"Hugging Face\", \"topics\": \"开源模型、本地部署、工程实践\"}, {\"id\": \"techcrunch\", \"name\": \"TechCrunch AI\", \"topics\": \"AI 产品、行业、融资\"}, {\"id\": \"arxiv\", \"name\": \"arXiv cs.AI / cs.LG\", \"topics\": \"论文、机器学习、研究（仅研究偏好时使用）\"}]}",
+          "status": "ok",
+          "duration_ms": 0,
+          "created_at": "2026-10-19T10:09:33.349153+00:00"
+        },
+        {
+          "id": 5,
+          "run_id": "0e977eba13964a68875d985b173ff20f",
+          "tool": "fetch_news",
+          "arguments": {
+            "source_id": "openai"
+          },
+          "result": "{\"error\": \"ValueError: ConnectTimeout: 来源获取失败\"}",
+          "status": "error",
+          "duration_ms": 12094,
+          "created_at": "2026-10-19T10:09:46.582558+00:00"
+        },
+        {
+          "id": 6,
+          "run_id": "0e977eba13964a68875d985b173ff20f",
+          "tool": "fetch_news",
+          "arguments": {
+            "source_id": "huggingface"
+          },
+          "result": "{\"source\": \"huggingface\", \"count\": 0, \"articles\": [], \"demo\": false, \"window_hours\": 24}",
+          "status": "ok",
+          "duration_ms": 719,
+          "created_at": "2026-10-19T10:09:47.327854+00:00"
+        },
+        {
+          "id": 7,
+          "run_id": "0e977eba13964a68875d985b173ff20f",
+          "tool": "fetch_news",
+          "arguments": {
+            "source_id": "google"
+          },
+          "result": "{\"source\": \"google\", \"count\": 0, \"articles\": [], \"demo\": false, \"window_hours\": 24}",
+          "status": "ok",
+          "duration_ms": 985,
+          "created_at": "2026-10-19T10:09:48.322098+00:00"
+        },
+        {
+          "id": 8,
+          "run_id": "0e977eba13964a68875d985b173ff20f",
+          "tool": "fetch_news",
+          "arguments": {
+            "source_id": "techcrunch"
+          },
+          "result": "{\"source\": \"techcrunch\", \"count\": 2, \"articles\": [{\"id\": \"33da8aabe6e16f93a795\", \"title\": \"Anthropic says it’s committing 5% of its shares to a ‘public benefit fund’\", \"url\": \"https://techcrunch.com/2026/10/18/anthropic-says-its-committing-5-of-its-shares-to-a-public-benefit-fund\", \"source_id\": \"techcrunch\", \"source\": \"TechCrunch AI\", \"published_at\": \"2026-10-18T20:37:40+00:00\", \"first_published_at\": \"2026-10-18T20:37:40+00:00\", \"announced_at\": null, \"updated_at\": null, \"feed_entry_at\": \"2026-10-18T20:37:40+00:00\", \"time_basis\": \"source_published\", \"text\": \"Anthropic said that it will commit 5% of its shares to the fund.\", \"evidence_kind\": \"feed_summary\", \"demo\": false}, {\"id\": \"71e1590c6c971a337879\", \"title\": \"Disney agrees to hire the majority of Character.AI’s workforce\", \"url\": \"https://techcrunch.com/2026/10/18/disney-agrees-to-hire-the-majority-of-character-ais-workforce\", \"source_id\": \"techcrunch\", \"source\": \"TechCrunch AI\", \"published_at\": \"2026-10-18T16:30:00+00:00\", \"first_published_at\": \"2026-10-18T16:30:00+00:00\", \"announced_at\": null, \"updated_at\": null, \"feed_entry_at\": \"2026-10-18T16:30:00+00:00\", \"time_basis\": \"source_published\", \"text\": \"The filing also says that the “vast majority” of Character.AI employees who were offered jobs at Disney accepted them. However, this is a stalking horse bid, so another company could come forward with a higher offer.\", \"evidence_kind\": \"feed_summary\", \"demo\": false}], \"demo\": false, \"window_hours\": 24}",
+          "status": "ok",
+          "duration_ms": 281,
+          "created_at": "2026-10-19T10:09:48.633868+00:00"
+        },
+        {
+          "id": 9,
+          "run_id": "0e977eba13964a68875d985b173ff20f",
+          "tool": "fetch_news",
+          "arguments": {
+            "source_id": "openai"
+          },
+          "result": "{\"source\": \"openai\", \"count\": 0, \"articles\": [], \"demo\": false, \"window_hours\": 24}",
+          "status": "ok",
+          "duration_ms": 1453,
+          "created_at": "2026-10-19T10:09:51.582179+00:00"
+        },
+        {
+          "id": 10,
+          "run_id": "0e977eba13964a68875d985b173ff20f",
+          "tool": "fetch_news",
+          "arguments": {
+            "source_id": "arxiv"
+          },
+          "result": "{\"source\": \"arxiv\", \"count\": 40, \"articles\": [{\"id\": \"da92b80397690dde35e8\", \"title\": \"Structured Authority Injection: Persistent Human Control for LLM Agents via Typed MCP Overrides\", \"url\": \"https://arxiv.org/abs/2610.22373\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": null, \"first_published_at\": null, \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"arXiv:2610.22373v1 Announce Type: new Abstract: LLM-based agents are increasingly used as autonomous orchestrators in distributed and multi-agent systems, yet a control gap remains: no protocol-level mechanism allows human operators to inject binding directives that persist across planning cycles. Free-text overrides suffer from ambiguous interpretation due to lack of schema validation and from authority erosion as operator instructions lose influence within accumulating context. We propose Structured Authority Injection (SAI), a protocol that addresses these issues by routing operator corrections through typed, schema-validated Model Context Protocol (MCP) tool calls and maintaining a ranked authority context prepended to each LLM prompt. SAI defines three override classes (Constraint, Priority, and Strategy) with distinct persistence semantics and an explicit precedence order enforced via a directed authority channel inaccessible to the planning process. The method requires no model fine-tuning or access to model weights and applies to instruction-tuned LLMs supporting MCP tool use. Evaluation across nine LLMs and eight scenarios targeting agent failure modes shows reduced ambiguous directive interpretation and mitigated authority decay across planning iterations, with lower prompt overhead in the strongest models (up to 38% depending on model and scenario), though benefit varies substantially across models. SAI provides a general design pattern for agent systems requiring explicit and persistent human control.\", \"evidence_kind\": \"feed_summary\", \"demo\": false}, {\"id\": \"aa178b575bb249be9aef\", \"title\": \"When is a large language model a good calibration agent? Physics-labeled prompting for budgeted engineering simulator calibration\", \"url\": \"https://arxiv.org/abs/2610.22379\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": null, \"first_published_at\": null, \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"arXiv:2610.22379v1 Announce Type: new Abstract: Calibrating expensive engineering simulators requires tuning model parameters to match reference data, a process heavily constrained by computational costs. This study investigates whether Large Language Models (LLMs), conditioned on physical diagnostic descriptions of simulation errors, can propose informative parameter updates more efficiently than conventional derivative-free optimizers. We test this on a cylinder-wake Large-Eddy Simulation and a damped-oscillator inverse problem. Physics-labeled prompts are evaluated against four text ablations (removed, anonymized, padded, misdirected) and standard optimizers (Nelder-Mead, Bayesian optimization, CMA-ES, and random search). Results demonstrate a strong early semantic advantage: the first physics-informed LLM proposal improves the initial design in 23 of 25 trials. After five evaluations, the median calibration error is 21.9 times lower than physics-free controls. However, this advantage is transient - disappearing by fifteen evaluations - and inherent LLM decoder variability yields a 9.8-fold performance spread. To address this, we introduce a hybrid workflow that uses the LLM as a warm-start, passing accumulated evaluations to a conventional optimizer. This two-stage numerical continuation policy reaches target accuracy in just 9 simulator runs, outperforming the LLM alone (12 runs), Nelder-Mead (17 runs), and Bayesian optimization (>60 runs). Supported by sensitivity analysis validating the test cases, this hybrid physics-labeled LLM scheme proves highly effective as a calibration agent under strict evaluation budgets.\", \"evidence_kind\": \"feed_summary\", \"demo\": false}, {\"id\": \"dd5a28f9c533e0ee2ccc\", \"title\": \"Trust but Verify: Designing Region-Inhomogeneous Forward Dynamics for Discrete Diffusion\", \"url\": \"https://arxiv.org/abs/2610.22380\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": null, \"first_published_at\": null, \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"arXiv:2610.22380v1 Announce Type: new Abstract: Continuous diffusion treats the forward process as a design space; discrete language diffusion often uses absorbing corruption, leaving context fully trusted throughout generation. This makes trust binary: corrupted context is copied as ground truth, propagating errors into generated spans. We reopen this design space by combining absorbing and uniform-mixing kernels with region-dependent rates. Missing positions follow absorbing dynamics, while context undergoes low-rate random substitution, exposing the model to observed but uncertain tokens during training. At inference, a heuristic sampler re-injects noise into suspicious context under an annealed intensity and freezes context updates late in the trajectory. An 8,000-step finetune of a pretrained 170M-parameter masked diffusion model takes under five hours on a 6 GB laptop GPU. The base model assigns roughly 50% probability to observed tokens even when they are uniform-random garbage. For uniform-random corruption, finetuning detects corrupted context with 0.96 recall and 0.91 precision, improves infill token-F1 by 3.8 points at 10% corruption and 6.4 points at 20%, and removes the accuracy dip next to corruptions. Clean conditioning shows no measurable regression, with a false-edit rate below 0.4%. Gains for plausible corruptions are weaker: about 0.5 F1 points at 10% corruption, without statistical significance. Our results suggest that detectability and damage depend jointly on departure from the data conditional: nearby noise is hard to detect and semantically mild, while distant noise is conspicuous and destructive. We interpret absorbing diffusion as the infinite-contrast limit of a trust axis, analogous to the signal-to-noise gap between known and unknown regions in diffusion inpainting. In our setting of a 170M model and a single text domain, intermediate trust is reached by changing forward dynamics rather than architecture.\", \"evidence_kind\": \"feed_summary\", \"demo\": false}, {\"id\": \"3a93b1c8699f7e1580fd\", \"title\": \"Binding-Specific Relearning Savings for Test-Time Continual Learning\", \"url\": \"https://arxiv.org/abs/2610.22381\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": null, \"first_published_at\": null, \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"arXiv:2610.22381v1 Announce Type: new Abstract: When a fact becomes harder to elicit from a language model, has the model lost it, or has it merely become less accessible? Parameter-updating test-time continual learning agents are usually evaluated by current output accuracy; we ask whether that measurement captures how prior experience shapes later updates. We test whether learning a specific factual binding produces a later relearning advantage beyond familiarity with its entity, answer vocabulary, format, or query slot. In Qwen2.5-1.5B, we compare three matched, counterbalanced histories: LEARNED receives the correct binding, CONTROL receives matched exposure without it, and WRONG receives a competing relation-valid answer in the same slot. After an identical rehearsal-free continual fine-tuning stream, LEARNED reacquires the target faster than CONTROL at a prespecified checkpoint of partial forgetting. WRONG shows no positive advantage over CONTROL, while its comparison with LEARNED provides slot-matched corroboration, subject to possible competitor interference. The advantage remains positive after adjustment for measured pre-relearning behavior. In a secondary descriptive conversion using an unpaired never-seen pool, prior learning reduces the optimizer updates required for restoration by about 18%. Current behavioral accuracy can therefore underestimate the lasting effect of previously acquired experience. Code is available at https://github.com/zhezhou1106/relearning-savings\", \"evidence_kind\": \"feed_summary\", \"demo\": false}, {\"id\": \"0b0024271a7c2b5987bb\", \"title\": \"Rethinking User Encoders: Routing Diffusion States for Scenario-Adaptive User Representation\", \"url\": \"https://arxiv.org/abs/2610.22400\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": null, \"first_published_at\": null, \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"arXiv:2610.22400v1 Announce Type: new Abstract: Existing large language model (LLM)-based user encoders serialize heterogeneous behavioral logs and compress them into static representations through autoregressive (AR) prediction. However, their unidirectional constraint limits bidirectional information flow, hindering cross-modal interactions and the joint preservation of multi-source signals. Consequently, the learned static representations struggle to accommodate the distinct evidence requirements of diverse downstream scenarios. We address these limitations by unlocking the iterative denoising process of diffusion language models (dLLMs) as a multi-granularity reconstruction space. Based on this insight, we propose FINDERS (FactorIzatioN of Diffusion statEs for Routing across Scenarios), a router-equipped dLLM framework comprising four operations: denoise, factorize, route, and compress. Learnable meta-slots organize complementary denoising states into transferable cross-modal semantics and modality-specific behavioral factors. To provide grounded supervision, we construct BehaviorQA, a large-scale corpus containing explicit behavioral rationales. Guided by scenario queries, a lightweight router dynamically emphasizes relevant slot directions via an input-level residual pathway before cross-source fusion and final compression. Extensive experiments and online A/B tests across ten industrial scenarios demonstrate that FINDERS consistently outperforms state-of-the-art methods in both unified and scenario-adaptive settings. This work effectively pushes the boundaries of dLLMs beyond language generation, demonstrating their immense potential as powerful user representation learners.\", \"evidence_kind\": \"feed_summary\", \"demo\": false}, {\"id\": \"d2da03dd040aaeefea30\", \"title\": \"From Events to Reasoning: Hierarchical Rule Composition over Explicit States\", \"url\": \"https://arxiv.org/abs/2610.22403\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": null, \"first_published_at\": null, \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"arXiv:2610.22403v1 Announce Type: new Abstract: What a reasoning system emits is a conclusion; what it owes is a justification. Producing one requires every operation to be admissible on the facts actually available, the dependencies of intermediate results to survive to the end of the path, and the path to be revised when a premise changes. We present the Event Reasoning System (ERS), in which the reasoning state is an explicit event graph. Semantic features nominate candidate objects and rule bindings, and declared rule and task conditions decide which may execute, so candidates that violate the represented period, unit, or evidence constraints cannot enter an accepted reasoning path. Low-level rules provide reusable local transformations, and recursively composable high-level control rules organize subgoals and legal paths under the current goal, information gaps, and budget; a finite library is thereby rebound into paths never stored as complete solutions. We formalize admissible transitions, task-dependent control, compositional expressivity, dependency-preserving revision, and the gap between reachable solutions and those a budgeted controller finds. On structured-event graphs, ERS builds dependency chains of up to twelve steps, cuts irrelevant executed domain operations from 32 to 0 as lookahead grows to 16, and produces no unsupported target output across 24 negative cases; with rules frozen, it passes 12/12 focused checks comprising nine accepted derivations involving unseen input/path combinations and three justified refusals, as well as 6/6 fact-change cases. On fourteen jointly solved development tasks, the recorded dynamic subgoal configuration uses 51.6% less inference wall-clock time than single-level global control under their respective frozen settings.\", \"evidence_kind\": \"feed_summary\", \"demo\": false}, {\"id\": \"9f9467f75484ebfa07d2\", \"title\": \"ECHOES: Seeing Beyond the Current Image via Recursive History Compression and Privileged On-Policy Distillation\", \"url\": \"https://arxiv.org/abs/2610.22408\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": null, \"first_published_at\": null, \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"arXiv:2610.22408v1 Announce Type: new Abstract: Long-horizon GUI agents rely on visual history to maintain task states, but retaining historical screenshots increases visual-token usage and inference costs, while textual summaries can discard critical state information, undermining long-horizon reliability. We propose ECHOES, which leverages training-time privileged information to guide textual history compression and strengthen long-horizon reasoning. Specifically, ECHOES adopts a Compression-Think-Action (CTA) format to recursively update a textual history state and reason. The same model, given privileged multi-image inputs, serves as a teacher that provides dense token-level on-policy distillation on student-generated CTA rollouts. Our Perception-Memory Fidelity (PMF) Gap-guided OPD-RL framework dynamically balances privileged distillation and task-reward optimization, with periodic teacher updates supporting continued improvement. We further introduce ECHOESBMK, a fine-grained diagnostic benchmark derived from real GUI agent failure trajectories to jointly evaluate visual perception and cross-modal state retention. Experiments on four GUI benchmarks and ECHOESBMK demonstrate substantial gains in task performance and memory fidelity. Without retaining historical screenshots at deployment, ECHOES achieves competitive performance with a favorable performance-inference-cost trade-off and exhibits positive zero-shot transfer to unseen visual planning tasks.\", \"evidence_kind\": \"feed_summary\", \"demo\": false}, {\"id\": \"4c5e025cfc8f17ca9a46\", \"title\": \"Sensitivity Analysis of Decision Rules in an Agent-Based Agro-Ecological Model\", \"url\": \"https://arxiv.org/abs/2610.22420\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": null, \"first_published_at\": null, \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"arXiv:2610.22420v1 Announce Type: new Abstract: Agent-based models are well-suited for modelling agro-ecological systems for decision-making, yet turning their simulations into actionable insight requires identifying which decisions actually drive the behaviours. In such a context, sensitivity analysis stumbles upon a structural feature of many complex systems: the parameters are not a flat vector but a decision tree in which many parameters appear only when a higher-level choice activates them. Classical global sensitivity analysis presupposes independent inputs over a fixed Cartesian product and is ill-posed on such a branched space and biased by construction. We instead treat the structure of the decisions as a first-class modelling object. Using advanced surrogate modelling techniques, we encode the crop-management itinerary of the high-resolution agro-ecological modelling platform MAELIA as a hierarchical design space featuring both categorical and numerical variables. We propose a novel dedicated method to analyse this kind of hierarchical space, a random-forest-supervised HSIC-ANOVA, which ranks main effects and interactions natively on the tree while placing rarely and always active decisions on an equal footing. We show how, when applied to simulation outputs such as nitrogen leaching, soil organic carbon variation, and yield predictions, it can deliver an interpretable, decision-oriented reading.\", \"evidence_kind\": \"feed_summary\", \"demo\": false}, {\"id\": \"434246a93fec15537b14\", \"title\": \"PRIME: Towards Verifiable Evidence-Grounded Reasoning in LLM Agents\", \"url\": \"https://arxiv.org/abs/2610.22426\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": null, \"first_published_at\": null, \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"arXiv:2610.22426v1 Announce Type: new Abstract: LLM agents are used to check records against an organization's requirements, for example whether a vulnerability report is ready for investigation. Requirements often allow several ways to be met, such as a severity rating with a curator-reviewed advisory or a published advisory link. Agents fail by accepting a report after a required check has failed, or by settling for a weaker conclusion without trying another way that could still succeed. We introduce PRIME (Precommitted Rules for Inference from Minimal Evidence). Before checking, it fixes evidence routes specifying how each conclusion may be justified. A separate program records each check result and refuses any conclusion the results do not justify. It also points the agent to checks that could justify a stronger conclusion, or runs them itself. PRIME reports only conclusions authorized by its rules and ledger. With correct requirements, exact checks at known locations, and sufficient budget at stopping, completion reaches the strongest supported conclusion. On 480 public-record tasks, an agent shown the requirements reported unjustified conclusions on 26.7% of tasks, while PRIME reported none. Its directions and added checks raised the average score for justified conclusions from 30.1, with refusal alone, to the maximum of 59.2 out of 100.\", \"evidence_kind\": \"feed_summary\", \"demo\": false}, {\"id\": \"c75b08a745837bc4fd9e\", \"title\": \"CGDT-CESN: Correlation-Guided and Dynamics-Trained Clustered Echo State Network for Multivariate Time-Series Prediction\", \"url\": \"https://arxiv.org/abs/2610.22430\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": null, \"first_published_at\": null, \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"arXiv:2610.22430v1 Announce Type: new Abstract: Accurate prediction of multivariate time series requires models that simultaneously capture variable-specific dynamics and cross-variable interactions. In this work, a Correlation-Guided and Dynamics-Trained Clustered Echo State Network (CGDT-CESN) is proposed, which comprises a modular reservoir architecture with each cluster distinctly specializing in one of the variables in the multivariate time series. An innovative reservoir design is proposed in which inter-cluster connections are enabled by empirically observed correlations among variables, providing a data-driven coupling mechanism. Apart from conventional readout training, inter-cluster connection weights informed by correlations are trained, which in turn allows the reservoir to capture time-varying cross-variable dependencies without sacrificing computational efficiency and further improves forecasting accuracy. The prediction performance of CGDT-CESN is found to be superior to that of the conventional ESN when evaluated on two fundamentally different datasets: Twitter information cascade evolution and solar wind forecasting. Also, the improvement in performance is preserved across multiple prediction horizons, even when presented with a low volume of data. By unifying cluster-specific specialization with learned inter-variable coupling, CGDT-CESN offers a principled, data-driven route to multivariate time series prediction.\", \"evidence_kind\": \"feed_summary\", \"demo\": false}, {\"id\": \"fdd7c1296f918924cf03\", \"title\": \"BOLT: Multi-Bottleneck Bound-Guided Learning for Flexible Job-Shop Scheduling with Time Lags and Resource-Coupled Transport\", \"url\": \"https://arxiv.org/abs/2610.22433\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": null, \"first_published_at\": null, \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"arXiv:2610.22433v1 Announce Type: new Abstract: Flexible job-shop scheduling becomes resource-coupled when a scarce vehicle fleet moves jobs between stations, because the schedule sets the transport waits. BOLT (bound-oriented learning for transport-coupled scheduling) builds a lower bound from chain, machine-capacity, and fleet-capacity relaxations. The bound equals the makespan at termination, so its per-step changes form a reward that sums to a constant minus the makespan. Because it never exceeds the attainable makespan, each candidate's bound increase is a proven rise of the makespan floor, which the policy reads as a price. The root bound certifies a completed schedule's suboptimality gap without a solver. On industry-motivated 10-module prefabricated-construction instances, explicit transport coupling outperforms a transport-penalty policy in every tested cell where loaded moves occupy at least 66% of fleet time and in none at or below 56%. Across five zero-shot 50- and 80-module production batches, BOLT outperforms the best dispatching-rule pair on four and the penalty policy on the three with long moves. In the three-vehicle 80-module batch, its mean makespan is 13.0% below the best pair and 4.2% below an hour-budget constraint-programming solver whose proven gap averages 34%. BOLT decides in 2.3-5.9 ms per event on one processor core and re-plans a disruption in seconds.\", \"evidence_kind\": \"feed_summary\", \"demo\": false}, {\"id\": \"5d023c2a1961329c95c3\", \"title\": \"TRACE: Transformer Residual Activation Codebook Encoding for Communication-efficient Distributed Edge Inference\", \"url\": \"https://arxiv.org/abs/2610.22435\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": null, \"first_published_at\": null, \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"arXiv:2610.22435v1 Announce Type: new Abstract: Distributed Transformer inference across co-located edge devices is fundamentally communication-bound, as exchanging activations between sequence-parallel partitions dominates inference latency under commodity edge bandwidths. Existing compression schemes reduce this cost but retain a structural bottleneck: the received data must still undergo key/value projection before attention can proceed, serializing computation behind communication. This paper presents Transformer Residual Activation Codebook Encoding (Trace), a framework that addresses these limitations. Trace places a Vector Quantizer (VQ) at the post-attention residual of every Transformer layer and precomputes codebook-indexed key/value r",
+          "status": "ok",
+          "duration_ms": 859,
+          "created_at": "2026-10-19T10:09:52.462934+00:00"
+        },
+        {
+          "id": 11,
+          "run_id": "0e977eba13964a68875d985b173ff20f",
+          "tool": "read_article",
+          "arguments": {
+            "article_id": "da92b80397690dde35e8"
+          },
+          "result": "{\"id\": \"da92b80397690dde35e8\", \"title\": \"Structured Authority Injection: Persistent Human Control for LLM Agents via Typed MCP Overrides\", \"url\": \"https://arxiv.org/abs/2610.22373\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": \"2026-07-27T03:38:01+00:00\", \"first_published_at\": \"2026-07-27T03:38:01+00:00\", \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"Abstract: LLM-based agents are increasingly used as autonomous orchestrators in distributed and multi-agent systems, yet a control gap remains: no protocol-level mechanism allows human operators to inject binding directives that persist across planning cycles. Free-text overrides suffer from ambiguous interpretation due to lack of schema validation and from authority erosion as operator instructions lose influence within accumulating context. We propose Structured Authority Injection (SAI), a protocol that addresses these issues by routing operator corrections through typed, schema-validated Model Context Protocol (MCP) tool calls and maintaining a ranked authority context prepended to each LLM prompt. SAI defines three override classes (Constraint, Priority, and Strategy) with distinct persistence semantics and an explicit precedence order enforced via a directed authority channel inaccessible to the planning process. The method requires no model fine-tuning or access to model weights and applies to instruction-tuned LLMs supporting MCP tool use. Evaluation across nine LLMs and eight scenarios targeting agent failure modes shows reduced ambiguous directive interpretation and mitigated authority decay across planning iterations, with lower prompt overhead in the strongest models (up to 38% depending on model and scenario), though benefit varies substantially across models. SAI provides a general design pattern for agent systems requiring explicit and persistent human control.\", \"evidence_kind\": \"abstract\", \"demo\": false, \"publication_kind\": \"preprint\"}",
+          "status": "ok",
+          "duration_ms": 375,
+          "created_at": "2026-10-19T10:09:57.887226+00:00"
+        },
+        {
+          "id": 12,
+          "run_id": "0e977eba13964a68875d985b173ff20f",
+          "tool": "read_article",
+          "arguments": {
+            "article_id": "a97c1f5a709e4de6f7ba"
+          },
+          "result": "{\"id\": \"a97c1f5a709e4de6f7ba\", \"title\": \"Lean4AgenticRL: Advancing Agentic RL with Verifiable Multi-level Process Rewards\", \"url\": \"https://arxiv.org/abs/2610.22448\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": \"2026-10-15T15:26:54+00:00\", \"first_published_at\": \"2026-10-15T15:26:54+00:00\", \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"Abstract: Enhancing the agentic capabilities of Large Language Models (LLMs) to tackle complex software engineering (SWE) and general terminal-usage problems is a pressing challenge. Current state-of-the-art LLMs often go through large-scale agentic Reinforcement Learning (RL). However, they mostly rely on high-level outcome rewards, with minimal consideration of low-level toolcall and mid-level workflow-stage rewards, which makes the training less effective. To overcome this limitation, we propose **Lean4AgenticRL**, which, to the best of our knowledge, is the first framework that grounds multi-level process rewards in the unified Lean4 formalization schema for open-ended agentic RL. **Lean4AgenticRL** first builds a *problem-specific workflow* system that balances the agent's own capability and controllability during execution, laying the foundation for further verification. Subsequently, our workflow formalization and multi-level reward annotation methods enable agent behavior verification within a general harness system. It provides multi-level rewards to support more effective agentic RL with the workflow-stage-normalized GRPO algorithm. Using **Lean4AgenticRL**, we train **LAR-9B/27B**, a family of models with enhanced agentic capability. Extensive experiments indicate that our model outperforms the leading model of similar size. **LAR-27B** achieves **77.3%** on TerminalBench-2.1. On average, our models outperform the base model by **9.89%** and surpass the second-best model of comparable size we know by **5.07%**. These results indicate the potential of integrating formal methods in enhancing open-ended agentic RL.\", \"evidence_kind\": \"abstract\", \"demo\": false, \"publication_kind\": \"preprint\"}",
+          "status": "ok",
+          "duration_ms": 578,
+          "created_at": "2026-10-19T10:09:58.483440+00:00"
+        },
+        {
+          "id": 13,
+          "run_id": "0e977eba13964a68875d985b173ff20f",
+          "tool": "read_article",
+          "arguments": {
+            "article_id": "f34ad45741b405ff9e69"
+          },
+          "result": "{\"id\": \"f34ad45741b405ff9e69\", \"title\": \"Harness-Delta Attribution: Dissecting Gains From Harness Evolution\", \"url\": \"https://arxiv.org/abs/2610.22466\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": \"2026-10-15T17:39:38+00:00\", \"first_published_at\": \"2026-10-15T17:39:38+00:00\", \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"Abstract: Harness evolution automatically optimizes the prompts, skills, tools, and orchestration code around a fixed-weight model, offering a way to improve agentic systems without updating model weights. The agent harness is iteratively optimized to achieve higher performance on the search set. But how much of this gain reflects benchmark-specific overfitting or additional inference-time compute, and how much may generalize beyond the search set? In this work, we introduce Harness-Delta Attribution (HDA), an evaluation protocol that dissects an evolution gain into artifact-driven overfitting, gains explained by test-time scaling, and the remainder, which gives an upper bound on residual generalizable improvement. We apply HDA to 11 executor models and three harness-evolution frameworks across math, coding, creativity, and agentic tasks. In 21 of these settings that show statistically significant search-set gains, we find that a large share of the improvement is explained by overfitting or test-time scaling. Specifically, among these 21 settings, overfitting and test-time scaling account for 54% and 14% of the gain on average; their combined share exceeds 50% in 14 settings. The residual and held-out transfer vary substantially across tasks, models, and frameworks. Importantly, search-set gains often fail to transfer to held-out tasks, and provide limited evidence that they will persist under practical distribution shifts. Moreover, validation-based signals are insufficient to prevent overfitting. These results motivate attribution-aware evaluation in future harness evolution research.\", \"evidence_kind\": \"abstract\", \"demo\": false, \"publication_kind\": \"preprint\"}",
+          "status": "ok",
+          "duration_ms": 297,
+          "created_at": "2026-10-19T10:09:58.822257+00:00"
+        },
+        {
+          "id": 14,
+          "run_id": "0e977eba13964a68875d985b173ff20f",
+          "tool": "read_article",
+          "arguments": {
+            "article_id": "434246a93fec15537b14"
+          },
+          "result": "{\"id\": \"434246a93fec15537b14\", \"title\": \"PRIME: Towards Verifiable Evidence-Grounded Reasoning in LLM Agents\", \"url\": \"https://arxiv.org/abs/2610.22426\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": \"2026-10-15T05:03:22+00:00\", \"first_published_at\": \"2026-10-15T05:03:22+00:00\", \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"Abstract: LLM agents are used to check records against an organization's requirements, for example whether a vulnerability report is ready for investigation. Requirements often allow several ways to be met, such as a severity rating with a curator-reviewed advisory or a published advisory link. Agents fail by accepting a report after a required check has failed, or by settling for a weaker conclusion without trying another way that could still succeed. We introduce PRIME (Precommitted Rules for Inference from Minimal Evidence). Before checking, it fixes evidence routes specifying how each conclusion may be justified. A separate program records each check result and refuses any conclusion the results do not justify. It also points the agent to checks that could justify a stronger conclusion, or runs them itself. PRIME reports only conclusions authorized by its rules and ledger. With correct requirements, exact checks at known locations, and sufficient budget at stopping, completion reaches the strongest supported conclusion. On 480 public-record tasks, an agent shown the requirements reported unjustified conclusions on 26.7% of tasks, while PRIME reported none. Its directions and added checks raised the average score for justified conclusions from 30.1, with refusal alone, to the maximum of 59.2 out of 100.\", \"evidence_kind\": \"abstract\", \"demo\": false, \"publication_kind\": \"preprint\"}",
+          "status": "ok",
+          "duration_ms": 328,
+          "created_at": "2026-10-19T10:09:59.173196+00:00"
+        },
+        {
+          "id": 15,
+          "run_id": "0e977eba13964a68875d985b173ff20f",
+          "tool": "read_article",
+          "arguments": {
+            "article_id": "8cad1d7071d358947cb2"
+          },
+          "result": "{\"id\": \"8cad1d7071d358947cb2\", \"title\": \"Testing the Planning Claims of LLM-Based Agents against Formal Semantics\", \"url\": \"https://arxiv.org/abs/2610.22469\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": \"2026-10-15T17:47:30+00:00\", \"first_published_at\": \"2026-10-15T17:47:30+00:00\", \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"Abstract: LLM-based agents are increasingly credited with the competences of practical reasoning: planning, monitoring, and correcting their own actions. Their success is attributed to the prompting strategies and agent architectures built around the model, such as chain-of-thought, search-based prompting, self-refinement, reflection, critics and tool-using loops. Yet these claims are usually supported by end-to-end success rates, which show only whether a task was completed, or by LLM judges, which are not verifiers. We test LLM planning against formal semantics. Tasks are posed in natural language, but each is grounded in a hidden PDDL model that decides whether every action is applicable, whether the goal is reached, and whether a plan exists at all. Across five domains (two of them new, all released with the paper), four models, six prompting strategies and three agent architectures, the best configuration solves 78% of the solvable tasks offline but only 40% online, where agents mostly act without inspecting the state. Unsolvable tasks are recognised in under 10% of episodes, and heavier prompting strategies use 5 to 22 times as many tokens as direct prompting with no clear gain. In our experiments, planning performance varied more across models than across prompting strategies or agent architectures. Claims that agents can plan require evidence from validated action traces.\", \"evidence_kind\": \"abstract\", \"demo\": false, \"publication_kind\": \"preprint\"}",
+          "status": "ok",
+          "duration_ms": 281,
+          "created_at": "2026-10-19T10:09:59.488721+00:00"
+        },
+        {
+          "id": 16,
+          "run_id": "0e977eba13964a68875d985b173ff20f",
+          "tool": "submit_brief",
+          "arguments": {
+            "title": "Agent 工程简报：MCP 控制、工具调用训练与评测归因",
+            "overview": "过去 24 小时可用的新内容主要来自 arXiv 公告：OpenAI News 首次抓取超时、重试后为空，Hugging Face 与 Google AI 的 24 小时窗口内无条目，TechCrunch 仅有 Anthropic 股份承诺与迪士尼聘用 Character.AI 员工两条公司动态，均偏离你的技术与开源关注且涉及资本/人事，未选。共从 arXiv 40 条公告中筛出 4 篇与 Agent 工具调用、软件工程智能体和评测方法直接相关的论文；这些论文的首次提交时间为 7 月 27 日或 10 月 15 日，今日仅为其 arXiv 公告日，并非今天首次发表。",
+            "selections": [
+              "article_id='a97c1f5a709e4de6f7ba' summary='Lean4AgenticRL 用 Lean4 形式化统一表示软件工程与终端任务的工作流，并把奖励拆成工具调用级、流程阶段级和最终结果级三层，配合 workflow-stage-normalized GRPO 训练。作者称由此得到 LAR-9B/27B：LAR-27B 在 TerminalBench-2.1 上达到 77.3%，平均比基座模型高 9.89%，比已知同规模第二好模型高 5.07%（均为作者报告值）。论文首次提交于 2026-10-15，今日进入 arXiv 公告。' why_it_matters='你关注 AI 编程与工具调用：它把“工具调用是否正确”变成可验证的中间奖励，而不是只看任务成败，这为自建编码 Agent 的评测与训练数据设计提供了可直接借鉴的分层信号思路；但 77.3% 是特定基准上的通过率，并非满分。' topic='Agent / AI 编程' relevance=3",
+              "article_id='da92b80397690dde35e8' summary='SAI 提出用带类型、经 schema 校验的 MCP 工具调用来传递操作者对 Agent 的修正，并在每次提示前加入带优先级的“权威上下文”，把覆盖指令分为 Constraint、Priority、Strategy 三类，通过规划过程无法访问的通道保证优先级。方法无需微调或模型权重，适用于支持 MCP 工具调用的指令模型；在 9 个模型、8 类失败场景上，作者称歧义指令解读减少、多轮规划中的指令权威衰减得到缓解，最强模型上提示开销最多降低 38%，但收益随模型和场景差异很大。首次提交于 2026-07-27，今日为 arXiv 公告。' why_it_matters='你关心工具调用与 Agent 可控性：这套做法把“人类纠偏”做成结构化协议而非自由文本，便于在后端服务里落地权限与优先级，也提醒你 38% 只是特定模型/场景的最优值，不能当作普遍开销收益。' topic='Agent / 工具调用（MCP）' relevance=3",
+              "article_id='f34ad45741b405ff9e69' summary='HDA 提出把“harness 演化”（自动优化提示、工具、编排代码而固定模型权重）带来的涨分拆成三部分：基准过拟合、测试时算力增加带来的收益、以及可能泛化的残差。作者在 11 个执行模型、3 个 harness 演化框架、数学/编程/创意/Agent 任务上评测，在 21 个搜索集涨分显著的设置中，过拟合与测试时扩展平均分别解释 54% 和 14% 的增益，两者合计在 14 个设置中超过 50%；搜索集收益常常无法迁移到留出任务，验证集信号也不足以阻止过拟合。首次提交于 2026-10-15，今日公告。' why_it_matters='如果你在调 Agent 的提示与工具链，这篇直接给出“涨分归因”的评测协议：上线前应固定算力预算并留出分布外任务，否则很容易把过拟合和更多推理 token 误判为工程改进。' topic='Agent 评测' relevance=3",
+              "article_id='434246a93fec15537b14' summary='PRIME 在检查前先固定“证据路径”，规定每种结论需要哪些检查结果才能成立；独立程序记录每次检查结果，并拒绝规则与记录无法支撑的结论，还会提示或代跑能支撑更强结论的检查。在 480 个公共记录任务上，直接看要求的 Agent 有 26.7% 的任务给出未获证结论，PRIME 为 0；其引导与补充检查把“有正当依据结论”的平均得分从仅拒答时的 30.1 提升到满分 59.2（满分 100）。首次提交于 2026-10-15，今日公告。' why_it_matters='你的后端场景里 Agent 常要核对工单、漏洞报告等记录，PRIME 的“规则+台账”结构可作为工具调用后校验层的设计参考，用确定性程序兜住模型越权下结论；注意其结论依赖需求正确、检查位置精确且预算充足。' topic='Agent / 可靠性' relevance=3"
+            ]
+          },
+          "result": "{\"accepted\": true, \"count\": 4, \"message\": \"草稿已通过结构校验，可以结束任务；后端将执行摘要复核。\"}",
+          "status": "ok",
+          "duration_ms": 0,
+          "created_at": "2026-10-19T10:10:10.857582+00:00"
+        }
+      ],
+      "model_observations": [
+        {
+          "phase": "generation",
+          "duration_seconds": 1.02,
+          "tool_names": [
+            "list_dir",
+            "read_file"
+          ],
+          "usage": {
+            "input_tokens": 1601,
+            "output_tokens": 73,
+            "total_tokens": 1674,
+            "input_token_details": {
+              "cache_read": 1408
+            },
+            "output_token_details": {
+              "reasoning": 0
+            }
+          },
+          "finish_reason": "tool_calls"
+        },
+        {
+          "phase": "generation",
+          "duration_seconds": 0.92,
+          "tool_names": [
+            "read_file",
+            "list_sources"
+          ],
+          "usage": {
+            "input_tokens": 1856,
+            "output_tokens": 52,
+            "total_tokens": 1908,
+            "input_token_details": {
+              "cache_read": 1664
+            },
+            "output_token_details": {
+              "reasoning": 0
+            }
+          },
+          "finish_reason": "tool_calls"
+        },
+        {
+          "phase": "generation",
+          "duration_seconds": 1.12,
+          "tool_names": [
+            "fetch_news",
+            "fetch_news",
+            "fetch_news",
+            "fetch_news"
+          ],
+          "usage": {
+            "input_tokens": 2104,
+            "output_tokens": 230,
+            "total_tokens": 2334,
+            "input_token_details": {
+              "cache_read": 1792
+            },
+            "output_token_details": {
+              "reasoning": 94
+            }
+          },
+          "finish_reason": "tool_calls"
+        },
+        {
+          "phase": "generation",
+          "duration_seconds": 1.47,
+          "tool_names": [
+            "fetch_news",
+            "fetch_news"
+          ],
+          "usage": {
+            "input_tokens": 2951,
+            "output_tokens": 212,
+            "total_tokens": 3163,
+            "input_token_details": {
+              "cache_read": 2304
+            },
+            "output_token_details": {
+              "reasoning": 141
+            }
+          },
+          "finish_reason": "tool_calls"
+        },
+        {
+          "phase": "generation",
+          "duration_seconds": 5.03,
+          "tool_names": [
+            "read_article",
+            "read_article",
+            "read_article",
+            "read_article",
+            "read_article"
+          ],
+          "usage": {
+            "input_tokens": 21473,
+            "output_tokens": 923,
+            "total_tokens": 22396,
+            "input_token_details": {
+              "cache_read": 3072
+            },
+            "output_token_details": {
+              "reasoning": 710
+            }
+          },
+          "finish_reason": "tool_calls"
+        },
+        {
+          "phase": "generation",
+          "duration_seconds": 11.33,
+          "tool_names": [
+            "submit_brief"
+          ],
+          "usage": {
+            "input_tokens": 24898,
+            "output_tokens": 2139,
+            "total_tokens": 27037,
+            "input_token_details": {
+              "cache_read": 22272
+            },
+            "output_token_details": {
+              "reasoning": 891
+            }
+          },
+          "finish_reason": "tool_calls"
+        },
+        {
+          "phase": "generation",
+          "duration_seconds": 1.53,
+          "tool_names": [],
+          "usage": {
+            "input_tokens": 27082,
+            "output_tokens": 132,
+            "total_tokens": 27214,
+            "input_token_details": {
+              "cache_read": 26880
+            },
+            "output_token_details": {
+              "reasoning": 0
+            }
+          },
+          "finish_reason": "stop"
+        },
+        {
+          "phase": "summary_review",
+          "duration_seconds": 36.97,
+          "tool_names": [],
+          "usage": {
+            "input_tokens": 2513,
+            "output_tokens": 9182,
+            "total_tokens": 11695,
+            "input_token_details": {
+              "cache_read": 128
+            },
+            "output_token_details": {
+              "reasoning": 7977
+            }
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "candidate_count": 42,
+      "selected_evidence": [
+        {
+          "id": "434246a93fec15537b14",
+          "title": "PRIME: Towards Verifiable Evidence-Grounded Reasoning in LLM Agents",
+          "url": "https://arxiv.org/abs/2610.22426",
+          "source_id": "arxiv",
+          "source": "arXiv cs.AI / cs.LG",
+          "published_at": "2026-10-15T05:03:22+00:00",
+          "first_published_at": "2026-10-15T05:03:22+00:00",
+          "announced_at": "2026-10-19T04:00:00+00:00",
+          "updated_at": null,
+          "feed_entry_at": "2026-10-19T04:00:00+00:00",
+          "time_basis": "feed_announcement",
+          "text": "Abstract: LLM agents are used to check records against an organization's requirements, for example whether a vulnerability report is ready for investigation. Requirements often allow several ways to be met, such as a severity rating with a curator-reviewed advisory or a published advisory link. Agents fail by accepting a report after a required check has failed, or by settling for a weaker conclusion without trying another way that could still succeed. We introduce PRIME (Precommitted Rules for Inference from Minimal Evidence). Before checking, it fixes evidence routes specifying how each conclusion may be justified. A separate program records each check result and refuses any conclusion the results do not justify. It also points the agent to checks that could justify a stronger conclusion, or runs them itself. PRIME reports only conclusions authorized by its rules and ledger. With correct requirements, exact checks at known locations, and sufficient budget at stopping, completion reaches the strongest supported conclusion. On 480 public-record tasks, an agent shown the requirements reported unjustified conclusions on 26.7% of tasks, while PRIME reported none. Its directions and added checks raised the average score for justified conclusions from 30.1, with refusal alone, to the maximum of 59.2 out of 100.",
+          "evidence_kind": "abstract",
+          "demo": false,
+          "publication_kind": "preprint"
+        },
+        {
+          "id": "a97c1f5a709e4de6f7ba",
+          "title": "Lean4AgenticRL: Advancing Agentic RL with Verifiable Multi-level Process Rewards",
+          "url": "https://arxiv.org/abs/2610.22448",
+          "source_id": "arxiv",
+          "source": "arXiv cs.AI / cs.LG",
+          "published_at": "2026-10-15T15:26:54+00:00",
+          "first_published_at": "2026-10-15T15:26:54+00:00",
+          "announced_at": "2026-10-19T04:00:00+00:00",
+          "updated_at": null,
+          "feed_entry_at": "2026-10-19T04:00:00+00:00",
+          "time_basis": "feed_announcement",
+          "text": "Abstract: Enhancing the agentic capabilities of Large Language Models (LLMs) to tackle complex software engineering (SWE) and general terminal-usage problems is a pressing challenge. Current state-of-the-art LLMs often go through large-scale agentic Reinforcement Learning (RL). However, they mostly rely on high-level outcome rewards, with minimal consideration of low-level toolcall and mid-level workflow-stage rewards, which makes the training less effective. To overcome this limitation, we propose **Lean4AgenticRL**, which, to the best of our knowledge, is the first framework that grounds multi-level process rewards in the unified Lean4 formalization schema for open-ended agentic RL. **Lean4AgenticRL** first builds a *problem-specific workflow* system that balances the agent's own capability and controllability during execution, laying the foundation for further verification. Subsequently, our workflow formalization and multi-level reward annotation methods enable agent behavior verification within a general harness system. It provides multi-level rewards to support more effective agentic RL with the workflow-stage-normalized GRPO algorithm. Using **Lean4AgenticRL**, we train **LAR-9B/27B**, a family of models with enhanced agentic capability. Extensive experiments indicate that our model outperforms the leading model of similar size. **LAR-27B** achieves **77.3%** on TerminalBench-2.1. On average, our models outperform the base model by **9.89%** and surpass the second-best model of comparable size we know by **5.07%**. These results indicate the potential of integrating formal methods in enhancing open-ended agentic RL.",
+          "evidence_kind": "abstract",
+          "demo": false,
+          "publication_kind": "preprint"
+        },
+        {
+          "id": "da92b80397690dde35e8",
+          "title": "Structured Authority Injection: Persistent Human Control for LLM Agents via Typed MCP Overrides",
+          "url": "https://arxiv.org/abs/2610.22373",
+          "source_id": "arxiv",
+          "source": "arXiv cs.AI / cs.LG",
+          "published_at": "2026-07-27T03:38:01+00:00",
+          "first_published_at": "2026-07-27T03:38:01+00:00",
+          "announced_at": "2026-10-19T04:00:00+00:00",
+          "updated_at": null,
+          "feed_entry_at": "2026-10-19T04:00:00+00:00",
+          "time_basis": "feed_announcement",
+          "text": "Abstract: LLM-based agents are increasingly used as autonomous orchestrators in distributed and multi-agent systems, yet a control gap remains: no protocol-level mechanism allows human operators to inject binding directives that persist across planning cycles. Free-text overrides suffer from ambiguous interpretation due to lack of schema validation and from authority erosion as operator instructions lose influence within accumulating context. We propose Structured Authority Injection (SAI), a protocol that addresses these issues by routing operator corrections through typed, schema-validated Model Context Protocol (MCP) tool calls and maintaining a ranked authority context prepended to each LLM prompt. SAI defines three override classes (Constraint, Priority, and Strategy) with distinct persistence semantics and an explicit precedence order enforced via a directed authority channel inaccessible to the planning process. The method requires no model fine-tuning or access to model weights and applies to instruction-tuned LLMs supporting MCP tool use. Evaluation across nine LLMs and eight scenarios targeting agent failure modes shows reduced ambiguous directive interpretation and mitigated authority decay across planning iterations, with lower prompt overhead in the strongest models (up to 38% depending on model and scenario), though benefit varies substantially across models. SAI provides a general design pattern for agent systems requiring explicit and persistent human control.",
+          "evidence_kind": "abstract",
+          "demo": false,
+          "publication_kind": "preprint"
+        },
+        {
+          "id": "f34ad45741b405ff9e69",
+          "title": "Harness-Delta Attribution: Dissecting Gains From Harness Evolution",
+          "url": "https://arxiv.org/abs/2610.22466",
+          "source_id": "arxiv",
+          "source": "arXiv cs.AI / cs.LG",
+          "published_at": "2026-10-15T17:39:38+00:00",
+          "first_published_at": "2026-10-15T17:39:38+00:00",
+          "announced_at": "2026-10-19T04:00:00+00:00",
+          "updated_at": null,
+          "feed_entry_at": "2026-10-19T04:00:00+00:00",
+          "time_basis": "feed_announcement",
+          "text": "Abstract: Harness evolution automatically optimizes the prompts, skills, tools, and orchestration code around a fixed-weight model, offering a way to improve agentic systems without updating model weights. The agent harness is iteratively optimized to achieve higher performance on the search set. But how much of this gain reflects benchmark-specific overfitting or additional inference-time compute, and how much may generalize beyond the search set? In this work, we introduce Harness-Delta Attribution (HDA), an evaluation protocol that dissects an evolution gain into artifact-driven overfitting, gains explained by test-time scaling, and the remainder, which gives an upper bound on residual generalizable improvement. We apply HDA to 11 executor models and three harness-evolution frameworks across math, coding, creativity, and agentic tasks. In 21 of these settings that show statistically significant search-set gains, we find that a large share of the improvement is explained by overfitting or test-time scaling. Specifically, among these 21 settings, overfitting and test-time scaling account for 54% and 14% of the gain on average; their combined share exceeds 50% in 14 settings. The residual and held-out transfer vary substantially across tasks, models, and frameworks. Importantly, search-set gains often fail to transfer to held-out tasks, and provide limited evidence that they will persist under practical distribution shifts. Moreover, validation-based signals are insufficient to prevent overfitting. These results motivate attribution-aware evaluation in future harness evolution research.",
+          "evidence_kind": "abstract",
+          "demo": false,
+          "publication_kind": "preprint"
+        }
+      ],
+      "pre_review_brief": {
+        "title": "Agent 工程简报：MCP 控制、工具调用训练与评测归因",
+        "overview": "过去 24 小时可用的新内容主要来自 arXiv 公告：OpenAI News 首次抓取超时、重试后为空，Hugging Face 与 Google AI 的 24 小时窗口内无条目，TechCrunch 仅有 Anthropic 股份承诺与迪士尼聘用 Character.AI 员工两条公司动态，均偏离你的技术与开源关注且涉及资本/人事，未选。共从 arXiv 40 条公告中筛出 4 篇与 Agent 工具调用、软件工程智能体和评测方法直接相关的论文；这些论文的首次提交时间为 7 月 27 日或 10 月 15 日，今日仅为其 arXiv 公告日，并非今天首次发表。",
+        "items": [
+          {
+            "id": "a97c1f5a709e4de6f7ba",
+            "title": "Lean4AgenticRL: Advancing Agentic RL with Verifiable Multi-level Process Rewards",
+            "url": "https://arxiv.org/abs/2610.22448",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": "2026-10-15T15:26:54+00:00",
+            "first_published_at": "2026-10-15T15:26:54+00:00",
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "abstract",
+            "demo": false,
+            "publication_kind": "preprint",
+            "summary": "Lean4AgenticRL 用 Lean4 形式化统一表示软件工程与终端任务的工作流，并把奖励拆成工具调用级、流程阶段级和最终结果级三层，配合 workflow-stage-normalized GRPO 训练。作者称由此得到 LAR-9B/27B：LAR-27B 在 TerminalBench-2.1 上达到 77.3%，平均比基座模型高 9.89%，比已知同规模第二好模型高 5.07%（均为作者报告值）。论文首次提交于 2026-10-15，今日进入 arXiv 公告。",
+            "why_it_matters": "你关注 AI 编程与工具调用：它把“工具调用是否正确”变成可验证的中间奖励，而不是只看任务成败，这为自建编码 Agent 的评测与训练数据设计提供了可直接借鉴的分层信号思路；但 77.3% 是特定基准上的通过率，并非满分。",
+            "topic": "Agent / AI 编程",
+            "relevance": 3
+          },
+          {
+            "id": "da92b80397690dde35e8",
+            "title": "Structured Authority Injection: Persistent Human Control for LLM Agents via Typed MCP Overrides",
+            "url": "https://arxiv.org/abs/2610.22373",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": "2026-07-27T03:38:01+00:00",
+            "first_published_at": "2026-07-27T03:38:01+00:00",
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "abstract",
+            "demo": false,
+            "publication_kind": "preprint",
+            "summary": "SAI 提出用带类型、经 schema 校验的 MCP 工具调用来传递操作者对 Agent 的修正，并在每次提示前加入带优先级的“权威上下文”，把覆盖指令分为 Constraint、Priority、Strategy 三类，通过规划过程无法访问的通道保证优先级。方法无需微调或模型权重，适用于支持 MCP 工具调用的指令模型；在 9 个模型、8 类失败场景上，作者称歧义指令解读减少、多轮规划中的指令权威衰减得到缓解，最强模型上提示开销最多降低 38%，但收益随模型和场景差异很大。首次提交于 2026-07-27，今日为 arXiv 公告。",
+            "why_it_matters": "你关心工具调用与 Agent 可控性：这套做法把“人类纠偏”做成结构化协议而非自由文本，便于在后端服务里落地权限与优先级，也提醒你 38% 只是特定模型/场景的最优值，不能当作普遍开销收益。",
+            "topic": "Agent / 工具调用（MCP）",
+            "relevance": 3
+          },
+          {
+            "id": "f34ad45741b405ff9e69",
+            "title": "Harness-Delta Attribution: Dissecting Gains From Harness Evolution",
+            "url": "https://arxiv.org/abs/2610.22466",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": "2026-10-15T17:39:38+00:00",
+            "first_published_at": "2026-10-15T17:39:38+00:00",
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "abstract",
+            "demo": false,
+            "publication_kind": "preprint",
+            "summary": "HDA 提出把“harness 演化”（自动优化提示、工具、编排代码而固定模型权重）带来的涨分拆成三部分：基准过拟合、测试时算力增加带来的收益、以及可能泛化的残差。作者在 11 个执行模型、3 个 harness 演化框架、数学/编程/创意/Agent 任务上评测，在 21 个搜索集涨分显著的设置中，过拟合与测试时扩展平均分别解释 54% 和 14% 的增益，两者合计在 14 个设置中超过 50%；搜索集收益常常无法迁移到留出任务，验证集信号也不足以阻止过拟合。首次提交于 2026-10-15，今日公告。",
+            "why_it_matters": "如果你在调 Agent 的提示与工具链，这篇直接给出“涨分归因”的评测协议：上线前应固定算力预算并留出分布外任务，否则很容易把过拟合和更多推理 token 误判为工程改进。",
+            "topic": "Agent 评测",
+            "relevance": 3
+          },
+          {
+            "id": "434246a93fec15537b14",
+            "title": "PRIME: Towards Verifiable Evidence-Grounded Reasoning in LLM Agents",
+            "url": "https://arxiv.org/abs/2610.22426",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": "2026-10-15T05:03:22+00:00",
+            "first_published_at": "2026-10-15T05:03:22+00:00",
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "abstract",
+            "demo": false,
+            "publication_kind": "preprint",
+            "summary": "PRIME 在检查前先固定“证据路径”，规定每种结论需要哪些检查结果才能成立；独立程序记录每次检查结果，并拒绝规则与记录无法支撑的结论，还会提示或代跑能支撑更强结论的检查。在 480 个公共记录任务上，直接看要求的 Agent 有 26.7% 的任务给出未获证结论，PRIME 为 0；其引导与补充检查把“有正当依据结论”的平均得分从仅拒答时的 30.1 提升到满分 59.2（满分 100）。首次提交于 2026-10-15，今日公告。",
+            "why_it_matters": "你的后端场景里 Agent 常要核对工单、漏洞报告等记录，PRIME 的“规则+台账”结构可作为工具调用后校验层的设计参考，用确定性程序兜住模型越权下结论；注意其结论依赖需求正确、检查位置精确且预算充足。",
+            "topic": "Agent / 可靠性",
+            "relevance": 3
+          }
+        ],
+        "demo": false,
+        "generated_at": "2026-10-19T10:09:31.133381+00:00",
+        "sources_checked": [
+          "arxiv",
+          "google",
+          "huggingface",
+          "openai",
+          "techcrunch"
+        ],
+        "warnings": [],
+        "preferences": {
+          "name": "真实验收·工程师",
+          "role": "后端工程师",
+          "topics": [
+            "AI 编程",
+            "Agent",
+            "开源模型",
+            "AI 产品"
+          ],
+          "keywords": [
+            "工具调用",
+            "本地部署"
+          ]
+        }
+      },
+      "review_audit": {
+        "model_result": {
+          "overview": "过去 24 小时可用的新内容主要来自 arXiv 公告：OpenAI News 首次抓取超时、重试后为空，Hugging Face 与 Google AI 的 24 小时窗口内无条目，TechCrunch 仅有 Anthropic 股份承诺与迪士尼聘用 Character.AI 员工两条公司动态，均偏离你的技术与开源关注且涉及资本/人事，未选。共从 arXiv 40 条公告中筛出 4 篇与 Agent 工具调用、软件工程智能体和评测方法直接相关的论文；这些论文的首次提交时间为 7 月 27 日或 10 月 15 日，今日仅为其 arXiv 公告日，并非今天首次发表。",
+          "items": [
+            {
+              "article_id": "a97c1f5a709e4de6f7ba",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "奖励层级、GRPO、77.3%、9.89% 和 5.07% 均与原文一致；日期元数据也与摘要中的首次提交与公告时间相符。",
+              "evidence_quotes": [
+                "However, they mostly rely on high-level outcome rewards, with minimal consideration of low-level toolcall and mid-level workflow-stage rewards, which makes the training less effective.",
+                "It provides multi-level rewards to support more effective agentic RL with the workflow-stage-normalized GRPO algorithm.",
+                "Using **Lean4AgenticRL**, we train **LAR-9B/27B**, a family of models with enhanced agentic capability. Extensive experiments indicate that our model outperforms the leading model of similar size. **LAR-27B** achieves **77.3%** on TerminalBench-2.1. On average, our models outperform the base model by **9.89%** and surpass the second-best model of comparable size we know by **5.07%**."
+              ]
+            },
+            {
+              "article_id": "da92b80397690dde35e8",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "三类覆盖指令、MCP 工具调用、独立权威通道、9 个模型与 8 类场景、最多 38% 开销降低等均与原文一致；日期元数据相符。",
+              "evidence_quotes": [
+                "We propose Structured Authority Injection (SAI), a protocol that addresses these issues by routing operator corrections through typed, schema-validated Model Context Protocol (MCP) tool calls and maintaining a ranked authority context prepended to each LLM prompt.",
+                "SAI defines three override classes (Constraint, Priority, and Strategy) with distinct persistence semantics and an explicit precedence order enforced via a directed authority channel inaccessible to the planning process.",
+                "Evaluation across nine LLMs and eight scenarios targeting agent failure modes shows reduced ambiguous directive interpretation and mitigated authority decay across planning iterations, with lower prompt overhead in the strongest models (up to 38% depending on model and scenario), though benefit varies substantially across models."
+              ]
+            },
+            {
+              "article_id": "f34ad45741b405ff9e69",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "11 个执行模型、3 个框架、21 个显著涨分设置、54%/14% 及 14 个设置合计超过 50% 等数字与实验范围均与原文一致；日期元数据相符。",
+              "evidence_quotes": [
+                "We apply HDA to 11 executor models and three harness-evolution frameworks across math, coding, creativity, and agentic tasks.",
+                "In 21 of these settings that show statistically significant search-set gains, we find that a large share of the improvement is explained by overfitting or test-time scaling. Specifically, among these 21 settings, overfitting and test-time scaling account for 54% and 14% of the gain on average; their combined share exceeds 50% in 14 settings.",
+                "Importantly, search-set gains often fail to transfer to held-out tasks, and provide limited evidence that they will persist under practical distribution shifts. Moreover, validation-based signals are insufficient to prevent overfitting."
+              ]
+            },
+            {
+              "article_id": "434246a93fec15537b14",
+              "verdict": "corrected",
+              "corrected_summary": "PRIME 在检查前先固定“证据路径”，规定每种结论需要哪些检查结果才能成立；独立程序记录每次检查结果，并拒绝规则与记录无法支撑的结论，还会提示或代跑能支撑更强结论的检查。在 480 个公共记录任务上，直接看要求的 Agent 有 26.7% 的任务给出未获证结论，PRIME 为 0；其引导与补充检查把“有正当依据结论”的平均得分从仅拒答时的 30.1 提升到最高 59.2 分（满分 100）。首次提交于 2026-10-15，今日公告。",
+              "reason": "原文为“to the maximum of 59.2 out of 100”，59.2 是最高得分而非满分（满分 100）；其余方法、480 个任务、26.7% 与 0、30.1 等均一致。",
+              "evidence_quotes": [
+                "Before checking, it fixes evidence routes specifying how each conclusion may be justified. A separate program records each check result and refuses any conclusion the results do not justify. It also points the agent to checks that could justify a stronger conclusion, or runs them itself.",
+                "On 480 public-record tasks, an agent shown the requirements reported unjustified conclusions on 26.7% of tasks, while PRIME reported none. Its directions and added checks raised the average score for justified conclusions from 30.1, with refusal alone, to the maximum of 59.2 out of 100."
+              ]
+            }
+          ]
+        }
+      },
+      "content_review": "not_exercised_empty_brief"
+    }
+  ],
+  "updated_at": "2026-10-19T10:10:49.409230+00:00"
+}

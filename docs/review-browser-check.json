@@ -1,0 +1,17 @@
+{
+  "checks": {
+    "review_badge": true,
+    "announcement_label": true,
+    "first_submission_label": true,
+    "abstract_label": true,
+    "correct_score": true,
+    "desktop_no_overflow": true,
+    "mobile_no_overflow": true,
+    "five_items_visible": true,
+    "no_browser_errors": true
+  },
+  "errors": [],
+  "passed": true,
+  "data_source": "D:\\Develop\\CODES\\Daily-AI-News-Assistant\\ai-news-agent\\data\\acceptance\\20261019T102216Z-820d99",
+  "read_only_snapshot": true
+}

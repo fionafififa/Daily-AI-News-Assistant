@@ -1,0 +1,125 @@
+{
+  "method": "Paired accounting of generation and review in the same runs; not two independent A/B executions. Total tokens include cached input and reasoning output. No price estimate.",
+  "model": "deepseek-flash",
+  "excluded_failed_runs": 1,
+  "all_completed": true,
+  "all_calls_metered": true,
+  "scenarios": [
+    {
+      "scenario": "engineer_initial",
+      "status": "completed",
+      "items": 5,
+      "generation": {
+        "calls": 8,
+        "metered_calls": 8,
+        "input_tokens": 105982,
+        "output_tokens": 4698,
+        "reasoning_output_tokens": 2285,
+        "total_tokens": 110680,
+        "cache_read_tokens": 83456,
+        "model_seconds": 28.19,
+        "uncached_input_tokens": 22526
+      },
+      "summary_review": {
+        "calls": 1,
+        "metered_calls": 1,
+        "input_tokens": 3046,
+        "output_tokens": 9218,
+        "reasoning_output_tokens": 7972,
+        "total_tokens": 12264,
+        "cache_read_tokens": 128,
+        "model_seconds": 33.41,
+        "uncached_input_tokens": 2918
+      },
+      "with_review_tokens": 122944,
+      "increment_percent": 11.08,
+      "elapsed_seconds": 69.17
+    },
+    {
+      "scenario": "engineer_history",
+      "status": "completed",
+      "items": 5,
+      "generation": {
+        "calls": 7,
+        "metered_calls": 7,
+        "input_tokens": 92003,
+        "output_tokens": 6043,
+        "reasoning_output_tokens": 3582,
+        "total_tokens": 98046,
+        "cache_read_tokens": 67840,
+        "model_seconds": 32.97,
+        "uncached_input_tokens": 24163
+      },
+      "summary_review": {
+        "calls": 1,
+        "metered_calls": 1,
+        "input_tokens": 3224,
+        "output_tokens": 3625,
+        "reasoning_output_tokens": 2307,
+        "total_tokens": 6849,
+        "cache_read_tokens": 128,
+        "model_seconds": 13.73,
+        "uncached_input_tokens": 3096
+      },
+      "with_review_tokens": 104895,
+      "increment_percent": 6.99,
+      "elapsed_seconds": 53.84
+    },
+    {
+      "scenario": "researcher_initial",
+      "status": "completed",
+      "items": 3,
+      "generation": {
+        "calls": 6,
+        "metered_calls": 6,
+        "input_tokens": 72907,
+        "output_tokens": 2746,
+        "reasoning_output_tokens": 1185,
+        "total_tokens": 75653,
+        "cache_read_tokens": 52224,
+        "model_seconds": 17.05,
+        "uncached_input_tokens": 20683
+      },
+      "summary_review": {
+        "calls": 1,
+        "metered_calls": 1,
+        "input_tokens": 1986,
+        "output_tokens": 4019,
+        "reasoning_output_tokens": 3214,
+        "total_tokens": 6005,
+        "cache_read_tokens": 128,
+        "model_seconds": 15.64,
+        "uncached_input_tokens": 1858
+      },
+      "with_review_tokens": 81658,
+      "increment_percent": 7.94,
+      "elapsed_seconds": 48.89
+    }
+  ],
+  "totals": {
+    "generation": {
+      "calls": 21,
+      "metered_calls": 21,
+      "input_tokens": 270892,
+      "output_tokens": 13487,
+      "reasoning_output_tokens": 7052,
+      "total_tokens": 284379,
+      "cache_read_tokens": 203520,
+      "model_seconds": 78.21,
+      "uncached_input_tokens": 67372
+    },
+    "summary_review": {
+      "calls": 3,
+      "metered_calls": 3,
+      "input_tokens": 8256,
+      "output_tokens": 16862,
+      "reasoning_output_tokens": 13493,
+      "total_tokens": 25118,
+      "cache_read_tokens": 384,
+      "model_seconds": 62.78,
+      "uncached_input_tokens": 7872
+    }
+  },
+  "with_review_tokens": 309497,
+  "increment_percent": 8.83
+}
