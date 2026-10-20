@@ -61,6 +61,21 @@ class Selection(BaseModel):
     relevance: int = Field(ge=2, le=3, description="2=directly relevant, 3=strongly relevant")
 
 
+class ArticleDecision(BaseModel):
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+    article_id: str
+    state: Literal["pending", "to_read", "selected", "excluded"]
+    reason: str = Field(min_length=2, max_length=200)
+    evidence_quotes: list[str] = Field(default_factory=list, max_length=3)
+
+    @field_validator("evidence_quotes")
+    @classmethod
+    def valid_quotes(cls, quotes):
+        if any(not quote.strip() or len(quote) > 450 for quote in quotes):
+            raise ValueError("证据须为非空原文片段，每段不超过 450 字符")
+        return quotes
+
+
 class BriefSubmission(BaseModel):
     title: str = Field(min_length=2, max_length=120)
     overview: str = Field(min_length=5, max_length=500)

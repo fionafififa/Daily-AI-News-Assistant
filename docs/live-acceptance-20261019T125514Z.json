@@ -1,0 +1,1742 @@
+{
+  "started_at": "2026-10-19T12:55:14.958896+00:00",
+  "project_root": "D:\\Develop\\CODES\\Daily-AI-News-Assistant\\ai-news-agent",
+  "source_hashes": {
+    "agent.py": "5de1d064e6797d3b87f192c342e977d32097512739c619e638972b39bfb9ac35",
+    "tools.py": "bb398805f599e033ffbc210be252ea1578535d458662d10abc2d4655d0b22fa9",
+    "sources.py": "279b3ca2cd89d04a6c305b5edc0219352e69efbccbb0601108041900a4f17652",
+    "service.py": "c845e271f2063a5f3900d523a2b87ab6020a10280838615481c14dcb2a2cc3a0",
+    "config.py": "c0427767caf5d1afc84d107f0d7549f06e09a115db400e67bd86e4c25c757d98",
+    "summary_review.py": "9a5e2895b3e26818e14913d79d686a281d82a90c68d7150ad7d48d30dc864ed0",
+    "article_time.py": "45274a72b5e772ec58151b1dfcf16e7ef2c59dda8e22ca593d47fbe7d57cbec6",
+    "working_context.py": "a5074cfa2a8e6ba1b78e82af3b55e57d1ce75cc5f50877e4ceddfb354d083d8c",
+    "schemas.py": "760d6d16561c964d6366d62e7b28392c11cb885a103b3ca059d04f2cf783e7b1"
+  },
+  "dependencies": {
+    "langchain": "1.4.6",
+    "langchain-openai": "1.7.2",
+    "fastapi": "0.144.0"
+  },
+  "model": "deepseek-flash",
+  "mode": "live",
+  "delivery": "inbox",
+  "working_context_enabled": true,
+  "data_dir": "D:\\Develop\\CODES\\Daily-AI-News-Assistant\\ai-news-agent\\data\\acceptance\\20261019T125514Z-07cb6c",
+  "semantic_review": "pending",
+  "scenarios": [
+    {
+      "scenario": "engineer_initial",
+      "run_id": "89556ab9933d41218503c920757b2240",
+      "elapsed_seconds": 106.14,
+      "status": "failed",
+      "error": "摘要复核引用的证据并非原文连续片段，简报暂不推送",
+      "profile": {
+        "id": "25f05e2f2b1c4b3c8d5718690bd3955e",
+        "name": "真实验收·工程师",
+        "role": "后端工程师",
+        "email": "",
+        "topics": [
+          "AI 编程",
+          "Agent",
+          "开源模型",
+          "AI 产品"
+        ],
+        "keywords": [
+          "工具调用",
+          "本地部署"
+        ],
+        "excludes": [
+          "融资",
+          "营销活动"
+        ],
+        "delivery_time": "08:00",
+        "timezone": "Asia/Shanghai",
+        "max_items": 5,
+        "enabled": false,
+        "channel": "inbox"
+      },
+      "checks": {
+        "completed": false,
+        "inbox_delivered": false,
+        "real_model_responses": true,
+        "no_demo_items": false,
+        "within_item_limit": true,
+        "selected_articles_were_fetched": true,
+        "working_sources_checked": false
+      },
+      "brief": null,
+      "tool_sequence": [
+        "read_file",
+        "read_file",
+        "list_sources",
+        "fetch_news",
+        "fetch_news",
+        "fetch_news",
+        "fetch_news",
+        "read_article",
+        "read_article",
+        "fetch_news",
+        "read_article",
+        "read_article",
+        "read_article",
+        "read_article",
+        "read_article",
+        "record_article_states",
+        "record_article_states",
+        "record_article_states",
+        "record_article_states",
+        "record_article_states",
+        "submit_brief"
+      ],
+      "traces": [
+        {
+          "id": 1,
+          "run_id": "89556ab9933d41218503c920757b2240",
+          "tool": "read_file",
+          "arguments": {
+            "path": "profile.json"
+          },
+          "result": "{\"content\": \"{\\\"name\\\": \\\"真实验收·工程师\\\", \\\"role\\\": \\\"后端工程师\\\", \\\"topics\\\": [\\\"AI 编程\\\", \\\"Agent\\\", \\\"开源模型\\\", \\\"AI 产品\\\"], \\\"keywords\\\": [\\\"工具调用\\\", \\\"本地部署\\\"], \\\"excludes\\\": [\\\"融资\\\", \\\"营销活动\\\"], \\\"delivery_time\\\": \\\"08:00\\\", \\\"timezone\\\": \\\"Asia/Shanghai\\\", \\\"max_items\\\": 5, \\\"enabled\\\": false, \\\"channel\\\": \\\"inbox\\\"}\", \"truncated\": false}",
+          "status": "ok",
+          "duration_ms": 0,
+          "created_at": "2026-10-19T12:55:16.294520+00:00"
+        },
+        {
+          "id": 2,
+          "run_id": "89556ab9933d41218503c920757b2240",
+          "tool": "read_file",
+          "arguments": {
+            "path": "history.json"
+          },
+          "result": "{\"content\": \"[]\", \"truncated\": false}",
+          "status": "ok",
+          "duration_ms": 15,
+          "created_at": "2026-10-19T12:55:16.313562+00:00"
+        },
+        {
+          "id": 3,
+          "run_id": "89556ab9933d41218503c920757b2240",
+          "tool": "list_sources",
+          "arguments": {},
+          "result": "{\"sources\": [{\"id\": \"openai\", \"name\": \"OpenAI News\", \"topics\": \"模型、AI 编程、Agent、产品\"}, {\"id\": \"google\", \"name\": \"Google AI\", \"topics\": \"模型、多模态、AI 应用、研究\"}, {\"id\": \"huggingface\", \"name\": \"Hugging Face\", \"topics\": \"开源模型、本地部署、工程实践\"}, {\"id\": \"techcrunch\", \"name\": \"TechCrunch AI\", \"topics\": \"AI 产品、行业、融资\"}, {\"id\": \"arxiv\", \"name\": \"arXiv cs.AI / cs.LG\", \"topics\": \"论文、机器学习、研究（仅研究偏好时使用）\"}]}",
+          "status": "ok",
+          "duration_ms": 0,
+          "created_at": "2026-10-19T12:55:16.325285+00:00"
+        },
+        {
+          "id": 4,
+          "run_id": "89556ab9933d41218503c920757b2240",
+          "tool": "fetch_news",
+          "arguments": {
+            "source_id": "openai"
+          },
+          "result": "{\"source\": \"openai\", \"count\": 0, \"articles\": [], \"demo\": false, \"window_hours\": 24}",
+          "status": "ok",
+          "duration_ms": 3125,
+          "created_at": "2026-10-19T12:55:20.587549+00:00"
+        },
+        {
+          "id": 5,
+          "run_id": "89556ab9933d41218503c920757b2240",
+          "tool": "fetch_news",
+          "arguments": {
+            "source_id": "huggingface"
+          },
+          "result": "{\"source\": \"huggingface\", \"count\": 0, \"articles\": [], \"demo\": false, \"window_hours\": 24}",
+          "status": "ok",
+          "duration_ms": 766,
+          "created_at": "2026-10-19T12:55:21.384304+00:00"
+        },
+        {
+          "id": 6,
+          "run_id": "89556ab9933d41218503c920757b2240",
+          "tool": "fetch_news",
+          "arguments": {
+            "source_id": "google"
+          },
+          "result": "{\"source\": \"google\", \"count\": 0, \"articles\": [], \"demo\": false, \"window_hours\": 24}",
+          "status": "ok",
+          "duration_ms": 938,
+          "created_at": "2026-10-19T12:55:22.350093+00:00"
+        },
+        {
+          "id": 7,
+          "run_id": "89556ab9933d41218503c920757b2240",
+          "tool": "fetch_news",
+          "arguments": {
+            "source_id": "techcrunch"
+          },
+          "result": "{\"source\": \"techcrunch\", \"count\": 2, \"articles\": [{\"id\": \"33da8aabe6e16f93a795\", \"title\": \"Anthropic says it’s committing 5% of its shares to a ‘public benefit fund’\", \"url\": \"https://techcrunch.com/2026/10/18/anthropic-says-its-committing-5-of-its-shares-to-a-public-benefit-fund\", \"source_id\": \"techcrunch\", \"source\": \"TechCrunch AI\", \"published_at\": \"2026-10-18T20:37:40+00:00\", \"first_published_at\": \"2026-10-18T20:37:40+00:00\", \"announced_at\": null, \"updated_at\": null, \"feed_entry_at\": \"2026-10-18T20:37:40+00:00\", \"time_basis\": \"source_published\", \"text\": \"Anthropic said that it will commit 5% of its shares to the fund.\", \"evidence_kind\": \"feed_summary\", \"demo\": false}, {\"id\": \"71e1590c6c971a337879\", \"title\": \"Disney agrees to hire the majority of Character.AI’s workforce\", \"url\": \"https://techcrunch.com/2026/10/18/disney-agrees-to-hire-the-majority-of-character-ais-workforce\", \"source_id\": \"techcrunch\", \"source\": \"TechCrunch AI\", \"published_at\": \"2026-10-18T16:30:00+00:00\", \"first_published_at\": \"2026-10-18T16:30:00+00:00\", \"announced_at\": null, \"updated_at\": null, \"feed_entry_at\": \"2026-10-18T16:30:00+00:00\", \"time_basis\": \"source_published\", \"text\": \"The filing also says that the “vast majority” of Character.AI employees who were offered jobs at Disney accepted them. However, this is a stalking horse bid, so another company could come forward with a higher offer.\", \"evidence_kind\": \"feed_summary\", \"demo\": false}], \"demo\": false, \"window_hours\": 24}",
+          "status": "ok",
+          "duration_ms": 281,
+          "created_at": "2026-10-19T12:55:22.658838+00:00"
+        },
+        {
+          "id": 8,
+          "run_id": "89556ab9933d41218503c920757b2240",
+          "tool": "read_article",
+          "arguments": {
+            "article_id": "33da8aabe6e16f93a795"
+          },
+          "result": "{\"id\": \"33da8aabe6e16f93a795\", \"title\": \"Anthropic says it’s committing 5% of its shares to a ‘public benefit fund’\", \"url\": \"https://techcrunch.com/2026/10/18/anthropic-says-its-committing-5-of-its-shares-to-a-public-benefit-fund\", \"source_id\": \"techcrunch\", \"source\": \"TechCrunch AI\", \"published_at\": \"2026-10-18T20:37:40+00:00\", \"first_published_at\": \"2026-10-18T20:37:40+00:00\", \"announced_at\": null, \"updated_at\": \"2026-10-18T20:37:45+00:00\", \"feed_entry_at\": \"2026-10-18T20:37:40+00:00\", \"time_basis\": \"source_published\", \"text\": \"In Brief Posted: 1:37 PM PDT · October 18, 2026 Image Credits: Jakub Porzycki / NurPhoto / Getty Images Anthony Ha Anthropic says it’s committing 5% of its shares to a ‘public benefit fund’ Anthropic announced today that it’s creating a “public benefit fund” that will give the company “increased flexibility and scale” to support projects for societal good. Anthropic said that it will commit 5% of its shares to the fund — structured as a wholly-owned entity within the company — with the option to contribute an additional 2% for every 50% increase in Anthropic’s value. And it offered some broad-strokes ideas for how this money might actually be used, such as “large donations to traditional nonprofits or direct distributions to specific populations.” There’s also the impact that AI might have on the job market, which Anthropic has already committed $200 million to study . But the company said, “Given the pace of AI progress, bolder approaches may be needed. The Fund will have the versatility to pursue them.” Anthropic’s announcement comes as the AI industry faces increasingly negative public sentiment, which CEO Dario Amodei has described as “fundamentally a crisis of trust.” If you’re wondering who will actually decide which public benefits are worth funding, Anthropic said it will share more information about structure and governance in the coming months. Topics AI , Anthropic November 4 Boston Get 50% off a second pass Cover more ground at TechCrunch’s ultimate founder bootcamp of the year by bringing your co-founder or partner. Save 50% off a second pass. Meet scaling and investment leaders, ask questions, find solutions, and more. Last day to save Oct. 16 Register Now Newsletters See More Subscribe for the industry’s biggest tech news TechCrunch Daily News Every weekday and Sunday, you can get the best of TechCrunch’s coverage. TechCrunch Mobility TechCrunch Mobility is your destination for transportation news and insight. Startups Weekly Startups are the core of TechCrunch, so get our best coverage delivered weekly. StrictlyVC Provides movers and shakers with the info they need to start their day. No newsletters selected. Subscribe By submitting your email, you agree to our Terms and Privacy Notice . Related Media & Entertainment Everyone’s watching the Elizabeth Holmes documentary ‘You Can See Everything’ Anthony Ha 18 hours ago AI Anthropic says its workforce has become less junior and is spending more time in meetings Anthony Ha 2 days ago AI Replit makes OpenAI its default over Anthropic, CEO says Kirsten Korosec Lucas Ropek Rebecca Bellan 2 days ago Latest in AI In Brief Anthropic says it’s committing 5% of its shares to a ‘public benefit fund’ Anthony Ha 16 hours ago In Brief Disney agrees to hire the majority of Character.AI’s workforce Anthony Ha 20 hours ago In Brief Meta removes language that raised scraping and AI training concerns Anthony Ha 2 days ago\", \"evidence_kind\": \"article\", \"demo\": false}",
+          "status": "ok",
+          "duration_ms": 593,
+          "created_at": "2026-10-19T12:55:26.397107+00:00"
+        },
+        {
+          "id": 9,
+          "run_id": "89556ab9933d41218503c920757b2240",
+          "tool": "read_article",
+          "arguments": {
+            "article_id": "71e1590c6c971a337879"
+          },
+          "result": "{\"id\": \"71e1590c6c971a337879\", \"title\": \"Disney agrees to hire the majority of Character.AI’s workforce\", \"url\": \"https://techcrunch.com/2026/10/18/disney-agrees-to-hire-the-majority-of-character-ais-workforce\", \"source_id\": \"techcrunch\", \"source\": \"TechCrunch AI\", \"published_at\": \"2026-10-18T16:30:00+00:00\", \"first_published_at\": \"2026-10-18T16:30:00+00:00\", \"announced_at\": null, \"updated_at\": \"2026-10-18T19:01:55+00:00\", \"feed_entry_at\": \"2026-10-18T16:30:00+00:00\", \"time_basis\": \"source_published\", \"text\": \"In Brief Posted: 9:30 AM PDT · October 18, 2026 Image Credits: Character.AI Anthony Ha Disney agrees to hire the majority of Character.AI’s workforce After chatbot startup Character.AI filed for bankruptcy earlier this week, many of its employees will have the opportunity to take jobs at Disney. Character.AI’s former CEO Karandeep Anand recently became the entertainment giant’s first CTO , and the startup previously said that Disney had agreed to acquire some of its assets for $20 million. A legal filing spotted by Bloomberg revealed more details about the agreement between Character.AI and Disney, with Disney agreeing to make employment offers to at least 60 Character.AI employees — the majority of the workforce — paying them an estimated $60 million in annual compensation. The filing also says that the “vast majority” of Character.AI employees who were offered jobs at Disney accepted them. However, this is a stalking horse bid, so another company could come forward with a higher offer. The filing says that despite its “large and engaged user base,” Character.AI has been hobbled by high costs and “potential litigation-related liabilities and regulatory engagement.” (The company was sued by the mother of a 14-year-old boy who said her son became obsessed with one of Character.AI’s chatbots before committing suicide; it also faces government investigations over child safety concerns .) Topics AI , character.ai , Disney , Media & Entertainment , Startups November 4 Boston Get 50% off a second pass Cover more ground at TechCrunch’s ultimate founder bootcamp of the year by bringing your co-founder or partner. Save 50% off a second pass. Meet scaling and investment leaders, ask questions, find solutions, and more. Last day to save Oct. 16 Register Now Newsletters See More Subscribe for the industry’s biggest tech news TechCrunch Daily News Every weekday and Sunday, you can get the best of TechCrunch’s coverage. TechCrunch Mobility TechCrunch Mobility is your destination for transportation news and insight. Startups Weekly Startups are the core of TechCrunch, so get our best coverage delivered weekly. StrictlyVC Provides movers and shakers with the info they need to start their day. No newsletters selected. Subscribe By submitting your email, you agree to our Terms and Privacy Notice . Related Transportation TechCrunch Mobility: Rivian’s next act Kirsten Korosec 21 hours ago AI Anthropic says its workforce has become less junior and is spending more time in meetings Anthony Ha 2 days ago AI Replit makes OpenAI its default over Anthropic, CEO says Kirsten Korosec Lucas Ropek Rebecca Bellan 2 days ago Latest in AI In Brief Anthropic says it’s committing 5% of its shares to a ‘public benefit fund’ Anthony Ha 16 hours ago In Brief Disney agrees to hire the majority of Character.AI’s workforce Anthony Ha 20 hours ago In Brief Meta removes language that raised scraping and AI training concerns Anthony Ha 2 days ago\", \"evidence_kind\": \"article\", \"demo\": false}",
+          "status": "ok",
+          "duration_ms": 578,
+          "created_at": "2026-10-19T12:55:27.002111+00:00"
+        },
+        {
+          "id": 10,
+          "run_id": "89556ab9933d41218503c920757b2240",
+          "tool": "fetch_news",
+          "arguments": {
+            "source_id": "arxiv"
+          },
+          "result": "{\"source\": \"arxiv\", \"count\": 40, \"articles\": [{\"id\": \"da92b80397690dde35e8\", \"title\": \"Structured Authority Injection: Persistent Human Control for LLM Agents via Typed MCP Overrides\", \"url\": \"https://arxiv.org/abs/2610.22373\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": null, \"first_published_at\": null, \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"arXiv:2610.22373v1 Announce Type: new Abstract: LLM-based agents are increasingly used as autonomous orchestrators in distributed and multi-agent systems, yet a control gap remains: no protocol-level mechanism allows human operators to inject binding directives that persist across planning cycles. Free-text overrides suffer from ambiguous interpretation due to lack of schema validation and from authority erosion as operator instructions lose influence within accumulating context. We propose Structured Authority Injection (SAI), a protocol that addresses these issues by routing operator corrections through typed, schema-validated Model Context Protocol (MCP) tool calls and maintaining a ranked authority context prepended to each LLM prompt. SAI defines three override classes (Constraint, Priority, and Strategy) with distinct persistence semantics and an explicit precedence order enforced via a directed authority channel inaccessible to the planning process. The method requires no model fine-tuning or access to model weights and applies to instruction-tuned LLMs supporting MCP tool use. Evaluation across nine LLMs and eight scenarios targeting agent failure modes shows reduced ambiguous directive interpretation and mitigated authority decay across planning iterations, with lower prompt overhead in the strongest models (up to 38% depending on model and scenario), though benefit varies substantially across models. SAI provides a general design pattern for agent systems requiring explicit and persistent human control.\", \"evidence_kind\": \"feed_summary\", \"demo\": false}, {\"id\": \"aa178b575bb249be9aef\", \"title\": \"When is a large language model a good calibration agent? Physics-labeled prompting for budgeted engineering simulator calibration\", \"url\": \"https://arxiv.org/abs/2610.22379\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": null, \"first_published_at\": null, \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"arXiv:2610.22379v1 Announce Type: new Abstract: Calibrating expensive engineering simulators requires tuning model parameters to match reference data, a process heavily constrained by computational costs. This study investigates whether Large Language Models (LLMs), conditioned on physical diagnostic descriptions of simulation errors, can propose informative parameter updates more efficiently than conventional derivative-free optimizers. We test this on a cylinder-wake Large-Eddy Simulation and a damped-oscillator inverse problem. Physics-labeled prompts are evaluated against four text ablations (removed, anonymized, padded, misdirected) and standard optimizers (Nelder-Mead, Bayesian optimization, CMA-ES, and random search). Results demonstrate a strong early semantic advantage: the first physics-informed LLM proposal improves the initial design in 23 of 25 trials. After five evaluations, the median calibration error is 21.9 times lower than physics-free controls. However, this advantage is transient - disappearing by fifteen evaluations - and inherent LLM decoder variability yields a 9.8-fold performance spread. To address this, we introduce a hybrid workflow that uses the LLM as a warm-start, passing accumulated evaluations to a conventional optimizer. This two-stage numerical continuation policy reaches target accuracy in just 9 simulator runs, outperforming the LLM alone (12 runs), Nelder-Mead (17 runs), and Bayesian optimization (>60 runs). Supported by sensitivity analysis validating the test cases, this hybrid physics-labeled LLM scheme proves highly effective as a calibration agent under strict evaluation budgets.\", \"evidence_kind\": \"feed_summary\", \"demo\": false}, {\"id\": \"dd5a28f9c533e0ee2ccc\", \"title\": \"Trust but Verify: Designing Region-Inhomogeneous Forward Dynamics for Discrete Diffusion\", \"url\": \"https://arxiv.org/abs/2610.22380\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": null, \"first_published_at\": null, \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"arXiv:2610.22380v1 Announce Type: new Abstract: Continuous diffusion treats the forward process as a design space; discrete language diffusion often uses absorbing corruption, leaving context fully trusted throughout generation. This makes trust binary: corrupted context is copied as ground truth, propagating errors into generated spans. We reopen this design space by combining absorbing and uniform-mixing kernels with region-dependent rates. Missing positions follow absorbing dynamics, while context undergoes low-rate random substitution, exposing the model to observed but uncertain tokens during training. At inference, a heuristic sampler re-injects noise into suspicious context under an annealed intensity and freezes context updates late in the trajectory. An 8,000-step finetune of a pretrained 170M-parameter masked diffusion model takes under five hours on a 6 GB laptop GPU. The base model assigns roughly 50% probability to observed tokens even when they are uniform-random garbage. For uniform-random corruption, finetuning detects corrupted context with 0.96 recall and 0.91 precision, improves infill token-F1 by 3.8 points at 10% corruption and 6.4 points at 20%, and removes the accuracy dip next to corruptions. Clean conditioning shows no measurable regression, with a false-edit rate below 0.4%. Gains for plausible corruptions are weaker: about 0.5 F1 points at 10% corruption, without statistical significance. Our results suggest that detectability and damage depend jointly on departure from the data conditional: nearby noise is hard to detect and semantically mild, while distant noise is conspicuous and destructive. We interpret absorbing diffusion as the infinite-contrast limit of a trust axis, analogous to the signal-to-noise gap between known and unknown regions in diffusion inpainting. In our setting of a 170M model and a single text domain, intermediate trust is reached by changing forward dynamics rather than architecture.\", \"evidence_kind\": \"feed_summary\", \"demo\": false}, {\"id\": \"3a93b1c8699f7e1580fd\", \"title\": \"Binding-Specific Relearning Savings for Test-Time Continual Learning\", \"url\": \"https://arxiv.org/abs/2610.22381\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": null, \"first_published_at\": null, \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"arXiv:2610.22381v1 Announce Type: new Abstract: When a fact becomes harder to elicit from a language model, has the model lost it, or has it merely become less accessible? Parameter-updating test-time continual learning agents are usually evaluated by current output accuracy; we ask whether that measurement captures how prior experience shapes later updates. We test whether learning a specific factual binding produces a later relearning advantage beyond familiarity with its entity, answer vocabulary, format, or query slot. In Qwen2.5-1.5B, we compare three matched, counterbalanced histories: LEARNED receives the correct binding, CONTROL receives matched exposure without it, and WRONG receives a competing relation-valid answer in the same slot. After an identical rehearsal-free continual fine-tuning stream, LEARNED reacquires the target faster than CONTROL at a prespecified checkpoint of partial forgetting. WRONG shows no positive advantage over CONTROL, while its comparison with LEARNED provides slot-matched corroboration, subject to possible competitor interference. The advantage remains positive after adjustment for measured pre-relearning behavior. In a secondary descriptive conversion using an unpaired never-seen pool, prior learning reduces the optimizer updates required for restoration by about 18%. Current behavioral accuracy can therefore underestimate the lasting effect of previously acquired experience. Code is available at https://github.com/zhezhou1106/relearning-savings\", \"evidence_kind\": \"feed_summary\", \"demo\": false}, {\"id\": \"0b0024271a7c2b5987bb\", \"title\": \"Rethinking User Encoders: Routing Diffusion States for Scenario-Adaptive User Representation\", \"url\": \"https://arxiv.org/abs/2610.22400\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": null, \"first_published_at\": null, \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"arXiv:2610.22400v1 Announce Type: new Abstract: Existing large language model (LLM)-based user encoders serialize heterogeneous behavioral logs and compress them into static representations through autoregressive (AR) prediction. However, their unidirectional constraint limits bidirectional information flow, hindering cross-modal interactions and the joint preservation of multi-source signals. Consequently, the learned static representations struggle to accommodate the distinct evidence requirements of diverse downstream scenarios. We address these limitations by unlocking the iterative denoising process of diffusion language models (dLLMs) as a multi-granularity reconstruction space. Based on this insight, we propose FINDERS (FactorIzatioN of Diffusion statEs for Routing across Scenarios), a router-equipped dLLM framework comprising four operations: denoise, factorize, route, and compress. Learnable meta-slots organize complementary denoising states into transferable cross-modal semantics and modality-specific behavioral factors. To provide grounded supervision, we construct BehaviorQA, a large-scale corpus containing explicit behavioral rationales. Guided by scenario queries, a lightweight router dynamically emphasizes relevant slot directions via an input-level residual pathway before cross-source fusion and final compression. Extensive experiments and online A/B tests across ten industrial scenarios demonstrate that FINDERS consistently outperforms state-of-the-art methods in both unified and scenario-adaptive settings. This work effectively pushes the boundaries of dLLMs beyond language generation, demonstrating their immense potential as powerful user representation learners.\", \"evidence_kind\": \"feed_summary\", \"demo\": false}, {\"id\": \"d2da03dd040aaeefea30\", \"title\": \"From Events to Reasoning: Hierarchical Rule Composition over Explicit States\", \"url\": \"https://arxiv.org/abs/2610.22403\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": null, \"first_published_at\": null, \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"arXiv:2610.22403v1 Announce Type: new Abstract: What a reasoning system emits is a conclusion; what it owes is a justification. Producing one requires every operation to be admissible on the facts actually available, the dependencies of intermediate results to survive to the end of the path, and the path to be revised when a premise changes. We present the Event Reasoning System (ERS), in which the reasoning state is an explicit event graph. Semantic features nominate candidate objects and rule bindings, and declared rule and task conditions decide which may execute, so candidates that violate the represented period, unit, or evidence constraints cannot enter an accepted reasoning path. Low-level rules provide reusable local transformations, and recursively composable high-level control rules organize subgoals and legal paths under the current goal, information gaps, and budget; a finite library is thereby rebound into paths never stored as complete solutions. We formalize admissible transitions, task-dependent control, compositional expressivity, dependency-preserving revision, and the gap between reachable solutions and those a budgeted controller finds. On structured-event graphs, ERS builds dependency chains of up to twelve steps, cuts irrelevant executed domain operations from 32 to 0 as lookahead grows to 16, and produces no unsupported target output across 24 negative cases; with rules frozen, it passes 12/12 focused checks comprising nine accepted derivations involving unseen input/path combinations and three justified refusals, as well as 6/6 fact-change cases. On fourteen jointly solved development tasks, the recorded dynamic subgoal configuration uses 51.6% less inference wall-clock time than single-level global control under their respective frozen settings.\", \"evidence_kind\": \"feed_summary\", \"demo\": false}, {\"id\": \"9f9467f75484ebfa07d2\", \"title\": \"ECHOES: Seeing Beyond the Current Image via Recursive History Compression and Privileged On-Policy Distillation\", \"url\": \"https://arxiv.org/abs/2610.22408\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": null, \"first_published_at\": null, \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"arXiv:2610.22408v1 Announce Type: new Abstract: Long-horizon GUI agents rely on visual history to maintain task states, but retaining historical screenshots increases visual-token usage and inference costs, while textual summaries can discard critical state information, undermining long-horizon reliability. We propose ECHOES, which leverages training-time privileged information to guide textual history compression and strengthen long-horizon reasoning. Specifically, ECHOES adopts a Compression-Think-Action (CTA) format to recursively update a textual history state and reason. The same model, given privileged multi-image inputs, serves as a teacher that provides dense token-level on-policy distillation on student-generated CTA rollouts. Our Perception-Memory Fidelity (PMF) Gap-guided OPD-RL framework dynamically balances privileged distillation and task-reward optimization, with periodic teacher updates supporting continued improvement. We further introduce ECHOESBMK, a fine-grained diagnostic benchmark derived from real GUI agent failure trajectories to jointly evaluate visual perception and cross-modal state retention. Experiments on four GUI benchmarks and ECHOESBMK demonstrate substantial gains in task performance and memory fidelity. Without retaining historical screenshots at deployment, ECHOES achieves competitive performance with a favorable performance-inference-cost trade-off and exhibits positive zero-shot transfer to unseen visual planning tasks.\", \"evidence_kind\": \"feed_summary\", \"demo\": false}, {\"id\": \"4c5e025cfc8f17ca9a46\", \"title\": \"Sensitivity Analysis of Decision Rules in an Agent-Based Agro-Ecological Model\", \"url\": \"https://arxiv.org/abs/2610.22420\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": null, \"first_published_at\": null, \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"arXiv:2610.22420v1 Announce Type: new Abstract: Agent-based models are well-suited for modelling agro-ecological systems for decision-making, yet turning their simulations into actionable insight requires identifying which decisions actually drive the behaviours. In such a context, sensitivity analysis stumbles upon a structural feature of many complex systems: the parameters are not a flat vector but a decision tree in which many parameters appear only when a higher-level choice activates them. Classical global sensitivity analysis presupposes independent inputs over a fixed Cartesian product and is ill-posed on such a branched space and biased by construction. We instead treat the structure of the decisions as a first-class modelling object. Using advanced surrogate modelling techniques, we encode the crop-management itinerary of the high-resolution agro-ecological modelling platform MAELIA as a hierarchical design space featuring both categorical and numerical variables. We propose a novel dedicated method to analyse this kind of hierarchical space, a random-forest-supervised HSIC-ANOVA, which ranks main effects and interactions natively on the tree while placing rarely and always active decisions on an equal footing. We show how, when applied to simulation outputs such as nitrogen leaching, soil organic carbon variation, and yield predictions, it can deliver an interpretable, decision-oriented reading.\", \"evidence_kind\": \"feed_summary\", \"demo\": false}, {\"id\": \"434246a93fec15537b14\", \"title\": \"PRIME: Towards Verifiable Evidence-Grounded Reasoning in LLM Agents\", \"url\": \"https://arxiv.org/abs/2610.22426\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": null, \"first_published_at\": null, \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"arXiv:2610.22426v1 Announce Type: new Abstract: LLM agents are used to check records against an organization's requirements, for example whether a vulnerability report is ready for investigation. Requirements often allow several ways to be met, such as a severity rating with a curator-reviewed advisory or a published advisory link. Agents fail by accepting a report after a required check has failed, or by settling for a weaker conclusion without trying another way that could still succeed. We introduce PRIME (Precommitted Rules for Inference from Minimal Evidence). Before checking, it fixes evidence routes specifying how each conclusion may be justified. A separate program records each check result and refuses any conclusion the results do not justify. It also points the agent to checks that could justify a stronger conclusion, or runs them itself. PRIME reports only conclusions authorized by its rules and ledger. With correct requirements, exact checks at known locations, and sufficient budget at stopping, completion reaches the strongest supported conclusion. On 480 public-record tasks, an agent shown the requirements reported unjustified conclusions on 26.7% of tasks, while PRIME reported none. Its directions and added checks raised the average score for justified conclusions from 30.1, with refusal alone, to the maximum of 59.2 out of 100.\", \"evidence_kind\": \"feed_summary\", \"demo\": false}, {\"id\": \"c75b08a745837bc4fd9e\", \"title\": \"CGDT-CESN: Correlation-Guided and Dynamics-Trained Clustered Echo State Network for Multivariate Time-Series Prediction\", \"url\": \"https://arxiv.org/abs/2610.22430\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": null, \"first_published_at\": null, \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"arXiv:2610.22430v1 Announce Type: new Abstract: Accurate prediction of multivariate time series requires models that simultaneously capture variable-specific dynamics and cross-variable interactions. In this work, a Correlation-Guided and Dynamics-Trained Clustered Echo State Network (CGDT-CESN) is proposed, which comprises a modular reservoir architecture with each cluster distinctly specializing in one of the variables in the multivariate time series. An innovative reservoir design is proposed in which inter-cluster connections are enabled by empirically observed correlations among variables, providing a data-driven coupling mechanism. Apart from conventional readout training, inter-cluster connection weights informed by correlations are trained, which in turn allows the reservoir to capture time-varying cross-variable dependencies without sacrificing computational efficiency and further improves forecasting accuracy. The prediction performance of CGDT-CESN is found to be superior to that of the conventional ESN when evaluated on two fundamentally different datasets: Twitter information cascade evolution and solar wind forecasting. Also, the improvement in performance is preserved across multiple prediction horizons, even when presented with a low volume of data. By unifying cluster-specific specialization with learned inter-variable coupling, CGDT-CESN offers a principled, data-driven route to multivariate time series prediction.\", \"evidence_kind\": \"feed_summary\", \"demo\": false}, {\"id\": \"fdd7c1296f918924cf03\", \"title\": \"BOLT: Multi-Bottleneck Bound-Guided Learning for Flexible Job-Shop Scheduling with Time Lags and Resource-Coupled Transport\", \"url\": \"https://arxiv.org/abs/2610.22433\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": null, \"first_published_at\": null, \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"arXiv:2610.22433v1 Announce Type: new Abstract: Flexible job-shop scheduling becomes resource-coupled when a scarce vehicle fleet moves jobs between stations, because the schedule sets the transport waits. BOLT (bound-oriented learning for transport-coupled scheduling) builds a lower bound from chain, machine-capacity, and fleet-capacity relaxations. The bound equals the makespan at termination, so its per-step changes form a reward that sums to a constant minus the makespan. Because it never exceeds the attainable makespan, each candidate's bound increase is a proven rise of the makespan floor, which the policy reads as a price. The root bound certifies a completed schedule's suboptimality gap without a solver. On industry-motivated 10-module prefabricated-construction instances, explicit transport coupling outperforms a transport-penalty policy in every tested cell where loaded moves occupy at least 66% of fleet time and in none at or below 56%. Across five zero-shot 50- and 80-module production batches, BOLT outperforms the best dispatching-rule pair on four and the penalty policy on the three with long moves. In the three-vehicle 80-module batch, its mean makespan is 13.0% below the best pair and 4.2% below an hour-budget constraint-programming solver whose proven gap averages 34%. BOLT decides in 2.3-5.9 ms per event on one processor core and re-plans a disruption in seconds.\", \"evidence_kind\": \"feed_summary\", \"demo\": false}, {\"id\": \"5d023c2a1961329c95c3\", \"title\": \"TRACE: Transformer Residual Activation Codebook Encoding for Communication-efficient Distributed Edge Inference\", \"url\": \"https://arxiv.org/abs/2610.22435\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": null, \"first_published_at\": null, \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"arXiv:2610.22435v1 Announce Type: new Abstract: Distributed Transformer inference across co-located edge devices is fundamentally communication-bound, as exchanging activations between sequence-parallel partitions dominates inference latency under commodity edge bandwidths. Existing compression schemes reduce this cost but retain a structural bottleneck: the received data must still undergo key/value projection before attention can proceed, serializing computation behind communication. This paper presents Transformer Residual Activation Codebook Encoding (Trace), a framework that addresses these limitations. Trace places a Vector Quantizer (VQ) at the post-attention residual of every Transformer layer and precomputes codebook-indexed key/value r",
+          "status": "ok",
+          "duration_ms": 922,
+          "created_at": "2026-10-19T12:55:30.100094+00:00"
+        },
+        {
+          "id": 11,
+          "run_id": "89556ab9933d41218503c920757b2240",
+          "tool": "read_article",
+          "arguments": {
+            "article_id": "da92b80397690dde35e8"
+          },
+          "result": "{\"id\": \"da92b80397690dde35e8\", \"title\": \"Structured Authority Injection: Persistent Human Control for LLM Agents via Typed MCP Overrides\", \"url\": \"https://arxiv.org/abs/2610.22373\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": \"2026-07-27T03:38:01+00:00\", \"first_published_at\": \"2026-07-27T03:38:01+00:00\", \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"Abstract: LLM-based agents are increasingly used as autonomous orchestrators in distributed and multi-agent systems, yet a control gap remains: no protocol-level mechanism allows human operators to inject binding directives that persist across planning cycles. Free-text overrides suffer from ambiguous interpretation due to lack of schema validation and from authority erosion as operator instructions lose influence within accumulating context. We propose Structured Authority Injection (SAI), a protocol that addresses these issues by routing operator corrections through typed, schema-validated Model Context Protocol (MCP) tool calls and maintaining a ranked authority context prepended to each LLM prompt. SAI defines three override classes (Constraint, Priority, and Strategy) with distinct persistence semantics and an explicit precedence order enforced via a directed authority channel inaccessible to the planning process. The method requires no model fine-tuning or access to model weights and applies to instruction-tuned LLMs supporting MCP tool use. Evaluation across nine LLMs and eight scenarios targeting agent failure modes shows reduced ambiguous directive interpretation and mitigated authority decay across planning iterations, with lower prompt overhead in the strongest models (up to 38% depending on model and scenario), though benefit varies substantially across models. SAI provides a general design pattern for agent systems requiring explicit and persistent human control.\", \"evidence_kind\": \"abstract\", \"demo\": false, \"publication_kind\": \"preprint\"}",
+          "status": "ok",
+          "duration_ms": 297,
+          "created_at": "2026-10-19T12:55:37.672803+00:00"
+        },
+        {
+          "id": 12,
+          "run_id": "89556ab9933d41218503c920757b2240",
+          "tool": "read_article",
+          "arguments": {
+            "article_id": "f34ad45741b405ff9e69"
+          },
+          "result": "{\"id\": \"f34ad45741b405ff9e69\", \"title\": \"Harness-Delta Attribution: Dissecting Gains From Harness Evolution\", \"url\": \"https://arxiv.org/abs/2610.22466\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": \"2026-10-15T17:39:38+00:00\", \"first_published_at\": \"2026-10-15T17:39:38+00:00\", \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"Abstract: Harness evolution automatically optimizes the prompts, skills, tools, and orchestration code around a fixed-weight model, offering a way to improve agentic systems without updating model weights. The agent harness is iteratively optimized to achieve higher performance on the search set. But how much of this gain reflects benchmark-specific overfitting or additional inference-time compute, and how much may generalize beyond the search set? In this work, we introduce Harness-Delta Attribution (HDA), an evaluation protocol that dissects an evolution gain into artifact-driven overfitting, gains explained by test-time scaling, and the remainder, which gives an upper bound on residual generalizable improvement. We apply HDA to 11 executor models and three harness-evolution frameworks across math, coding, creativity, and agentic tasks. In 21 of these settings that show statistically significant search-set gains, we find that a large share of the improvement is explained by overfitting or test-time scaling. Specifically, among these 21 settings, overfitting and test-time scaling account for 54% and 14% of the gain on average; their combined share exceeds 50% in 14 settings. The residual and held-out transfer vary substantially across tasks, models, and frameworks. Importantly, search-set gains often fail to transfer to held-out tasks, and provide limited evidence that they will persist under practical distribution shifts. Moreover, validation-based signals are insufficient to prevent overfitting. These results motivate attribution-aware evaluation in future harness evolution research.\", \"evidence_kind\": \"abstract\", \"demo\": false, \"publication_kind\": \"preprint\"}",
+          "status": "ok",
+          "duration_ms": 282,
+          "created_at": "2026-10-19T12:55:37.975975+00:00"
+        },
+        {
+          "id": 13,
+          "run_id": "89556ab9933d41218503c920757b2240",
+          "tool": "read_article",
+          "arguments": {
+            "article_id": "8cad1d7071d358947cb2"
+          },
+          "result": "{\"id\": \"8cad1d7071d358947cb2\", \"title\": \"Testing the Planning Claims of LLM-Based Agents against Formal Semantics\", \"url\": \"https://arxiv.org/abs/2610.22469\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": \"2026-10-15T17:47:30+00:00\", \"first_published_at\": \"2026-10-15T17:47:30+00:00\", \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"Abstract: LLM-based agents are increasingly credited with the competences of practical reasoning: planning, monitoring, and correcting their own actions. Their success is attributed to the prompting strategies and agent architectures built around the model, such as chain-of-thought, search-based prompting, self-refinement, reflection, critics and tool-using loops. Yet these claims are usually supported by end-to-end success rates, which show only whether a task was completed, or by LLM judges, which are not verifiers. We test LLM planning against formal semantics. Tasks are posed in natural language, but each is grounded in a hidden PDDL model that decides whether every action is applicable, whether the goal is reached, and whether a plan exists at all. Across five domains (two of them new, all released with the paper), four models, six prompting strategies and three agent architectures, the best configuration solves 78% of the solvable tasks offline but only 40% online, where agents mostly act without inspecting the state. Unsolvable tasks are recognised in under 10% of episodes, and heavier prompting strategies use 5 to 22 times as many tokens as direct prompting with no clear gain. In our experiments, planning performance varied more across models than across prompting strategies or agent architectures. Claims that agents can plan require evidence from validated action traces.\", \"evidence_kind\": \"abstract\", \"demo\": false, \"publication_kind\": \"preprint\"}",
+          "status": "ok",
+          "duration_ms": 281,
+          "created_at": "2026-10-19T12:55:38.273141+00:00"
+        },
+        {
+          "id": 14,
+          "run_id": "89556ab9933d41218503c920757b2240",
+          "tool": "read_article",
+          "arguments": {
+            "article_id": "a97c1f5a709e4de6f7ba"
+          },
+          "result": "{\"id\": \"a97c1f5a709e4de6f7ba\", \"title\": \"Lean4AgenticRL: Advancing Agentic RL with Verifiable Multi-level Process Rewards\", \"url\": \"https://arxiv.org/abs/2610.22448\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": \"2026-10-15T15:26:54+00:00\", \"first_published_at\": \"2026-10-15T15:26:54+00:00\", \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"Abstract: Enhancing the agentic capabilities of Large Language Models (LLMs) to tackle complex software engineering (SWE) and general terminal-usage problems is a pressing challenge. Current state-of-the-art LLMs often go through large-scale agentic Reinforcement Learning (RL). However, they mostly rely on high-level outcome rewards, with minimal consideration of low-level toolcall and mid-level workflow-stage rewards, which makes the training less effective. To overcome this limitation, we propose **Lean4AgenticRL**, which, to the best of our knowledge, is the first framework that grounds multi-level process rewards in the unified Lean4 formalization schema for open-ended agentic RL. **Lean4AgenticRL** first builds a *problem-specific workflow* system that balances the agent's own capability and controllability during execution, laying the foundation for further verification. Subsequently, our workflow formalization and multi-level reward annotation methods enable agent behavior verification within a general harness system. It provides multi-level rewards to support more effective agentic RL with the workflow-stage-normalized GRPO algorithm. Using **Lean4AgenticRL**, we train **LAR-9B/27B**, a family of models with enhanced agentic capability. Extensive experiments indicate that our model outperforms the leading model of similar size. **LAR-27B** achieves **77.3%** on TerminalBench-2.1. On average, our models outperform the base model by **9.89%** and surpass the second-best model of comparable size we know by **5.07%**. These results indicate the potential of integrating formal methods in enhancing open-ended agentic RL.\", \"evidence_kind\": \"abstract\", \"demo\": false, \"publication_kind\": \"preprint\"}",
+          "status": "ok",
+          "duration_ms": 266,
+          "created_at": "2026-10-19T12:55:38.552878+00:00"
+        },
+        {
+          "id": 15,
+          "run_id": "89556ab9933d41218503c920757b2240",
+          "tool": "read_article",
+          "arguments": {
+            "article_id": "051009ada2a4f647f6fc"
+          },
+          "result": "{\"id\": \"051009ada2a4f647f6fc\", \"title\": \"On the SPOT: Enhancing Speculative Decoding for Diffusion Language Models via Commit-Order Prediction\", \"url\": \"https://arxiv.org/abs/2610.22543\", \"source_id\": \"arxiv\", \"source\": \"arXiv cs.AI / cs.LG\", \"published_at\": \"2026-10-15T18:40:42+00:00\", \"first_published_at\": \"2026-10-15T18:40:42+00:00\", \"announced_at\": \"2026-10-19T04:00:00+00:00\", \"updated_at\": null, \"feed_entry_at\": \"2026-10-19T04:00:00+00:00\", \"time_basis\": \"feed_announcement\", \"text\": \"Abstract: Diffusion language models (DLMs) promise parallel text generation, but in practice face an unresolved speed-quality trade-off. Exact decoding fills in only one masked position per model pass, while faster multi-token decoding schemes are lossy. Speculative decoding is the standard lossless acceleration for autoregressive models. However, it does not transfer directly to DLMs, which must choose both what to generate and where. We show that this order is the missing piece: the model's own predictions from the previous pass already give the right token at 92-100% of positions, but not which position comes next. Based on this observation, we introduce Speculating Positions Order Trajectory (SPOT), which learns to predict this order. A 0.62M-parameter model reads only the target's output distributions and proposes a tree of candidate continuations, and the target verifies all of them in a single pass by checking whether each equals its own next state. On the verification side, our analysis shows that prior block-diffusion verification approaches either assume $T=0$ or a sequential proposal interface. To support tree-based speculation at any temperature, we propose using coupled-noise match verification for diffusion blocks, following shared-Gumbel-noise coupling approaches. Our comprehensive experiments show that SPOT cuts target passes by up to 6.8x and reaches up to 3.2x the throughput of standard decoding, beating the calibrated and training-free drafting baselines in every task and budget at $T=0$ and $T=1$. In addition, we show that the learned drafter transfers across models, demonstrating successful transfer across six different DLMs. Project page: this https URL\", \"evidence_kind\": \"abstract\", \"demo\": false, \"publication_kind\": \"preprint\"}",
+          "status": "ok",
+          "duration_ms": 250,
+          "created_at": "2026-10-19T12:55:38.817568+00:00"
+        },
+        {
+          "id": 16,
+          "run_id": "89556ab9933d41218503c920757b2240",
+          "tool": "record_article_states",
+          "arguments": {
+            "decisions": [
+              "article_id='da92b80397690dde35e8' state='selected' reason='MCP 类型化覆盖实现持久人类控制，直接对应工具调用与 Agent 工程；需注明首次提交为 2026-07-27、今日仅 RSS 公告' evidence_quotes=['We propose Structured Authority Injection (SAI), a protocol that addresses these issues by routing operator corrections through typed, schema-validated Model Context Protocol (MCP) tool calls and maintaining a ranked authority context prepended to each LLM prompt.', 'Evaluation across nine LLMs and eight scenarios targeting agent failure modes shows reduced ambiguous directive interpretation and mitigated authority decay across planning iterations, with lower prompt overhead in the strongest models (up to 38% depending on model and scenario), though benefit varies substantially across models.']",
+              "article_id='f34ad45741b405ff9e69' state='selected' reason='量化拆解 agent harness 演化收益里过拟合与测试时算力的占比，对搭建编码 Agent 的工程师有直接方法论价值' evidence_quotes=['We introduce Harness-Delta Attribution (HDA), an evaluation protocol that dissects an evolution gain into artifact-driven overfitting, gains explained by test-time scaling, and the remainder, which gives an upper bound on residual generalizable improvement.', 'among these 21 settings, overfitting and test-time scaling account for 54% and 14% of the gain on average; their combined share exceeds 50% in 14 settings.']",
+              "article_id='8cad1d7071d358947cb2' state='selected' reason='用形式语义验证 Agent 规划声明，给出离线/在线成功率与 token 开销对比，提示提示词堆叠未必有效' evidence_quotes=['the best configuration solves 78% of the solvable tasks offline but only 40% online, where agents mostly act without inspecting the state. Unsolvable tasks are recognised in under 10% of episodes, and heavier prompting strategies use 5 to 22 times as many tokens as direct prompting with no clear gain.']",
+              "article_id='a97c1f5a709e4de6f7ba' state='selected' reason='把工具调用、流程阶段与结果奖励统一进 Lean4 验证的多级过程奖励，LAR-27B 在 TerminalBench-2.1 的成绩可作为终端 Agent 参照' evidence_quotes=['it provides multi-level rewards to support more effective agentic RL with the workflow-stage-normalized GRPO algorithm.', 'LAR-27B achieves 77.3% on TerminalBench-2.1. On average, our models outperform the base model by 9.89% and surpass the second-best model of comparable size we know by 5.07%.']",
+              "article_id='051009ada2a4f647f6fc' state='selected' reason='扩散语言模型投机解码提升吞吐，涉及推理服务与本地部署成本，附明确实验数字' evidence_quotes=['Our comprehensive experiments show that SPOT cuts target passes by up to 6.8x and reaches up to 3.2x the throughput of standard decoding, beating the calibrated and training-free drafting baselines in every task and budget at $T=0$ and $T=1$.', \"A 0.62M-parameter model reads only the target's output distributions and proposes a tree of candidate continuations, and the target verifies all of them in a single pass\"]",
+              "article_id='33da8aabe6e16f93a795' state='excluded' reason='Anthropic 股权公益基金属公司治理/股权类消息，贴近用户排除词“融资”，与工具或产品功能无直接关系' evidence_quotes=[]",
+              "article_id='71e1590c6c971a337879' state='excluded' reason='Character.AI 破产后 Disney 收购资产与人员转移，属并购人事消息，非 AI 产品能力' evidence_quotes=[]",
+              "article_id='aa178b575bb249be9aef' state='excluded' reason='工程仿真器校准代理，领域为流体/振动物理建模，与用户工程栈无关' evidence_quotes=[]",
+              "article_id='dd5a28f9c533e0ee2ccc' state='excluded' reason='离散扩散前向动力学设计，训练方法研究，无工程落地信息' evidence_quotes=[]",
+              "article_id='3a93b1c8699f7e1580fd' state='excluded' reason='测试时持续学习的重学习节省效应，纯研究测量问题' evidence_quotes=[]",
+              "article_id='0b0024271a7c2b5987bb' state='excluded' reason='推荐场景用户表征编码器，工业 A/B 场景，与后端工程师关注点不同' evidence_quotes=[]",
+              "article_id='d2da03dd040aaeefea30' state='excluded' reason='事件图符号推理系统，非 LLM 工具链主题' evidence_quotes=[]",
+              "article_id='9f9467f75484ebfa07d2' state='excluded' reason='GUI Agent 历史压缩的训练方法（特权蒸馏），偏研究，工程可用性弱' evidence_quotes=[]",
+              "article_id='4c5e025cfc8f17ca9a46' state='excluded' reason='农业生态 ABM 决策规则敏感性分析，领域不相关' evidence_quotes=[]",
+              "article_id='434246a93fec15537b14' state='excluded' reason='Agent 证据门控用于漏洞报告合规检查，相关但场景偏合规审计，弱于已选项' evidence_quotes=[]",
+              "article_id='c75b08a745837bc4fd9e' state='excluded' reason='多变量时间序列储备池预测，非用户主题' evidence_quotes=[]",
+              "article_id='fdd7c1296f918924cf03' state='excluded' reason='车间调度强化学习，运筹优化领域' evidence_quotes=[]",
+              "article_id='5d023c2a1961329c95c3' state='excluded' reason='边缘分布式视觉推理通信压缩，偏硬件与视觉模型部署' evidence_quotes=[]",
+              "article_id='5d02f5b2e0fc2d4c525a' state='excluded' reason='飞机结构健康监测的 GAN 数据增强，领域不相关' evidence_quotes=[]",
+              "article_id='dd2a6493f55037eee5a5' state='excluded' reason='糖尿病视网膜病变影像域适应，医疗影像领域' evidence_quotes=[]",
+              "article_id='a6b428c98c5e6d1d2289' state='excluded' reason='微调权重秩度量需噪声基线，方法学讨论，与工程实践关联弱' evidence_quotes=[]",
+              "article_id='a6f4da06fdba108994ec' state='excluded' reason='SAE 几何锚定缓解灾难性遗忘，持续学习研究' evidence_quotes=[]",
+              "article_id='5f9cc4741ffa08d59cab' state='excluded' reason='自然语言意图到 CPS 控制的分层规划，面向信息物理系统' evidence_quotes=[]",
+              "article_id='456c7c8f7dcbfa062e61' state='excluded' reason='科研发现验收控制（null 检验）方法学，与用户工程主题无关' evidence_quotes=[]",
+              "article_id='1cc7c278b01af9771804' state='excluded' reason='非结构网格样条神经算子，PDE 求解加速研究' evidence_quotes=[]",
+              "article_id='7cc78127c883714f76f3' state='excluded' reason='会议论文可复现性审计 Agent，场景偏学术评审流程' evidence_quotes=[]",
+              "article_id='9233c0fbe4fb6e2520e4' state='excluded' reason='递归自蒸馏导致渐进失配，属安全/训练研究，非用户核心主题' evidence_quotes=[]",
+              "article_id='28b96783ce883a7e7f40' state='excluded' reason='生成式值分类器，强化学习算法研究' evidence_quotes=[]",
+              "article_id='1cf7caf1e3962092517f' state='excluded' reason='on-policy 自蒸馏中特权信息有效性，训练方法研究' evidence_quotes=[]",
+              "article_id='531156a59b9f298428c8' state='excluded' reason='运动学插值学习动力学，科学建模方向' evidence_quotes=[]",
+              "article_id='2ffe5ada9085e1add46b' state='excluded' reason='推理模型日常逻辑推理评测，与工程落地关联有限' evidence_quotes=[]",
+              "article_id='6ec636eceffcfb5999d5' state='excluded' reason='Web Agent 混合超网络适配免重训，与部署相关但优先级低于已选 5 条' evidence_quotes=[]",
+              "article_id='bf28c7aa2007aa01571b' state='excluded' reason='FRACTAL 多智能体编排架构论文，作者声明无量化性能结论' evidence_quotes=[]",
+              "article_id='61649a8ae4c58021cbc4' state='excluded' reason='度量空间回归/分类的确定性误差界，理论统计工作' evidence_quotes=[]",
+              "article_id='878235a76bf9396d7302' state='excluded' reason='离策略分位数认证的样本复杂度理论' evidence_quotes=[]",
+              "article_id='bf13a92368f50af68cba' state='excluded' reason='LLM 生成形式化规格的确定性诊断修复，偏形式化方法与求解器' evidence_quotes=[]",
+              "article_id='17fb1b78ebadcb40daac' state='excluded' reason='高斯过程端口哈密顿系统的结构感知核，物理建模研究' evidence_quotes=[]",
+              "article_id='af9bbc2d1c0b8017291c' state='excluded' reason='自发语音强制对齐鲁棒性，语音处理领域' evidence_quotes=[]",
+              "article_id='15e1c3b827bd5c829282' state='excluded' reason='车联网联邦学习遗忘机制，领域不相关' evidence_quotes=[]",
+              "article_id='8e0becaa31e92e597767' state='excluded' reason='模加法 grokking 训练动力学理论，与工程实践无关' evidence_quotes=[]",
+              "article_id='2f51df856d85f4fbb4e7' state='excluded' reason='GNN 逐层探针熵诊断，图网络分析工具' evidence_quotes=[]"
+            ]
+          },
+          "result": "{\"error\": \"ValueError: 证据必须是已获取原文中的连续片段\"}",
+          "status": "error",
+          "duration_ms": 0,
+          "created_at": "2026-10-19T12:55:56.147673+00:00"
+        },
+        {
+          "id": 17,
+          "run_id": "89556ab9933d41218503c920757b2240",
+          "tool": "record_article_states",
+          "arguments": {
+            "decisions": [
+              "article_id='da92b80397690dde35e8' state='selected' reason='MCP 类型化覆盖实现持久人类控制，直接对应工具调用与 Agent 工程；需注明首次提交为 2026-07-27、今日仅 RSS 公告' evidence_quotes=['We propose Structured Authority Injection (SAI), a protocol that addresses these issues by routing operator corrections through typed, schema-validated Model Context Protocol (MCP) tool calls and maintaining a ranked authority context prepended to each LLM prompt.', 'Evaluation across nine LLMs and eight scenarios targeting agent failure modes shows reduced ambiguous directive interpretation and mitigated authority decay across planning iterations, with lower prompt overhead in the strongest models (up to 38% depending on model and scenario), though benefit varies substantially across models.']",
+              "article_id='f34ad45741b405ff9e69' state='selected' reason='量化拆解 agent harness 演化收益中过拟合与测试时算力的占比，对搭建编码 Agent 的工程师有直接方法论价值' evidence_quotes=['In this work, we introduce Harness-Delta Attribution (HDA), an evaluation protocol that dissects an evolution gain into artifact-driven overfitting, gains explained by test-time scaling, and the remainder, which gives an upper bound on residual generalizable improvement.', 'Specifically, among these 21 settings, overfitting and test-time scaling account for 54% and 14% of the gain on average; their combined share exceeds 50% in 14 settings.']",
+              "article_id='8cad1d7071d358947cb2' state='selected' reason='用形式语义验证 Agent 规划声明，给出离线/在线成功率与 token 开销对比，提示提示词堆叠未必有效' evidence_quotes=['the best configuration solves 78% of the solvable tasks offline but only 40% online, where agents mostly act without inspecting the state. Unsolvable tasks are recognised in under 10% of episodes, and heavier prompting strategies use 5 to 22 times as many tokens as direct prompting with no clear gain.']",
+              "article_id='a97c1f5a709e4de6f7ba' state='selected' reason='把工具调用、流程阶段与结果奖励统一进 Lean4 验证的多级过程奖励，LAR-27B 在 TerminalBench-2.1 的成绩可作为终端 Agent 参照' evidence_quotes=['It provides multi-level rewards to support more effective agentic RL with the workflow-stage-normalized GRPO algorithm.', 'achieves 77.3% on TerminalBench-2.1. On average, our models outperform the base model by 9.89% and surpass the second-best model of comparable size we know by 5.07%.']",
+              "article_id='051009ada2a4f647f6fc' state='selected' reason='扩散语言模型投机解码提升吞吐，涉及推理服务与本地部署成本，附明确实验数字' evidence_quotes=['Our comprehensive experiments show that SPOT cuts target passes by up to 6.8x and reaches up to 3.2x the throughput of standard decoding, beating the calibrated and training-free drafting baselines in every task and budget at $T=0$ and $T=1$.', \"A 0.62M-parameter model reads only the target's output distributions and proposes a tree of candidate continuations\"]",
+              "article_id='33da8aabe6e16f93a795' state='excluded' reason='Anthropic 股权公益基金属公司治理/股权类消息，贴近用户排除词“融资”，与工具或产品功能无直接关系' evidence_quotes=[]",
+              "article_id='71e1590c6c971a337879' state='excluded' reason='Character.AI 破产后 Disney 收购资产与人员转移，属并购人事消息，非 AI 产品能力' evidence_quotes=[]",
+              "article_id='aa178b575bb249be9aef' state='excluded' reason='工程仿真器校准代理，领域为流体/振动物理建模，与用户工程栈无关' evidence_quotes=[]",
+              "article_id='dd5a28f9c533e0ee2ccc' state='excluded' reason='离散扩散前向动力学设计，训练方法研究，无工程落地信息' evidence_quotes=[]",
+              "article_id='3a93b1c8699f7e1580fd' state='excluded' reason='测试时持续学习的重学习节省效应，纯研究测量问题' evidence_quotes=[]",
+              "article_id='0b0024271a7c2b5987bb' state='excluded' reason='推荐场景用户表征编码器，工业 A/B 场景，与后端工程师关注点不同' evidence_quotes=[]",
+              "article_id='d2da03dd040aaeefea30' state='excluded' reason='事件图符号推理系统，非 LLM 工具链主题' evidence_quotes=[]",
+              "article_id='9f9467f75484ebfa07d2' state='excluded' reason='GUI Agent 历史压缩的训练方法（特权蒸馏），偏研究，工程可用性弱' evidence_quotes=[]",
+              "article_id='4c5e025cfc8f17ca9a46' state='excluded' reason='农业生态 ABM 决策规则敏感性分析，领域不相关' evidence_quotes=[]",
+              "article_id='434246a93fec15537b14' state='excluded' reason='Agent 证据门控用于漏洞报告合规检查，场景偏合规审计，弱于已选项' evidence_quotes=[]",
+              "article_id='c75b08a745837bc4fd9e' state='excluded' reason='多变量时间序列储备池预测，非用户主题' evidence_quotes=[]",
+              "article_id='fdd7c1296f918924cf03' state='excluded' reason='车间调度强化学习，运筹优化领域' evidence_quotes=[]",
+              "article_id='5d023c2a1961329c95c3' state='excluded' reason='边缘分布式视觉推理通信压缩，偏硬件与视觉模型部署' evidence_quotes=[]",
+              "article_id='5d02f5b2e0fc2d4c525a' state='excluded' reason='飞机结构健康监测的 GAN 数据增强，领域不相关' evidence_quotes=[]",
+              "article_id='dd2a6493f55037eee5a5' state='excluded' reason='糖尿病视网膜病变影像域适应，医疗影像领域' evidence_quotes=[]",
+              "article_id='a6b428c98c5e6d1d2289' state='excluded' reason='微调权重秩度量需噪声基线，方法学讨论，与工程实践关联弱' evidence_quotes=[]",
+              "article_id='a6f4da06fdba108994ec' state='excluded' reason='SAE 几何锚定缓解灾难性遗忘，持续学习研究' evidence_quotes=[]",
+              "article_id='5f9cc4741ffa08d59cab' state='excluded' reason='自然语言意图到 CPS 控制的分层规划，面向信息物理系统' evidence_quotes=[]",
+              "article_id='456c7c8f7dcbfa062e61' state='excluded' reason='科研发现验收控制（null 检验）方法学，与用户工程主题无关' evidence_quotes=[]",
+              "article_id='1cc7c278b01af9771804' state='excluded' reason='非结构网格样条神经算子，PDE 求解加速研究' evidence_quotes=[]",
+              "article_id='7cc78127c883714f76f3' state='excluded' reason='会议论文可复现性审计 Agent，场景偏学术评审流程' evidence_quotes=[]",
+              "article_id='9233c0fbe4fb6e2520e4' state='excluded' reason='递归自蒸馏导致渐进失配，属安全/训练研究，非用户核心主题' evidence_quotes=[]",
+              "article_id='28b96783ce883a7e7f40' state='excluded' reason='生成式值分类器，强化学习算法研究' evidence_quotes=[]",
+              "article_id='1cf7caf1e3962092517f' state='excluded' reason='on-policy 自蒸馏中特权信息有效性，训练方法研究' evidence_quotes=[]",
+              "article_id='531156a59b9f298428c8' state='excluded' reason='运动学插值学习动力学，科学建模方向' evidence_quotes=[]",
+              "article_id='2ffe5ada9085e1add46b' state='excluded' reason='推理模型日常逻辑推理评测，与工程落地关联有限' evidence_quotes=[]",
+              "article_id='6ec636eceffcfb5999d5' state='excluded' reason='Web Agent 混合超网络适配免重训，与部署相关但优先级低于已选 5 条' evidence_quotes=[]",
+              "article_id='bf28c7aa2007aa01571b' state='excluded' reason='FRACTAL 多智能体编排架构论文，作者声明无量化性能结论' evidence_quotes=[]",
+              "article_id='61649a8ae4c58021cbc4' state='excluded' reason='度量空间回归/分类的确定性误差界，理论统计工作' evidence_quotes=[]",
+              "article_id='878235a76bf9396d7302' state='excluded' reason='离策略分位数认证的样本复杂度理论' evidence_quotes=[]",
+              "article_id='bf13a92368f50af68cba' state='excluded' reason='LLM 生成形式化规格的确定性诊断修复，偏形式化方法与求解器' evidence_quotes=[]",
+              "article_id='17fb1b78ebadcb40daac' state='excluded' reason='高斯过程端口哈密顿系统的结构感知核，物理建模研究' evidence_quotes=[]",
+              "article_id='af9bbc2d1c0b8017291c' state='excluded' reason='自发语音强制对齐鲁棒性，语音处理领域' evidence_quotes=[]",
+              "article_id='15e1c3b827bd5c829282' state='excluded' reason='车联网联邦学习遗忘机制，领域不相关' evidence_quotes=[]",
+              "article_id='8e0becaa31e92e597767' state='excluded' reason='模加法 grokking 训练动力学理论，与工程实践无关' evidence_quotes=[]",
+              "article_id='2f51df856d85f4fbb4e7' state='excluded' reason='GNN 逐层探针熵诊断，图网络分析工具' evidence_quotes=[]"
+            ]
+          },
+          "result": "{\"error\": \"ValueError: 证据必须是已获取原文中的连续片段\"}",
+          "status": "error",
+          "duration_ms": 0,
+          "created_at": "2026-10-19T12:56:05.554293+00:00"
+        },
+        {
+          "id": 18,
+          "run_id": "89556ab9933d41218503c920757b2240",
+          "tool": "record_article_states",
+          "arguments": {
+            "decisions": [
+              "article_id='a97c1f5a709e4de6f7ba' state='selected' reason='把工具调用、流程阶段与结果奖励统一进 Lean4 验证的多级过程奖励，可作为终端 Agent 训练参照' evidence_quotes=['It provides multi-level rewards to support more effective agentic RL with the workflow-stage-normalized GRPO algorithm.', 'Extensive experiments indicate that our model outperforms the leading model of similar size.']"
+            ]
+          },
+          "result": "{\"updated_ids\": [\"a97c1f5a709e4de6f7ba\"], \"states\": {\"a97c1f5a709e4de6f7ba\": {\"state\": \"selected\", \"reason\": \"把工具调用、流程阶段与结果奖励统一进 Lean4 验证的多级过程奖励，可作为终端 Agent 训练参照\", \"evidence_quotes\": [\"It provides multi-level rewards to support more effective agentic RL with the workflow-stage-normalized GRPO algorithm.\", \"Extensive experiments indicate that our model outperforms the leading model of similar size.\"]}}}",
+          "status": "ok",
+          "duration_ms": 16,
+          "created_at": "2026-10-19T12:56:09.721447+00:00"
+        },
+        {
+          "id": 19,
+          "run_id": "89556ab9933d41218503c920757b2240",
+          "tool": "record_article_states",
+          "arguments": {
+            "decisions": [
+              "article_id='da92b80397690dde35e8' state='selected' reason='MCP 类型化覆盖实现持久人类控制，直接对应工具调用与 Agent 工程；首次提交为 2026-07-27，今日仅 RSS 公告' evidence_quotes=['We propose Structured Authority Injection (SAI), a protocol that addresses these issues by routing operator corrections through typed, schema-validated Model Context Protocol (MCP) tool calls and maintaining a ranked authority context prepended to each LLM prompt.', 'Evaluation across nine LLMs and eight scenarios targeting agent failure modes shows reduced ambiguous directive interpretation and mitigated authority decay across planning iterations, with lower prompt overhead in the strongest models (up to 38% depending on model and scenario), though benefit varies substantially across models.']",
+              "article_id='f34ad45741b405ff9e69' state='selected' reason='量化拆解 agent harness 演化收益中过拟合与测试时算力的占比，对搭建编码 Agent 的工程师有方法论价值' evidence_quotes=['In this work, we introduce Harness-Delta Attribution (HDA), an evaluation protocol that dissects an evolution gain into artifact-driven overfitting, gains explained by test-time scaling, and the remainder, which gives an upper bound on residual generalizable improvement.', 'Specifically, among these 21 settings, overfitting and test-time scaling account for 54% and 14% of the gain on average; their combined share exceeds 50% in 14 settings.']",
+              "article_id='8cad1d7071d358947cb2' state='selected' reason='用形式语义验证 Agent 规划声明，给出离线/在线成功率与 token 开销对比，提示提示词堆叠未必有效' evidence_quotes=['the best configuration solves 78% of the solvable tasks offline but only 40% online, where agents mostly act without inspecting the state. Unsolvable tasks are recognised in under 10% of episodes, and heavier prompting strategies use 5 to 22 times as many tokens as direct prompting with no clear gain.']",
+              "article_id='051009ada2a4f647f6fc' state='selected' reason='扩散语言模型投机解码提升吞吐，涉及推理服务与本地部署成本，附明确实验数字' evidence_quotes=['Our comprehensive experiments show that SPOT cuts target passes by up to 6.8x and reaches up to 3.2x the throughput of standard decoding, beating the calibrated and training-free drafting baselines in every task and budget at $T=0$ and $T=1$.', \"A 0.62M-parameter model reads only the target's output distributions and proposes a tree of candidate continuations\"]",
+              "article_id='33da8aabe6e16f93a795' state='excluded' reason='Anthropic 股权公益基金属公司治理/股权类消息，贴近用户排除词“融资”，与工具或产品功能无直接关系' evidence_quotes=[]",
+              "article_id='71e1590c6c971a337879' state='excluded' reason='Character.AI 破产后 Disney 收购资产与人员转移，属并购人事消息，非 AI 产品能力' evidence_quotes=[]",
+              "article_id='aa178b575bb249be9aef' state='excluded' reason='工程仿真器校准代理，领域为流体/振动物理建模，与用户工程栈无关' evidence_quotes=[]",
+              "article_id='dd5a28f9c533e0ee2ccc' state='excluded' reason='离散扩散前向动力学设计，训练方法研究，无工程落地信息' evidence_quotes=[]",
+              "article_id='3a93b1c8699f7e1580fd' state='excluded' reason='测试时持续学习的重学习节省效应，纯研究测量问题' evidence_quotes=[]",
+              "article_id='0b0024271a7c2b5987bb' state='excluded' reason='推荐场景用户表征编码器，工业 A/B 场景，与后端工程师关注点不同' evidence_quotes=[]",
+              "article_id='d2da03dd040aaeefea30' state='excluded' reason='事件图符号推理系统，非 LLM 工具链主题' evidence_quotes=[]",
+              "article_id='9f9467f75484ebfa07d2' state='excluded' reason='GUI Agent 历史压缩的训练方法（特权蒸馏），偏研究，工程可用性弱' evidence_quotes=[]",
+              "article_id='4c5e025cfc8f17ca9a46' state='excluded' reason='农业生态 ABM 决策规则敏感性分析，领域不相关' evidence_quotes=[]",
+              "article_id='434246a93fec15537b14' state='excluded' reason='Agent 证据门控用于漏洞报告合规检查，场景偏合规审计，弱于已选项' evidence_quotes=[]",
+              "article_id='c75b08a745837bc4fd9e' state='excluded' reason='多变量时间序列储备池预测，非用户主题' evidence_quotes=[]",
+              "article_id='fdd7c1296f918924cf03' state='excluded' reason='车间调度强化学习，运筹优化领域' evidence_quotes=[]",
+              "article_id='5d023c2a1961329c95c3' state='excluded' reason='边缘分布式视觉推理通信压缩，偏硬件与视觉模型部署' evidence_quotes=[]",
+              "article_id='5d02f5b2e0fc2d4c525a' state='excluded' reason='飞机结构健康监测的 GAN 数据增强，领域不相关' evidence_quotes=[]",
+              "article_id='dd2a6493f55037eee5a5' state='excluded' reason='糖尿病视网膜病变影像域适应，医疗影像领域' evidence_quotes=[]",
+              "article_id='a6b428c98c5e6d1d2289' state='excluded' reason='微调权重秩度量需噪声基线，方法学讨论，与工程实践关联弱' evidence_quotes=[]",
+              "article_id='a6f4da06fdba108994ec' state='excluded' reason='SAE 几何锚定缓解灾难性遗忘，持续学习研究' evidence_quotes=[]",
+              "article_id='5f9cc4741ffa08d59cab' state='excluded' reason='自然语言意图到 CPS 控制的分层规划，面向信息物理系统' evidence_quotes=[]",
+              "article_id='456c7c8f7dcbfa062e61' state='excluded' reason='科研发现验收控制（null 检验）方法学，与用户工程主题无关' evidence_quotes=[]",
+              "article_id='1cc7c278b01af9771804' state='excluded' reason='非结构网格样条神经算子，PDE 求解加速研究' evidence_quotes=[]",
+              "article_id='7cc78127c883714f76f3' state='excluded' reason='会议论文可复现性审计 Agent，场景偏学术评审流程' evidence_quotes=[]",
+              "article_id='9233c0fbe4fb6e2520e4' state='excluded' reason='递归自蒸馏导致渐进失配，属安全/训练研究，非用户核心主题' evidence_quotes=[]",
+              "article_id='28b96783ce883a7e7f40' state='excluded' reason='生成式值分类器，强化学习算法研究' evidence_quotes=[]",
+              "article_id='1cf7caf1e3962092517f' state='excluded' reason='on-policy 自蒸馏中特权信息有效性，训练方法研究' evidence_quotes=[]",
+              "article_id='531156a59b9f298428c8' state='excluded' reason='运动学插值学习动力学，科学建模方向' evidence_quotes=[]",
+              "article_id='2ffe5ada9085e1add46b' state='excluded' reason='推理模型日常逻辑推理评测，与工程落地关联有限' evidence_quotes=[]",
+              "article_id='6ec636eceffcfb5999d5' state='excluded' reason='Web Agent 混合超网络适配免重训，与部署相关但优先级低于已选 5 条' evidence_quotes=[]",
+              "article_id='bf28c7aa2007aa01571b' state='excluded' reason='FRACTAL 多智能体编排架构论文，作者声明无量化性能结论' evidence_quotes=[]",
+              "article_id='61649a8ae4c58021cbc4' state='excluded' reason='度量空间回归/分类的确定性误差界，理论统计工作' evidence_quotes=[]",
+              "article_id='878235a76bf9396d7302' state='excluded' reason='离策略分位数认证的样本复杂度理论' evidence_quotes=[]",
+              "article_id='bf13a92368f50af68cba' state='excluded' reason='LLM 生成形式化规格的确定性诊断修复，偏形式化方法与求解器' evidence_quotes=[]",
+              "article_id='17fb1b78ebadcb40daac' state='excluded' reason='高斯过程端口哈密顿系统的结构感知核，物理建模研究' evidence_quotes=[]",
+              "article_id='af9bbc2d1c0b8017291c' state='excluded' reason='自发语音强制对齐鲁棒性，语音处理领域' evidence_quotes=[]",
+              "article_id='15e1c3b827bd5c829282' state='excluded' reason='车联网联邦学习遗忘机制，领域不相关' evidence_quotes=[]",
+              "article_id='8e0becaa31e92e597767' state='excluded' reason='模加法 grokking 训练动力学理论，与工程实践无关' evidence_quotes=[]",
+              "article_id='2f51df856d85f4fbb4e7' state='excluded' reason='GNN 逐层探针熵诊断，图网络分析工具' evidence_quotes=[]"
+            ]
+          },
+          "result": "{\"updated_ids\": [\"da92b80397690dde35e8\", \"f34ad45741b405ff9e69\", \"8cad1d7071d358947cb2\", \"051009ada2a4f647f6fc\", \"33da8aabe6e16f93a795\", \"71e1590c6c971a337879\", \"aa178b575bb249be9aef\", \"dd5a28f9c533e0ee2ccc\", \"3a93b1c8699f7e1580fd\", \"0b0024271a7c2b5987bb\", \"d2da03dd040aaeefea30\", \"9f9467f75484ebfa07d2\", \"4c5e025cfc8f17ca9a46\", \"434246a93fec15537b14\", \"c75b08a745837bc4fd9e\", \"fdd7c1296f918924cf03\", \"5d023c2a1961329c95c3\", \"5d02f5b2e0fc2d4c525a\", \"dd2a6493f55037eee5a5\", \"a6b428c98c5e6d1d2289\", \"a6f4da06fdba108994ec\", \"5f9cc4741ffa08d59cab\", \"456c7c8f7dcbfa062e61\", \"1cc7c278b01af9771804\", \"7cc78127c883714f76f3\", \"9233c0fbe4fb6e2520e4\", \"28b96783ce883a7e7f40\", \"1cf7caf1e3962092517f\", \"531156a59b9f298428c8\", \"2ffe5ada9085e1add46b\", \"6ec636eceffcfb5999d5\", \"bf28c7aa2007aa01571b\", \"61649a8ae4c58021cbc4\", \"878235a76bf9396d7302\", \"bf13a92368f50af68cba\", \"17fb1b78ebadcb40daac\", \"af9bbc2d1c0b8017291c\", \"15e1c3b827bd5c829282\", \"8e0becaa31e92e597767\", \"2f51df856d85f4fbb4e7\"], \"states\": {\"da92b80397690dde35e8\": {\"state\": \"selected\", \"reason\": \"MCP 类型化覆盖实现持久人类控制，直接对应工具调用与 Agent 工程；首次提交为 2026-07-27，今日仅 RSS 公告\", \"evidence_quotes\": [\"We propose Structured Authority Injection (SAI), a protocol that addresses these issues by routing operator corrections through typed, schema-validated Model Context Protocol (MCP) tool calls and maintaining a ranked authority context prepended to each LLM prompt.\", \"Evaluation across nine LLMs and eight scenarios targeting agent failure modes shows reduced ambiguous directive interpretation and mitigated authority decay across planning iterations, with lower prompt overhead in the strongest models (up to 38% depending on model and scenario), though benefit varies substantially across models.\"]}, \"f34ad45741b405ff9e69\": {\"state\": \"selected\", \"reason\": \"量化拆解 agent harness 演化收益中过拟合与测试时算力的占比，对搭建编码 Agent 的工程师有方法论价值\", \"evidence_quotes\": [\"In this work, we introduce Harness-Delta Attribution (HDA), an evaluation protocol that dissects an evolution gain into artifact-driven overfitting, gains explained by test-time scaling, and the remainder, which gives an upper bound on residual generalizable improvement.\", \"Specifically, among these 21 settings, overfitting and test-time scaling account for 54% and 14% of the gain on average; their combined share exceeds 50% in 14 settings.\"]}, \"8cad1d7071d358947cb2\": {\"state\": \"selected\", \"reason\": \"用形式语义验证 Agent 规划声明，给出离线/在线成功率与 token 开销对比，提示提示词堆叠未必有效\", \"evidence_quotes\": [\"the best configuration solves 78% of the solvable tasks offline but only 40% online, where agents mostly act without inspecting the state. Unsolvable tasks are recognised in under 10% of episodes, and heavier prompting strategies use 5 to 22 times as many tokens as direct prompting with no clear gain.\"]}, \"051009ada2a4f647f6fc\": {\"state\": \"selected\", \"reason\": \"扩散语言模型投机解码提升吞吐，涉及推理服务与本地部署成本，附明确实验数字\", \"evidence_quotes\": [\"Our comprehensive experiments show that SPOT cuts target passes by up to 6.8x and reaches up to 3.2x the throughput of standard decoding, beating the calibrated and training-free drafting baselines in every task and budget at $T=0$ and $T=1$.\", \"A 0.62M-parameter model reads only the target's output distributions and proposes a tree of candidate continuations\"]}, \"33da8aabe6e16f93a795\": {\"state\": \"excluded\", \"reason\": \"Anthropic 股权公益基金属公司治理/股权类消息，贴近用户排除词“融资”，与工具或产品功能无直接关系\", \"evidence_quotes\": []}, \"71e1590c6c971a337879\": {\"state\": \"excluded\", \"reason\": \"Character.AI 破产后 Disney 收购资产与人员转移，属并购人事消息，非 AI 产品能力\", \"evidence_quotes\": []}, \"aa178b575bb249be9aef\": {\"state\": \"excluded\", \"reason\": \"工程仿真器校准代理，领域为流体/振动物理建模，与用户工程栈无关\", \"evidence_quotes\": []}, \"dd5a28f9c533e0ee2ccc\": {\"state\": \"excluded\", \"reason\": \"离散扩散前向动力学设计，训练方法研究，无工程落地信息\", \"evidence_quotes\": []}, \"3a93b1c8699f7e1580fd\": {\"state\": \"excluded\", \"reason\": \"测试时持续学习的重学习节省效应，纯研究测量问题\", \"evidence_quotes\": []}, \"0b0024271a7c2b5987bb\": {\"state\": \"excluded\", \"reason\": \"推荐场景用户表征编码器，工业 A/B 场景，与后端工程师关注点不同\", \"evidence_quotes\": []}, \"d2da03dd040aaeefea30\": {\"state\": \"excluded\", \"reason\": \"事件图符号推理系统，非 LLM 工具链主题\", \"evidence_quotes\": []}, \"9f9467f75484ebfa07d2\": {\"state\": \"excluded\", \"reason\": \"GUI Agent 历史压缩的训练方法（特权蒸馏），偏研究，工程可用性弱\", \"evidence_quotes\": []}, \"4c5e025cfc8f17ca9a46\": {\"state\": \"excluded\", \"reason\": \"农业生态 ABM 决策规则敏感性分析，领域不相关\", \"evidence_quotes\": []}, \"434246a93fec15537b14\": {\"state\": \"excluded\", \"reason\": \"Agent 证据门控用于漏洞报告合规检查，场景偏合规审计，弱于已选项\", \"evidence_quotes\": []}, \"c75b08a745837bc4fd9e\": {\"state\": \"excluded\", \"reason\": \"多变量时间序列储备池预测，非用户主题\", \"evidence_quotes\": []}, \"fdd7c1296f918924cf03\": {\"state\": \"excluded\", \"reason\": \"车间调度强化学习，运筹优化领域\", \"evidence_quotes\": []}, \"5d023c2a1961329c95c3\": {\"state\": \"excluded\", \"reason\": \"边缘分布式视觉推理通信压缩，偏硬件与视觉模型部署\", \"evidence_quotes\": []}, \"5d02f5b2e0fc2d4c525a\": {\"state\": \"excluded\", \"reason\": \"飞机结构健康监测的 GAN 数据增强，领域不相关\", \"evidence_quotes\": []}, \"dd2a6493f55037eee5a5\": {\"state\": \"excluded\", \"reason\": \"糖尿病视网膜病变影像域适应，医疗影像领域\", \"evidence_quotes\": []}, \"a6b428c98c5e6d1d2289\": {\"state\": \"excluded\", \"reason\": \"微调权重秩度量需噪声基线，方法学讨论，与工程实践关联弱\", \"evidence_quotes\": []}, \"a6f4da06fdba108994ec\": {\"state\": \"excluded\", \"reason\": \"SAE 几何锚定缓解灾难性遗忘，持续学习研究\", \"evidence_quotes\": []}, \"5f9cc4741ffa08d59cab\": {\"state\": \"excluded\", \"reason\": \"自然语言意图到 CPS 控制的分层规划，面向信息物理系统\", \"evidence_quotes\": []}, \"456c7c8f7dcbfa062e61\": {\"state\": \"excluded\", \"reason\": \"科研发现验收控制（null 检验）方法学，与用户工程主题无关\", \"evidence_quotes\": []}, \"1cc7c278b01af9771804\": {\"state\": \"excluded\", \"reason\": \"非结构网格样条神经算子，PDE 求解加速研究\", \"evidence_quotes\": []}, \"7cc78127c883714f76f3\": {\"state\": \"excluded\", \"reason\": \"会议论文可复现性审计 Agent，场景偏学术评审流程\", \"evidence_quotes\": []}, \"9233c0fbe4fb6e2520e4\": {\"state\": \"excluded\", \"reason\": \"递归自蒸馏导致渐进失配，属安全/训练研究，非用户核心主题\", \"evidence_quotes\": []}, \"28b96783ce883a7e7f40\": {\"state\": \"excluded\", \"reason\": \"生成式值分类器，强化学习算法研究\", \"evidence_quotes\": []}, \"1cf7caf1e3962092517f\": {\"state\": \"excluded\", \"reason\": \"on-policy 自蒸馏中特权信息有效性，训练方法研究\", \"evidence_quotes\": []}, \"531156a59b9f298428c8\": {\"state\": \"excluded\", \"reason\": \"运动学插值学习动力学，科学建模方向\", \"evidence_quotes\": []}, \"2ffe5ada9085e1add46b\": {\"state\": \"excluded\", \"reason\": \"推理模型日常逻辑推理评测，与工程落地关联有限\", \"evidence_quotes\": []}, \"6ec636eceffcfb5999d5\": {\"state\": \"excluded\", \"reason\": \"Web Agent 混合超网络适配免重训，与部署相关但优先级低于已选 5 条\", \"evidence_quotes\": []}, \"bf28c7aa2007aa01571b\": {\"state\": \"excluded\", \"reason\": \"FRACTAL 多智能体编排架构论文，作者声明无量化性能结论\", \"evidence_quotes\": []}, \"61649a8ae4c58021cbc4\": {\"state\": \"excluded\", \"reason\": \"度量空间回归/分类的确定性误差界，理论统计工作\", \"evidence_quotes\": []}, \"878235a76bf9396d7302\": {\"state\": \"excluded\", \"reason\": \"离策略分位数认证的样本复杂度理论\", \"evidence_quotes\": []}, \"bf13a92368f50af68cba\": {\"state\": \"excluded\", \"reason\": \"LLM 生成形式化规格的确定性诊断修复，偏形式化方法与求解器\", \"evidence_quotes\": []}, \"17fb1b78ebadcb40daac\": {\"state\": \"excluded\", \"reason\": \"高斯过程端口哈密顿系统的结构感知核，物理建模研究\", \"evidence_quotes\": []}, \"af9bbc2d1c0b8017291c\": {\"state\": \"excluded\", \"reason\": \"自发语音强制对齐鲁棒性，语音处理领域\", \"evidence_quotes\": []}, \"15e1c3b827bd5c829282\": {\"state\": \"excluded\", \"reason\": \"车联网联邦学习遗忘机制，领域不相关\", \"evidence_quotes\": []}, \"8e0becaa31e92e597767\": {\"state\": \"excluded\", \"reason\": \"模加法 grokking 训练动力学理论，与工程实践无关\", \"evidence_quotes\": []}, \"2f51df856d85f4fbb4e7\": {\"state\": \"excluded\", \"reason\": \"GNN 逐层探针熵诊断，图网络分析工具\", \"evidence_quotes\": []}}}",
+          "status": "ok",
+          "duration_ms": 0,
+          "created_at": "2026-10-19T12:56:17.288368+00:00"
+        },
+        {
+          "id": 20,
+          "run_id": "89556ab9933d41218503c920757b2240",
+          "tool": "record_article_states",
+          "arguments": {
+            "decisions": [
+              "article_id='fa74b0cc3895cd40e05a' state='excluded' reason='AI 功能性福祉作为安全变量，属模型安全/伦理研究，与后端工程与工具链主题无关' evidence_quotes=[]"
+            ]
+          },
+          "result": "{\"updated_ids\": [\"fa74b0cc3895cd40e05a\"], \"states\": {\"fa74b0cc3895cd40e05a\": {\"state\": \"excluded\", \"reason\": \"AI 功能性福祉作为安全变量，属模型安全/伦理研究，与后端工程与工具链主题无关\", \"evidence_quotes\": []}}}",
+          "status": "ok",
+          "duration_ms": 0,
+          "created_at": "2026-10-19T12:56:23.178203+00:00"
+        },
+        {
+          "id": 21,
+          "run_id": "89556ab9933d41218503c920757b2240",
+          "tool": "submit_brief",
+          "arguments": {
+            "title": "10-19 AI 简报：工具调用控制面、Agent harness 收益归因与在线规划实测",
+            "overview": "过去 24 小时：OpenAI、Google AI、Hugging Face 三个源均无新条目；TechCrunch 仅 2 条，均为股权/并购类（Anthropic 股权公益基金、Disney 接手 Character.AI 资产与人员），按你的“融资”排除词和工程关注点略过。有效信息集中在 arXiv cs.AI/cs.LG 的 40 条公告中，筛出 5 条与工具调用、编码 Agent 评测、Agent 训练和推理部署相关的论文。注意：这些是今日的 RSS 公告，最早首次提交日期为 2026-07-27（MCP 论文）和 2026-10-15（其余 4 篇），并非今日首次发表。",
+            "selections": [
+              "article_id='da92b80397690dde35e8' summary='论文提出 Structured Authority Injection（SAI）：把操作者的纠正指令经由带类型、经 schema 校验的 MCP 工具调用注入，并把排序后的“权威上下文”前置到每次 LLM 提示中，以抑制长流程中指令被稀释。作者在 9 个 LLM、8 个针对 Agent 失败模式的场景上评测，称减少了歧义指令的解读偏差、缓解了跨规划迭代的权威衰减；在最强模型上提示开销最多降低 38%（随模型与场景不同），但作者也明确表示各模型收益差异很大。该文首次提交于 2026-07-27，今日为 arXiv 公告。' why_it_matters='如果你用 MCP 暴露内部工具，这套“类型化覆盖 + 权威上下文排序”的控制面设计可直接借鉴：把人工纠偏落成可校验的工具调用，而不是继续往提示里堆文字。' topic='Agent / 工具调用' relevance=3",
+              "article_id='f34ad45741b405ff9e69' summary='作者提出 Harness-Delta Attribution（HDA），把一次 Agent harness 迭代带来的分数增益拆成三部分：由测试工件导致的过拟合、可由测试时算力扩张解释的部分、以及剩余部分（作为可泛化改进的上界）。在 21 个设置上，过拟合与测试时算力平均分别占增益的 54% 和 14%，两者合计在 14 个设置中超过 50%。首次提交 2026-10-15，今日为 arXiv 公告。' why_it_matters='给自建编码 Agent 做 harness 改动 A/B 时，这套归因能先排除“换评测工件”和“多花推理算力”造成的假增益；否则很容易把 54% 量级的过拟合当成能力提升。' topic='AI 编程 / Agent 评测' relevance=3",
+              "article_id='8cad1d7071d358947cb2' summary='论文用形式语义检验 LLM Agent 的规划声明：最优配置在离线条件下解决 78% 的可解任务，但在线执行时只有 40%，作者称 Agent 多数情况下未先检查状态就行动；对不可解任务，仅在不到 10% 的回合中被识别出来；更重的提示策略消耗的 token 是直接提示的 5 到 22 倍，却没有明显收益。首次提交 2026-10-15，今日为 arXiv 公告。' why_it_matters='上线前的离线成功率会明显高估在线表现，且“加提示词”的边际成本极高。对你的 Agent 服务意味着：应显式强制状态查询步骤，并按 token 预算评估提示策略收益。' topic='Agent 评测' relevance=3",
+              "article_id='a97c1f5a709e4de6f7ba' summary='Lean4AgenticRL 用 Lean4 做可验证的多级过程奖励，覆盖工具调用、流程阶段与最终结果，并配合 workflow-stage-normalized GRPO 训练 LAR-9B/27B 两个模型。作者报告 LAR-27B 在 TerminalBench-2.1 上达到 77.3%，平均比基座模型高 9.89%，比其所知的同规模第二好模型高 5.07%，并称在同规模中优于领先模型。首次提交 2026-10-15，今日为 arXiv 公告。' why_it_matters='终端型 Agent 的训练信号从“只看最终结果”转向工具调用与流程阶段的分级奖励，是评估自建 Agent 训练路线的一个参照；但 77.3% 是特定 benchmark 成绩，不代表满分或通用能力上限。' topic='Agent 训练' relevance=2",
+              "article_id='051009ada2a4f647f6fc' summary='SPOT 针对扩散语言模型的投机解码提出“提交顺序预测”：一个约 62 万参数的小模型只读取目标模型输出的分布，提出候选续写的树，目标模型一次前向校验全部候选。作者称最多将目标模型前向次数减少 6.8 倍，吞吐达到标准解码的 3.2 倍，并在温度 T=0 与 T=1 的各任务和预算下超过校准式与免训练草稿基线。首次提交 2026-10-15，今日为 arXiv 公告。' why_it_matters='若你在本地或自建服务上跑扩散式（非自回归）语言模型，这种无需重训的轻量 drafter 是有直接吞吐收益的部署选项，但要先确认模型族与批量/延迟约束是否匹配。' topic='本地部署 / 推理加速' relevance=2"
+            ]
+          },
+          "result": "{\"accepted\": true, \"count\": 5, \"message\": \"草稿已通过结构校验，可以结束任务；后端将执行摘要复核。\"}",
+          "status": "ok",
+          "duration_ms": 15,
+          "created_at": "2026-10-19T12:56:29.689802+00:00"
+        }
+      ],
+      "model_observations": [
+        {
+          "phase": "generation",
+          "actual_input_message_chars": 1301,
+          "working_material_snapshots": 0,
+          "state_counts": {},
+          "excluded_items_have_no_text": true,
+          "duration_seconds": 1.06,
+          "tool_names": [
+            "read_file",
+            "read_file",
+            "list_sources"
+          ],
+          "usage": {
+            "input_tokens": 2085,
+            "output_tokens": 89,
+            "total_tokens": 2174,
+            "input_token_details": {
+              "cache_read": 0
+            },
+            "output_token_details": {
+              "reasoning": 0
+            }
+          },
+          "finish_reason": "tool_calls"
+        },
+        {
+          "phase": "generation",
+          "actual_input_message_chars": 2069,
+          "working_material_snapshots": 0,
+          "state_counts": {},
+          "excluded_items_have_no_text": true,
+          "duration_seconds": 1.11,
+          "tool_names": [
+            "fetch_news",
+            "fetch_news",
+            "fetch_news",
+            "fetch_news"
+          ],
+          "usage": {
+            "input_tokens": 2496,
+            "output_tokens": 153,
+            "total_tokens": 2649,
+            "input_token_details": {
+              "cache_read": 2048
+            },
+            "output_token_details": {
+              "reasoning": 17
+            }
+          },
+          "finish_reason": "tool_calls"
+        },
+        {
+          "phase": "generation",
+          "actual_input_message_chars": 3893,
+          "working_material_snapshots": 1,
+          "state_counts": {
+            "pending": 2
+          },
+          "excluded_items_have_no_text": true,
+          "duration_seconds": 3.12,
+          "tool_names": [
+            "read_article",
+            "read_article"
+          ],
+          "usage": {
+            "input_tokens": 3303,
+            "output_tokens": 508,
+            "total_tokens": 3811,
+            "input_token_details": {
+              "cache_read": 2048
+            },
+            "output_token_details": {
+              "reasoning": 417
+            }
+          },
+          "finish_reason": "tool_calls"
+        },
+        {
+          "phase": "generation",
+          "actual_input_message_chars": 9776,
+          "working_material_snapshots": 1,
+          "state_counts": {
+            "pending": 2
+          },
+          "excluded_items_have_no_text": true,
+          "duration_seconds": 2.16,
+          "tool_names": [
+            "fetch_news"
+          ],
+          "usage": {
+            "input_tokens": 5131,
+            "output_tokens": 326,
+            "total_tokens": 5457,
+            "input_token_details": {
+              "cache_read": 2176
+            },
+            "output_token_details": {
+              "reasoning": 286
+            }
+          },
+          "finish_reason": "tool_calls"
+        },
+        {
+          "phase": "generation",
+          "actual_input_message_chars": 86153,
+          "working_material_snapshots": 1,
+          "state_counts": {
+            "pending": 42
+          },
+          "excluded_items_have_no_text": true,
+          "duration_seconds": 7.25,
+          "tool_names": [
+            "read_article",
+            "read_article",
+            "read_article",
+            "read_article",
+            "read_article"
+          ],
+          "usage": {
+            "input_tokens": 22209,
+            "output_tokens": 1335,
+            "total_tokens": 23544,
+            "input_token_details": {
+              "cache_read": 2048
+            },
+            "output_token_details": {
+              "reasoning": 1121
+            }
+          },
+          "finish_reason": "tool_calls"
+        },
+        {
+          "phase": "generation",
+          "actual_input_message_chars": 86933,
+          "working_material_snapshots": 1,
+          "state_counts": {
+            "pending": 42
+          },
+          "excluded_items_have_no_text": true,
+          "duration_seconds": 17.3,
+          "tool_names": [
+            "record_article_states"
+          ],
+          "usage": {
+            "input_tokens": 23905,
+            "output_tokens": 4047,
+            "total_tokens": 27952,
+            "input_token_details": {
+              "cache_read": 3712
+            },
+            "output_token_details": {
+              "reasoning": 1610
+            }
+          },
+          "finish_reason": "tool_calls"
+        },
+        {
+          "phase": "generation",
+          "actual_input_message_chars": 86974,
+          "working_material_snapshots": 1,
+          "state_counts": {
+            "pending": 42
+          },
+          "excluded_items_have_no_text": true,
+          "duration_seconds": 9.39,
+          "tool_names": [
+            "record_article_states"
+          ],
+          "usage": {
+            "input_tokens": 27981,
+            "output_tokens": 3091,
+            "total_tokens": 31072,
+            "input_token_details": {
+              "cache_read": 27776
+            },
+            "output_token_details": {
+              "reasoning": 667
+            }
+          },
+          "finish_reason": "tool_calls"
+        },
+        {
+          "phase": "generation",
+          "actual_input_message_chars": 87015,
+          "working_material_snapshots": 1,
+          "state_counts": {
+            "pending": 42
+          },
+          "excluded_items_have_no_text": true,
+          "duration_seconds": 4.12,
+          "tool_names": [
+            "record_article_states"
+          ],
+          "usage": {
+            "input_tokens": 31101,
+            "output_tokens": 961,
+            "total_tokens": 32062,
+            "input_token_details": {
+              "cache_read": 30848
+            },
+            "output_token_details": {
+              "reasoning": 813
+            }
+          },
+          "finish_reason": "tool_calls"
+        },
+        {
+          "phase": "generation",
+          "actual_input_message_chars": 85747,
+          "working_material_snapshots": 1,
+          "state_counts": {
+            "pending": 41,
+            "selected": 1
+          },
+          "excluded_items_have_no_text": true,
+          "duration_seconds": 7.51,
+          "tool_names": [
+            "record_article_states"
+          ],
+          "usage": {
+            "input_tokens": 31846,
+            "output_tokens": 2437,
+            "total_tokens": 34283,
+            "input_token_details": {
+              "cache_read": 2048
+            },
+            "output_token_details": {
+              "reasoning": 168
+            }
+          },
+          "finish_reason": "tool_calls"
+        },
+        {
+          "phase": "generation",
+          "actual_input_message_chars": 18157,
+          "working_material_snapshots": 1,
+          "state_counts": {
+            "excluded": 36,
+            "selected": 5,
+            "pending": 1
+          },
+          "excluded_items_have_no_text": true,
+          "duration_seconds": 5.86,
+          "tool_names": [
+            "record_article_states"
+          ],
+          "usage": {
+            "input_tokens": 20835,
+            "output_tokens": 1025,
+            "total_tokens": 21860,
+            "input_token_details": {
+              "cache_read": 2048
+            },
+            "output_token_details": {
+              "reasoning": 929
+            }
+          },
+          "finish_reason": "tool_calls"
+        },
+        {
+          "phase": "generation",
+          "actual_input_message_chars": 16525,
+          "working_material_snapshots": 1,
+          "state_counts": {
+            "excluded": 37,
+            "selected": 5
+          },
+          "excluded_items_have_no_text": true,
+          "duration_seconds": 6.47,
+          "tool_names": [
+            "submit_brief"
+          ],
+          "usage": {
+            "input_tokens": 21549,
+            "output_tokens": 1339,
+            "total_tokens": 22888,
+            "input_token_details": {
+              "cache_read": 2048
+            },
+            "output_token_details": {
+              "reasoning": 0
+            }
+          },
+          "finish_reason": "tool_calls"
+        },
+        {
+          "phase": "generation",
+          "actual_input_message_chars": 16597,
+          "working_material_snapshots": 1,
+          "state_counts": {
+            "excluded": 37,
+            "selected": 5
+          },
+          "excluded_items_have_no_text": true,
+          "duration_seconds": 1.62,
+          "tool_names": [],
+          "usage": {
+            "input_tokens": 22933,
+            "output_tokens": 205,
+            "total_tokens": 23138,
+            "input_token_details": {
+              "cache_read": 22784
+            },
+            "output_token_details": {
+              "reasoning": 0
+            }
+          },
+          "finish_reason": "stop"
+        },
+        {
+          "phase": "summary_review",
+          "actual_input_message_chars": 10823,
+          "working_material_snapshots": 0,
+          "state_counts": {},
+          "excluded_items_have_no_text": true,
+          "duration_seconds": 29.72,
+          "tool_names": [],
+          "usage": {
+            "input_tokens": 3021,
+            "output_tokens": 7904,
+            "total_tokens": 10925,
+            "input_token_details": {
+              "cache_read": 0
+            },
+            "output_token_details": {
+              "reasoning": 6369
+            }
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "candidate_count": 42,
+      "selected_evidence": [
+        {
+          "id": "051009ada2a4f647f6fc",
+          "title": "On the SPOT: Enhancing Speculative Decoding for Diffusion Language Models via Commit-Order Prediction",
+          "url": "https://arxiv.org/abs/2610.22543",
+          "source_id": "arxiv",
+          "source": "arXiv cs.AI / cs.LG",
+          "published_at": "2026-10-15T18:40:42+00:00",
+          "first_published_at": "2026-10-15T18:40:42+00:00",
+          "announced_at": "2026-10-19T04:00:00+00:00",
+          "updated_at": null,
+          "feed_entry_at": "2026-10-19T04:00:00+00:00",
+          "time_basis": "feed_announcement",
+          "text": "Abstract: Diffusion language models (DLMs) promise parallel text generation, but in practice face an unresolved speed-quality trade-off. Exact decoding fills in only one masked position per model pass, while faster multi-token decoding schemes are lossy. Speculative decoding is the standard lossless acceleration for autoregressive models. However, it does not transfer directly to DLMs, which must choose both what to generate and where. We show that this order is the missing piece: the model's own predictions from the previous pass already give the right token at 92-100% of positions, but not which position comes next. Based on this observation, we introduce Speculating Positions Order Trajectory (SPOT), which learns to predict this order. A 0.62M-parameter model reads only the target's output distributions and proposes a tree of candidate continuations, and the target verifies all of them in a single pass by checking whether each equals its own next state. On the verification side, our analysis shows that prior block-diffusion verification approaches either assume $T=0$ or a sequential proposal interface. To support tree-based speculation at any temperature, we propose using coupled-noise match verification for diffusion blocks, following shared-Gumbel-noise coupling approaches. Our comprehensive experiments show that SPOT cuts target passes by up to 6.8x and reaches up to 3.2x the throughput of standard decoding, beating the calibrated and training-free drafting baselines in every task and budget at $T=0$ and $T=1$. In addition, we show that the learned drafter transfers across models, demonstrating successful transfer across six different DLMs. Project page: this https URL",
+          "evidence_kind": "abstract",
+          "demo": false,
+          "publication_kind": "preprint"
+        },
+        {
+          "id": "8cad1d7071d358947cb2",
+          "title": "Testing the Planning Claims of LLM-Based Agents against Formal Semantics",
+          "url": "https://arxiv.org/abs/2610.22469",
+          "source_id": "arxiv",
+          "source": "arXiv cs.AI / cs.LG",
+          "published_at": "2026-10-15T17:47:30+00:00",
+          "first_published_at": "2026-10-15T17:47:30+00:00",
+          "announced_at": "2026-10-19T04:00:00+00:00",
+          "updated_at": null,
+          "feed_entry_at": "2026-10-19T04:00:00+00:00",
+          "time_basis": "feed_announcement",
+          "text": "Abstract: LLM-based agents are increasingly credited with the competences of practical reasoning: planning, monitoring, and correcting their own actions. Their success is attributed to the prompting strategies and agent architectures built around the model, such as chain-of-thought, search-based prompting, self-refinement, reflection, critics and tool-using loops. Yet these claims are usually supported by end-to-end success rates, which show only whether a task was completed, or by LLM judges, which are not verifiers. We test LLM planning against formal semantics. Tasks are posed in natural language, but each is grounded in a hidden PDDL model that decides whether every action is applicable, whether the goal is reached, and whether a plan exists at all. Across five domains (two of them new, all released with the paper), four models, six prompting strategies and three agent architectures, the best configuration solves 78% of the solvable tasks offline but only 40% online, where agents mostly act without inspecting the state. Unsolvable tasks are recognised in under 10% of episodes, and heavier prompting strategies use 5 to 22 times as many tokens as direct prompting with no clear gain. In our experiments, planning performance varied more across models than across prompting strategies or agent architectures. Claims that agents can plan require evidence from validated action traces.",
+          "evidence_kind": "abstract",
+          "demo": false,
+          "publication_kind": "preprint"
+        },
+        {
+          "id": "a97c1f5a709e4de6f7ba",
+          "title": "Lean4AgenticRL: Advancing Agentic RL with Verifiable Multi-level Process Rewards",
+          "url": "https://arxiv.org/abs/2610.22448",
+          "source_id": "arxiv",
+          "source": "arXiv cs.AI / cs.LG",
+          "published_at": "2026-10-15T15:26:54+00:00",
+          "first_published_at": "2026-10-15T15:26:54+00:00",
+          "announced_at": "2026-10-19T04:00:00+00:00",
+          "updated_at": null,
+          "feed_entry_at": "2026-10-19T04:00:00+00:00",
+          "time_basis": "feed_announcement",
+          "text": "Abstract: Enhancing the agentic capabilities of Large Language Models (LLMs) to tackle complex software engineering (SWE) and general terminal-usage problems is a pressing challenge. Current state-of-the-art LLMs often go through large-scale agentic Reinforcement Learning (RL). However, they mostly rely on high-level outcome rewards, with minimal consideration of low-level toolcall and mid-level workflow-stage rewards, which makes the training less effective. To overcome this limitation, we propose **Lean4AgenticRL**, which, to the best of our knowledge, is the first framework that grounds multi-level process rewards in the unified Lean4 formalization schema for open-ended agentic RL. **Lean4AgenticRL** first builds a *problem-specific workflow* system that balances the agent's own capability and controllability during execution, laying the foundation for further verification. Subsequently, our workflow formalization and multi-level reward annotation methods enable agent behavior verification within a general harness system. It provides multi-level rewards to support more effective agentic RL with the workflow-stage-normalized GRPO algorithm. Using **Lean4AgenticRL**, we train **LAR-9B/27B**, a family of models with enhanced agentic capability. Extensive experiments indicate that our model outperforms the leading model of similar size. **LAR-27B** achieves **77.3%** on TerminalBench-2.1. On average, our models outperform the base model by **9.89%** and surpass the second-best model of comparable size we know by **5.07%**. These results indicate the potential of integrating formal methods in enhancing open-ended agentic RL.",
+          "evidence_kind": "abstract",
+          "demo": false,
+          "publication_kind": "preprint"
+        },
+        {
+          "id": "da92b80397690dde35e8",
+          "title": "Structured Authority Injection: Persistent Human Control for LLM Agents via Typed MCP Overrides",
+          "url": "https://arxiv.org/abs/2610.22373",
+          "source_id": "arxiv",
+          "source": "arXiv cs.AI / cs.LG",
+          "published_at": "2026-07-27T03:38:01+00:00",
+          "first_published_at": "2026-07-27T03:38:01+00:00",
+          "announced_at": "2026-10-19T04:00:00+00:00",
+          "updated_at": null,
+          "feed_entry_at": "2026-10-19T04:00:00+00:00",
+          "time_basis": "feed_announcement",
+          "text": "Abstract: LLM-based agents are increasingly used as autonomous orchestrators in distributed and multi-agent systems, yet a control gap remains: no protocol-level mechanism allows human operators to inject binding directives that persist across planning cycles. Free-text overrides suffer from ambiguous interpretation due to lack of schema validation and from authority erosion as operator instructions lose influence within accumulating context. We propose Structured Authority Injection (SAI), a protocol that addresses these issues by routing operator corrections through typed, schema-validated Model Context Protocol (MCP) tool calls and maintaining a ranked authority context prepended to each LLM prompt. SAI defines three override classes (Constraint, Priority, and Strategy) with distinct persistence semantics and an explicit precedence order enforced via a directed authority channel inaccessible to the planning process. The method requires no model fine-tuning or access to model weights and applies to instruction-tuned LLMs supporting MCP tool use. Evaluation across nine LLMs and eight scenarios targeting agent failure modes shows reduced ambiguous directive interpretation and mitigated authority decay across planning iterations, with lower prompt overhead in the strongest models (up to 38% depending on model and scenario), though benefit varies substantially across models. SAI provides a general design pattern for agent systems requiring explicit and persistent human control.",
+          "evidence_kind": "abstract",
+          "demo": false,
+          "publication_kind": "preprint"
+        },
+        {
+          "id": "f34ad45741b405ff9e69",
+          "title": "Harness-Delta Attribution: Dissecting Gains From Harness Evolution",
+          "url": "https://arxiv.org/abs/2610.22466",
+          "source_id": "arxiv",
+          "source": "arXiv cs.AI / cs.LG",
+          "published_at": "2026-10-15T17:39:38+00:00",
+          "first_published_at": "2026-10-15T17:39:38+00:00",
+          "announced_at": "2026-10-19T04:00:00+00:00",
+          "updated_at": null,
+          "feed_entry_at": "2026-10-19T04:00:00+00:00",
+          "time_basis": "feed_announcement",
+          "text": "Abstract: Harness evolution automatically optimizes the prompts, skills, tools, and orchestration code around a fixed-weight model, offering a way to improve agentic systems without updating model weights. The agent harness is iteratively optimized to achieve higher performance on the search set. But how much of this gain reflects benchmark-specific overfitting or additional inference-time compute, and how much may generalize beyond the search set? In this work, we introduce Harness-Delta Attribution (HDA), an evaluation protocol that dissects an evolution gain into artifact-driven overfitting, gains explained by test-time scaling, and the remainder, which gives an upper bound on residual generalizable improvement. We apply HDA to 11 executor models and three harness-evolution frameworks across math, coding, creativity, and agentic tasks. In 21 of these settings that show statistically significant search-set gains, we find that a large share of the improvement is explained by overfitting or test-time scaling. Specifically, among these 21 settings, overfitting and test-time scaling account for 54% and 14% of the gain on average; their combined share exceeds 50% in 14 settings. The residual and held-out transfer vary substantially across tasks, models, and frameworks. Importantly, search-set gains often fail to transfer to held-out tasks, and provide limited evidence that they will persist under practical distribution shifts. Moreover, validation-based signals are insufficient to prevent overfitting. These results motivate attribution-aware evaluation in future harness evolution research.",
+          "evidence_kind": "abstract",
+          "demo": false,
+          "publication_kind": "preprint"
+        }
+      ],
+      "pre_review_brief": {
+        "title": "10-19 AI 简报：工具调用控制面、Agent harness 收益归因与在线规划实测",
+        "overview": "过去 24 小时：OpenAI、Google AI、Hugging Face 三个源均无新条目；TechCrunch 仅 2 条，均为股权/并购类（Anthropic 股权公益基金、Disney 接手 Character.AI 资产与人员），按你的“融资”排除词和工程关注点略过。有效信息集中在 arXiv cs.AI/cs.LG 的 40 条公告中，筛出 5 条与工具调用、编码 Agent 评测、Agent 训练和推理部署相关的论文。注意：这些是今日的 RSS 公告，最早首次提交日期为 2026-07-27（MCP 论文）和 2026-10-15（其余 4 篇），并非今日首次发表。",
+        "items": [
+          {
+            "id": "da92b80397690dde35e8",
+            "title": "Structured Authority Injection: Persistent Human Control for LLM Agents via Typed MCP Overrides",
+            "url": "https://arxiv.org/abs/2610.22373",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": "2026-07-27T03:38:01+00:00",
+            "first_published_at": "2026-07-27T03:38:01+00:00",
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "abstract",
+            "demo": false,
+            "publication_kind": "preprint",
+            "summary": "论文提出 Structured Authority Injection（SAI）：把操作者的纠正指令经由带类型、经 schema 校验的 MCP 工具调用注入，并把排序后的“权威上下文”前置到每次 LLM 提示中，以抑制长流程中指令被稀释。作者在 9 个 LLM、8 个针对 Agent 失败模式的场景上评测，称减少了歧义指令的解读偏差、缓解了跨规划迭代的权威衰减；在最强模型上提示开销最多降低 38%（随模型与场景不同），但作者也明确表示各模型收益差异很大。该文首次提交于 2026-07-27，今日为 arXiv 公告。",
+            "why_it_matters": "如果你用 MCP 暴露内部工具，这套“类型化覆盖 + 权威上下文排序”的控制面设计可直接借鉴：把人工纠偏落成可校验的工具调用，而不是继续往提示里堆文字。",
+            "topic": "Agent / 工具调用",
+            "relevance": 3
+          },
+          {
+            "id": "f34ad45741b405ff9e69",
+            "title": "Harness-Delta Attribution: Dissecting Gains From Harness Evolution",
+            "url": "https://arxiv.org/abs/2610.22466",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": "2026-10-15T17:39:38+00:00",
+            "first_published_at": "2026-10-15T17:39:38+00:00",
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "abstract",
+            "demo": false,
+            "publication_kind": "preprint",
+            "summary": "作者提出 Harness-Delta Attribution（HDA），把一次 Agent harness 迭代带来的分数增益拆成三部分：由测试工件导致的过拟合、可由测试时算力扩张解释的部分、以及剩余部分（作为可泛化改进的上界）。在 21 个设置上，过拟合与测试时算力平均分别占增益的 54% 和 14%，两者合计在 14 个设置中超过 50%。首次提交 2026-10-15，今日为 arXiv 公告。",
+            "why_it_matters": "给自建编码 Agent 做 harness 改动 A/B 时，这套归因能先排除“换评测工件”和“多花推理算力”造成的假增益；否则很容易把 54% 量级的过拟合当成能力提升。",
+            "topic": "AI 编程 / Agent 评测",
+            "relevance": 3
+          },
+          {
+            "id": "8cad1d7071d358947cb2",
+            "title": "Testing the Planning Claims of LLM-Based Agents against Formal Semantics",
+            "url": "https://arxiv.org/abs/2610.22469",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": "2026-10-15T17:47:30+00:00",
+            "first_published_at": "2026-10-15T17:47:30+00:00",
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "abstract",
+            "demo": false,
+            "publication_kind": "preprint",
+            "summary": "论文用形式语义检验 LLM Agent 的规划声明：最优配置在离线条件下解决 78% 的可解任务，但在线执行时只有 40%，作者称 Agent 多数情况下未先检查状态就行动；对不可解任务，仅在不到 10% 的回合中被识别出来；更重的提示策略消耗的 token 是直接提示的 5 到 22 倍，却没有明显收益。首次提交 2026-10-15，今日为 arXiv 公告。",
+            "why_it_matters": "上线前的离线成功率会明显高估在线表现，且“加提示词”的边际成本极高。对你的 Agent 服务意味着：应显式强制状态查询步骤，并按 token 预算评估提示策略收益。",
+            "topic": "Agent 评测",
+            "relevance": 3
+          },
+          {
+            "id": "a97c1f5a709e4de6f7ba",
+            "title": "Lean4AgenticRL: Advancing Agentic RL with Verifiable Multi-level Process Rewards",
+            "url": "https://arxiv.org/abs/2610.22448",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": "2026-10-15T15:26:54+00:00",
+            "first_published_at": "2026-10-15T15:26:54+00:00",
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "abstract",
+            "demo": false,
+            "publication_kind": "preprint",
+            "summary": "Lean4AgenticRL 用 Lean4 做可验证的多级过程奖励，覆盖工具调用、流程阶段与最终结果，并配合 workflow-stage-normalized GRPO 训练 LAR-9B/27B 两个模型。作者报告 LAR-27B 在 TerminalBench-2.1 上达到 77.3%，平均比基座模型高 9.89%，比其所知的同规模第二好模型高 5.07%，并称在同规模中优于领先模型。首次提交 2026-10-15，今日为 arXiv 公告。",
+            "why_it_matters": "终端型 Agent 的训练信号从“只看最终结果”转向工具调用与流程阶段的分级奖励，是评估自建 Agent 训练路线的一个参照；但 77.3% 是特定 benchmark 成绩，不代表满分或通用能力上限。",
+            "topic": "Agent 训练",
+            "relevance": 2
+          },
+          {
+            "id": "051009ada2a4f647f6fc",
+            "title": "On the SPOT: Enhancing Speculative Decoding for Diffusion Language Models via Commit-Order Prediction",
+            "url": "https://arxiv.org/abs/2610.22543",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": "2026-10-15T18:40:42+00:00",
+            "first_published_at": "2026-10-15T18:40:42+00:00",
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "abstract",
+            "demo": false,
+            "publication_kind": "preprint",
+            "summary": "SPOT 针对扩散语言模型的投机解码提出“提交顺序预测”：一个约 62 万参数的小模型只读取目标模型输出的分布，提出候选续写的树，目标模型一次前向校验全部候选。作者称最多将目标模型前向次数减少 6.8 倍，吞吐达到标准解码的 3.2 倍，并在温度 T=0 与 T=1 的各任务和预算下超过校准式与免训练草稿基线。首次提交 2026-10-15，今日为 arXiv 公告。",
+            "why_it_matters": "若你在本地或自建服务上跑扩散式（非自回归）语言模型，这种无需重训的轻量 drafter 是有直接吞吐收益的部署选项，但要先确认模型族与批量/延迟约束是否匹配。",
+            "topic": "本地部署 / 推理加速",
+            "relevance": 2
+          }
+        ],
+        "demo": false,
+        "generated_at": "2026-10-19T12:55:15.000081+00:00",
+        "sources_checked": [
+          "arxiv",
+          "google",
+          "huggingface",
+          "openai",
+          "techcrunch"
+        ],
+        "warnings": [],
+        "preferences": {
+          "name": "真实验收·工程师",
+          "role": "后端工程师",
+          "topics": [
+            "AI 编程",
+            "Agent",
+            "开源模型",
+            "AI 产品"
+          ],
+          "keywords": [
+            "工具调用",
+            "本地部署"
+          ]
+        }
+      },
+      "review_audit": {
+        "model_result": {
+          "overview": "过去 24 小时：OpenAI、Google AI、Hugging Face 三个源均无新条目；TechCrunch 仅 2 条，均为股权/并购类（Anthropic 股权公益基金、Disney 接手 Character.AI 资产与人员），按你的“融资”排除词和工程关注点略过。有效信息集中在 arXiv cs.AI/cs.LG 的 40 条公告中，筛出 5 条与工具调用、编码 Agent 评测、Agent 训练和推理部署相关的论文。注意：这些是今日的 RSS 公告，最早首次提交日期为 2026-07-27（MCP 论文）和 2026-10-15（其余 4 篇），并非今日首次发表。",
+          "items": [
+            {
+              "article_id": "da92b80397690dde35e8",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "SAI 方法、9 个 LLM × 8 个场景的评测、38% 提示开销以及首次提交日期均与原文和元数据一致。",
+              "evidence_quotes": [
+                "We propose Structured Authority Injection (SAI), a protocol that addresses these issues by routing operator corrections through typed, schema-validated Model Context Protocol (MCP) tool calls and maintaining a ranked authority context prepended to each LLM prompt.",
+                "Evaluation across nine LLMs and eight scenarios targeting agent failure modes shows reduced ambiguous directive interpretation and mitigated authority decay across planning iterations, with lower prompt overhead in the strongest models (up to 38% depending on model and scenario), though benefit varies substantially across models."
+              ]
+            },
+            {
+              "article_id": "f34ad45741b405ff9e69",
+              "verdict": "corrected",
+              "corrected_summary": "作者提出 Harness-Delta Attribution（HDA），把一次 Agent harness 演化带来的分数增益拆成三部分：由测试工件导致的过拟合、可由测试时算力扩张解释的部分、以及剩余部分（作为可泛化改进的上界）。在 21 个显示统计显著搜索集增益的设置上，过拟合与测试时算力平均分别占增益的 54% 和 14%，两者合计在 14 个设置中超过 50%。首次提交 2026-10-15，今日为 arXiv 公告。",
+              "reason": "原文的 21 个设置限定为“显示统计显著搜索集增益”的设置，摘要漏掉了这一分母/范围限定。",
+              "evidence_quotes": [
+                "In this work, we introduce Harness-Delta Attribution (HDA), an evaluation protocol that dissects an evolution gain into artifact-driven overfitting, gains explained by test-time scaling, and the remainder, which gives an upper bound on residual generalizable improvement.",
+                "In 21 of these settings that show statistically significant search-set gains, we find that a large share of the improvement is explained by overfitting or test-time scaling. Specifically, among these 21 settings, overfitting and test-time scaling account for 54% and 14% of the gain on average; their combined share exceeds 50% in 14 settings."
+              ]
+            },
+            {
+              "article_id": "8cad1d7071d358947cb2",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "78%/40% 离线与在线成功率、不可解任务识别率低于 10%、5–22 倍 token 消耗以及首次提交日期均与原文一致。",
+              "evidence_quotes": [
+                "Across five domains (two of them new, all released with the paper), four models, six prompting strategies and three agent architectures, the best configuration solves 78% of the solvable tasks offline but only 40% online, where agents mostly act without inspecting the state.",
+                "Unsolvable tasks are recognised in under 10% of episodes, and heavier prompting strategies use 5 to 22 times as many tokens as direct prompting with no clear gain."
+              ]
+            },
+            {
+              "article_id": "a97c1f5a709e4de6f7ba",
+              "verdict": "corrected",
+              "corrected_summary": "Lean4AgenticRL 用 Lean4 做可验证的多级过程奖励，覆盖工具调用、流程阶段与最终结果，并配合 workflow-stage-normalized GRPO 训练 LAR-9B/27B 两个模型。作者报告 LAR-27B 在 TerminalBench-2.1 上达到 77.3%；其模型平均比基座模型高 9.89%，并比其所知的同规模第二好模型高 5.07%，还称在同规模中优于领先模型。首次提交 2026-10-15，今日为 arXiv 公告。",
+              "reason": "原文的 9.89% 与 5.07% 是对作者模型整体而言，摘要将其紧接在 LAR-27B 的 77.3% 后，容易被误读为仅 LAR-27B 的平均提升；已改为“其模型平均”。",
+              "evidence_quotes": [
+                "To overcome this limitation, we propose **Lean4AgenticRL**, which, to the best of our knowledge, is the first framework that grounds multi-level process rewards in the unified Lean4 formalization schema for open-ended agentic RL.",
+                "Extensive experiments indicate that our model outperforms the leading model of similar size. **LAR-27B** achieves **77.3%** on TerminalBench-2.1. On average, our models outperform the base model by **9.89%** and surpass the second-best model of comparable size we know by **5.07%**."
+              ]
+            },
+            {
+              "article_id": "051009ada2a4f647f6fc",
+              "verdict": "corrected",
+              "corrected_summary": "SPOT 针对扩散语言模型的投机解码提出“位置顺序预测”：一个约 62 万参数的小模型只读取目标模型输出的分布，提出候选续写的树，目标模型一次前向校验全部候选。作者称最多将目标模型前向次数降至原来的约 1/6.8，吞吐最高达到标准解码的 3.2 倍，并在温度 T=0 与 T=1 的各任务和预算下超过校准式与免训练草稿基线。首次提交 2026-10-15，今日为 arXiv 公告。",
+              "reason": "原文为 cuts target passes by up to 6.8x 与 reaches up to 3.2x throughput；“减少 6.8 倍”易误解，且吞吐的“最高”限定被漏掉，已按原文改为降至约 1/6.8 和最高 3.2 倍。",
+              "evidence_quotes": [
+                "Based on this observation, we introduce Speculating Positions Order Trajectory (SPOT), which learns to predict this order. A 0.62M-parameter model reads only the target's output distributions and proposes a tree of candidate continuations, and the target verifies all of them in a single pass by checking whether each equals its own next state.",
+                "Our comprehensive experiments show that SPOT cuts target passes by up to 6.8x and reaches up to 3.2x the throughput of standard decoding, beating the calibrated and training-free drafting baselines in every task and budget at T=0 and T=1."
+              ]
+            }
+          ]
+        }
+      },
+      "article_states": {
+        "33da8aabe6e16f93a795": {
+          "state": "excluded",
+          "reason": "Anthropic 股权公益基金属公司治理/股权类消息，贴近用户排除词“融资”，与工具或产品功能无直接关系",
+          "evidence_quotes": []
+        },
+        "71e1590c6c971a337879": {
+          "state": "excluded",
+          "reason": "Character.AI 破产后 Disney 收购资产与人员转移，属并购人事消息，非 AI 产品能力",
+          "evidence_quotes": []
+        },
+        "da92b80397690dde35e8": {
+          "state": "selected",
+          "reason": "MCP 类型化覆盖实现持久人类控制，直接对应工具调用与 Agent 工程；首次提交为 2026-07-27，今日仅 RSS 公告",
+          "evidence_quotes": [
+            "We propose Structured Authority Injection (SAI), a protocol that addresses these issues by routing operator corrections through typed, schema-validated Model Context Protocol (MCP) tool calls and maintaining a ranked authority context prepended to each LLM prompt.",
+            "Evaluation across nine LLMs and eight scenarios targeting agent failure modes shows reduced ambiguous directive interpretation and mitigated authority decay across planning iterations, with lower prompt overhead in the strongest models (up to 38% depending on model and scenario), though benefit varies substantially across models."
+          ]
+        },
+        "aa178b575bb249be9aef": {
+          "state": "excluded",
+          "reason": "工程仿真器校准代理，领域为流体/振动物理建模，与用户工程栈无关",
+          "evidence_quotes": []
+        },
+        "dd5a28f9c533e0ee2ccc": {
+          "state": "excluded",
+          "reason": "离散扩散前向动力学设计，训练方法研究，无工程落地信息",
+          "evidence_quotes": []
+        },
+        "3a93b1c8699f7e1580fd": {
+          "state": "excluded",
+          "reason": "测试时持续学习的重学习节省效应，纯研究测量问题",
+          "evidence_quotes": []
+        },
+        "0b0024271a7c2b5987bb": {
+          "state": "excluded",
+          "reason": "推荐场景用户表征编码器，工业 A/B 场景，与后端工程师关注点不同",
+          "evidence_quotes": []
+        },
+        "d2da03dd040aaeefea30": {
+          "state": "excluded",
+          "reason": "事件图符号推理系统，非 LLM 工具链主题",
+          "evidence_quotes": []
+        },
+        "9f9467f75484ebfa07d2": {
+          "state": "excluded",
+          "reason": "GUI Agent 历史压缩的训练方法（特权蒸馏），偏研究，工程可用性弱",
+          "evidence_quotes": []
+        },
+        "4c5e025cfc8f17ca9a46": {
+          "state": "excluded",
+          "reason": "农业生态 ABM 决策规则敏感性分析，领域不相关",
+          "evidence_quotes": []
+        },
+        "434246a93fec15537b14": {
+          "state": "excluded",
+          "reason": "Agent 证据门控用于漏洞报告合规检查，场景偏合规审计，弱于已选项",
+          "evidence_quotes": []
+        },
+        "c75b08a745837bc4fd9e": {
+          "state": "excluded",
+          "reason": "多变量时间序列储备池预测，非用户主题",
+          "evidence_quotes": []
+        },
+        "fdd7c1296f918924cf03": {
+          "state": "excluded",
+          "reason": "车间调度强化学习，运筹优化领域",
+          "evidence_quotes": []
+        },
+        "5d023c2a1961329c95c3": {
+          "state": "excluded",
+          "reason": "边缘分布式视觉推理通信压缩，偏硬件与视觉模型部署",
+          "evidence_quotes": []
+        },
+        "5d02f5b2e0fc2d4c525a": {
+          "state": "excluded",
+          "reason": "飞机结构健康监测的 GAN 数据增强，领域不相关",
+          "evidence_quotes": []
+        },
+        "dd2a6493f55037eee5a5": {
+          "state": "excluded",
+          "reason": "糖尿病视网膜病变影像域适应，医疗影像领域",
+          "evidence_quotes": []
+        },
+        "a6b428c98c5e6d1d2289": {
+          "state": "excluded",
+          "reason": "微调权重秩度量需噪声基线，方法学讨论，与工程实践关联弱",
+          "evidence_quotes": []
+        },
+        "a6f4da06fdba108994ec": {
+          "state": "excluded",
+          "reason": "SAE 几何锚定缓解灾难性遗忘，持续学习研究",
+          "evidence_quotes": []
+        },
+        "5f9cc4741ffa08d59cab": {
+          "state": "excluded",
+          "reason": "自然语言意图到 CPS 控制的分层规划，面向信息物理系统",
+          "evidence_quotes": []
+        },
+        "456c7c8f7dcbfa062e61": {
+          "state": "excluded",
+          "reason": "科研发现验收控制（null 检验）方法学，与用户工程主题无关",
+          "evidence_quotes": []
+        },
+        "1cc7c278b01af9771804": {
+          "state": "excluded",
+          "reason": "非结构网格样条神经算子，PDE 求解加速研究",
+          "evidence_quotes": []
+        },
+        "a97c1f5a709e4de6f7ba": {
+          "state": "selected",
+          "reason": "把工具调用、流程阶段与结果奖励统一进 Lean4 验证的多级过程奖励，可作为终端 Agent 训练参照",
+          "evidence_quotes": [
+            "It provides multi-level rewards to support more effective agentic RL with the workflow-stage-normalized GRPO algorithm.",
+            "Extensive experiments indicate that our model outperforms the leading model of similar size."
+          ]
+        },
+        "fa74b0cc3895cd40e05a": {
+          "state": "excluded",
+          "reason": "AI 功能性福祉作为安全变量，属模型安全/伦理研究，与后端工程与工具链主题无关",
+          "evidence_quotes": []
+        },
+        "7cc78127c883714f76f3": {
+          "state": "excluded",
+          "reason": "会议论文可复现性审计 Agent，场景偏学术评审流程",
+          "evidence_quotes": []
+        },
+        "f34ad45741b405ff9e69": {
+          "state": "selected",
+          "reason": "量化拆解 agent harness 演化收益中过拟合与测试时算力的占比，对搭建编码 Agent 的工程师有方法论价值",
+          "evidence_quotes": [
+            "In this work, we introduce Harness-Delta Attribution (HDA), an evaluation protocol that dissects an evolution gain into artifact-driven overfitting, gains explained by test-time scaling, and the remainder, which gives an upper bound on residual generalizable improvement.",
+            "Specifically, among these 21 settings, overfitting and test-time scaling account for 54% and 14% of the gain on average; their combined share exceeds 50% in 14 settings."
+          ]
+        },
+        "9233c0fbe4fb6e2520e4": {
+          "state": "excluded",
+          "reason": "递归自蒸馏导致渐进失配，属安全/训练研究，非用户核心主题",
+          "evidence_quotes": []
+        },
+        "8cad1d7071d358947cb2": {
+          "state": "selected",
+          "reason": "用形式语义验证 Agent 规划声明，给出离线/在线成功率与 token 开销对比，提示提示词堆叠未必有效",
+          "evidence_quotes": [
+            "the best configuration solves 78% of the solvable tasks offline but only 40% online, where agents mostly act without inspecting the state. Unsolvable tasks are recognised in under 10% of episodes, and heavier prompting strategies use 5 to 22 times as many tokens as direct prompting with no clear gain."
+          ]
+        },
+        "28b96783ce883a7e7f40": {
+          "state": "excluded",
+          "reason": "生成式值分类器，强化学习算法研究",
+          "evidence_quotes": []
+        },
+        "1cf7caf1e3962092517f": {
+          "state": "excluded",
+          "reason": "on-policy 自蒸馏中特权信息有效性，训练方法研究",
+          "evidence_quotes": []
+        },
+        "531156a59b9f298428c8": {
+          "state": "excluded",
+          "reason": "运动学插值学习动力学，科学建模方向",
+          "evidence_quotes": []
+        },
+        "2ffe5ada9085e1add46b": {
+          "state": "excluded",
+          "reason": "推理模型日常逻辑推理评测，与工程落地关联有限",
+          "evidence_quotes": []
+        },
+        "6ec636eceffcfb5999d5": {
+          "state": "excluded",
+          "reason": "Web Agent 混合超网络适配免重训，与部署相关但优先级低于已选 5 条",
+          "evidence_quotes": []
+        },
+        "051009ada2a4f647f6fc": {
+          "state": "selected",
+          "reason": "扩散语言模型投机解码提升吞吐，涉及推理服务与本地部署成本，附明确实验数字",
+          "evidence_quotes": [
+            "Our comprehensive experiments show that SPOT cuts target passes by up to 6.8x and reaches up to 3.2x the throughput of standard decoding, beating the calibrated and training-free drafting baselines in every task and budget at $T=0$ and $T=1$.",
+            "A 0.62M-parameter model reads only the target's output distributions and proposes a tree of candidate continuations"
+          ]
+        },
+        "bf28c7aa2007aa01571b": {
+          "state": "excluded",
+          "reason": "FRACTAL 多智能体编排架构论文，作者声明无量化性能结论",
+          "evidence_quotes": []
+        },
+        "61649a8ae4c58021cbc4": {
+          "state": "excluded",
+          "reason": "度量空间回归/分类的确定性误差界，理论统计工作",
+          "evidence_quotes": []
+        },
+        "878235a76bf9396d7302": {
+          "state": "excluded",
+          "reason": "离策略分位数认证的样本复杂度理论",
+          "evidence_quotes": []
+        },
+        "bf13a92368f50af68cba": {
+          "state": "excluded",
+          "reason": "LLM 生成形式化规格的确定性诊断修复，偏形式化方法与求解器",
+          "evidence_quotes": []
+        },
+        "17fb1b78ebadcb40daac": {
+          "state": "excluded",
+          "reason": "高斯过程端口哈密顿系统的结构感知核，物理建模研究",
+          "evidence_quotes": []
+        },
+        "af9bbc2d1c0b8017291c": {
+          "state": "excluded",
+          "reason": "自发语音强制对齐鲁棒性，语音处理领域",
+          "evidence_quotes": []
+        },
+        "15e1c3b827bd5c829282": {
+          "state": "excluded",
+          "reason": "车联网联邦学习遗忘机制，领域不相关",
+          "evidence_quotes": []
+        },
+        "8e0becaa31e92e597767": {
+          "state": "excluded",
+          "reason": "模加法 grokking 训练动力学理论，与工程实践无关",
+          "evidence_quotes": []
+        },
+        "2f51df856d85f4fbb4e7": {
+          "state": "excluded",
+          "reason": "GNN 逐层探针熵诊断，图网络分析工具",
+          "evidence_quotes": []
+        }
+      },
+      "context_observations": [
+        {
+          "round": 1,
+          "original_message_chars": 143,
+          "rebuilt_message_chars": 143,
+          "states": {}
+        },
+        {
+          "round": 2,
+          "original_message_chars": 1804,
+          "rebuilt_message_chars": 1804,
+          "states": {}
+        },
+        {
+          "round": 3,
+          "original_message_chars": 4646,
+          "rebuilt_message_chars": 4781,
+          "states": {
+            "33da8aabe6e16f93a795": "pending",
+            "71e1590c6c971a337879": "pending"
+          }
+        },
+        {
+          "round": 4,
+          "original_message_chars": 12307,
+          "rebuilt_message_chars": 11235,
+          "states": {
+            "33da8aabe6e16f93a795": "pending",
+            "71e1590c6c971a337879": "pending"
+          }
+        },
+        {
+          "round": 5,
+          "original_message_chars": 95023,
+          "rebuilt_message_chars": 89693,
+          "states": {
+            "33da8aabe6e16f93a795": "pending",
+            "71e1590c6c971a337879": "pending",
+            "da92b80397690dde35e8": "pending",
+            "aa178b575bb249be9aef": "pending",
+            "dd5a28f9c533e0ee2ccc": "pending",
+            "3a93b1c8699f7e1580fd": "pending",
+            "0b0024271a7c2b5987bb": "pending",
+            "d2da03dd040aaeefea30": "pending",
+            "9f9467f75484ebfa07d2": "pending",
+            "4c5e025cfc8f17ca9a46": "pending",
+            "434246a93fec15537b14": "pending",
+            "c75b08a745837bc4fd9e": "pending",
+            "fdd7c1296f918924cf03": "pending",
+            "5d023c2a1961329c95c3": "pending",
+            "5d02f5b2e0fc2d4c525a": "pending",
+            "dd2a6493f55037eee5a5": "pending",
+            "a6b428c98c5e6d1d2289": "pending",
+            "a6f4da06fdba108994ec": "pending",
+            "5f9cc4741ffa08d59cab": "pending",
+            "456c7c8f7dcbfa062e61": "pending",
+            "1cc7c278b01af9771804": "pending",
+            "a97c1f5a709e4de6f7ba": "pending",
+            "fa74b0cc3895cd40e05a": "pending",
+            "7cc78127c883714f76f3": "pending",
+            "f34ad45741b405ff9e69": "pending",
+            "9233c0fbe4fb6e2520e4": "pending",
+            "8cad1d7071d358947cb2": "pending",
+            "28b96783ce883a7e7f40": "pending",
+            "1cf7caf1e3962092517f": "pending",
+            "531156a59b9f298428c8": "pending",
+            "2ffe5ada9085e1add46b": "pending",
+            "6ec636eceffcfb5999d5": "pending",
+            "051009ada2a4f647f6fc": "pending",
+            "bf28c7aa2007aa01571b": "pending",
+            "61649a8ae4c58021cbc4": "pending",
+            "878235a76bf9396d7302": "pending",
+            "bf13a92368f50af68cba": "pending",
+            "17fb1b78ebadcb40daac": "pending",
+            "af9bbc2d1c0b8017291c": "pending",
+            "15e1c3b827bd5c829282": "pending",
+            "8e0becaa31e92e597767": "pending",
+            "2f51df856d85f4fbb4e7": "pending"
+          }
+        },
+        {
+          "round": 6,
+          "original_message_chars": 107217,
+          "rebuilt_message_chars": 91850,
+          "states": {
+            "33da8aabe6e16f93a795": "pending",
+            "71e1590c6c971a337879": "pending",
+            "da92b80397690dde35e8": "pending",
+            "aa178b575bb249be9aef": "pending",
+            "dd5a28f9c533e0ee2ccc": "pending",
+            "3a93b1c8699f7e1580fd": "pending",
+            "0b0024271a7c2b5987bb": "pending",
+            "d2da03dd040aaeefea30": "pending",
+            "9f9467f75484ebfa07d2": "pending",
+            "4c5e025cfc8f17ca9a46": "pending",
+            "434246a93fec15537b14": "pending",
+            "c75b08a745837bc4fd9e": "pending",
+            "fdd7c1296f918924cf03": "pending",
+            "5d023c2a1961329c95c3": "pending",
+            "5d02f5b2e0fc2d4c525a": "pending",
+            "dd2a6493f55037eee5a5": "pending",
+            "a6b428c98c5e6d1d2289": "pending",
+            "a6f4da06fdba108994ec": "pending",
+            "5f9cc4741ffa08d59cab": "pending",
+            "456c7c8f7dcbfa062e61": "pending",
+            "1cc7c278b01af9771804": "pending",
+            "a97c1f5a709e4de6f7ba": "pending",
+            "fa74b0cc3895cd40e05a": "pending",
+            "7cc78127c883714f76f3": "pending",
+            "f34ad45741b405ff9e69": "pending",
+            "9233c0fbe4fb6e2520e4": "pending",
+            "8cad1d7071d358947cb2": "pending",
+            "28b96783ce883a7e7f40": "pending",
+            "1cf7caf1e3962092517f": "pending",
+            "531156a59b9f298428c8": "pending",
+            "2ffe5ada9085e1add46b": "pending",
+            "6ec636eceffcfb5999d5": "pending",
+            "051009ada2a4f647f6fc": "pending",
+            "bf28c7aa2007aa01571b": "pending",
+            "61649a8ae4c58021cbc4": "pending",
+            "878235a76bf9396d7302": "pending",
+            "bf13a92368f50af68cba": "pending",
+            "17fb1b78ebadcb40daac": "pending",
+            "af9bbc2d1c0b8017291c": "pending",
+            "15e1c3b827bd5c829282": "pending",
+            "8e0becaa31e92e597767": "pending",
+            "2f51df856d85f4fbb4e7": "pending"
+          }
+        },
+        {
+          "round": 7,
+          "original_message_chars": 114020,
+          "rebuilt_message_chars": 98653,
+          "states": {
+            "33da8aabe6e16f93a795": "pending",
+            "71e1590c6c971a337879": "pending",
+            "da92b80397690dde35e8": "pending",
+            "aa178b575bb249be9aef": "pending",
+            "dd5a28f9c533e0ee2ccc": "pending",
+            "3a93b1c8699f7e1580fd": "pending",
+            "0b0024271a7c2b5987bb": "pending",
+            "d2da03dd040aaeefea30": "pending",
+            "9f9467f75484ebfa07d2": "pending",
+            "4c5e025cfc8f17ca9a46": "pending",
+            "434246a93fec15537b14": "pending",
+            "c75b08a745837bc4fd9e": "pending",
+            "fdd7c1296f918924cf03": "pending",
+            "5d023c2a1961329c95c3": "pending",
+            "5d02f5b2e0fc2d4c525a": "pending",
+            "dd2a6493f55037eee5a5": "pending",
+            "a6b428c98c5e6d1d2289": "pending",
+            "a6f4da06fdba108994ec": "pending",
+            "5f9cc4741ffa08d59cab": "pending",
+            "456c7c8f7dcbfa062e61": "pending",
+            "1cc7c278b01af9771804": "pending",
+            "a97c1f5a709e4de6f7ba": "pending",
+            "fa74b0cc3895cd40e05a": "pending",
+            "7cc78127c883714f76f3": "pending",
+            "f34ad45741b405ff9e69": "pending",
+            "9233c0fbe4fb6e2520e4": "pending",
+            "8cad1d7071d358947cb2": "pending",
+            "28b96783ce883a7e7f40": "pending",
+            "1cf7caf1e3962092517f": "pending",
+            "531156a59b9f298428c8": "pending",
+            "2ffe5ada9085e1add46b": "pending",
+            "6ec636eceffcfb5999d5": "pending",
+            "051009ada2a4f647f6fc": "pending",
+            "bf28c7aa2007aa01571b": "pending",
+            "61649a8ae4c58021cbc4": "pending",
+            "878235a76bf9396d7302": "pending",
+            "bf13a92368f50af68cba": "pending",
+            "17fb1b78ebadcb40daac": "pending",
+            "af9bbc2d1c0b8017291c": "pending",
+            "15e1c3b827bd5c829282": "pending",
+            "8e0becaa31e92e597767": "pending",
+            "2f51df856d85f4fbb4e7": "pending"
+          }
+        },
+        {
+          "round": 8,
+          "original_message_chars": 120786,
+          "rebuilt_message_chars": 105419,
+          "states": {
+            "33da8aabe6e16f93a795": "pending",
+            "71e1590c6c971a337879": "pending",
+            "da92b80397690dde35e8": "pending",
+            "aa178b575bb249be9aef": "pending",
+            "dd5a28f9c533e0ee2ccc": "pending",
+            "3a93b1c8699f7e1580fd": "pending",
+            "0b0024271a7c2b5987bb": "pending",
+            "d2da03dd040aaeefea30": "pending",
+            "9f9467f75484ebfa07d2": "pending",
+            "4c5e025cfc8f17ca9a46": "pending",
+            "434246a93fec15537b14": "pending",
+            "c75b08a745837bc4fd9e": "pending",
+            "fdd7c1296f918924cf03": "pending",
+            "5d023c2a1961329c95c3": "pending",
+            "5d02f5b2e0fc2d4c525a": "pending",
+            "dd2a6493f55037eee5a5": "pending",
+            "a6b428c98c5e6d1d2289": "pending",
+            "a6f4da06fdba108994ec": "pending",
+            "5f9cc4741ffa08d59cab": "pending",
+            "456c7c8f7dcbfa062e61": "pending",
+            "1cc7c278b01af9771804": "pending",
+            "a97c1f5a709e4de6f7ba": "pending",
+            "fa74b0cc3895cd40e05a": "pending",
+            "7cc78127c883714f76f3": "pending",
+            "f34ad45741b405ff9e69": "pending",
+            "9233c0fbe4fb6e2520e4": "pending",
+            "8cad1d7071d358947cb2": "pending",
+            "28b96783ce883a7e7f40": "pending",
+            "1cf7caf1e3962092517f": "pending",
+            "531156a59b9f298428c8": "pending",
+            "2ffe5ada9085e1add46b": "pending",
+            "6ec636eceffcfb5999d5": "pending",
+            "051009ada2a4f647f6fc": "pending",
+            "bf28c7aa2007aa01571b": "pending",
+            "61649a8ae4c58021cbc4": "pending",
+            "878235a76bf9396d7302": "pending",
+            "bf13a92368f50af68cba": "pending",
+            "17fb1b78ebadcb40daac": "pending",
+            "af9bbc2d1c0b8017291c": "pending",
+            "15e1c3b827bd5c829282": "pending",
+            "8e0becaa31e92e597767": "pending",
+            "2f51df856d85f4fbb4e7": "pending"
+          }
+        },
+        {
+          "round": 9,
+          "original_message_chars": 121867,
+          "rebuilt_message_chars": 104817,
+          "states": {
+            "33da8aabe6e16f93a795": "pending",
+            "71e1590c6c971a337879": "pending",
+            "da92b80397690dde35e8": "pending",
+            "aa178b575bb249be9aef": "pending",
+            "dd5a28f9c533e0ee2ccc": "pending",
+            "3a93b1c8699f7e1580fd": "pending",
+            "0b0024271a7c2b5987bb": "pending",
+            "d2da03dd040aaeefea30": "pending",
+            "9f9467f75484ebfa07d2": "pending",
+            "4c5e025cfc8f17ca9a46": "pending",
+            "434246a93fec15537b14": "pending",
+            "c75b08a745837bc4fd9e": "pending",
+            "fdd7c1296f918924cf03": "pending",
+            "5d023c2a1961329c95c3": "pending",
+            "5d02f5b2e0fc2d4c525a": "pending",
+            "dd2a6493f55037eee5a5": "pending",
+            "a6b428c98c5e6d1d2289": "pending",
+            "a6f4da06fdba108994ec": "pending",
+            "5f9cc4741ffa08d59cab": "pending",
+            "456c7c8f7dcbfa062e61": "pending",
+            "1cc7c278b01af9771804": "pending",
+            "a97c1f5a709e4de6f7ba": "selected",
+            "fa74b0cc3895cd40e05a": "pending",
+            "7cc78127c883714f76f3": "pending",
+            "f34ad45741b405ff9e69": "pending",
+            "9233c0fbe4fb6e2520e4": "pending",
+            "8cad1d7071d358947cb2": "pending",
+            "28b96783ce883a7e7f40": "pending",
+            "1cf7caf1e3962092517f": "pending",
+            "531156a59b9f298428c8": "pending",
+            "2ffe5ada9085e1add46b": "pending",
+            "6ec636eceffcfb5999d5": "pending",
+            "051009ada2a4f647f6fc": "pending",
+            "bf28c7aa2007aa01571b": "pending",
+            "61649a8ae4c58021cbc4": "pending",
+            "878235a76bf9396d7302": "pending",
+            "bf13a92368f50af68cba": "pending",
+            "17fb1b78ebadcb40daac": "pending",
+            "af9bbc2d1c0b8017291c": "pending",
+            "15e1c3b827bd5c829282": "pending",
+            "8e0becaa31e92e597767": "pending",
+            "2f51df856d85f4fbb4e7": "pending"
+          }
+        },
+        {
+          "round": 10,
+          "original_message_chars": 135910,
+          "rebuilt_message_chars": 42509,
+          "states": {
+            "33da8aabe6e16f93a795": "excluded",
+            "71e1590c6c971a337879": "excluded",
+            "da92b80397690dde35e8": "selected",
+            "aa178b575bb249be9aef": "excluded",
+            "dd5a28f9c533e0ee2ccc": "excluded",
+            "3a93b1c8699f7e1580fd": "excluded",
+            "0b0024271a7c2b5987bb": "excluded",
+            "d2da03dd040aaeefea30": "excluded",
+            "9f9467f75484ebfa07d2": "excluded",
+            "4c5e025cfc8f17ca9a46": "excluded",
+            "434246a93fec15537b14": "excluded",
+            "c75b08a745837bc4fd9e": "excluded",
+            "fdd7c1296f918924cf03": "excluded",
+            "5d023c2a1961329c95c3": "excluded",
+            "5d02f5b2e0fc2d4c525a": "excluded",
+            "dd2a6493f55037eee5a5": "excluded",
+            "a6b428c98c5e6d1d2289": "excluded",
+            "a6f4da06fdba108994ec": "excluded",
+            "5f9cc4741ffa08d59cab": "excluded",
+            "456c7c8f7dcbfa062e61": "excluded",
+            "1cc7c278b01af9771804": "excluded",
+            "a97c1f5a709e4de6f7ba": "selected",
+            "fa74b0cc3895cd40e05a": "pending",
+            "7cc78127c883714f76f3": "excluded",
+            "f34ad45741b405ff9e69": "selected",
+            "9233c0fbe4fb6e2520e4": "excluded",
+            "8cad1d7071d358947cb2": "selected",
+            "28b96783ce883a7e7f40": "excluded",
+            "1cf7caf1e3962092517f": "excluded",
+            "531156a59b9f298428c8": "excluded",
+            "2ffe5ada9085e1add46b": "excluded",
+            "6ec636eceffcfb5999d5": "excluded",
+            "051009ada2a4f647f6fc": "selected",
+            "bf28c7aa2007aa01571b": "excluded",
+            "61649a8ae4c58021cbc4": "excluded",
+            "878235a76bf9396d7302": "excluded",
+            "bf13a92368f50af68cba": "excluded",
+            "17fb1b78ebadcb40daac": "excluded",
+            "af9bbc2d1c0b8017291c": "excluded",
+            "15e1c3b827bd5c829282": "excluded",
+            "8e0becaa31e92e597767": "excluded",
+            "2f51df856d85f4fbb4e7": "excluded"
+          }
+        },
+        {
+          "round": 11,
+          "original_message_chars": 136506,
+          "rebuilt_message_chars": 41257,
+          "states": {
+            "33da8aabe6e16f93a795": "excluded",
+            "71e1590c6c971a337879": "excluded",
+            "da92b80397690dde35e8": "selected",
+            "aa178b575bb249be9aef": "excluded",
+            "dd5a28f9c533e0ee2ccc": "excluded",
+            "3a93b1c8699f7e1580fd": "excluded",
+            "0b0024271a7c2b5987bb": "excluded",
+            "d2da03dd040aaeefea30": "excluded",
+            "9f9467f75484ebfa07d2": "excluded",
+            "4c5e025cfc8f17ca9a46": "excluded",
+            "434246a93fec15537b14": "excluded",
+            "c75b08a745837bc4fd9e": "excluded",
+            "fdd7c1296f918924cf03": "excluded",
+            "5d023c2a1961329c95c3": "excluded",
+            "5d02f5b2e0fc2d4c525a": "excluded",
+            "dd2a6493f55037eee5a5": "excluded",
+            "a6b428c98c5e6d1d2289": "excluded",
+            "a6f4da06fdba108994ec": "excluded",
+            "5f9cc4741ffa08d59cab": "excluded",
+            "456c7c8f7dcbfa062e61": "excluded",
+            "1cc7c278b01af9771804": "excluded",
+            "a97c1f5a709e4de6f7ba": "selected",
+            "fa74b0cc3895cd40e05a": "excluded",
+            "7cc78127c883714f76f3": "excluded",
+            "f34ad45741b405ff9e69": "selected",
+            "9233c0fbe4fb6e2520e4": "excluded",
+            "8cad1d7071d358947cb2": "selected",
+            "28b96783ce883a7e7f40": "excluded",
+            "1cf7caf1e3962092517f": "excluded",
+            "531156a59b9f298428c8": "excluded",
+            "2ffe5ada9085e1add46b": "excluded",
+            "6ec636eceffcfb5999d5": "excluded",
+            "051009ada2a4f647f6fc": "selected",
+            "bf28c7aa2007aa01571b": "excluded",
+            "61649a8ae4c58021cbc4": "excluded",
+            "878235a76bf9396d7302": "excluded",
+            "bf13a92368f50af68cba": "excluded",
+            "17fb1b78ebadcb40daac": "excluded",
+            "af9bbc2d1c0b8017291c": "excluded",
+            "15e1c3b827bd5c829282": "excluded",
+            "8e0becaa31e92e597767": "excluded",
+            "2f51df856d85f4fbb4e7": "excluded"
+          }
+        },
+        {
+          "round": 12,
+          "original_message_chars": 139300,
+          "rebuilt_message_chars": 44051,
+          "states": {
+            "33da8aabe6e16f93a795": "excluded",
+            "71e1590c6c971a337879": "excluded",
+            "da92b80397690dde35e8": "selected",
+            "aa178b575bb249be9aef": "excluded",
+            "dd5a28f9c533e0ee2ccc": "excluded",
+            "3a93b1c8699f7e1580fd": "excluded",
+            "0b0024271a7c2b5987bb": "excluded",
+            "d2da03dd040aaeefea30": "excluded",
+            "9f9467f75484ebfa07d2": "excluded",
+            "4c5e025cfc8f17ca9a46": "excluded",
+            "434246a93fec15537b14": "excluded",
+            "c75b08a745837bc4fd9e": "excluded",
+            "fdd7c1296f918924cf03": "excluded",
+            "5d023c2a1961329c95c3": "excluded",
+            "5d02f5b2e0fc2d4c525a": "excluded",
+            "dd2a6493f55037eee5a5": "excluded",
+            "a6b428c98c5e6d1d2289": "excluded",
+            "a6f4da06fdba108994ec": "excluded",
+            "5f9cc4741ffa08d59cab": "excluded",
+            "456c7c8f7dcbfa062e61": "excluded",
+            "1cc7c278b01af9771804": "excluded",
+            "a97c1f5a709e4de6f7ba": "selected",
+            "fa74b0cc3895cd40e05a": "excluded",
+            "7cc78127c883714f76f3": "excluded",
+            "f34ad45741b405ff9e69": "selected",
+            "9233c0fbe4fb6e2520e4": "excluded",
+            "8cad1d7071d358947cb2": "selected",
+            "28b96783ce883a7e7f40": "excluded",
+            "1cf7caf1e3962092517f": "excluded",
+            "531156a59b9f298428c8": "excluded",
+            "2ffe5ada9085e1add46b": "excluded",
+            "6ec636eceffcfb5999d5": "excluded",
+            "051009ada2a4f647f6fc": "selected",
+            "bf28c7aa2007aa01571b": "excluded",
+            "61649a8ae4c58021cbc4": "excluded",
+            "878235a76bf9396d7302": "excluded",
+            "bf13a92368f50af68cba": "excluded",
+            "17fb1b78ebadcb40daac": "excluded",
+            "af9bbc2d1c0b8017291c": "excluded",
+            "15e1c3b827bd5c829282": "excluded",
+            "8e0becaa31e92e597767": "excluded",
+            "2f51df856d85f4fbb4e7": "excluded"
+          }
+        }
+      ],
+      "material_archive_path": "D:\\Develop\\CODES\\Daily-AI-News-Assistant\\ai-news-agent\\data\\acceptance\\20261019T125514Z-07cb6c\\materials\\89556ab9933d41218503c920757b2240.json",
+      "content_review": "not_exercised_empty_brief"
+    }
+  ],
+  "updated_at": "2026-10-19T12:57:01.100473+00:00"
+}

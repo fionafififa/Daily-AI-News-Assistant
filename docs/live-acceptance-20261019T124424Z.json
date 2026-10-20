@@ -1,0 +1,593 @@
+{
+  "started_at": "2026-10-19T12:44:24.540729+00:00",
+  "project_root": "D:\\Develop\\CODES\\Daily-AI-News-Assistant\\ai-news-agent",
+  "source_hashes": {
+    "agent.py": "f9c190d3b4f6b02460fc04410723c6428ed1c99696decf36eac418725c16ed23",
+    "tools.py": "bb398805f599e033ffbc210be252ea1578535d458662d10abc2d4655d0b22fa9",
+    "sources.py": "279b3ca2cd89d04a6c305b5edc0219352e69efbccbb0601108041900a4f17652",
+    "service.py": "c845e271f2063a5f3900d523a2b87ab6020a10280838615481c14dcb2a2cc3a0",
+    "config.py": "c0427767caf5d1afc84d107f0d7549f06e09a115db400e67bd86e4c25c757d98",
+    "summary_review.py": "a526150c707ceb6a17a3f43b20678cfcd305d8833cfd945f1bd9d8f3e50f08da",
+    "article_time.py": "45274a72b5e772ec58151b1dfcf16e7ef2c59dda8e22ca593d47fbe7d57cbec6",
+    "working_context.py": "a5074cfa2a8e6ba1b78e82af3b55e57d1ce75cc5f50877e4ceddfb354d083d8c",
+    "schemas.py": "760d6d16561c964d6366d62e7b28392c11cb885a103b3ca059d04f2cf783e7b1"
+  },
+  "dependencies": {
+    "langchain": "1.4.6",
+    "langchain-openai": "1.7.2",
+    "fastapi": "0.144.0"
+  },
+  "model": "deepseek-flash",
+  "mode": "live",
+  "delivery": "inbox",
+  "working_context_enabled": true,
+  "data_dir": "D:\\Develop\\CODES\\Daily-AI-News-Assistant\\ai-news-agent\\data\\acceptance\\20261019T124424Z-8486f7",
+  "semantic_review": "pending",
+  "scenarios": [
+    {
+      "scenario": "engineer_initial",
+      "run_id": "7e02b8a7e84942b3bdf3b137d9cf7bfb",
+      "elapsed_seconds": 35.28,
+      "status": "failed",
+      "error": "71e1590c6c971a337879：复核摘要包含原文未提供的数值：2E+3, 6E+3",
+      "profile": {
+        "id": "2a52a517acc04657986208ed03e9ea64",
+        "name": "真实验收·工程师",
+        "role": "后端工程师",
+        "email": "",
+        "topics": [
+          "AI 编程",
+          "Agent",
+          "开源模型",
+          "AI 产品"
+        ],
+        "keywords": [
+          "工具调用",
+          "本地部署"
+        ],
+        "excludes": [
+          "融资",
+          "营销活动"
+        ],
+        "delivery_time": "08:00",
+        "timezone": "Asia/Shanghai",
+        "max_items": 5,
+        "enabled": false,
+        "channel": "inbox"
+      },
+      "checks": {
+        "completed": false,
+        "inbox_delivered": false,
+        "real_model_responses": true,
+        "no_demo_items": false,
+        "within_item_limit": true,
+        "selected_articles_were_fetched": true,
+        "working_sources_checked": false
+      },
+      "brief": null,
+      "tool_sequence": [
+        "read_file",
+        "read_file",
+        "list_dir",
+        "list_sources",
+        "fetch_news",
+        "fetch_news",
+        "fetch_news",
+        "fetch_news",
+        "read_article",
+        "read_article",
+        "record_article_states",
+        "submit_brief"
+      ],
+      "traces": [
+        {
+          "id": 1,
+          "run_id": "7e02b8a7e84942b3bdf3b137d9cf7bfb",
+          "tool": "read_file",
+          "arguments": {
+            "path": "profile.json"
+          },
+          "result": "{\"content\": \"{\\\"name\\\": \\\"真实验收·工程师\\\", \\\"role\\\": \\\"后端工程师\\\", \\\"topics\\\": [\\\"AI 编程\\\", \\\"Agent\\\", \\\"开源模型\\\", \\\"AI 产品\\\"], \\\"keywords\\\": [\\\"工具调用\\\", \\\"本地部署\\\"], \\\"excludes\\\": [\\\"融资\\\", \\\"营销活动\\\"], \\\"delivery_time\\\": \\\"08:00\\\", \\\"timezone\\\": \\\"Asia/Shanghai\\\", \\\"max_items\\\": 5, \\\"enabled\\\": false, \\\"channel\\\": \\\"inbox\\\"}\", \"truncated\": false}",
+          "status": "ok",
+          "duration_ms": 0,
+          "created_at": "2026-10-19T12:44:25.921285+00:00"
+        },
+        {
+          "id": 2,
+          "run_id": "7e02b8a7e84942b3bdf3b137d9cf7bfb",
+          "tool": "read_file",
+          "arguments": {
+            "path": "history.json"
+          },
+          "result": "{\"content\": \"[]\", \"truncated\": false}",
+          "status": "ok",
+          "duration_ms": 0,
+          "created_at": "2026-10-19T12:44:25.937303+00:00"
+        },
+        {
+          "id": 3,
+          "run_id": "7e02b8a7e84942b3bdf3b137d9cf7bfb",
+          "tool": "list_dir",
+          "arguments": {
+            "path": "."
+          },
+          "result": "{\"entries\": [{\"name\": \"history.json\", \"type\": \"file\"}, {\"name\": \"profile.json\", \"type\": \"file\"}, {\"name\": \"scratch\", \"type\": \"directory\"}]}",
+          "status": "ok",
+          "duration_ms": 0,
+          "created_at": "2026-10-19T12:44:25.952725+00:00"
+        },
+        {
+          "id": 4,
+          "run_id": "7e02b8a7e84942b3bdf3b137d9cf7bfb",
+          "tool": "list_sources",
+          "arguments": {},
+          "result": "{\"sources\": [{\"id\": \"openai\", \"name\": \"OpenAI News\", \"topics\": \"模型、AI 编程、Agent、产品\"}, {\"id\": \"google\", \"name\": \"Google AI\", \"topics\": \"模型、多模态、AI 应用、研究\"}, {\"id\": \"huggingface\", \"name\": \"Hugging Face\", \"topics\": \"开源模型、本地部署、工程实践\"}, {\"id\": \"techcrunch\", \"name\": \"TechCrunch AI\", \"topics\": \"AI 产品、行业、融资\"}, {\"id\": \"arxiv\", \"name\": \"arXiv cs.AI / cs.LG\", \"topics\": \"论文、机器学习、研究（仅研究偏好时使用）\"}]}",
+          "status": "ok",
+          "duration_ms": 0,
+          "created_at": "2026-10-19T12:44:27.020495+00:00"
+        },
+        {
+          "id": 5,
+          "run_id": "7e02b8a7e84942b3bdf3b137d9cf7bfb",
+          "tool": "fetch_news",
+          "arguments": {
+            "source_id": "openai"
+          },
+          "result": "{\"source\": \"openai\", \"count\": 0, \"articles\": [], \"demo\": false, \"window_hours\": 24}",
+          "status": "ok",
+          "duration_ms": 4937,
+          "created_at": "2026-10-19T12:44:33.074952+00:00"
+        },
+        {
+          "id": 6,
+          "run_id": "7e02b8a7e84942b3bdf3b137d9cf7bfb",
+          "tool": "fetch_news",
+          "arguments": {
+            "source_id": "huggingface"
+          },
+          "result": "{\"source\": \"huggingface\", \"count\": 0, \"articles\": [], \"demo\": false, \"window_hours\": 24}",
+          "status": "ok",
+          "duration_ms": 828,
+          "created_at": "2026-10-19T12:44:33.915557+00:00"
+        },
+        {
+          "id": 7,
+          "run_id": "7e02b8a7e84942b3bdf3b137d9cf7bfb",
+          "tool": "fetch_news",
+          "arguments": {
+            "source_id": "google"
+          },
+          "result": "{\"source\": \"google\", \"count\": 0, \"articles\": [], \"demo\": false, \"window_hours\": 24}",
+          "status": "ok",
+          "duration_ms": 1047,
+          "created_at": "2026-10-19T12:44:34.989093+00:00"
+        },
+        {
+          "id": 8,
+          "run_id": "7e02b8a7e84942b3bdf3b137d9cf7bfb",
+          "tool": "fetch_news",
+          "arguments": {
+            "source_id": "techcrunch"
+          },
+          "result": "{\"source\": \"techcrunch\", \"count\": 2, \"articles\": [{\"id\": \"33da8aabe6e16f93a795\", \"title\": \"Anthropic says it’s committing 5% of its shares to a ‘public benefit fund’\", \"url\": \"https://techcrunch.com/2026/10/18/anthropic-says-its-committing-5-of-its-shares-to-a-public-benefit-fund\", \"source_id\": \"techcrunch\", \"source\": \"TechCrunch AI\", \"published_at\": \"2026-10-18T20:37:40+00:00\", \"first_published_at\": \"2026-10-18T20:37:40+00:00\", \"announced_at\": null, \"updated_at\": null, \"feed_entry_at\": \"2026-10-18T20:37:40+00:00\", \"time_basis\": \"source_published\", \"text\": \"Anthropic said that it will commit 5% of its shares to the fund.\", \"evidence_kind\": \"feed_summary\", \"demo\": false}, {\"id\": \"71e1590c6c971a337879\", \"title\": \"Disney agrees to hire the majority of Character.AI’s workforce\", \"url\": \"https://techcrunch.com/2026/10/18/disney-agrees-to-hire-the-majority-of-character-ais-workforce\", \"source_id\": \"techcrunch\", \"source\": \"TechCrunch AI\", \"published_at\": \"2026-10-18T16:30:00+00:00\", \"first_published_at\": \"2026-10-18T16:30:00+00:00\", \"announced_at\": null, \"updated_at\": null, \"feed_entry_at\": \"2026-10-18T16:30:00+00:00\", \"time_basis\": \"source_published\", \"text\": \"The filing also says that the “vast majority” of Character.AI employees who were offered jobs at Disney accepted them. However, this is a stalking horse bid, so another company could come forward with a higher offer.\", \"evidence_kind\": \"feed_summary\", \"demo\": false}], \"demo\": false, \"window_hours\": 24}",
+          "status": "ok",
+          "duration_ms": 297,
+          "created_at": "2026-10-19T12:44:35.302154+00:00"
+        },
+        {
+          "id": 9,
+          "run_id": "7e02b8a7e84942b3bdf3b137d9cf7bfb",
+          "tool": "read_article",
+          "arguments": {
+            "article_id": "33da8aabe6e16f93a795"
+          },
+          "result": "{\"id\": \"33da8aabe6e16f93a795\", \"title\": \"Anthropic says it’s committing 5% of its shares to a ‘public benefit fund’\", \"url\": \"https://techcrunch.com/2026/10/18/anthropic-says-its-committing-5-of-its-shares-to-a-public-benefit-fund\", \"source_id\": \"techcrunch\", \"source\": \"TechCrunch AI\", \"published_at\": \"2026-10-18T20:37:40+00:00\", \"first_published_at\": \"2026-10-18T20:37:40+00:00\", \"announced_at\": null, \"updated_at\": \"2026-10-18T20:37:45+00:00\", \"feed_entry_at\": \"2026-10-18T20:37:40+00:00\", \"time_basis\": \"source_published\", \"text\": \"In Brief Posted: 1:37 PM PDT · October 18, 2026 Image Credits: Jakub Porzycki / NurPhoto / Getty Images Anthony Ha Anthropic says it’s committing 5% of its shares to a ‘public benefit fund’ Anthropic announced today that it’s creating a “public benefit fund” that will give the company “increased flexibility and scale” to support projects for societal good. Anthropic said that it will commit 5% of its shares to the fund — structured as a wholly-owned entity within the company — with the option to contribute an additional 2% for every 50% increase in Anthropic’s value. And it offered some broad-strokes ideas for how this money might actually be used, such as “large donations to traditional nonprofits or direct distributions to specific populations.” There’s also the impact that AI might have on the job market, which Anthropic has already committed $200 million to study . But the company said, “Given the pace of AI progress, bolder approaches may be needed. The Fund will have the versatility to pursue them.” Anthropic’s announcement comes as the AI industry faces increasingly negative public sentiment, which CEO Dario Amodei has described as “fundamentally a crisis of trust.” If you’re wondering who will actually decide which public benefits are worth funding, Anthropic said it will share more information about structure and governance in the coming months. Topics AI , Anthropic November 4 Boston Get 50% off a second pass Cover more ground at TechCrunch’s ultimate founder bootcamp of the year by bringing your co-founder or partner. Save 50% off a second pass. Meet scaling and investment leaders, ask questions, find solutions, and more. Last day to save Oct. 16 Register Now Newsletters See More Subscribe for the industry’s biggest tech news TechCrunch Daily News Every weekday and Sunday, you can get the best of TechCrunch’s coverage. TechCrunch Mobility TechCrunch Mobility is your destination for transportation news and insight. Startups Weekly Startups are the core of TechCrunch, so get our best coverage delivered weekly. StrictlyVC Provides movers and shakers with the info they need to start their day. No newsletters selected. Subscribe By submitting your email, you agree to our Terms and Privacy Notice . Related Media & Entertainment Everyone’s watching the Elizabeth Holmes documentary ‘You Can See Everything’ Anthony Ha 17 hours ago AI Anthropic says its workforce has become less junior and is spending more time in meetings Anthony Ha 2 days ago AI Replit makes OpenAI its default over Anthropic, CEO says Kirsten Korosec Lucas Ropek Rebecca Bellan 2 days ago Latest in AI In Brief Anthropic says it’s committing 5% of its shares to a ‘public benefit fund’ Anthony Ha 16 hours ago In Brief Disney agrees to hire the majority of Character.AI’s workforce Anthony Ha 20 hours ago In Brief Meta removes language that raised scraping and AI training concerns Anthony Ha 2 days ago\", \"evidence_kind\": \"article\", \"demo\": false}",
+          "status": "ok",
+          "duration_ms": 719,
+          "created_at": "2026-10-19T12:44:38.288142+00:00"
+        },
+        {
+          "id": 10,
+          "run_id": "7e02b8a7e84942b3bdf3b137d9cf7bfb",
+          "tool": "read_article",
+          "arguments": {
+            "article_id": "71e1590c6c971a337879"
+          },
+          "result": "{\"id\": \"71e1590c6c971a337879\", \"title\": \"Disney agrees to hire the majority of Character.AI’s workforce\", \"url\": \"https://techcrunch.com/2026/10/18/disney-agrees-to-hire-the-majority-of-character-ais-workforce\", \"source_id\": \"techcrunch\", \"source\": \"TechCrunch AI\", \"published_at\": \"2026-10-18T16:30:00+00:00\", \"first_published_at\": \"2026-10-18T16:30:00+00:00\", \"announced_at\": null, \"updated_at\": \"2026-10-18T19:01:55+00:00\", \"feed_entry_at\": \"2026-10-18T16:30:00+00:00\", \"time_basis\": \"source_published\", \"text\": \"In Brief Posted: 9:30 AM PDT · October 18, 2026 Image Credits: Character.AI Anthony Ha Disney agrees to hire the majority of Character.AI’s workforce After chatbot startup Character.AI filed for bankruptcy earlier this week, many of its employees will have the opportunity to take jobs at Disney. Character.AI’s former CEO Karandeep Anand recently became the entertainment giant’s first CTO , and the startup previously said that Disney had agreed to acquire some of its assets for $20 million. A legal filing spotted by Bloomberg revealed more details about the agreement between Character.AI and Disney, with Disney agreeing to make employment offers to at least 60 Character.AI employees — the majority of the workforce — paying them an estimated $60 million in annual compensation. The filing also says that the “vast majority” of Character.AI employees who were offered jobs at Disney accepted them. However, this is a stalking horse bid, so another company could come forward with a higher offer. The filing says that despite its “large and engaged user base,” Character.AI has been hobbled by high costs and “potential litigation-related liabilities and regulatory engagement.” (The company was sued by the mother of a 14-year-old boy who said her son became obsessed with one of Character.AI’s chatbots before committing suicide; it also faces government investigations over child safety concerns .) Topics AI , character.ai , Disney , Media & Entertainment , Startups November 4 Boston Get 50% off a second pass Cover more ground at TechCrunch’s ultimate founder bootcamp of the year by bringing your co-founder or partner. Save 50% off a second pass. Meet scaling and investment leaders, ask questions, find solutions, and more. Last day to save Oct. 16 Register Now Newsletters See More Subscribe for the industry’s biggest tech news TechCrunch Daily News Every weekday and Sunday, you can get the best of TechCrunch’s coverage. TechCrunch Mobility TechCrunch Mobility is your destination for transportation news and insight. Startups Weekly Startups are the core of TechCrunch, so get our best coverage delivered weekly. StrictlyVC Provides movers and shakers with the info they need to start their day. No newsletters selected. Subscribe By submitting your email, you agree to our Terms and Privacy Notice . Related Transportation TechCrunch Mobility: Rivian’s next act Kirsten Korosec 21 hours ago AI Anthropic says its workforce has become less junior and is spending more time in meetings Anthony Ha 2 days ago AI Replit makes OpenAI its default over Anthropic, CEO says Kirsten Korosec Lucas Ropek Rebecca Bellan 2 days ago Latest in AI In Brief Anthropic says it’s committing 5% of its shares to a ‘public benefit fund’ Anthony Ha 16 hours ago In Brief Disney agrees to hire the majority of Character.AI’s workforce Anthony Ha 20 hours ago In Brief Meta removes language that raised scraping and AI training concerns Anthony Ha 2 days ago\", \"evidence_kind\": \"article\", \"demo\": false}",
+          "status": "ok",
+          "duration_ms": 563,
+          "created_at": "2026-10-19T12:44:38.887655+00:00"
+        },
+        {
+          "id": 11,
+          "run_id": "7e02b8a7e84942b3bdf3b137d9cf7bfb",
+          "tool": "record_article_states",
+          "arguments": {
+            "decisions": [
+              "article_id='33da8aabe6e16f93a795' state='excluded' reason='公司股权与公益基金治理安排，无工程/产品信息，且属资本运作类话题，贴近排除项“融资”' evidence_quotes=[]",
+              "article_id='71e1590c6c971a337879' state='selected' reason='AI 产品（Character.AI）因高推理成本与合规负债破产、团队被 Disney 接收，对做 AI 产品的工程团队有直接警示' evidence_quotes=['the startup previously said that Disney had agreed to acquire some of its assets for $20 million', 'with Disney agreeing to make employment offers to at least 60 Character.AI employees — the majority of the workforce — paying them an estimated $60 million in annual compensation', 'despite its “large and engaged user base,” Character.AI has been hobbled by high costs and “potential litigation-related liabilities and regulatory engagement.”']"
+            ]
+          },
+          "result": "{\"updated_ids\": [\"33da8aabe6e16f93a795\", \"71e1590c6c971a337879\"], \"states\": {\"33da8aabe6e16f93a795\": {\"state\": \"excluded\", \"reason\": \"公司股权与公益基金治理安排，无工程/产品信息，且属资本运作类话题，贴近排除项“融资”\", \"evidence_quotes\": []}, \"71e1590c6c971a337879\": {\"state\": \"selected\", \"reason\": \"AI 产品（Character.AI）因高推理成本与合规负债破产、团队被 Disney 接收，对做 AI 产品的工程团队有直接警示\", \"evidence_quotes\": [\"the startup previously said that Disney had agreed to acquire some of its assets for $20 million\", \"with Disney agreeing to make employment offers to at least 60 Character.AI employees — the majority of the workforce — paying them an estimated $60 million in annual compensation\", \"despite its “large and engaged user base,” Character.AI has been hobbled by high costs and “potential litigation-related liabilities and regulatory engagement.”\"]}}}",
+          "status": "ok",
+          "duration_ms": 0,
+          "created_at": "2026-10-19T12:44:47.689570+00:00"
+        },
+        {
+          "id": 12,
+          "run_id": "7e02b8a7e84942b3bdf3b137d9cf7bfb",
+          "tool": "submit_brief",
+          "arguments": {
+            "title": "AI 简报：Character.AI 团队被 Disney 接收，AI 产品退出的成本与合规账",
+            "overview": "过去 24 小时 OpenAI、Hugging Face、Google AI 三家信源均无更新；TechCrunch 仅两条。按你的关注点筛选后保留 1 条：曾主打 C 端陪伴对话的 Character.AI 走向破产并出售资产、团队被 Disney 接收。另有一条 Anthropic 股权公益基金消息，属资本/治理安排且贴近排除项，未纳入。",
+            "selections": [
+              "article_id='71e1590c6c971a337879' summary='据 TechCrunch 报道，Character.AI 在提交破产文件后，Disney 同意以 2000 万美元收购其部分资产，并将向至少 60 名员工发出录用邀请——覆盖其“绝大部分”员工，接受迪士尼岗位的员工预计合计年薪约 6000 万美元。报道称，尽管该产品拥有“庞大且活跃的用户群”，它长期受高成本以及“潜在的诉讼相关负债和监管互动”拖累；该交易为 stalking-horse 竞标，仍可能出现更高报价。' why_it_matters='对你做后端与 AI 产品有两点直接含义：一是对话类产品的单次推理成本会随用户增长线性放大，必须在架构里设置成本上限与降级路径；二是内容安全与未成年人保护带来的合规负债，可能比技术债务更快终结一个产品。若你也做本地部署或自托管，可把这当作“用户量不等于可持续性”的反例。' topic='AI 产品' relevance=2"
+            ]
+          },
+          "result": "{\"accepted\": true, \"count\": 1, \"message\": \"草稿已通过结构校验，可以结束任务；后端将执行摘要复核。\"}",
+          "status": "ok",
+          "duration_ms": 0,
+          "created_at": "2026-10-19T12:44:50.368380+00:00"
+        }
+      ],
+      "model_observations": [
+        {
+          "phase": "generation",
+          "actual_input_message_chars": 1296,
+          "working_material_snapshots": 0,
+          "state_counts": {},
+          "excluded_items_have_no_text": true,
+          "duration_seconds": 1.01,
+          "tool_names": [
+            "read_file",
+            "read_file",
+            "list_dir"
+          ],
+          "usage": {
+            "input_tokens": 2082,
+            "output_tokens": 101,
+            "total_tokens": 2183,
+            "input_token_details": {
+              "cache_read": 256
+            },
+            "output_token_details": {
+              "reasoning": 0
+            }
+          },
+          "finish_reason": "tool_calls"
+        },
+        {
+          "phase": "generation",
+          "actual_input_message_chars": 1818,
+          "working_material_snapshots": 0,
+          "state_counts": {},
+          "excluded_items_have_no_text": true,
+          "duration_seconds": 1.05,
+          "tool_names": [
+            "list_sources"
+          ],
+          "usage": {
+            "input_tokens": 2385,
+            "output_tokens": 116,
+            "total_tokens": 2501,
+            "input_token_details": {
+              "cache_read": 2176
+            },
+            "output_token_details": {
+              "reasoning": 44
+            }
+          },
+          "finish_reason": "tool_calls"
+        },
+        {
+          "phase": "generation",
+          "actual_input_message_chars": 2283,
+          "working_material_snapshots": 0,
+          "state_counts": {},
+          "excluded_items_have_no_text": true,
+          "duration_seconds": 1.09,
+          "tool_names": [
+            "fetch_news",
+            "fetch_news",
+            "fetch_news",
+            "fetch_news"
+          ],
+          "usage": {
+            "input_tokens": 2677,
+            "output_tokens": 165,
+            "total_tokens": 2842,
+            "input_token_details": {
+              "cache_read": 2432
+            },
+            "output_token_details": {
+              "reasoning": 29
+            }
+          },
+          "finish_reason": "tool_calls"
+        },
+        {
+          "phase": "generation",
+          "actual_input_message_chars": 4107,
+          "working_material_snapshots": 1,
+          "state_counts": {
+            "pending": 2
+          },
+          "excluded_items_have_no_text": true,
+          "duration_seconds": 2.25,
+          "tool_names": [
+            "read_article",
+            "read_article"
+          ],
+          "usage": {
+            "input_tokens": 3496,
+            "output_tokens": 322,
+            "total_tokens": 3818,
+            "input_token_details": {
+              "cache_read": 2048
+            },
+            "output_token_details": {
+              "reasoning": 196
+            }
+          },
+          "finish_reason": "tool_calls"
+        },
+        {
+          "phase": "generation",
+          "actual_input_message_chars": 10061,
+          "working_material_snapshots": 1,
+          "state_counts": {
+            "pending": 2
+          },
+          "excluded_items_have_no_text": true,
+          "duration_seconds": 8.77,
+          "tool_names": [
+            "record_article_states"
+          ],
+          "usage": {
+            "input_tokens": 5138,
+            "output_tokens": 1488,
+            "total_tokens": 6626,
+            "input_token_details": {
+              "cache_read": 2176
+            },
+            "output_token_details": {
+              "reasoning": 1158
+            }
+          },
+          "finish_reason": "tool_calls"
+        },
+        {
+          "phase": "generation",
+          "actual_input_message_chars": 4641,
+          "working_material_snapshots": 1,
+          "state_counts": {
+            "excluded": 1,
+            "selected": 1
+          },
+          "excluded_items_have_no_text": true,
+          "duration_seconds": 2.66,
+          "tool_names": [
+            "submit_brief"
+          ],
+          "usage": {
+            "input_tokens": 5431,
+            "output_tokens": 438,
+            "total_tokens": 5869,
+            "input_token_details": {
+              "cache_read": 2048
+            },
+            "output_token_details": {
+              "reasoning": 20
+            }
+          },
+          "finish_reason": "tool_calls"
+        },
+        {
+          "phase": "generation",
+          "actual_input_message_chars": 4713,
+          "working_material_snapshots": 1,
+          "state_counts": {
+            "excluded": 1,
+            "selected": 1
+          },
+          "excluded_items_have_no_text": true,
+          "duration_seconds": 1.81,
+          "tool_names": [],
+          "usage": {
+            "input_tokens": 5914,
+            "output_tokens": 235,
+            "total_tokens": 6149,
+            "input_token_details": {
+              "cache_read": 5376
+            },
+            "output_token_details": {
+              "reasoning": 0
+            }
+          },
+          "finish_reason": "stop"
+        },
+        {
+          "phase": "summary_review",
+          "actual_input_message_chars": 4165,
+          "working_material_snapshots": 0,
+          "state_counts": {},
+          "excluded_items_have_no_text": true,
+          "duration_seconds": 7.61,
+          "tool_names": [],
+          "usage": {
+            "input_tokens": 1242,
+            "output_tokens": 1703,
+            "total_tokens": 2945,
+            "input_token_details": {
+              "cache_read": 128
+            },
+            "output_token_details": {
+              "reasoning": 1189
+            }
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "candidate_count": 2,
+      "selected_evidence": [
+        {
+          "id": "71e1590c6c971a337879",
+          "title": "Disney agrees to hire the majority of Character.AI’s workforce",
+          "url": "https://techcrunch.com/2026/10/18/disney-agrees-to-hire-the-majority-of-character-ais-workforce",
+          "source_id": "techcrunch",
+          "source": "TechCrunch AI",
+          "published_at": "2026-10-18T16:30:00+00:00",
+          "first_published_at": "2026-10-18T16:30:00+00:00",
+          "announced_at": null,
+          "updated_at": "2026-10-18T19:01:55+00:00",
+          "feed_entry_at": "2026-10-18T16:30:00+00:00",
+          "time_basis": "source_published",
+          "text": "In Brief Posted: 9:30 AM PDT · October 18, 2026 Image Credits: Character.AI Anthony Ha Disney agrees to hire the majority of Character.AI’s workforce After chatbot startup Character.AI filed for bankruptcy earlier this week, many of its employees will have the opportunity to take jobs at Disney. Character.AI’s former CEO Karandeep Anand recently became the entertainment giant’s first CTO , and the startup previously said that Disney had agreed to acquire some of its assets for $20 million. A legal filing spotted by Bloomberg revealed more details about the agreement between Character.AI and Disney, with Disney agreeing to make employment offers to at least 60 Character.AI employees — the majority of the workforce — paying them an estimated $60 million in annual compensation. The filing also says that the “vast majority” of Character.AI employees who were offered jobs at Disney accepted them. However, this is a stalking horse bid, so another company could come forward with a higher offer. The filing says that despite its “large and engaged user base,” Character.AI has been hobbled by high costs and “potential litigation-related liabilities and regulatory engagement.” (The company was sued by the mother of a 14-year-old boy who said her son became obsessed with one of Character.AI’s chatbots before committing suicide; it also faces government investigations over child safety concerns .) Topics AI , character.ai , Disney , Media & Entertainment , Startups November 4 Boston Get 50% off a second pass Cover more ground at TechCrunch’s ultimate founder bootcamp of the year by bringing your co-founder or partner. Save 50% off a second pass. Meet scaling and investment leaders, ask questions, find solutions, and more. Last day to save Oct. 16 Register Now Newsletters See More Subscribe for the industry’s biggest tech news TechCrunch Daily News Every weekday and Sunday, you can get the best of TechCrunch’s coverage. TechCrunch Mobility TechCrunch Mobility is your destination for transportation news and insight. Startups Weekly Startups are the core of TechCrunch, so get our best coverage delivered weekly. StrictlyVC Provides movers and shakers with the info they need to start their day. No newsletters selected. Subscribe By submitting your email, you agree to our Terms and Privacy Notice . Related Transportation TechCrunch Mobility: Rivian’s next act Kirsten Korosec 21 hours ago AI Anthropic says its workforce has become less junior and is spending more time in meetings Anthony Ha 2 days ago AI Replit makes OpenAI its default over Anthropic, CEO says Kirsten Korosec Lucas Ropek Rebecca Bellan 2 days ago Latest in AI In Brief Anthropic says it’s committing 5% of its shares to a ‘public benefit fund’ Anthony Ha 16 hours ago In Brief Disney agrees to hire the majority of Character.AI’s workforce Anthony Ha 20 hours ago In Brief Meta removes language that raised scraping and AI training concerns Anthony Ha 2 days ago",
+          "evidence_kind": "article",
+          "demo": false
+        }
+      ],
+      "pre_review_brief": {
+        "title": "AI 简报：Character.AI 团队被 Disney 接收，AI 产品退出的成本与合规账",
+        "overview": "过去 24 小时 OpenAI、Hugging Face、Google AI 三家信源均无更新；TechCrunch 仅两条。按你的关注点筛选后保留 1 条：曾主打 C 端陪伴对话的 Character.AI 走向破产并出售资产、团队被 Disney 接收。另有一条 Anthropic 股权公益基金消息，属资本/治理安排且贴近排除项，未纳入。",
+        "items": [
+          {
+            "id": "71e1590c6c971a337879",
+            "title": "Disney agrees to hire the majority of Character.AI’s workforce",
+            "url": "https://techcrunch.com/2026/10/18/disney-agrees-to-hire-the-majority-of-character-ais-workforce",
+            "source_id": "techcrunch",
+            "source": "TechCrunch AI",
+            "published_at": "2026-10-18T16:30:00+00:00",
+            "first_published_at": "2026-10-18T16:30:00+00:00",
+            "announced_at": null,
+            "updated_at": "2026-10-18T19:01:55+00:00",
+            "feed_entry_at": "2026-10-18T16:30:00+00:00",
+            "time_basis": "source_published",
+            "evidence_kind": "article",
+            "demo": false,
+            "summary": "据 TechCrunch 报道，Character.AI 在提交破产文件后，Disney 同意以 2000 万美元收购其部分资产，并将向至少 60 名员工发出录用邀请——覆盖其“绝大部分”员工，接受迪士尼岗位的员工预计合计年薪约 6000 万美元。报道称，尽管该产品拥有“庞大且活跃的用户群”，它长期受高成本以及“潜在的诉讼相关负债和监管互动”拖累；该交易为 stalking-horse 竞标，仍可能出现更高报价。",
+            "why_it_matters": "对你做后端与 AI 产品有两点直接含义：一是对话类产品的单次推理成本会随用户增长线性放大，必须在架构里设置成本上限与降级路径；二是内容安全与未成年人保护带来的合规负债，可能比技术债务更快终结一个产品。若你也做本地部署或自托管，可把这当作“用户量不等于可持续性”的反例。",
+            "topic": "AI 产品",
+            "relevance": 2
+          }
+        ],
+        "demo": false,
+        "generated_at": "2026-10-19T12:44:24.606592+00:00",
+        "sources_checked": [
+          "google",
+          "huggingface",
+          "openai",
+          "techcrunch"
+        ],
+        "warnings": [],
+        "preferences": {
+          "name": "真实验收·工程师",
+          "role": "后端工程师",
+          "topics": [
+            "AI 编程",
+            "Agent",
+            "开源模型",
+            "AI 产品"
+          ],
+          "keywords": [
+            "工具调用",
+            "本地部署"
+          ]
+        }
+      },
+      "review_audit": {
+        "model_result": {
+          "overview": "本次简报依据已读取的来源整理。按你的关注点筛选后保留 1 条，发布日期为 2026 年 10 月 18 日：Character.AI 本周申请破产后，Disney 同意以 2000 万美元收购其部分资产，并向至少 60 名员工发出录用邀请，约相当于员工总数的多数。另有一条 Anthropic 承诺捐出 5% 股份设立“公益基金”的消息，属资本和治理安排，且贴近排除项，因此未纳入。",
+          "items": [
+            {
+              "article_id": "71e1590c6c971a337879",
+              "verdict": "corrected",
+              "corrected_summary": "据 TechCrunch 报道，Character.AI 本周申请破产后，Disney 同意以 2000 万美元收购其部分资产，并将向至少 60 名员工发出录用邀请——这相当于员工总数的多数（majority of the workforce），对获邀员工预计合计支付约 6000 万美元年薪。报道称，尽管该产品拥有“庞大且活跃的用户群”，但它长期受高成本以及“潜在的诉讼相关负债和监管互动”拖累；获邀员工中的“绝大多数”接受了迪士尼的岗位。该交易属于 stalking-horse 竞标，仍可能出现更高报价。",
+              "reason": "原文称录用邀请覆盖“员工总数的多数（the majority of the workforce）”，摘要误写为“绝大部分”；原文中“vast majority”指接受岗位的获邀员工比例，这一比例被错置。此外，6000 万美元年薪对应的是获得录用邀请的至少 60 名员工，而非“接受迪士尼岗位的员工”。",
+              "evidence_quotes": [
+                "startup previously said that Disney had agreed to acquire some of its assets for $20 million. A legal filing spotted by Bloomberg revealed more details about the agreement between Character.AI and Disney, with Disney agreeing to make employment offers to at least 60 Character.AI employees — the majority of the workforce — paying them an estimated $60 million in annual compensation.",
+                "The filing also says that the “vast majority” of Character.AI employees who were offered jobs at Disney accepted them. However, this is a stalking horse bid, so another company could come forward with a higher offer.",
+                "The filing says that despite its “large and engaged user base,” Character.AI has been hobbled by high costs and “potential litigation-related liabilities and regulatory engagement.”"
+              ]
+            }
+          ]
+        }
+      },
+      "article_states": {
+        "33da8aabe6e16f93a795": {
+          "state": "excluded",
+          "reason": "公司股权与公益基金治理安排，无工程/产品信息，且属资本运作类话题，贴近排除项“融资”",
+          "evidence_quotes": []
+        },
+        "71e1590c6c971a337879": {
+          "state": "selected",
+          "reason": "AI 产品（Character.AI）因高推理成本与合规负债破产、团队被 Disney 接收，对做 AI 产品的工程团队有直接警示",
+          "evidence_quotes": [
+            "the startup previously said that Disney had agreed to acquire some of its assets for $20 million",
+            "with Disney agreeing to make employment offers to at least 60 Character.AI employees — the majority of the workforce — paying them an estimated $60 million in annual compensation",
+            "despite its “large and engaged user base,” Character.AI has been hobbled by high costs and “potential litigation-related liabilities and regulatory engagement.”"
+          ]
+        }
+      },
+      "context_observations": [
+        {
+          "round": 1,
+          "original_message_chars": 143,
+          "rebuilt_message_chars": 143,
+          "states": {}
+        },
+        {
+          "round": 2,
+          "original_message_chars": 1525,
+          "rebuilt_message_chars": 1525,
+          "states": {}
+        },
+        {
+          "round": 3,
+          "original_message_chars": 2309,
+          "rebuilt_message_chars": 2309,
+          "states": {}
+        },
+        {
+          "round": 4,
+          "original_message_chars": 5151,
+          "rebuilt_message_chars": 5286,
+          "states": {
+            "33da8aabe6e16f93a795": "pending",
+            "71e1590c6c971a337879": "pending"
+          }
+        },
+        {
+          "round": 5,
+          "original_message_chars": 12883,
+          "rebuilt_message_chars": 11811,
+          "states": {
+            "33da8aabe6e16f93a795": "pending",
+            "71e1590c6c971a337879": "pending"
+          }
+        },
+        {
+          "round": 6,
+          "original_message_chars": 14872,
+          "rebuilt_message_chars": 7387,
+          "states": {
+            "33da8aabe6e16f93a795": "excluded",
+            "71e1590c6c971a337879": "selected"
+          }
+        },
+        {
+          "round": 7,
+          "original_message_chars": 15924,
+          "rebuilt_message_chars": 8439,
+          "states": {
+            "33da8aabe6e16f93a795": "excluded",
+            "71e1590c6c971a337879": "selected"
+          }
+        }
+      ],
+      "material_archive_path": "D:\\Develop\\CODES\\Daily-AI-News-Assistant\\ai-news-agent\\data\\acceptance\\20261019T124424Z-8486f7\\materials\\7e02b8a7e84942b3bdf3b137d9cf7bfb.json",
+      "content_review": "not_exercised_empty_brief"
+    }
+  ],
+  "updated_at": "2026-10-19T12:44:59.857114+00:00"
+}

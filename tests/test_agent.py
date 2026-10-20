@@ -20,6 +20,7 @@ from app.tools import Toolbox
 )
 async def test_real_create_agent_follows_model_chosen_tools_and_recovers(settings, store, user, plan):
     settings.mode = "live"
+    settings.working_context_enabled = False  # Routing compatibility without context projection.
     settings.summary_review_enabled = (
         False  # This test isolates Agent tool routing; review has separate tests.
     )

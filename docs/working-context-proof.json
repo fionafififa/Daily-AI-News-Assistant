@@ -1,0 +1,113 @@
+{
+  "final_source_hashes_match": true,
+  "live_report": "live-acceptance-20261019T130235Z.json",
+  "model": "deepseek-flash",
+  "live_completed": true,
+  "items_delivered": 5,
+  "candidate_count": 42,
+  "final_states": {
+    "excluded": 36,
+    "selected": 5,
+    "pending": 1
+  },
+  "full_materials_archived": true,
+  "state_evidence_quotes_verified": true,
+  "one_snapshot_per_request": true,
+  "excluded_long_text_removed_from_snapshots": true,
+  "round_message_character_comparison": [
+    {
+      "round": 1,
+      "original_message_chars": 143,
+      "rebuilt_message_chars": 143,
+      "reduction_percent": 0.0,
+      "states": {}
+    },
+    {
+      "round": 2,
+      "original_message_chars": 1811,
+      "rebuilt_message_chars": 1811,
+      "reduction_percent": 0.0,
+      "states": {}
+    },
+    {
+      "round": 3,
+      "original_message_chars": 2834,
+      "rebuilt_message_chars": 2891,
+      "reduction_percent": -2.01,
+      "states": {}
+    },
+    {
+      "round": 4,
+      "original_message_chars": 87369,
+      "rebuilt_message_chars": 83246,
+      "reduction_percent": 4.72,
+      "states": {
+        "pending": 42
+      }
+    },
+    {
+      "round": 5,
+      "original_message_chars": 101730,
+      "rebuilt_message_chars": 85830,
+      "reduction_percent": 15.63,
+      "states": {
+        "pending": 42
+      }
+    },
+    {
+      "round": 6,
+      "original_message_chars": 108539,
+      "rebuilt_message_chars": 92639,
+      "reduction_percent": 14.65,
+      "states": {
+        "pending": 42
+      }
+    },
+    {
+      "round": 7,
+      "original_message_chars": 123650,
+      "rebuilt_message_chars": 35727,
+      "reduction_percent": 71.11,
+      "states": {
+        "excluded": 36,
+        "selected": 5,
+        "pending": 1
+      }
+    },
+    {
+      "round": 8,
+      "original_message_chars": 127003,
+      "rebuilt_message_chars": 39080,
+      "reduction_percent": 69.23,
+      "states": {
+        "excluded": 36,
+        "selected": 5,
+        "pending": 1
+      }
+    }
+  ],
+  "generation_usage": {
+    "input_tokens": 123174,
+    "output_tokens": 14912,
+    "total_tokens": 138086,
+    "cached_input_tokens": 65536
+  },
+  "review_usage": {
+    "input_tokens": 3211,
+    "output_tokens": 5416,
+    "total_tokens": 8627,
+    "cached_input_tokens": 128
+  },
+  "review_model_calls": 1,
+  "forty_article_fixture": {
+    "kind": "40 synthetic articles; not real news or API token accounting",
+    "before_material_chars": 204939,
+    "after_material_chars": 9141,
+    "reduction_percent": 95.54,
+    "unread_material_preserved": true,
+    "excluded_long_text_removed": true,
+    "selected_evidence_preserved": true
+  },
+  "test_results": "64 passed; ruff check and format passed",
+  "limits": "Character comparisons are within the same run, against its unprojected message history; not an independent API-token A/B experiment. Added decision calls and changed prefix caching can offset token/cost savings. The full graph history and server records remain."
+}

@@ -1,0 +1,99 @@
+{
+  "kind": "audit-of-real-provider-usage-and-frozen-materials",
+  "model": "deepseek-flash",
+  "clock": "2026-10-19T13:03:36.098040+00:00",
+  "report_sha256": "845e4c60fcf4fe001b6d8c47be3421b005a2be04f813fa1693a00906c7d66e51",
+  "fixture_sha256": "6431087219338ad75ba7dacf39279f1ea53957079112a7bf9c2b6706a81a2ef0",
+  "arms": [
+    {
+      "arm": "baseline",
+      "status": "completed",
+      "candidate_count": 40,
+      "draft_item_count": 5,
+      "request_count": 9,
+      "material_archive_sha256": "4dab2d24ac4a3003d1632d2478e7e42de00cfd4ee503ec7fb63796f79649c96a",
+      "request_archive_sha256": "1159425d6fb90095e4c7e7089fcdba92a0c3b2c42eec9dd14f3c7a9c4fd12bf0",
+      "read_status_counts": {
+        "read": 1,
+        "rss_only": 5
+      },
+      "checks": {
+        "all_raw_inputs_equal_frozen_source": true,
+        "all_provider_usage_totals_match": true,
+        "excluded_long_text_absent": true,
+        "draft_not_duplicate_history": true
+      }
+    },
+    {
+      "arm": "context_only",
+      "status": "completed",
+      "candidate_count": 42,
+      "draft_item_count": 5,
+      "request_count": 11,
+      "material_archive_sha256": "bea063ed4a739d5e7aa90c864009df33471c7c8a85b8663a8106582187b1efc6",
+      "request_archive_sha256": "e2a9e41944c69bc036f6ac7b45113de85f86614b55c03093d5ab278f378835cd",
+      "read_status_counts": {
+        "rss_only": 4,
+        "read": 1
+      },
+      "checks": {
+        "all_raw_inputs_equal_frozen_source": true,
+        "all_provider_usage_totals_match": true,
+        "excluded_long_text_absent": true,
+        "draft_not_duplicate_history": true
+      }
+    },
+    {
+      "arm": "prefilter_and_context",
+      "status": "failed",
+      "candidate_count": 37,
+      "draft_item_count": 5,
+      "request_count": 10,
+      "material_archive_sha256": "b8d249f6615c8568b1868a131132734757134cf74a2202c3405e535912e12207",
+      "request_archive_sha256": "c1508da66975e867d1a4b1f71ec63d82a113aaf2aa7c5642a66b0d23473592b6",
+      "read_status_counts": {
+        "read": 1,
+        "rss_only": 4
+      },
+      "checks": {
+        "all_raw_inputs_equal_frozen_source": true,
+        "all_provider_usage_totals_match": true,
+        "excluded_long_text_absent": true,
+        "exact_37_eligible_candidates": true,
+        "history_ids_absent_from_all_snapshots": true,
+        "draft_not_duplicate_history": true
+      },
+      "filter_reasons": {
+        "history_id": 5
+      },
+      "first_review_diagnosis": {
+        "valid_json_syntax": true,
+        "top_level_keys": [
+          "overview",
+          "articles"
+        ],
+        "schema_errors": [
+          {
+            "type": "missing",
+            "loc": [
+              "items"
+            ],
+            "msg": "Field required",
+            "url": "https://errors.pydantic.dev/2.14/v/missing"
+          },
+          {
+            "type": "extra_forbidden",
+            "loc": [
+              "articles"
+            ],
+            "msg": "Extra inputs are not permitted",
+            "url": "https://errors.pydantic.dev/2.14/v/extra_forbidden"
+          }
+        ]
+      }
+    }
+  ],
+  "total_metered_calls": 30,
+  "total_consumed_tokens": 482435,
+  "all_calls_metered": true
+}

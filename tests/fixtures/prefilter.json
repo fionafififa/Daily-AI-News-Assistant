@@ -1,0 +1,49 @@
+{
+  "now": "2026-10-20T04:00:00+00:00",
+  "profile": {"name": "预筛选验收工程师", "role": "后端工程师", "topics": ["智能体", "开源模型"], "keywords": ["工具可靠性"], "excludes": ["融资", "Funding"], "enabled": false},
+  "history": [
+    {"owner": "self", "mode": "live", "created_at": "2026-10-19T04:00:00+00:00", "items": [
+      {"id": "history-id", "title": "Earlier tool announcement", "url": "https://huggingface.co/blog/old-id"},
+      {"id": "old-url-id", "title": "Earlier runtime announcement", "url": "https://huggingface.co/blog/old-url"},
+      {"id": "old-title-id", "title": "Runtime update: stable!", "url": "https://huggingface.co/blog/old-title"}
+    ]},
+    {"owner": "self", "mode": "live", "created_at": "2026-10-12T04:00:00+00:00", "items": [
+      {"id": "out-of-window", "title": "Independent benchmark report", "url": "https://techcrunch.com/benchmark"}
+    ]},
+    {"owner": "self", "mode": "demo", "created_at": "2026-10-19T05:00:00+00:00", "items": [
+      {"id": "no-keyword", "title": "Hardware scheduling notes", "url": "https://huggingface.co/blog/hardware"}
+    ]},
+    {"owner": "other", "mode": "live", "created_at": "2026-10-19T06:00:00+00:00", "items": [
+      {"id": "cross-en", "title": "Tool calling reliability in production", "url": "https://huggingface.co/blog/tool-runtime"}
+    ]}
+  ],
+  "feeds": {
+    "huggingface": [
+      {"id": "cross-en", "title": "Tool calling reliability in production", "url": "https://huggingface.co/blog/tool-runtime", "text": "KEEP_ENGLISH The runtime adds configurable tool retries and a bounded retry budget. Operators can inspect failures and retry only recoverable calls. The announcement describes how independent tool calls remain observable and how invalid arguments are reported to the caller."},
+      {"id": "same-feed-duplicate", "title": "Reprinted runtime release", "url": "https://HUGGINGFACE.CO/blog/tool-runtime/?utm_source=rss#intro", "text": "RAW_DUP_SAME A second RSS entry points to the exact same canonical article. This long duplicate summary must never enter the model when prefiltering is enabled, regardless of whether a feed adapter already deduplicates its own entries."},
+      {"id": "history-id", "title": "Changed title for an old article", "url": "https://huggingface.co/blog/changed-id-url", "text": "RAW_HISTORY_ID This entry reuses an identifier already included in the current user's recent live brief. Its changed title and URL do not make it a new article. The server should reject it before the first news-bearing model request."},
+      {"id": "history-url-new-id", "title": "Changed title for the previous runtime", "url": "https://HUGGINGFACE.CO/blog/old-url/?utm_medium=feed&gclid=tracking#summary", "text": "RAW_HISTORY_URL This entry uses a different identifier and title but repeats the canonical URL of a recently delivered item. URL tracking parameters and fragments are not independent news events and should not bypass history deduplication."},
+      {"id": "history-title-new-id", "title": "RUNTIME UPDATE — STABLE", "url": "https://huggingface.co/blog/new-title-url", "text": "RAW_HISTORY_TITLE This article has a new identifier and URL but exactly the same normalized title as a recent item. This fixture preserves the existing title-based historical guard without extending it to fuzzy matching or semantic event clustering."},
+      {"id": "excluded-zh", "title": "某公司完成新一轮融资", "url": "https://huggingface.co/blog/financing", "text": "RAW_EXCLUDED_ZH 这是一条标题直接命中用户排除词的虚构融资新闻。这个摘要属于固定验收材料，不能作为真实新闻推送，也不应该在开启预筛选时进入模型的候选工作清单。审计归档仍然需要完整保留它。"},
+      {"id": "ambiguous-body", "title": "New inference runtime", "url": "https://huggingface.co/blog/inference", "text": "KEEP_AMBIGUOUS This technical release explains memory scheduling. A background paragraph mentions 融资 but that incidental body mention alone must not cause an early rejection. The editor still needs to determine the actual relevance and the final submission guard remains active."},
+      {"id": "no-keyword", "title": "Hardware scheduling notes", "url": "https://huggingface.co/blog/hardware", "text": "KEEP_NO_KEYWORD Processor queue scheduling is described without any literal subscription keyword. This candidate must remain available for the model to judge. Positive keyword matching is not a deterministic admission requirement in this project."},
+      {"id": "query-one", "title": "Runtime version one", "url": "https://huggingface.co/blog/version?v=1", "text": "KEEP_QUERY_ONE A meaningful version query identifies the first independent runtime report. Tracking-only parameters can be removed, but this version parameter must remain part of canonical URL identity so another version is not discarded."},
+      {"id": "query-two", "title": "Runtime version two", "url": "https://huggingface.co/blog/version?v=2", "text": "KEEP_QUERY_TWO A meaningful version query identifies the second independent runtime report. The two versioned links intentionally have different candidate identifiers and must both remain in the initial candidate set for model evaluation."}
+    ],
+    "techcrunch": [
+      {"id": "cross-source-duplicate", "title": "Another feed references runtime release", "url": "https://huggingface.co/blog/tool-runtime?fbclid=tracking", "text": "RAW_DUP_CROSS A synthetic second source returns the first source's article with another identifier. This tests the gate after source adapters, not the real TechCrunch adapter's URL-domain restrictions. Keep the original candidate and all already verified read material."},
+      {"id": "excluded-en", "title": "Startup Funding round announced", "url": "https://techcrunch.com/funding", "text": "RAW_EXCLUDED_EN A literal case-insensitive English title exclusion should be rejected early. The complete original entry belongs in the server audit archive, while the model receives only counts of filtering reasons rather than this long summary."},
+      {"id": "same-title-new-url", "title": "Hardware scheduling notes", "url": "https://techcrunch.com/scheduling", "text": "KEEP_SAME_TITLE Current-run title equality alone is not a URL duplicate. The model must still decide whether these two independent URLs describe one event. The deterministic prefilter must not invent an extra title-based current-run gate."},
+      {"id": "out-of-window", "title": "Independent benchmark report", "url": "https://techcrunch.com/benchmark", "text": "KEEP_EXPIRED_HISTORY This entry appears only in a brief older than the seven-day window. It is therefore eligible for model evaluation. The fixture also checks that another user's history and this user's demo-mode history do not leak into live-mode filtering."}
+    ],
+    "arxiv": [
+      {"id": "arxiv-announced", "title": "Reliable planning with external tools", "url": "https://arxiv.org/abs/2610.01234", "published_at": "2026-10-01T12:00:00+00:00", "first_published_at": "2026-10-01T12:00:00+00:00", "announced_at": "2026-10-20T02:00:00+00:00", "feed_entry_at": "2026-10-20T02:00:00+00:00", "time_basis": "feed_announcement", "text": "KEEP_ARXIV This paper was first submitted earlier but was announced in today's RSS feed. Admission freshness must use the feed announcement instead of first submission time. The brief should label both dates correctly and must not claim the paper was first published today."}
+    ]
+  },
+  "read": {"text": "The release adds verified tool retry with a configurable retry budget. READ_VERIFIED_BODY Original article text clarifies the bounded retry budget and recoverable failure cases. This verified body and its dates must survive repeated RSS fetches and cross-source duplicates.", "first_published_at": "2026-10-19T15:30:00+00:00"},
+  "expected": {
+    "candidate_ids": ["cross-en", "ambiguous-body", "no-keyword", "query-one", "query-two", "same-title-new-url", "out-of-window", "arxiv-announced"],
+    "first_pass_reasons": {"duplicate_url": 2, "history_id": 1, "history_url": 1, "history_title": 1, "excluded_title": 2},
+    "filtered_markers": ["RAW_DUP_SAME", "RAW_HISTORY_ID", "RAW_HISTORY_URL", "RAW_HISTORY_TITLE", "RAW_EXCLUDED_ZH", "RAW_DUP_CROSS", "RAW_EXCLUDED_EN"]
+  }
+}

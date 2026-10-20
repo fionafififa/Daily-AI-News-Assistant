@@ -1,0 +1,14 @@
+{
+  "captured_response_unchanged": true,
+  "original_top_level_keys": [
+    "overview",
+    "articles"
+  ],
+  "status": "checked",
+  "items": 5,
+  "canonical_model_result_keys": [
+    "overview",
+    "items"
+  ],
+  "extra_model_calls": 0
+}

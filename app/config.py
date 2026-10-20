@@ -19,6 +19,8 @@ class Settings:
     max_tool_calls: int = 24
     summary_review_enabled: bool = True
     summary_review_source_chars: int = 5000
+    working_context_enabled: bool = True
+    prefilter_enabled: bool = True
     smtp_host: str = ""
     smtp_port: int = 587
     smtp_user: str = ""
@@ -45,6 +47,8 @@ class Settings:
             max_tool_calls=int(os.getenv("MAX_TOOL_CALLS", "24")),
             summary_review_enabled=os.getenv("SUMMARY_REVIEW_ENABLED", "true").lower() == "true",
             summary_review_source_chars=int(os.getenv("SUMMARY_REVIEW_SOURCE_CHARS", "5000")),
+            working_context_enabled=os.getenv("WORKING_CONTEXT_ENABLED", "true").lower() == "true",
+            prefilter_enabled=os.getenv("PREFILTER_ENABLED", "true").lower() == "true",
             smtp_host=os.getenv("SMTP_HOST", ""),
             smtp_port=int(os.getenv("SMTP_PORT", "587")),
             smtp_user=os.getenv("SMTP_USER", ""),

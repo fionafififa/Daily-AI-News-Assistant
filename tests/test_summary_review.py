@@ -3,7 +3,7 @@ import json
 import pytest
 from langchain_core.messages import AIMessage
 
-from app.summary_review import review_brief, verify_numeric_claims
+from app.summary_review import ReviewResult, review_brief, verify_numeric_claims
 
 SOURCE = "On 480 tasks, the score rose from 30.1 to the maximum of 59.2 out of 100."
 
@@ -58,7 +58,13 @@ async def test_review_repairs_score_semantics_preserves_original_and_uses_bounde
 
 
 @pytest.mark.parametrize(
-    "summary", ["平均得分提高，最终达到满分。", "原得分 30.1（满分 59.2）。", "最终得分达 99.9 分。"]
+    "summary",
+    [
+        "平均得分提高，最终达到满分。",
+        "原得分 30.1（满分 59.2）。",
+        "最终得分达 99.9 分。",
+        "提高到该指标的上限 59.2（满分 100）。",
+    ],
 )
 def test_deterministic_numeric_backstop_rejects_bad_claims(summary):
     with pytest.raises(ValueError):
@@ -105,6 +111,15 @@ def test_numeric_units_and_model_names_do_not_hide_scientific_values():
         verify_numeric_claims("速度提升 9.8 倍。", "Up to 6.8x fewer passes.")
 
 
+def test_translated_large_number_units_match_but_wrong_amounts_do_not():
+    evidence = "Assets for $20 million; at least 60 employees, $60 million annual compensation."
+    verify_numeric_claims("资产价格 2000 万美元，至少 60 名员工，年薪合计 6000 万美元。", evidence)
+    verify_numeric_claims("合计 1.2 亿美元。", "$120 million in total.")
+    verify_numeric_claims("约 62 万参数。", "A 0.62M-parameter model.")
+    with pytest.raises(ValueError):
+        verify_numeric_claims("资产价格 20000 万美元。", evidence)
+
+
 async def test_reviewer_cannot_silently_drop_items_or_approve_wrong_score():
     brief, sources = inputs()
     missing = decision()
@@ -118,3 +133,81 @@ async def test_reviewer_cannot_silently_drop_items_or_approve_wrong_score():
 async def test_empty_brief_requires_no_model_call():
     checked = await review_brief({"items": []}, {}, None)
     assert checked["summary_review"]["model_calls"] == 0
+
+
+async def test_articles_alias_passes_review_and_keeps_canonical_items_output():
+    brief, sources = inputs()
+    response = decision()
+    response["articles"] = response.pop("items")
+    model = Reviewer(response)
+    audit = {}
+    checked = await review_brief(brief, sources, model, audit=audit)
+    assert checked["summary_review"]["model_calls"] == 1
+    assert checked["items"][0]["summary"] == decision()["items"][0]["corrected_summary"]
+    assert "items" in audit["model_result"] and "articles" not in audit["model_result"]
+
+
+@pytest.mark.parametrize("violation", ["unknown_id", "forged_quote", "invented_number"])
+async def test_articles_alias_still_rejects_invalid_review_content(violation):
+    brief, sources = inputs()
+    response = decision()
+    response["articles"] = response.pop("items")
+    item = response["articles"][0]
+    if violation == "unknown_id":
+        item["article_id"] = "unknown"
+        error = "缺少条目或包含未知 ID"
+    elif violation == "forged_quote":
+        item["evidence_quotes"] = ["invented citation"]
+        error = "原文连续片段"
+    else:
+        item["corrected_summary"] = "实验结果最终提高到 99.9 分。"
+        error = "原文未提供的数值"
+    with pytest.raises(ValueError, match=error):
+        await review_brief(brief, sources, Reviewer(response))
+
+
+def test_articles_alias_does_not_allow_both_names_or_unrelated_extra_fields():
+    both = decision()
+    both["articles"] = both["items"]
+    with pytest.raises(ValueError):
+        ReviewResult.model_validate(both)
+    extra = decision()
+    extra["articles"] = extra.pop("items")
+    extra["unexpected"] = True
+    with pytest.raises(ValueError):
+        ReviewResult.model_validate(extra)
+
+
+async def test_invalid_review_gets_one_bounded_repair_without_losing_sources():
+    class RepairingReviewer(Reviewer):
+        calls = 0
+
+        async def ainvoke(self, messages, **kwargs):
+            self.calls += 1
+            if self.calls == 1:
+                invalid = decision()
+                invalid["items"][0]["evidence_quotes"] = ["invented citation"]
+                return AIMessage(content=json.dumps(invalid))
+            assert "原文连续片段" in messages[-1]["content"]
+            assert SOURCE in messages[1]["content"]
+            return AIMessage(content=json.dumps(decision()))
+
+    brief, sources = inputs()
+    model = RepairingReviewer(None)
+    checked = await review_brief(brief, sources, model)
+    assert checked["summary_review"]["model_calls"] == model.calls == 2
+
+
+async def test_review_never_loops_past_two_invalid_responses():
+    class InvalidReviewer(Reviewer):
+        calls = 0
+
+        async def ainvoke(self, messages, **kwargs):
+            self.calls += 1
+            return AIMessage(content="invalid JSON")
+
+    brief, sources = inputs()
+    model = InvalidReviewer(None)
+    with pytest.raises(ValueError, match="有效 JSON"):
+        await review_brief(brief, sources, model)
+    assert model.calls == 2

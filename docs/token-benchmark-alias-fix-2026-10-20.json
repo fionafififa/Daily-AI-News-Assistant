@@ -1,0 +1,2588 @@
+{
+  "started_at": "2026-10-20T08:59:42.096593+00:00",
+  "model": "deepseek-flash",
+  "method": "Independent real-model agent executions; same frozen real feeds, history, read cache, clock and tool budget. One sample per arm; model chooses all tools. No delivery.",
+  "fixture_sha256": "6431087219338ad75ba7dacf39279f1ea53957079112a7bf9c2b6706a81a2ef0",
+  "source_hashes": {
+    "__init__.py": "4272afbdb40b7d002f0de1e4ec56e2d28aa7f1ca1487149cb0450020f384ed23",
+    "agent.py": "5de1d064e6797d3b87f192c342e977d32097512739c619e638972b39bfb9ac35",
+    "article_time.py": "45274a72b5e772ec58151b1dfcf16e7ef2c59dda8e22ca593d47fbe7d57cbec6",
+    "config.py": "5900a5f2b3f3fd74f4ae2f3f37a3a24296ad1594a84bbc851ee52d59be7ffaa0",
+    "delivery.py": "fad79bd2dd708418cc5350e2a61834d7d7aec62b540c2955d3b9972b93d07809",
+    "main.py": "a6b9102b5b8d2f85306e31285082ba625bc7de855c15b43a2dcc6e6f70683a91",
+    "prefilter.py": "1b629b650e7660db37c54d15fa09d6141d313a50ac07e80e47ce4446058809f9",
+    "schemas.py": "760d6d16561c964d6366d62e7b28392c11cb885a103b3ca059d04f2cf783e7b1",
+    "service.py": "c845e271f2063a5f3900d523a2b87ab6020a10280838615481c14dcb2a2cc3a0",
+    "sources.py": "279b3ca2cd89d04a6c305b5edc0219352e69efbccbb0601108041900a4f17652",
+    "storage.py": "5be613e59eeb291447f7d79b87ce39d10391505365876dfde63f7c0255b42f8d",
+    "summary_review.py": "70e4dc7d5f28e2666ea75807b5943463788a7d8c0d30f67e87e8d2130d5927aa",
+    "tools.py": "b18b6c543537514befdea27f47d0222673102277244b13215cfe10b7073a70e7",
+    "working_context.py": "696c4bfa68d8f03297fcb5010c73820c9d4877b356eb55ef222f3678997b08bc"
+  },
+  "script_sha256": "24bfb4dcc866cfd5be7d0db3362e9e093d4c03c80e48877f3c7544b1d36918ce",
+  "dependencies": {
+    "langchain": "1.4.6",
+    "langchain-openai": "1.7.2",
+    "httpx": "0.28.1"
+  },
+  "agent_timeout": 300,
+  "max_tool_calls": 24,
+  "summary_review_enabled": true,
+  "data_dir": "data\\acceptance\\tokens-20261020T085942Z",
+  "results": [
+    {
+      "arm": "baseline",
+      "prefilter_enabled": false,
+      "working_context_enabled": false,
+      "status": "completed",
+      "error": null,
+      "elapsed_seconds": 43.83,
+      "brief": {
+        "title": "AI 工程简报｜Agent 规划声明验收、形式化规格修复与低配本地微调",
+        "overview": "覆盖说明：OpenAI、Google AI、Hugging Face 三个源在过去 24 小时均无新条目；TechCrunch 仅两条且分别属股权/公益基金与并购类消息（落在排除词范围内），未采用。今日可用内容集中在 10 月 19 日 arXiv 公告流，共 40 条，从中挑出 5 条与「Agent 工具调用、AI 编程、本地部署」最相关的预印本，均未同行评审。与昨日简报（MCP 权限注入、Lean4AgenticRL、Harness-Delta、PRIME、SPOT）无重复；其中「Testing the Planning Claims」首次提交于 10 月 15 日，10 月 19 日进入公告流，不是首发。",
+        "items": [
+          {
+            "id": "8cad1d7071d358947cb2",
+            "title": "Testing the Planning Claims of LLM-Based Agents against Formal Semantics",
+            "url": "https://arxiv.org/abs/2610.22469",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": "2026-10-15T17:47:30+00:00",
+            "first_published_at": "2026-10-15T17:47:30+00:00",
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "abstract",
+            "demo": false,
+            "publication_kind": "preprint",
+            "summary": "论文用隐藏 PDDL 模型作为形式化裁判，检验 LLM agent 是否真会规划：任务用自然语言给出，但每个动作是否可用、目标是否达成、计划是否本就无解，都由 PDDL 判定。作者覆盖 5 个领域（含 2 个新领域，均随论文发布）、4 个模型、6 种提示策略和 3 种 agent 架构；最佳配置离线解出 78% 的可解任务，在线只有 40%（此时 agent 多数不检查状态）；无解任务被识别出来的 episode 不足 10%；更重的提示策略消耗 5 到 22 倍 token，收益并无明确提升；规划表现跨模型的差异大于跨提示策略或架构的差异。论文 10 月 15 日首次提交，10 月 19 日进入公告流，非今日首发。",
+            "why_it_matters": "你做 token 对照验收时，最需要的就是这种能区分「真会做」与「看着像会做」的判据：它显示端到端成功率会高估能力，而提示策略加码常常只换来 5–22 倍 token 消耗，可用于设计对照实验与验收基线。",
+            "topic": "Agent 评测 / 工具调用",
+            "relevance": 3
+          },
+          {
+            "id": "bf13a92368f50af68cba",
+            "title": "Repairing LLM-Generated Specifications with Deterministic Diagnosis",
+            "url": "https://arxiv.org/abs/2610.22568",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": null,
+            "first_published_at": null,
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "feed_summary",
+            "demo": false,
+            "read_warning": "正文不可用，仅依据 RSS 摘要；不要推断摘要未提供的细节。",
+            "summary": "DRAGO 针对「LLM 把自然语言问题写成形式化规格」的场景：很多规格能跑通但语义写错（约束、域、目标、谓词），一旦执行成功就再没有解算器报错可用，而纯 LLM 自我诊断会产生无依据的批评，作者实验中有 11.8% 原本正确的规格因此被改坏。DRAGO 改用与形式系统绑定的确定性诊断，并且只在「无参考验收谓词」下诊断误差权重严格下降时才保留改写。跨 SMT-LIB2、MiniZinc、PDDL 五套基准，回退率降到 1.3%（近一个数量级改善），答案准确率比零样本形式化高 12.9 个百分点、比 LLM 诊断修复高 8.7 个百分点（平均口径）。作者还发现 Planetarium 的渲染缺陷导致其 floor-tile 切分 50%（3,086 条）与参考形式化不一致，并放出修正版。摘要未给出首次提交日期，10 月 19 日进入公告流。",
+            "why_it_matters": "这套「改写必须让可测量误差严格下降才保留」的验收谓词，几乎可以照搬到你的 token 对照流程里；同时提醒不要用 LLM 自评当裁判——实验里它反而让 11.8% 的正确结果退化。",
+            "topic": "AI 编程 / 形式化验证",
+            "relevance": 3
+          },
+          {
+            "id": "6ec636eceffcfb5999d5",
+            "title": "Don't Retrain, Remix: Adaptation of Web Agents using Mixture Hypernetworks",
+            "url": "https://arxiv.org/abs/2610.22539",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": null,
+            "first_published_at": null,
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "feed_summary",
+            "demo": false,
+            "read_warning": "正文不可用，仅依据 RSS 摘要；不要推断摘要未提供的细节。",
+            "summary": "WebMix 用混合超网络让 web agent 适配没见过的界面：先用一批在源界面训练好的低秩适配器组成「适配器库」，部署时由 scout agent 探索目标站点并写成一份简短手册，轻量路由器据此预测混合系数，合成一个用于推理的新适配器——目标域上不做梯度更新，只需一次侦察 + 一次前向。作者用 Qwen 与 Llama 系列在 TimeWarp（域迁移、版本迁移）和 WebArena-Lite-v2 上评测，三种设置均达到或超过上下文学习与 LoRA 基线，常与直接在目标界面训练的特化模型持平；TimeWarp 域迁移上两个模型平均比最佳基线高约 8 个百分点，且未牺牲已见界面的表现。摘要未给出首次提交日期，10 月 19 日进入公告流。",
+            "why_it_matters": "如果你自托管开源模型跑界面操作类任务，「不改权重、只做一次侦察+组合已有适配器」意味着换版或换站不必重训；评估时也应像论文那样同时报告已见界面的成绩，确认增益不是靠牺牲它换来的。",
+            "topic": "Agent / 模型适配",
+            "relevance": 2
+          },
+          {
+            "id": "dd5a28f9c533e0ee2ccc",
+            "title": "Trust but Verify: Designing Region-Inhomogeneous Forward Dynamics for Discrete Diffusion",
+            "url": "https://arxiv.org/abs/2610.22380",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": null,
+            "first_published_at": null,
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "feed_summary",
+            "demo": false,
+            "read_warning": "正文不可用，仅依据 RSS 摘要；不要推断摘要未提供的细节。",
+            "summary": "论文把离散语言扩散模型的前向加噪过程做成「按区域区分信任度」的设计：缺失位置按吸收式动态处理，已有上下文以低速率随机替换，让模型在训练中见到「已观测但不可靠」的 token；推理时用退火强度向可疑上下文重新注噪，并在轨迹后段冻结上下文更新。实验在预训练 170M 掩码扩散模型上做 8,000 步微调，单张 6 GB 笔记本 GPU 不到 5 小时完成。基座模型即使面对均匀随机乱码，仍给已观测 token 约 50% 概率；微调后对随机破坏的检测召回 0.96、精确率 0.91，10% 破坏下 infill token-F1 提升 3.8 点、20% 下提升 6.4 点，干净条件无可见退化（误改率低于 0.4%）。对「看似合理」的破坏增益弱得多：10% 时约 0.5 F1 点且不显著。作者限定为 170M 模型、单一文本域。摘要未给出首次提交日期，10 月 19 日进入公告流。",
+            "why_it_matters": "这是少见的按「能不能在本地小显卡上复现」写清成本的条目：6 GB 显存、5 小时内完成实验，可直接用来评估在自有设备上做微调对照的可行性；同时它的分场景增益（随机破坏强、合理破坏弱且不显著）就是很好的数值口径示例。",
+            "topic": "本地部署 / 模型微调",
+            "relevance": 2
+          },
+          {
+            "id": "7cc78127c883714f76f3",
+            "title": "Author-in-the-loop Agentic Reproducibility Auditing for a Machine Learning Conference",
+            "url": "https://arxiv.org/abs/2610.22465",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": null,
+            "first_published_at": null,
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "feed_summary",
+            "demo": false,
+            "read_warning": "正文不可用，仅依据 RSS 摘要；不要推断摘要未提供的细节。",
+            "summary": "论文把「作者声明」变成 agent 审计的显式输入：结构化清单记录复现步骤与已知限制，GitHub 上的两阶段流程把 agent 检查、作者澄清与修订、agent 复评串起来，agent 分别判断结果是否被复现、作者是否需要澄清或修复，人类审稿人批准请求并决定问题是否关闭。系统在 36 篇会议论文、133 个实验表格与图上部署，经人工复核提出 20 个问题，后续检查支持将这些全部关闭；但作者明确说明部分情况仍未能完成完整复现。作者还对比了完整清单与空白清单下重复审计的差异，用于分析作者声明如何影响 agent 的调查与判断。摘要未给出首次提交日期，10 月 19 日进入公告流。",
+            "why_it_matters": "它把「对照验收」做成可审计的流程：把预期结果写成显式清单、由独立程序记录判定，而不是让 agent 自己下结论；同时 20 个问题全部关闭但复现仍不完整的结论，提醒你在验收报告里区分「问题已澄清」与「结果已复现」。",
+            "topic": "Agent 工作流 / 可复现验证",
+            "relevance": 2
+          }
+        ],
+        "demo": false,
+        "generated_at": "2026-10-19T13:03:36.098040+00:00",
+        "sources_checked": [
+          "arxiv",
+          "google",
+          "huggingface",
+          "openai",
+          "techcrunch"
+        ],
+        "warnings": [],
+        "preferences": {
+          "name": "Token 对照验收工程师",
+          "role": "后端工程师",
+          "topics": [
+            "AI 编程",
+            "Agent",
+            "开源模型",
+            "AI 产品"
+          ],
+          "keywords": [
+            "工具调用",
+            "本地部署"
+          ]
+        },
+        "summary_review": {
+          "status": "checked",
+          "items": [
+            {
+              "article_id": "8cad1d7071d358947cb2",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "领域/模型/提示策略/架构数量、78% 对 40%、不足 10%、5–22 倍 token 与跨模型差异更大的结论均与原文一致；首次提交（10-15）与公告时间（10-19）区分正确。",
+              "evidence_quotes": [
+                "Across five domains (two of them new, all released with the paper), four models, six prompting strategies and three agent architectures, the best configuration solves 78% of the solvable tasks offline but only 40% online, where agents mostly act without inspecting the state.",
+                "Unsolvable tasks are recognised in under 10% of episodes, and heavier prompting strategies use 5 to 22 times as many tokens as direct prompting with no clear gain.",
+                "In our experiments, planning performance varied more across models than across prompting strategies or agent architectures."
+              ]
+            },
+            {
+              "article_id": "bf13a92368f50af68cba",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "11.8% 回归、1.3% 回退率、12.9 与 8.7 个百分点、五套基准、Planetarium 50%（3,086 条）均逐项对应原文；百分点表述正确；首次提交日期缺失的说明与元数据（null）一致。",
+              "evidence_quotes": [
+                "Purely LLM-based diagnosis, lacking a formal ground truth, often fails to spot these errors, and its ungrounded critiques cause regressions in 11.8% of initially correct specifications in our experiments.",
+                "Across five benchmarks spanning logical reasoning (SMT-LIB2), constraint programming (MiniZinc), and planning (PDDL), DRAGO cuts regressions by nearly an order of magnitude, to 1.3%, while improving answer accuracy by 12.9 percentage points over zero-shot formalization and 8.7 percentage points over LLM-diagnostic repair, averaged across benchmarks.",
+                "We also uncover two rendering defects in Planetarium that cause 50% (3,086 instances) of its floor-tile split to be inconsistent with the reference formalizations, and release a corrected split."
+              ]
+            },
+            {
+              "article_id": "6ec636eceffcfb5999d5",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "适配器库、scout 手册、路由器混合系数、无目标域梯度更新、三种设置（TimeWarp 域迁移与版本迁移、WebArena-Lite-v2）与约 8 个百分点增益均与原文一致，也未把结果写成普遍保证。",
+              "evidence_quotes": [
+                "WebMix begins with a bank of adapters trained on source interfaces. At deployment, a scout agent explores the target interface and summarizes its observations into a compact manual.",
+                "Adapting to a new interface takes only a scouting run and a forward pass, without gradient updates on the target.",
+                "On TimeWarp domain transfer, it gains about 8 percentage points on average over the best baseline with both models. These gains do not come at the cost of seen interfaces, where WebMix keeps its lead, and extend to version transfer."
+              ]
+            },
+            {
+              "article_id": "dd5a28f9c533e0ee2ccc",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "170M 模型、8,000 步微调、6 GB 笔记本 GPU 不到 5 小时、约 50% 概率、0.96 召回/0.91 精确率、3.8 与 6.4 F1 点、误改率低于 0.4%、约 0.5 点且不显著，以及作者对模型规模与单一文本域的限定均与原文一致。",
+              "evidence_quotes": [
+                "An 8,000-step finetune of a pretrained 170M-parameter masked diffusion model takes under five hours on a 6 GB laptop GPU. The base model assigns roughly 50% probability to observed tokens even when they are uniform-random garbage.",
+                "For uniform-random corruption, finetuning detects corrupted context with 0.96 recall and 0.91 precision, improves infill token-F1 by 3.8 points at 10% corruption and 6.4 points at 20%, and removes the accuracy dip next to corruptions. Clean conditioning shows no measurable regression, with a false-edit rate below 0.4%.",
+                "Gains for plausible corruptions are weaker: about 0.5 F1 points at 10% corruption, without statistical significance."
+              ]
+            },
+            {
+              "article_id": "7cc78127c883714f76f3",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "36 篇论文、133 个表格与图、20 个问题、后续检查支持全部关闭但部分仍未完成完整复现、两阶段 GitHub 流程与 agent 双重判断均与原文一致，未夸大复现结论。",
+              "evidence_quotes": [
+                "We deployed the system across 36 conference papers and 133 experimental tables and figures, raising 20 issues after human review. Further checks supported closing all the issues, although full reproduction remained unverified in some cases.",
+                "The agent separately assesses whether results have been reproduced and whether authors need to provide clarification or make repairs, while human reviewers approve requests and decide whether concerns are resolved.",
+                "We further compared repeated audits with complete and blank checklists to examine how author declarations shaped the agent's investigation and assessment."
+              ]
+            }
+          ],
+          "model_calls": 1,
+          "source_chars_limit": 5000
+        }
+      },
+      "pre_review_brief": {
+        "title": "AI 工程简报｜Agent 规划声明验收、形式化规格修复与低配本地微调",
+        "overview": "覆盖说明：OpenAI、Google AI、Hugging Face 三个源在过去 24 小时均无新条目；TechCrunch 仅两条且分别属股权/公益基金与并购类消息（落在排除词范围内），未采用。今日可用内容集中在 10 月 19 日 arXiv 公告流，共 40 条，从中挑出 5 条与「Agent 工具调用、AI 编程、本地部署」最相关的预印本，均未同行评审。与昨日简报（MCP 权限注入、Lean4AgenticRL、Harness-Delta、PRIME、SPOT）无重复；其中「Testing the Planning Claims」首次提交于 10 月 15 日，今天只是进入公告流，不是首发。",
+        "items": [
+          {
+            "id": "8cad1d7071d358947cb2",
+            "title": "Testing the Planning Claims of LLM-Based Agents against Formal Semantics",
+            "url": "https://arxiv.org/abs/2610.22469",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": "2026-10-15T17:47:30+00:00",
+            "first_published_at": "2026-10-15T17:47:30+00:00",
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "abstract",
+            "demo": false,
+            "publication_kind": "preprint",
+            "summary": "论文用隐藏 PDDL 模型作为形式化裁判，检验 LLM agent 是否真会规划：任务用自然语言给出，但每个动作是否可用、目标是否达成、计划是否本就无解，都由 PDDL 判定。作者覆盖 5 个领域（含 2 个新领域，均随论文发布）、4 个模型、6 种提示策略和 3 种 agent 架构；最佳配置离线解出 78% 的可解任务，在线只有 40%（此时 agent 多数不检查状态）；无解任务被识别出来的 episode 不足 10%；更重的提示策略消耗 5 到 22 倍 token，收益并无明确提升；规划表现跨模型的差异大于跨提示策略或架构的差异。论文 10 月 15 日首次提交，10 月 19 日进入公告流，非今日首发。",
+            "why_it_matters": "你做 token 对照验收时，最需要的就是这种能区分「真会做」与「看着像会做」的判据：它显示端到端成功率会高估能力，而提示策略加码常常只换来 5–22 倍 token 消耗，可用于设计对照实验与验收基线。",
+            "topic": "Agent 评测 / 工具调用",
+            "relevance": 3
+          },
+          {
+            "id": "bf13a92368f50af68cba",
+            "title": "Repairing LLM-Generated Specifications with Deterministic Diagnosis",
+            "url": "https://arxiv.org/abs/2610.22568",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": null,
+            "first_published_at": null,
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "feed_summary",
+            "demo": false,
+            "read_warning": "正文不可用，仅依据 RSS 摘要；不要推断摘要未提供的细节。",
+            "summary": "DRAGO 针对「LLM 把自然语言问题写成形式化规格」的场景：很多规格能跑通但语义写错（约束、域、目标、谓词），一旦执行成功就再没有解算器报错可用，而纯 LLM 自我诊断会产生无依据的批评，作者实验中有 11.8% 原本正确的规格因此被改坏。DRAGO 改用与形式系统绑定的确定性诊断，并且只在「无参考验收谓词」下诊断误差权重严格下降时才保留改写。跨 SMT-LIB2、MiniZinc、PDDL 五套基准，回退率降到 1.3%（近一个数量级改善），答案准确率比零样本形式化高 12.9 个百分点、比 LLM 诊断修复高 8.7 个百分点（平均口径）。作者还发现 Planetarium 的渲染缺陷导致其 floor-tile 切分 50%（3,086 条）与参考形式化不一致，并放出修正版。摘要未给出首次提交日期，10 月 19 日进入公告流。",
+            "why_it_matters": "这套「改写必须让可测量误差严格下降才保留」的验收谓词，几乎可以照搬到你的 token 对照流程里；同时提醒不要用 LLM 自评当裁判——实验里它反而让 11.8% 的正确结果退化。",
+            "topic": "AI 编程 / 形式化验证",
+            "relevance": 3
+          },
+          {
+            "id": "6ec636eceffcfb5999d5",
+            "title": "Don't Retrain, Remix: Adaptation of Web Agents using Mixture Hypernetworks",
+            "url": "https://arxiv.org/abs/2610.22539",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": null,
+            "first_published_at": null,
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "feed_summary",
+            "demo": false,
+            "read_warning": "正文不可用，仅依据 RSS 摘要；不要推断摘要未提供的细节。",
+            "summary": "WebMix 用混合超网络让 web agent 适配没见过的界面：先用一批在源界面训练好的低秩适配器组成「适配器库」，部署时由 scout agent 探索目标站点并写成一份简短手册，轻量路由器据此预测混合系数，合成一个用于推理的新适配器——目标域上不做梯度更新，只需一次侦察 + 一次前向。作者用 Qwen 与 Llama 系列在 TimeWarp（域迁移、版本迁移）和 WebArena-Lite-v2 上评测，三种设置均达到或超过上下文学习与 LoRA 基线，常与直接在目标界面训练的特化模型持平；TimeWarp 域迁移上两个模型平均比最佳基线高约 8 个百分点，且未牺牲已见界面的表现。摘要未给出首次提交日期，10 月 19 日进入公告流。",
+            "why_it_matters": "如果你自托管开源模型跑界面操作类任务，「不改权重、只做一次侦察+组合已有适配器」意味着换版或换站不必重训；评估时也应像论文那样同时报告已见界面的成绩，确认增益不是靠牺牲它换来的。",
+            "topic": "Agent / 模型适配",
+            "relevance": 2
+          },
+          {
+            "id": "dd5a28f9c533e0ee2ccc",
+            "title": "Trust but Verify: Designing Region-Inhomogeneous Forward Dynamics for Discrete Diffusion",
+            "url": "https://arxiv.org/abs/2610.22380",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": null,
+            "first_published_at": null,
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "feed_summary",
+            "demo": false,
+            "read_warning": "正文不可用，仅依据 RSS 摘要；不要推断摘要未提供的细节。",
+            "summary": "论文把离散语言扩散模型的前向加噪过程做成「按区域区分信任度」的设计：缺失位置按吸收式动态处理，已有上下文以低速率随机替换，让模型在训练中见到「已观测但不可靠」的 token；推理时用退火强度向可疑上下文重新注噪，并在轨迹后段冻结上下文更新。实验在预训练 170M 掩码扩散模型上做 8,000 步微调，单张 6 GB 笔记本 GPU 不到 5 小时完成。基座模型即使面对均匀随机乱码，仍给已观测 token 约 50% 概率；微调后对随机破坏的检测召回 0.96、精确率 0.91，10% 破坏下 infill token-F1 提升 3.8 点、20% 下提升 6.4 点，干净条件无可见退化（误改率低于 0.4%）。对「看似合理」的破坏增益弱得多：10% 时约 0.5 F1 点且不显著。作者限定为 170M 模型、单一文本域。摘要未给出首次提交日期，10 月 19 日进入公告流。",
+            "why_it_matters": "这是少见的按「能不能在本地小显卡上复现」写清成本的条目：6 GB 显存、5 小时内完成实验，可直接用来评估在自有设备上做微调对照的可行性；同时它的分场景增益（随机破坏强、合理破坏弱且不显著）就是很好的数值口径示例。",
+            "topic": "本地部署 / 模型微调",
+            "relevance": 2
+          },
+          {
+            "id": "7cc78127c883714f76f3",
+            "title": "Author-in-the-loop Agentic Reproducibility Auditing for a Machine Learning Conference",
+            "url": "https://arxiv.org/abs/2610.22465",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": null,
+            "first_published_at": null,
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "feed_summary",
+            "demo": false,
+            "read_warning": "正文不可用，仅依据 RSS 摘要；不要推断摘要未提供的细节。",
+            "summary": "论文把「作者声明」变成 agent 审计的显式输入：结构化清单记录复现步骤与已知限制，GitHub 上的两阶段流程把 agent 检查、作者澄清与修订、agent 复评串起来，agent 分别判断结果是否被复现、作者是否需要澄清或修复，人类审稿人批准请求并决定问题是否关闭。系统在 36 篇会议论文、133 个实验表格与图上部署，经人工复核提出 20 个问题，后续检查支持将这些全部关闭；但作者明确说明部分情况仍未能完成完整复现。作者还对比了完整清单与空白清单下重复审计的差异，用于分析作者声明如何影响 agent 的调查与判断。摘要未给出首次提交日期，10 月 19 日进入公告流。",
+            "why_it_matters": "它把「对照验收」做成可审计的流程：把预期结果写成显式清单、由独立程序记录判定，而不是让 agent 自己下结论；同时 20 个问题全部关闭但复现仍不完整的结论，提醒你在验收报告里区分「问题已澄清」与「结果已复现」。",
+            "topic": "Agent 工作流 / 可复现验证",
+            "relevance": 2
+          }
+        ],
+        "demo": false,
+        "generated_at": "2026-10-19T13:03:36.098040+00:00",
+        "sources_checked": [
+          "arxiv",
+          "google",
+          "huggingface",
+          "openai",
+          "techcrunch"
+        ],
+        "warnings": [],
+        "preferences": {
+          "name": "Token 对照验收工程师",
+          "role": "后端工程师",
+          "topics": [
+            "AI 编程",
+            "Agent",
+            "开源模型",
+            "AI 产品"
+          ],
+          "keywords": [
+            "工具调用",
+            "本地部署"
+          ]
+        }
+      },
+      "review_audit": {
+        "model_result": {
+          "overview": "覆盖说明：OpenAI、Google AI、Hugging Face 三个源在过去 24 小时均无新条目；TechCrunch 仅两条且分别属股权/公益基金与并购类消息（落在排除词范围内），未采用。今日可用内容集中在 10 月 19 日 arXiv 公告流，共 40 条，从中挑出 5 条与「Agent 工具调用、AI 编程、本地部署」最相关的预印本，均未同行评审。与昨日简报（MCP 权限注入、Lean4AgenticRL、Harness-Delta、PRIME、SPOT）无重复；其中「Testing the Planning Claims」首次提交于 10 月 15 日，10 月 19 日进入公告流，不是首发。",
+          "items": [
+            {
+              "article_id": "8cad1d7071d358947cb2",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "领域/模型/提示策略/架构数量、78% 对 40%、不足 10%、5–22 倍 token 与跨模型差异更大的结论均与原文一致；首次提交（10-15）与公告时间（10-19）区分正确。",
+              "evidence_quotes": [
+                "Across five domains (two of them new, all released with the paper), four models, six prompting strategies and three agent architectures, the best configuration solves 78% of the solvable tasks offline but only 40% online, where agents mostly act without inspecting the state.",
+                "Unsolvable tasks are recognised in under 10% of episodes, and heavier prompting strategies use 5 to 22 times as many tokens as direct prompting with no clear gain.",
+                "In our experiments, planning performance varied more across models than across prompting strategies or agent architectures."
+              ]
+            },
+            {
+              "article_id": "bf13a92368f50af68cba",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "11.8% 回归、1.3% 回退率、12.9 与 8.7 个百分点、五套基准、Planetarium 50%（3,086 条）均逐项对应原文；百分点表述正确；首次提交日期缺失的说明与元数据（null）一致。",
+              "evidence_quotes": [
+                "Purely LLM-based diagnosis, lacking a formal ground truth, often fails to spot these errors, and its ungrounded critiques cause regressions in 11.8% of initially correct specifications in our experiments.",
+                "Across five benchmarks spanning logical reasoning (SMT-LIB2), constraint programming (MiniZinc), and planning (PDDL), DRAGO cuts regressions by nearly an order of magnitude, to 1.3%, while improving answer accuracy by 12.9 percentage points over zero-shot formalization and 8.7 percentage points over LLM-diagnostic repair, averaged across benchmarks.",
+                "We also uncover two rendering defects in Planetarium that cause 50% (3,086 instances) of its floor-tile split to be inconsistent with the reference formalizations, and release a corrected split."
+              ]
+            },
+            {
+              "article_id": "6ec636eceffcfb5999d5",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "适配器库、scout 手册、路由器混合系数、无目标域梯度更新、三种设置（TimeWarp 域迁移与版本迁移、WebArena-Lite-v2）与约 8 个百分点增益均与原文一致，也未把结果写成普遍保证。",
+              "evidence_quotes": [
+                "WebMix begins with a bank of adapters trained on source interfaces. At deployment, a scout agent explores the target interface and summarizes its observations into a compact manual.",
+                "Adapting to a new interface takes only a scouting run and a forward pass, without gradient updates on the target.",
+                "On TimeWarp domain transfer, it gains about 8 percentage points on average over the best baseline with both models. These gains do not come at the cost of seen interfaces, where WebMix keeps its lead, and extend to version transfer."
+              ]
+            },
+            {
+              "article_id": "dd5a28f9c533e0ee2ccc",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "170M 模型、8,000 步微调、6 GB 笔记本 GPU 不到 5 小时、约 50% 概率、0.96 召回/0.91 精确率、3.8 与 6.4 F1 点、误改率低于 0.4%、约 0.5 点且不显著，以及作者对模型规模与单一文本域的限定均与原文一致。",
+              "evidence_quotes": [
+                "An 8,000-step finetune of a pretrained 170M-parameter masked diffusion model takes under five hours on a 6 GB laptop GPU. The base model assigns roughly 50% probability to observed tokens even when they are uniform-random garbage.",
+                "For uniform-random corruption, finetuning detects corrupted context with 0.96 recall and 0.91 precision, improves infill token-F1 by 3.8 points at 10% corruption and 6.4 points at 20%, and removes the accuracy dip next to corruptions. Clean conditioning shows no measurable regression, with a false-edit rate below 0.4%.",
+                "Gains for plausible corruptions are weaker: about 0.5 F1 points at 10% corruption, without statistical significance."
+              ]
+            },
+            {
+              "article_id": "7cc78127c883714f76f3",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "36 篇论文、133 个表格与图、20 个问题、后续检查支持全部关闭但部分仍未完成完整复现、两阶段 GitHub 流程与 agent 双重判断均与原文一致，未夸大复现结论。",
+              "evidence_quotes": [
+                "We deployed the system across 36 conference papers and 133 experimental tables and figures, raising 20 issues after human review. Further checks supported closing all the issues, although full reproduction remained unverified in some cases.",
+                "The agent separately assesses whether results have been reproduced and whether authors need to provide clarification or make repairs, while human reviewers approve requests and decide whether concerns are resolved.",
+                "We further compared repeated audits with complete and blank checklists to examine how author declarations shaped the agent's investigation and assessment."
+              ]
+            }
+          ]
+        }
+      },
+      "candidate_count": 42,
+      "candidate_ids": [
+        "33da8aabe6e16f93a795",
+        "71e1590c6c971a337879",
+        "da92b80397690dde35e8",
+        "aa178b575bb249be9aef",
+        "dd5a28f9c533e0ee2ccc",
+        "3a93b1c8699f7e1580fd",
+        "0b0024271a7c2b5987bb",
+        "d2da03dd040aaeefea30",
+        "9f9467f75484ebfa07d2",
+        "4c5e025cfc8f17ca9a46",
+        "434246a93fec15537b14",
+        "c75b08a745837bc4fd9e",
+        "fdd7c1296f918924cf03",
+        "5d023c2a1961329c95c3",
+        "5d02f5b2e0fc2d4c525a",
+        "dd2a6493f55037eee5a5",
+        "a6b428c98c5e6d1d2289",
+        "a6f4da06fdba108994ec",
+        "5f9cc4741ffa08d59cab",
+        "456c7c8f7dcbfa062e61",
+        "1cc7c278b01af9771804",
+        "a97c1f5a709e4de6f7ba",
+        "fa74b0cc3895cd40e05a",
+        "7cc78127c883714f76f3",
+        "f34ad45741b405ff9e69",
+        "9233c0fbe4fb6e2520e4",
+        "8cad1d7071d358947cb2",
+        "28b96783ce883a7e7f40",
+        "1cf7caf1e3962092517f",
+        "531156a59b9f298428c8",
+        "2ffe5ada9085e1add46b",
+        "6ec636eceffcfb5999d5",
+        "051009ada2a4f647f6fc",
+        "bf28c7aa2007aa01571b",
+        "61649a8ae4c58021cbc4",
+        "878235a76bf9396d7302",
+        "bf13a92368f50af68cba",
+        "17fb1b78ebadcb40daac",
+        "af9bbc2d1c0b8017291c",
+        "15e1c3b827bd5c829282",
+        "8e0becaa31e92e597767",
+        "2f51df856d85f4fbb4e7"
+      ],
+      "states": {
+        "excluded": 2,
+        "pending": 35,
+        "selected": 5
+      },
+      "sources_checked": [
+        "arxiv",
+        "google",
+        "huggingface",
+        "openai",
+        "techcrunch"
+      ],
+      "read_status": {
+        "8cad1d7071d358947cb2": "read",
+        "bf13a92368f50af68cba": "rss_only",
+        "6ec636eceffcfb5999d5": "rss_only",
+        "dd5a28f9c533e0ee2ccc": "rss_only",
+        "7cc78127c883714f76f3": "rss_only"
+      },
+      "tool_sequence": [
+        "list_dir",
+        "read_file",
+        "read_file",
+        "list_sources",
+        "fetch_news",
+        "fetch_news",
+        "fetch_news",
+        "fetch_news",
+        "fetch_news",
+        "read_article",
+        "read_article",
+        "read_article",
+        "read_article",
+        "read_article",
+        "record_article_states",
+        "submit_brief"
+      ],
+      "tool_errors": [],
+      "calls": [
+        {
+          "call": 1,
+          "phase": "generation",
+          "started": 508140.75,
+          "message_chars": 962,
+          "working_snapshots": 0,
+          "state_counts": {},
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 0.86,
+          "usage": {
+            "prompt_tokens": 1924,
+            "completion_tokens": 76,
+            "total_tokens": 2000,
+            "prompt_tokens_details": {
+              "cached_tokens": 1790
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "prompt_cache_hit_tokens": 1790,
+            "prompt_cache_miss_tokens": 134
+          },
+          "response_id": "d61f5a8a-c76e-4cfb-8944-2316bce99f7d",
+          "model": "deepseek-flash",
+          "tool_names": [
+            "list_dir",
+            "read_file"
+          ],
+          "finish_reasons": [
+            "tool_calls"
+          ]
+        },
+        {
+          "call": 2,
+          "phase": "generation",
+          "started": 508141.656,
+          "message_chars": 2138,
+          "working_snapshots": 0,
+          "state_counts": {},
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 0.76,
+          "usage": {
+            "prompt_tokens": 2182,
+            "completion_tokens": 52,
+            "total_tokens": 2234,
+            "prompt_tokens_details": {
+              "cached_tokens": 1920
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "prompt_cache_hit_tokens": 1920,
+            "prompt_cache_miss_tokens": 262
+          },
+          "response_id": "f2ac8bd5-8be0-4720-8627-2bfe4af3cbbc",
+          "model": "deepseek-flash",
+          "tool_names": [
+            "read_file",
+            "list_sources"
+          ],
+          "finish_reasons": [
+            "tool_calls"
+          ]
+        },
+        {
+          "call": 3,
+          "phase": "generation",
+          "started": 508142.468,
+          "message_chars": 5778,
+          "working_snapshots": 0,
+          "state_counts": {},
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 1.94,
+          "usage": {
+            "prompt_tokens": 3586,
+            "completion_tokens": 252,
+            "total_tokens": 3838,
+            "prompt_tokens_details": {
+              "cached_tokens": 2176
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 116
+            },
+            "prompt_cache_hit_tokens": 2176,
+            "prompt_cache_miss_tokens": 1410
+          },
+          "response_id": "f39da9d5-cc81-4c76-b74c-51b42fd64716",
+          "model": "deepseek-flash",
+          "tool_names": [
+            "fetch_news",
+            "fetch_news",
+            "fetch_news",
+            "fetch_news"
+          ],
+          "finish_reasons": [
+            "tool_calls"
+          ]
+        },
+        {
+          "call": 4,
+          "phase": "generation",
+          "started": 508144.484,
+          "message_chars": 9165,
+          "working_snapshots": 0,
+          "state_counts": {},
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 1.59,
+          "usage": {
+            "prompt_tokens": 4653,
+            "completion_tokens": 107,
+            "total_tokens": 4760,
+            "prompt_tokens_details": {
+              "cached_tokens": 3712
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 67
+            },
+            "prompt_cache_hit_tokens": 3712,
+            "prompt_cache_miss_tokens": 941
+          },
+          "response_id": "1d2fa139-8670-4e93-adfd-3818be98ecb9",
+          "model": "deepseek-flash",
+          "tool_names": [
+            "fetch_news"
+          ],
+          "finish_reasons": [
+            "tool_calls"
+          ]
+        },
+        {
+          "call": 5,
+          "phase": "generation",
+          "started": 508146.109,
+          "message_chars": 92027,
+          "working_snapshots": 0,
+          "state_counts": {},
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 7.58,
+          "usage": {
+            "prompt_tokens": 23079,
+            "completion_tokens": 1316,
+            "total_tokens": 24395,
+            "prompt_tokens_details": {
+              "cached_tokens": 4736
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 1104
+            },
+            "prompt_cache_hit_tokens": 4736,
+            "prompt_cache_miss_tokens": 18343
+          },
+          "response_id": "a57ebf1e-6153-4c58-8cab-2bbfffe9b6dd",
+          "model": "deepseek-flash",
+          "tool_names": [
+            "read_article",
+            "read_article",
+            "read_article",
+            "read_article",
+            "read_article"
+          ],
+          "finish_reasons": [
+            "tool_calls"
+          ]
+        },
+        {
+          "call": 6,
+          "phase": "generation",
+          "started": 508153.781,
+          "message_chars": 104127,
+          "working_snapshots": 0,
+          "state_counts": {},
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 6.26,
+          "usage": {
+            "prompt_tokens": 26932,
+            "completion_tokens": 1420,
+            "total_tokens": 28352,
+            "prompt_tokens_details": {
+              "cached_tokens": 24320
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 715
+            },
+            "prompt_cache_hit_tokens": 24320,
+            "prompt_cache_miss_tokens": 2612
+          },
+          "response_id": "57f8a915-027f-4179-975a-8d260d2181b8",
+          "model": "deepseek-flash",
+          "tool_names": [
+            "record_article_states"
+          ],
+          "finish_reasons": [
+            "tool_calls"
+          ]
+        },
+        {
+          "call": 7,
+          "phase": "generation",
+          "started": 508160.093,
+          "message_chars": 108930,
+          "working_snapshots": 0,
+          "state_counts": {},
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 10.16,
+          "usage": {
+            "prompt_tokens": 29115,
+            "completion_tokens": 1865,
+            "total_tokens": 30980,
+            "prompt_tokens_details": {
+              "cached_tokens": 28288
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "prompt_cache_hit_tokens": 28288,
+            "prompt_cache_miss_tokens": 827
+          },
+          "response_id": "61998a17-845b-46d1-a334-4172d4b7b59d",
+          "model": "deepseek-flash",
+          "tool_names": [
+            "submit_brief"
+          ],
+          "finish_reasons": [
+            "tool_calls"
+          ]
+        },
+        {
+          "call": 8,
+          "phase": "generation",
+          "started": 508170.281,
+          "message_chars": 112550,
+          "working_snapshots": 0,
+          "state_counts": {},
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 2.7,
+          "usage": {
+            "prompt_tokens": 31025,
+            "completion_tokens": 413,
+            "total_tokens": 31438,
+            "prompt_tokens_details": {
+              "cached_tokens": 30848
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "prompt_cache_hit_tokens": 30848,
+            "prompt_cache_miss_tokens": 177
+          },
+          "response_id": "a9d65a38-5e78-44eb-869f-0f262c74737b",
+          "model": "deepseek-flash",
+          "tool_names": [],
+          "finish_reasons": [
+            "stop"
+          ]
+        },
+        {
+          "call": 9,
+          "phase": "summary_review",
+          "started": 508172.984,
+          "message_chars": 11476,
+          "working_snapshots": 0,
+          "state_counts": {},
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 11.22,
+          "usage": {
+            "prompt_tokens": 3361,
+            "completion_tokens": 2835,
+            "total_tokens": 6196,
+            "prompt_tokens_details": {
+              "cached_tokens": 128
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 1443
+            },
+            "prompt_cache_hit_tokens": 128,
+            "prompt_cache_miss_tokens": 3233
+          },
+          "response_id": "b885e8cc-3611-4397-9bc9-57968220e126",
+          "model": "deepseek-flash",
+          "tool_names": [],
+          "finish_reasons": [
+            "stop"
+          ]
+        }
+      ],
+      "generation": {
+        "attempted_calls": 8,
+        "metered_calls": 8,
+        "unmetered_attempts": 0,
+        "input_tokens": 122496,
+        "output_tokens": 5501,
+        "total_tokens": 127997,
+        "cache_read_tokens": 97790,
+        "reasoning_output_tokens": 2002,
+        "uncached_input_tokens": 24706
+      },
+      "summary_review": {
+        "attempted_calls": 1,
+        "metered_calls": 1,
+        "unmetered_attempts": 0,
+        "input_tokens": 3361,
+        "output_tokens": 2835,
+        "total_tokens": 6196,
+        "cache_read_tokens": 128,
+        "reasoning_output_tokens": 1443,
+        "uncached_input_tokens": 3233
+      },
+      "all_phases": {
+        "attempted_calls": 9,
+        "metered_calls": 9,
+        "unmetered_attempts": 0,
+        "input_tokens": 125857,
+        "output_tokens": 8336,
+        "total_tokens": 134193,
+        "cache_read_tokens": 97918,
+        "reasoning_output_tokens": 3445,
+        "uncached_input_tokens": 27939
+      },
+      "checks": {
+        "nonempty_brief": true,
+        "within_limit": true,
+        "no_history_duplicates": true,
+        "no_demo": true,
+        "all_successful_calls_metered": true,
+        "excluded_text_absent": true
+      },
+      "material_archive_path": "data\\acceptance\\tokens-20261020T085942Z\\baseline\\data\\materials\\de19c8e8796f425f8baeca6ab10dafc2.json",
+      "request_archive_path": "data\\acceptance\\tokens-20261020T085942Z\\baseline\\requests.jsonl"
+    },
+    {
+      "arm": "context_only",
+      "prefilter_enabled": false,
+      "working_context_enabled": true,
+      "status": "completed",
+      "error": null,
+      "elapsed_seconds": 82.89,
+      "brief": {
+        "title": "AI 工程简报｜Agent 规划的形式化验收、网页 Agent 免重训适配与规格修复回归",
+        "overview": "本简报依据已读取的来源整理：5 篇均为 arXiv 于 2026-10-19 公告的论文，主题集中在 LLM 规划与 agent 跨界面适配、GUI agent 长程历史压缩、形式化规格修复、信息物理系统任务规划，未涉及 AI 编程或部署成本的直接测量。其中 8cad1d7071d358947cb2 首次提交于 2026-10-15，其余各篇在 RSS 中未提供首次提交日期；其他来源的条目情况与公告总条数在可用数据中没有体现，因此不作表述。",
+        "items": [
+          {
+            "id": "8cad1d7071d358947cb2",
+            "title": "Testing the Planning Claims of LLM-Based Agents against Formal Semantics",
+            "url": "https://arxiv.org/abs/2610.22469",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": "2026-10-15T17:47:30+00:00",
+            "first_published_at": "2026-10-15T17:47:30+00:00",
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "abstract",
+            "demo": false,
+            "publication_kind": "preprint",
+            "summary": "论文用形式语义检验 LLM 规划：任务以自然语言给出，但每个任务背后有一个隐藏的 PDDL 模型，用来判定动作是否可执行、目标是否达成、计划是否存在。在 5 个领域（其中 2 个为新发布）、4 个模型、6 种提示策略、3 种 agent 架构下，最佳配置离线解出可解任务的 78%，在线交互时只有 40%，作者称在线时 agent 多数行动前不检查状态；无解任务仅在不到 10% 的回合里被识别；更重的提示策略消耗 5–22 倍 token 且无明显收益。该论文 10 月 15 日首次提交，10 月 19 日进入 arXiv 公告流。",
+            "why_it_matters": "你的验收若只看最终答案或模型自评，会系统性高估 agent 能力：这篇给出“按动作轨迹对形式语义”的对照方法。在线 40% 对离线 78% 的差距，以及“不检查状态”这一失效模式，适合直接转成回归用例，并把 token 倍数列入预算告警。",
+            "topic": "Agent 评测 / 规划",
+            "relevance": 3
+          },
+          {
+            "id": "6ec636eceffcfb5999d5",
+            "title": "Don't Retrain, Remix: Adaptation of Web Agents using Mixture Hypernetworks",
+            "url": "https://arxiv.org/abs/2610.22539",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": null,
+            "first_published_at": null,
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "feed_summary",
+            "demo": false,
+            "read_warning": "正文不可用，仅依据 RSS 摘要；不要推断摘要未提供的细节。",
+            "summary": "WebMix 让网页 agent 不重训适配新界面：侦察 agent 把目标界面信息规整成界面手册，超网络路由器根据目标描述与任务预测 LoRA 混合系数，从而组合已有适配器。实测适配只需一次侦察运行与一次前向，目标端无梯度更新。用 Qwen 与 Llama 在 TimeWarp 上做域迁移和版本迁移、在 WebArena-Lite-v2 上做域迁移，三个设定中都不低于 in-context learning 与 LoRA 基线，作者称常与直接在该界面训练的特化模型平均成功率相当；TimeWarp 域迁移上平均领先最佳基线约 8 个百分点。10 月 19 日进入 arXiv 公告流，RSS 未给首次提交日期。",
+            "why_it_matters": "内部工具界面一改版就要重训或重写提示，是 Agent 落地的常见维护成本。把适配压到一次侦察与一次前向，意味着可以在本地用现有适配器做可回滚的适配实验，再做 A/B 对照验收；注意 8 个百分点是相对最佳基线的平均成功率差，不等于普遍收益。",
+            "topic": "Agent 部署 / 适配",
+            "relevance": 3
+          },
+          {
+            "id": "9f9467f75484ebfa07d2",
+            "title": "ECHOES: Seeing Beyond the Current Image via Recursive History Compression and Privileged On-Policy Distillation",
+            "url": "https://arxiv.org/abs/2610.22408",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": null,
+            "first_published_at": null,
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "feed_summary",
+            "demo": false,
+            "read_warning": "正文不可用，仅依据 RSS 摘要；不要推断摘要未提供的细节。",
+            "summary": "ECHOES 用“压缩—思考—行动”架构处理 GUI agent 的长程任务：训练期引入多图“特权”教师做 on-policy 蒸馏，指导模型把历史压缩成文本并在文本中显式推理；部署时不保留历史截图。作者还基于真实 GUI 失败轨迹构建了 ECHOESBMK，并称在 4 个 GUI 基准上取得有竞争力的成功率，在未见的视觉规划任务上出现正向零样本迁移。10 月 19 日进入 arXiv 公告流，RSS 未给首次提交日期，也未给具体分数或成本数值。",
+            "why_it_matters": "长程 GUI 任务的上下文长度直接决定单任务 token 成本，而“不留截图、只留压缩文本”会带来信息损失。这正好适合你的对照验收：同一批任务跑“全量历史”与“压缩历史”两组，比较成功率差与 token 节省，再决定能否上线。",
+            "topic": "Agent / 推理成本",
+            "relevance": 2
+          },
+          {
+            "id": "bf13a92368f50af68cba",
+            "title": "Repairing LLM-Generated Specifications with Deterministic Diagnosis",
+            "url": "https://arxiv.org/abs/2610.22568",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": null,
+            "first_published_at": null,
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "feed_summary",
+            "demo": false,
+            "read_warning": "正文不可用，仅依据 RSS 摘要；不要推断摘要未提供的细节。",
+            "summary": "DRAGO 用确定性诊断修复 LLM 生成的形式化规格：先按语法、类型与领域规则定位错误，再据此修复。实验显示纯 LLM 诊断缺少形式真值、常漏掉错误，其无依据批评会让 11.8% 的初始正确规格出现回归；在覆盖 SMT-LIB2、MiniZinc、PDDL 的 5 个基准上，DRAGO 把回归率压到 1.3%，平均答案准确率比零样本形式化高 12.9 个百分点、比 LLM 诊断修复高 8.7 个百分点。作者还报告 Planetarium 渲染缺陷影响 floor-tile 划分的 50%（3,086 个实例），并已发布修正后的划分。10 月 19 日进入 arXiv 公告流，RSS 未给首次提交日期。",
+            "why_it_matters": "这是典型的验收教训：让模型自评会引入回归（11.8%），确定性检查能把回归降到约十分之一（1.3%）。在你的 code/spec 生成流水线里，可以照搬“确定性诊断先行、修复后回归全跑”的顺序，并把回归率作为门槛指标。",
+            "topic": "AI 编程 / 形式化验证",
+            "relevance": 3
+          },
+          {
+            "id": "5f9cc4741ffa08d59cab",
+            "title": "From Natural Language Intent to Executable Control: Hierarchical Feedback-Guided LLM Planning for Multi-component Cyber-Physical Systems",
+            "url": "https://arxiv.org/abs/2610.22441",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": null,
+            "first_published_at": null,
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "feed_summary",
+            "demo": false,
+            "read_warning": "正文不可用，仅依据 RSS 摘要；不要推断摘要未提供的细节。",
+            "summary": "该框架让 LLM 同时生成结构化任务计划与对应的信号时序逻辑（STL）约束，再用一个可靠算法找出两者的确定矛盾，并把矛盾反馈回去修改；当底层控制合成失败时，失败诊断也会反馈给高层重新规划。在 7 个异构多组件信息物理系统场景上，能生成可执行计划且控制执行满足原始自然语言任务的成功率为 87.9%（使用 GPT-5）。10 月 19 日进入 arXiv 公告流，RSS 未给首次提交日期。",
+            "why_it_matters": "和你的验收脚本生成场景相似：把自然语言需求落成“计划 + 机器可检查的约束”，在执行前做矛盾检测，而不是执行完再让模型自己说对不对。87.9% 是该论文 7 个场景下的成功率，不等于通用场景的可靠度，但分层反馈的结构可以直接借鉴。",
+            "topic": "Agent 规划 / 工具调用",
+            "relevance": 2
+          }
+        ],
+        "demo": false,
+        "generated_at": "2026-10-19T13:03:36.098040+00:00",
+        "sources_checked": [
+          "arxiv",
+          "google",
+          "huggingface",
+          "openai",
+          "techcrunch"
+        ],
+        "warnings": [],
+        "preferences": {
+          "name": "Token 对照验收工程师",
+          "role": "后端工程师",
+          "topics": [
+            "AI 编程",
+            "Agent",
+            "开源模型",
+            "AI 产品"
+          ],
+          "keywords": [
+            "工具调用",
+            "本地部署"
+          ]
+        },
+        "summary_review": {
+          "status": "checked",
+          "items": [
+            {
+              "article_id": "8cad1d7071d358947cb2",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "场景数、模型数、提示策略数、架构数、78%/40%、低于 10%、5–22 倍 token 均与原文一致；10 月 15 日首次提交、10 月 19 日公告与日期元数据一致。",
+              "evidence_quotes": [
+                "Tasks are posed in natural language, but each is grounded in a hidden PDDL model that decides whether every action is applicable, whether the goal is reached, and whether a plan exists at all.",
+                "Across five domains (two of them new, all released with the paper), four models, six prompting strategies and three agent architectures, the best configuration solves 78% of the solvable tasks offline but only 40% online, where agents mostly act without inspecting the state.",
+                "Unsolvable tasks are recognised in under 10% of episodes, and heavier prompting strategies use 5 to 22 times as many tokens as direct prompting with no clear gain."
+              ]
+            },
+            {
+              "article_id": "6ec636eceffcfb5999d5",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "侦察、路由器、适配成本（一次侦察运行加一次前向、目标端无梯度更新）、三个评测设定、与 ICL/LoRA 基线比较、约 8 个百分点均与原文一致；RSS 未给首次提交日期的说明也符合元数据。",
+              "evidence_quotes": [
+                "Adapting to a new interface takes only a scouting run and a forward pass, without gradient updates on the target.",
+                "In all three settings, WebMix matches or outperforms in-context learning and LoRA baselines, often matching the average success of specialists trained directly on those interfaces.",
+                "On TimeWarp domain transfer, it gains about 8 percentage points on average over the best baseline with both models."
+              ]
+            },
+            {
+              "article_id": "9f9467f75484ebfa07d2",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "CTA、多图特权教师做 on-policy 蒸馏、部署时不保留历史截图、ECHOESBMK 的来源与四个 GUI 基准、零样本迁移等表述与原文对应；原文所述“competitive performance”另有“性能-成本权衡”的限定，摘要未将其写成普遍保证，也未给出具体分数。",
+              "evidence_quotes": [
+                "Specifically, ECHOES adopts a Compression-Think-Action (CTA) format to recursively update a textual history state and reason.",
+                "The same model, given privileged multi-image inputs, serves as a teacher that provides dense token-level on-policy distillation on student-generated CTA rollouts.",
+                "Without retaining historical screenshots at deployment, ECHOES achieves competitive performance with a favorable performance-inference-cost trade-off and exhibits positive zero-shot transfer to unseen visual planning tasks."
+              ]
+            },
+            {
+              "article_id": "bf13a92368f50af68cba",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "11.8% 回归、5 个基准（SMT-LIB2/MiniZinc/PDDL）、回归率降至 1.3%、12.9 与 8.7 个百分点、Planetarium 缺陷影响 50%（3,086 个实例）并发布修正划分，均可逐字核对。",
+              "evidence_quotes": [
+                "Purely LLM-based diagnosis, lacking a formal ground truth, often fails to spot these errors, and its ungrounded critiques cause regressions in 11.8% of initially correct specifications in our experiments.",
+                "Across five benchmarks spanning logical reasoning (SMT-LIB2), constraint programming (MiniZinc), and planning (PDDL), DRAGO cuts regressions by nearly an order of magnitude, to 1.3%, while improving answer accuracy by 12.9 percentage points over zero-shot formalization and 8.7 percentage points over LLM-diagnostic repair, averaged across benchmarks.",
+                "We also uncover two rendering defects in Planetarium that cause 50% (3,086 instances) of its floor-tile split to be inconsistent with the reference formalizations, and release a corrected split."
+              ]
+            },
+            {
+              "article_id": "5f9cc4741ffa08d59cab",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "同时生成任务计划与 STL 约束、可靠算法识别两者之间的确定矛盾并反馈、控制合成失败时回传诊断、7 个异构多组件 CPS 场景、GPT-5 下 87.9% 成功率均与原文一致。",
+              "evidence_quotes": [
+                "We prompt LLMs to generate both a structured task plan and corresponding signal temporal logic (STL) constraints, and design a sound algorithm that identifies definite contradictions between them and provides feedback for revising inconsistencies.",
+                "At the execution level, when control synthesis fails, we extract different types of diagnostic information, such as violated constraints and conflicting component assignments, and feed them back to guide task replanning.",
+                "Experiments on seven heterogeneous multi-component CPS scenarios have shown that our framework can generate executable plans and feasible control executions that satisfy the original natural language missions with a success rate of 87.9% with GPT-5."
+              ]
+            }
+          ],
+          "model_calls": 2,
+          "source_chars_limit": 5000
+        }
+      },
+      "pre_review_brief": {
+        "title": "AI 工程简报｜Agent 规划的形式化验收、网页 Agent 免重训适配与规格修复回归",
+        "overview": "过去 24 小时 OpenAI、Google、Hugging Face 三个官方源无新条目；TechCrunch 仅两条公司/交易类消息，与工程主题无关；可用的实质内容集中在 arXiv 今日公告（40 条），本简报从中选了 5 条与 Agent、AI 编程、部署成本直接相关的论文。今天早间简报已推送的 5 篇（MCP 授权注入、Lean4AgenticRL、harness 增益归因、PRIME、SPOT）不再重复；非今日首次提交的论文已注明公告时间，摘要未给首次提交日期的也已标注。",
+        "items": [
+          {
+            "id": "8cad1d7071d358947cb2",
+            "title": "Testing the Planning Claims of LLM-Based Agents against Formal Semantics",
+            "url": "https://arxiv.org/abs/2610.22469",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": "2026-10-15T17:47:30+00:00",
+            "first_published_at": "2026-10-15T17:47:30+00:00",
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "abstract",
+            "demo": false,
+            "publication_kind": "preprint",
+            "summary": "论文用形式语义检验 LLM 规划：任务以自然语言给出，但每个任务背后有一个隐藏的 PDDL 模型，用来判定动作是否可执行、目标是否达成、计划是否存在。在 5 个领域（其中 2 个为新发布）、4 个模型、6 种提示策略、3 种 agent 架构下，最佳配置离线解出可解任务的 78%，在线交互时只有 40%，作者称在线时 agent 多数行动前不检查状态；无解任务仅在不到 10% 的回合里被识别；更重的提示策略消耗 5–22 倍 token 且无明显收益。该论文 10 月 15 日首次提交，10 月 19 日进入 arXiv 公告流。",
+            "why_it_matters": "你的验收若只看最终答案或模型自评，会系统性高估 agent 能力：这篇给出“按动作轨迹对形式语义”的对照方法。在线 40% 对离线 78% 的差距，以及“不检查状态”这一失效模式，适合直接转成回归用例，并把 token 倍数列入预算告警。",
+            "topic": "Agent 评测 / 规划",
+            "relevance": 3
+          },
+          {
+            "id": "6ec636eceffcfb5999d5",
+            "title": "Don't Retrain, Remix: Adaptation of Web Agents using Mixture Hypernetworks",
+            "url": "https://arxiv.org/abs/2610.22539",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": null,
+            "first_published_at": null,
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "feed_summary",
+            "demo": false,
+            "read_warning": "正文不可用，仅依据 RSS 摘要；不要推断摘要未提供的细节。",
+            "summary": "WebMix 让网页 agent 不重训适配新界面：侦察 agent 把目标界面信息规整成界面手册，超网络路由器根据目标描述与任务预测 LoRA 混合系数，从而组合已有适配器。实测适配只需一次侦察运行与一次前向，目标端无梯度更新。用 Qwen 与 Llama 在 TimeWarp 上做域迁移和版本迁移、在 WebArena-Lite-v2 上做域迁移，三个设定中都不低于 in-context learning 与 LoRA 基线，作者称常与直接在该界面训练的特化模型平均成功率相当；TimeWarp 域迁移上平均领先最佳基线约 8 个百分点。10 月 19 日进入 arXiv 公告流，RSS 未给首次提交日期。",
+            "why_it_matters": "内部工具界面一改版就要重训或重写提示，是 Agent 落地的常见维护成本。把适配压到一次侦察与一次前向，意味着可以在本地用现有适配器做可回滚的适配实验，再做 A/B 对照验收；注意 8 个百分点是相对最佳基线的平均成功率差，不等于普遍收益。",
+            "topic": "Agent 部署 / 适配",
+            "relevance": 3
+          },
+          {
+            "id": "9f9467f75484ebfa07d2",
+            "title": "ECHOES: Seeing Beyond the Current Image via Recursive History Compression and Privileged On-Policy Distillation",
+            "url": "https://arxiv.org/abs/2610.22408",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": null,
+            "first_published_at": null,
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "feed_summary",
+            "demo": false,
+            "read_warning": "正文不可用，仅依据 RSS 摘要；不要推断摘要未提供的细节。",
+            "summary": "ECHOES 用“压缩—思考—行动”架构处理 GUI agent 的长程任务：训练期引入多图“特权”教师做 on-policy 蒸馏，指导模型把历史压缩成文本并在文本中显式推理；部署时不保留历史截图。作者还基于真实 GUI 失败轨迹构建了 ECHOESBMK，并称在 4 个 GUI 基准上取得有竞争力的成功率，在未见的视觉规划任务上出现正向零样本迁移。10 月 19 日进入 arXiv 公告流，RSS 未给首次提交日期，也未给具体分数或成本数值。",
+            "why_it_matters": "长程 GUI 任务的上下文长度直接决定单任务 token 成本，而“不留截图、只留压缩文本”会带来信息损失。这正好适合你的对照验收：同一批任务跑“全量历史”与“压缩历史”两组，比较成功率差与 token 节省，再决定能否上线。",
+            "topic": "Agent / 推理成本",
+            "relevance": 2
+          },
+          {
+            "id": "bf13a92368f50af68cba",
+            "title": "Repairing LLM-Generated Specifications with Deterministic Diagnosis",
+            "url": "https://arxiv.org/abs/2610.22568",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": null,
+            "first_published_at": null,
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "feed_summary",
+            "demo": false,
+            "read_warning": "正文不可用，仅依据 RSS 摘要；不要推断摘要未提供的细节。",
+            "summary": "DRAGO 用确定性诊断修复 LLM 生成的形式化规格：先按语法、类型与领域规则定位错误，再据此修复。实验显示纯 LLM 诊断缺少形式真值、常漏掉错误，其无依据批评会让 11.8% 的初始正确规格出现回归；在覆盖 SMT-LIB2、MiniZinc、PDDL 的 5 个基准上，DRAGO 把回归率压到 1.3%，平均答案准确率比零样本形式化高 12.9 个百分点、比 LLM 诊断修复高 8.7 个百分点。作者还报告 Planetarium 渲染缺陷影响 floor-tile 划分的 50%（3,086 个实例），并已发布修正后的划分。10 月 19 日进入 arXiv 公告流，RSS 未给首次提交日期。",
+            "why_it_matters": "这是典型的验收教训：让模型自评会引入回归（11.8%），确定性检查能把回归降到约十分之一（1.3%）。在你的 code/spec 生成流水线里，可以照搬“确定性诊断先行、修复后回归全跑”的顺序，并把回归率作为门槛指标。",
+            "topic": "AI 编程 / 形式化验证",
+            "relevance": 3
+          },
+          {
+            "id": "5f9cc4741ffa08d59cab",
+            "title": "From Natural Language Intent to Executable Control: Hierarchical Feedback-Guided LLM Planning for Multi-component Cyber-Physical Systems",
+            "url": "https://arxiv.org/abs/2610.22441",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": null,
+            "first_published_at": null,
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "feed_summary",
+            "demo": false,
+            "read_warning": "正文不可用，仅依据 RSS 摘要；不要推断摘要未提供的细节。",
+            "summary": "该框架让 LLM 同时生成结构化任务计划与对应的信号时序逻辑（STL）约束，再用一个可靠算法找出两者的确定矛盾，并把矛盾反馈回去修改；当底层控制合成失败时，失败诊断也会反馈给高层重新规划。在 7 个异构多组件信息物理系统场景上，能生成可执行计划且控制执行满足原始自然语言任务的成功率为 87.9%（使用 GPT-5）。10 月 19 日进入 arXiv 公告流，RSS 未给首次提交日期。",
+            "why_it_matters": "和你的验收脚本生成场景相似：把自然语言需求落成“计划 + 机器可检查的约束”，在执行前做矛盾检测，而不是执行完再让模型自己说对不对。87.9% 是该论文 7 个场景下的成功率，不等于通用场景的可靠度，但分层反馈的结构可以直接借鉴。",
+            "topic": "Agent 规划 / 工具调用",
+            "relevance": 2
+          }
+        ],
+        "demo": false,
+        "generated_at": "2026-10-19T13:03:36.098040+00:00",
+        "sources_checked": [
+          "arxiv",
+          "google",
+          "huggingface",
+          "openai",
+          "techcrunch"
+        ],
+        "warnings": [],
+        "preferences": {
+          "name": "Token 对照验收工程师",
+          "role": "后端工程师",
+          "topics": [
+            "AI 编程",
+            "Agent",
+            "开源模型",
+            "AI 产品"
+          ],
+          "keywords": [
+            "工具调用",
+            "本地部署"
+          ]
+        }
+      },
+      "review_audit": {
+        "model_result": {
+          "overview": "本简报依据已读取的来源整理：5 篇均为 arXiv 于 2026-10-19 公告的论文，主题集中在 LLM 规划与 agent 跨界面适配、GUI agent 长程历史压缩、形式化规格修复、信息物理系统任务规划，未涉及 AI 编程或部署成本的直接测量。其中 8cad1d7071d358947cb2 首次提交于 2026-10-15，其余各篇在 RSS 中未提供首次提交日期；其他来源的条目情况与公告总条数在可用数据中没有体现，因此不作表述。",
+          "items": [
+            {
+              "article_id": "8cad1d7071d358947cb2",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "场景数、模型数、提示策略数、架构数、78%/40%、低于 10%、5–22 倍 token 均与原文一致；10 月 15 日首次提交、10 月 19 日公告与日期元数据一致。",
+              "evidence_quotes": [
+                "Tasks are posed in natural language, but each is grounded in a hidden PDDL model that decides whether every action is applicable, whether the goal is reached, and whether a plan exists at all.",
+                "Across five domains (two of them new, all released with the paper), four models, six prompting strategies and three agent architectures, the best configuration solves 78% of the solvable tasks offline but only 40% online, where agents mostly act without inspecting the state.",
+                "Unsolvable tasks are recognised in under 10% of episodes, and heavier prompting strategies use 5 to 22 times as many tokens as direct prompting with no clear gain."
+              ]
+            },
+            {
+              "article_id": "6ec636eceffcfb5999d5",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "侦察、路由器、适配成本（一次侦察运行加一次前向、目标端无梯度更新）、三个评测设定、与 ICL/LoRA 基线比较、约 8 个百分点均与原文一致；RSS 未给首次提交日期的说明也符合元数据。",
+              "evidence_quotes": [
+                "Adapting to a new interface takes only a scouting run and a forward pass, without gradient updates on the target.",
+                "In all three settings, WebMix matches or outperforms in-context learning and LoRA baselines, often matching the average success of specialists trained directly on those interfaces.",
+                "On TimeWarp domain transfer, it gains about 8 percentage points on average over the best baseline with both models."
+              ]
+            },
+            {
+              "article_id": "9f9467f75484ebfa07d2",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "CTA、多图特权教师做 on-policy 蒸馏、部署时不保留历史截图、ECHOESBMK 的来源与四个 GUI 基准、零样本迁移等表述与原文对应；原文所述“competitive performance”另有“性能-成本权衡”的限定，摘要未将其写成普遍保证，也未给出具体分数。",
+              "evidence_quotes": [
+                "Specifically, ECHOES adopts a Compression-Think-Action (CTA) format to recursively update a textual history state and reason.",
+                "The same model, given privileged multi-image inputs, serves as a teacher that provides dense token-level on-policy distillation on student-generated CTA rollouts.",
+                "Without retaining historical screenshots at deployment, ECHOES achieves competitive performance with a favorable performance-inference-cost trade-off and exhibits positive zero-shot transfer to unseen visual planning tasks."
+              ]
+            },
+            {
+              "article_id": "bf13a92368f50af68cba",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "11.8% 回归、5 个基准（SMT-LIB2/MiniZinc/PDDL）、回归率降至 1.3%、12.9 与 8.7 个百分点、Planetarium 缺陷影响 50%（3,086 个实例）并发布修正划分，均可逐字核对。",
+              "evidence_quotes": [
+                "Purely LLM-based diagnosis, lacking a formal ground truth, often fails to spot these errors, and its ungrounded critiques cause regressions in 11.8% of initially correct specifications in our experiments.",
+                "Across five benchmarks spanning logical reasoning (SMT-LIB2), constraint programming (MiniZinc), and planning (PDDL), DRAGO cuts regressions by nearly an order of magnitude, to 1.3%, while improving answer accuracy by 12.9 percentage points over zero-shot formalization and 8.7 percentage points over LLM-diagnostic repair, averaged across benchmarks.",
+                "We also uncover two rendering defects in Planetarium that cause 50% (3,086 instances) of its floor-tile split to be inconsistent with the reference formalizations, and release a corrected split."
+              ]
+            },
+            {
+              "article_id": "5f9cc4741ffa08d59cab",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "同时生成任务计划与 STL 约束、可靠算法识别两者之间的确定矛盾并反馈、控制合成失败时回传诊断、7 个异构多组件 CPS 场景、GPT-5 下 87.9% 成功率均与原文一致。",
+              "evidence_quotes": [
+                "We prompt LLMs to generate both a structured task plan and corresponding signal temporal logic (STL) constraints, and design a sound algorithm that identifies definite contradictions between them and provides feedback for revising inconsistencies.",
+                "At the execution level, when control synthesis fails, we extract different types of diagnostic information, such as violated constraints and conflicting component assignments, and feed them back to guide task replanning.",
+                "Experiments on seven heterogeneous multi-component CPS scenarios have shown that our framework can generate executable plans and feasible control executions that satisfy the original natural language missions with a success rate of 87.9% with GPT-5."
+              ]
+            }
+          ]
+        },
+        "validation_errors": [
+          "bf13a92368f50af68cba：摘要复核引用的证据并非原文连续片段或超过450字符，简报暂不推送"
+        ]
+      },
+      "candidate_count": 42,
+      "candidate_ids": [
+        "da92b80397690dde35e8",
+        "aa178b575bb249be9aef",
+        "dd5a28f9c533e0ee2ccc",
+        "3a93b1c8699f7e1580fd",
+        "0b0024271a7c2b5987bb",
+        "d2da03dd040aaeefea30",
+        "9f9467f75484ebfa07d2",
+        "4c5e025cfc8f17ca9a46",
+        "434246a93fec15537b14",
+        "c75b08a745837bc4fd9e",
+        "fdd7c1296f918924cf03",
+        "5d023c2a1961329c95c3",
+        "5d02f5b2e0fc2d4c525a",
+        "dd2a6493f55037eee5a5",
+        "a6b428c98c5e6d1d2289",
+        "a6f4da06fdba108994ec",
+        "5f9cc4741ffa08d59cab",
+        "456c7c8f7dcbfa062e61",
+        "1cc7c278b01af9771804",
+        "a97c1f5a709e4de6f7ba",
+        "fa74b0cc3895cd40e05a",
+        "7cc78127c883714f76f3",
+        "f34ad45741b405ff9e69",
+        "9233c0fbe4fb6e2520e4",
+        "8cad1d7071d358947cb2",
+        "28b96783ce883a7e7f40",
+        "1cf7caf1e3962092517f",
+        "531156a59b9f298428c8",
+        "2ffe5ada9085e1add46b",
+        "6ec636eceffcfb5999d5",
+        "051009ada2a4f647f6fc",
+        "bf28c7aa2007aa01571b",
+        "61649a8ae4c58021cbc4",
+        "878235a76bf9396d7302",
+        "bf13a92368f50af68cba",
+        "17fb1b78ebadcb40daac",
+        "af9bbc2d1c0b8017291c",
+        "15e1c3b827bd5c829282",
+        "8e0becaa31e92e597767",
+        "2f51df856d85f4fbb4e7",
+        "33da8aabe6e16f93a795",
+        "71e1590c6c971a337879"
+      ],
+      "states": {
+        "excluded": 37,
+        "selected": 5
+      },
+      "sources_checked": [
+        "arxiv",
+        "google",
+        "huggingface",
+        "openai",
+        "techcrunch"
+      ],
+      "read_status": {
+        "8cad1d7071d358947cb2": "read",
+        "9f9467f75484ebfa07d2": "rss_only",
+        "6ec636eceffcfb5999d5": "rss_only",
+        "bf13a92368f50af68cba": "rss_only",
+        "5f9cc4741ffa08d59cab": "rss_only",
+        "5d023c2a1961329c95c3": "rss_only"
+      },
+      "tool_sequence": [
+        "read_file",
+        "read_file",
+        "list_sources",
+        "fetch_news",
+        "fetch_news",
+        "fetch_news",
+        "fetch_news",
+        "read_article",
+        "read_article",
+        "read_article",
+        "read_article",
+        "read_article",
+        "read_article",
+        "record_article_states",
+        "fetch_news",
+        "record_article_states",
+        "submit_brief"
+      ],
+      "tool_errors": [],
+      "calls": [
+        {
+          "call": 1,
+          "phase": "generation",
+          "started": 508184.39,
+          "message_chars": 1395,
+          "working_snapshots": 0,
+          "state_counts": {},
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 0.92,
+          "usage": {
+            "prompt_tokens": 2124,
+            "completion_tokens": 87,
+            "total_tokens": 2211,
+            "prompt_tokens_details": {
+              "cached_tokens": 1920
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "prompt_cache_hit_tokens": 1920,
+            "prompt_cache_miss_tokens": 204
+          },
+          "response_id": "8254b9df-1737-49d3-bf14-98e6199003d5",
+          "model": "deepseek-flash",
+          "tool_names": [
+            "read_file",
+            "read_file",
+            "list_sources"
+          ],
+          "finish_reasons": [
+            "tool_calls"
+          ]
+        },
+        {
+          "call": 2,
+          "phase": "generation",
+          "started": 508185.39,
+          "message_chars": 5717,
+          "working_snapshots": 0,
+          "state_counts": {},
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 1.92,
+          "usage": {
+            "prompt_tokens": 3689,
+            "completion_tokens": 255,
+            "total_tokens": 3944,
+            "prompt_tokens_details": {
+              "cached_tokens": 2176
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 121
+            },
+            "prompt_cache_hit_tokens": 2176,
+            "prompt_cache_miss_tokens": 1513
+          },
+          "response_id": "1b698390-1ae0-48f4-b4df-d59d95ceea3c",
+          "model": "deepseek-flash",
+          "tool_names": [
+            "fetch_news",
+            "fetch_news",
+            "fetch_news",
+            "fetch_news"
+          ],
+          "finish_reasons": [
+            "tool_calls"
+          ]
+        },
+        {
+          "call": 3,
+          "phase": "generation",
+          "started": 508187.875,
+          "message_chars": 85964,
+          "working_snapshots": 1,
+          "state_counts": {
+            "pending": 40
+          },
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 6.41,
+          "usage": {
+            "prompt_tokens": 21072,
+            "completion_tokens": 1253,
+            "total_tokens": 22325,
+            "prompt_tokens_details": {
+              "cached_tokens": 18688
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 999
+            },
+            "prompt_cache_hit_tokens": 18688,
+            "prompt_cache_miss_tokens": 2384
+          },
+          "response_id": "18b82bd2-238d-4c88-87e4-29a125c57c64",
+          "model": "deepseek-flash",
+          "tool_names": [
+            "read_article",
+            "read_article",
+            "read_article",
+            "read_article",
+            "read_article",
+            "read_article"
+          ],
+          "finish_reasons": [
+            "tool_calls"
+          ]
+        },
+        {
+          "call": 4,
+          "phase": "generation",
+          "started": 508194.421,
+          "message_chars": 88852,
+          "working_snapshots": 1,
+          "state_counts": {
+            "pending": 40
+          },
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 23.75,
+          "usage": {
+            "prompt_tokens": 22876,
+            "completion_tokens": 5368,
+            "total_tokens": 28244,
+            "prompt_tokens_details": {
+              "cached_tokens": 4736
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 2919
+            },
+            "prompt_cache_hit_tokens": 4736,
+            "prompt_cache_miss_tokens": 18140
+          },
+          "response_id": "e0355afb-588d-4e08-878e-752d10d1a6aa",
+          "model": "deepseek-flash",
+          "tool_names": [
+            "record_article_states"
+          ],
+          "finish_reasons": [
+            "tool_calls"
+          ]
+        },
+        {
+          "call": 5,
+          "phase": "generation",
+          "started": 508218.234,
+          "message_chars": 32019,
+          "working_snapshots": 1,
+          "state_counts": {
+            "excluded": 35,
+            "selected": 5
+          },
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 2.67,
+          "usage": {
+            "prompt_tokens": 15723,
+            "completion_tokens": 281,
+            "total_tokens": 16004,
+            "prompt_tokens_details": {
+              "cached_tokens": 2048
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 239
+            },
+            "prompt_cache_hit_tokens": 2048,
+            "prompt_cache_miss_tokens": 13675
+          },
+          "response_id": "4f45b0f0-be1a-4a34-b6b1-c62a051aa951",
+          "model": "deepseek-flash",
+          "tool_names": [
+            "fetch_news"
+          ],
+          "finish_reasons": [
+            "tool_calls"
+          ]
+        },
+        {
+          "call": 6,
+          "phase": "generation",
+          "started": 508220.953,
+          "message_chars": 33913,
+          "working_snapshots": 1,
+          "state_counts": {
+            "excluded": 35,
+            "selected": 5,
+            "pending": 2
+          },
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 2.06,
+          "usage": {
+            "prompt_tokens": 16518,
+            "completion_tokens": 270,
+            "total_tokens": 16788,
+            "prompt_tokens_details": {
+              "cached_tokens": 2048
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 113
+            },
+            "prompt_cache_hit_tokens": 2048,
+            "prompt_cache_miss_tokens": 14470
+          },
+          "response_id": "40260f2c-ea82-4981-b412-f3d196bcdbf8",
+          "model": "deepseek-flash",
+          "tool_names": [
+            "record_article_states"
+          ],
+          "finish_reasons": [
+            "tool_calls"
+          ]
+        },
+        {
+          "call": 7,
+          "phase": "generation",
+          "started": 508223.062,
+          "message_chars": 33675,
+          "working_snapshots": 1,
+          "state_counts": {
+            "excluded": 37,
+            "selected": 5
+          },
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 14.77,
+          "usage": {
+            "prompt_tokens": 16576,
+            "completion_tokens": 2839,
+            "total_tokens": 19415,
+            "prompt_tokens_details": {
+              "cached_tokens": 2048
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 1250
+            },
+            "prompt_cache_hit_tokens": 2048,
+            "prompt_cache_miss_tokens": 14528
+          },
+          "response_id": "36e48785-0ae6-441b-9baa-73fbc53889ba",
+          "model": "deepseek-flash",
+          "tool_names": [
+            "submit_brief"
+          ],
+          "finish_reasons": [
+            "tool_calls"
+          ]
+        },
+        {
+          "call": 8,
+          "phase": "generation",
+          "started": 508237.859,
+          "message_chars": 36920,
+          "working_snapshots": 1,
+          "state_counts": {
+            "excluded": 37,
+            "selected": 5
+          },
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 1.78,
+          "usage": {
+            "prompt_tokens": 19460,
+            "completion_tokens": 228,
+            "total_tokens": 19688,
+            "prompt_tokens_details": {
+              "cached_tokens": 19200
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "prompt_cache_hit_tokens": 19200,
+            "prompt_cache_miss_tokens": 260
+          },
+          "response_id": "adfa1a35-f22f-4993-991a-6a4a969833a2",
+          "model": "deepseek-flash",
+          "tool_names": [],
+          "finish_reasons": [
+            "stop"
+          ]
+        },
+        {
+          "call": 9,
+          "phase": "summary_review",
+          "started": 508239.64,
+          "message_chars": 10601,
+          "working_snapshots": 0,
+          "state_counts": {},
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 17.31,
+          "usage": {
+            "prompt_tokens": 2966,
+            "completion_tokens": 4121,
+            "total_tokens": 7087,
+            "prompt_tokens_details": {
+              "cached_tokens": 128
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 2840
+            },
+            "prompt_cache_hit_tokens": 128,
+            "prompt_cache_miss_tokens": 2838
+          },
+          "response_id": "60017667-658e-478e-88d2-b5ec5c9bda8d",
+          "model": "deepseek-flash",
+          "tool_names": [],
+          "finish_reasons": [
+            "stop"
+          ]
+        },
+        {
+          "call": 10,
+          "phase": "summary_review",
+          "started": 508256.953,
+          "message_chars": 15346,
+          "working_snapshots": 0,
+          "state_counts": {},
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 10.28,
+          "usage": {
+            "prompt_tokens": 4327,
+            "completion_tokens": 2816,
+            "total_tokens": 7143,
+            "prompt_tokens_details": {
+              "cached_tokens": 2944
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 1531
+            },
+            "prompt_cache_hit_tokens": 2944,
+            "prompt_cache_miss_tokens": 1383
+          },
+          "response_id": "8a0aa099-eb77-4eb1-8919-a88aaa9e9905",
+          "model": "deepseek-flash",
+          "tool_names": [],
+          "finish_reasons": [
+            "stop"
+          ]
+        }
+      ],
+      "generation": {
+        "attempted_calls": 8,
+        "metered_calls": 8,
+        "unmetered_attempts": 0,
+        "input_tokens": 118038,
+        "output_tokens": 10581,
+        "total_tokens": 128619,
+        "cache_read_tokens": 52864,
+        "reasoning_output_tokens": 5641,
+        "uncached_input_tokens": 65174
+      },
+      "summary_review": {
+        "attempted_calls": 2,
+        "metered_calls": 2,
+        "unmetered_attempts": 0,
+        "input_tokens": 7293,
+        "output_tokens": 6937,
+        "total_tokens": 14230,
+        "cache_read_tokens": 3072,
+        "reasoning_output_tokens": 4371,
+        "uncached_input_tokens": 4221
+      },
+      "all_phases": {
+        "attempted_calls": 10,
+        "metered_calls": 10,
+        "unmetered_attempts": 0,
+        "input_tokens": 125331,
+        "output_tokens": 17518,
+        "total_tokens": 142849,
+        "cache_read_tokens": 55936,
+        "reasoning_output_tokens": 10012,
+        "uncached_input_tokens": 69395
+      },
+      "checks": {
+        "nonempty_brief": true,
+        "within_limit": true,
+        "no_history_duplicates": true,
+        "no_demo": true,
+        "all_successful_calls_metered": true,
+        "excluded_text_absent": true
+      },
+      "material_archive_path": "data\\acceptance\\tokens-20261020T085942Z\\context_only\\data\\materials\\ac31c9ffda8f473d86ebccd360ce43cd.json",
+      "request_archive_path": "data\\acceptance\\tokens-20261020T085942Z\\context_only\\requests.jsonl"
+    },
+    {
+      "arm": "prefilter_and_context",
+      "prefilter_enabled": true,
+      "working_context_enabled": true,
+      "status": "completed",
+      "error": null,
+      "elapsed_seconds": 91.38,
+      "brief": {
+        "title": "AI 工程简报｜Agent 规划的线上落差、规格修复与复现审计",
+        "overview": "本次覆盖：OpenAI、Google、Hugging Face 三个源过去 24 小时无新条目；TechCrunch 2 条（Anthropic 股份公益基金、Disney 招募 Character.AI 员工）属资本/并购人事，按排除词与偏好未选。arXiv 35 条候选中选 5 条与 Agent、工具调用、AI 编程、本地部署直接相关的研究，均来自 10 月 19 日公告流（仅 8cad 给出 10 月 15 日首次提交日期，其余首次提交日期未提供）。历史简报已推送的 MCP 授权注入、代码 Agent 过程奖励等条目本次未重复。",
+        "items": [
+          {
+            "id": "8cad1d7071d358947cb2",
+            "title": "Testing the Planning Claims of LLM-Based Agents against Formal Semantics",
+            "url": "https://arxiv.org/abs/2610.22469",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": "2026-10-15T17:47:30+00:00",
+            "first_published_at": "2026-10-15T17:47:30+00:00",
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "abstract",
+            "demo": false,
+            "publication_kind": "preprint",
+            "summary": "论文用隐藏的 PDDL 模型作为判据检验 LLM agent 的“规划”说法：自然语言任务背后有形式化模型决定每个动作是否可用、目标是否达成、是否根本无解。作者在 5 个领域（2 个为新发布）、4 个模型、6 种提示策略、3 种 agent 架构上评测：最佳配置离线可解任务成功率 78%，在线仅 40%，原因是 agent 多数情况下不检查状态就行动；无解任务在不到 10% 的 episode 中被识别；更重的提示策略消耗 5 至 22 倍 token 却无明显收益。论文 10 月 15 日首次提交，10 月 19 日进入 arXiv 公告流。",
+            "why_it_matters": "你在验收工具调用链路时，若只看离线规划或端到端成功率，会被 78% 与 40% 的落差误导；该文还给出“加 prompt/加推理步骤”不划算的量化对照（5–22 倍 token）。",
+            "topic": "Agent 评测 / 工具调用",
+            "relevance": 3
+          },
+          {
+            "id": "bf13a92368f50af68cba",
+            "title": "Repairing LLM-Generated Specifications with Deterministic Diagnosis",
+            "url": "https://arxiv.org/abs/2610.22568",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": null,
+            "first_published_at": null,
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "feed_summary",
+            "demo": false,
+            "read_warning": "正文不可用，仅依据 RSS 摘要；不要推断摘要未提供的细节。",
+            "summary": "针对 LLM 生成的规格“能跑但语义错”，DRAGO 用形式化系统专属的确定性诊断替代 LLM 自评，并且只有当诊断出的错误权重在无参考接受判据下严格下降时才保留改写。实验称纯 LLM 诊断会让 11.8% 原本正确的规格变差；在覆盖 SMT-LIB2、MiniZinc、PDDL 的 5 套基准上，回归率降到 1.3%（原文称“降低近一个数量级”），平均准确率比零样本形式化高 12.9 个百分点、比 LLM 诊断式修复高 8.7 个百分点。论文 10 月 19 日公告，首次提交日期未提供。",
+            "why_it_matters": "给“LLM 写配置/规格 → 求解器校验”的流水线一个可照搬的模式：确定性诊断 + 单调改进才接受；注意 12.9/8.7 是百分点差，不是相对提升。",
+            "topic": "AI 编程 / 形式化验证",
+            "relevance": 3
+          },
+          {
+            "id": "7cc78127c883714f76f3",
+            "title": "Author-in-the-loop Agentic Reproducibility Auditing for a Machine Learning Conference",
+            "url": "https://arxiv.org/abs/2610.22465",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": null,
+            "first_published_at": null,
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "feed_summary",
+            "demo": false,
+            "read_warning": "正文不可用，仅依据 RSS 摘要；不要推断摘要未提供的细节。",
+            "summary": "论文描述一个“作者在环”的 agent 复现审计系统：结构化清单记录复现步骤与限制，GitHub 上两阶段流程把 agent 检查与作者澄清、修订、复审串起来；agent 分别判断结果是否被复现、作者是否需要澄清或修复，人类评审员批准请求并裁定问题是否解决。系统在 36 篇会议论文、133 个实验表格与图上的部署中，人工复核后提出 20 个问题，后续复查支持全部关闭，但部分案例的完整复现仍未验证；作者还用完整/空白清单的重复审计考察作者声明如何影响 agent 调查。10 月 19 日公告。",
+            "why_it_matters": "这是代码 agent 接入真实评审流程的案例：20/20 问题关闭不等于可复现，值得照抄其“检查通过”与“结果已复现”分开记录的设计。",
+            "topic": "代码 Agent / 复现审计",
+            "relevance": 3
+          },
+          {
+            "id": "6ec636eceffcfb5999d5",
+            "title": "Don't Retrain, Remix: Adaptation of Web Agents using Mixture Hypernetworks",
+            "url": "https://arxiv.org/abs/2610.22539",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": null,
+            "first_published_at": null,
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "feed_summary",
+            "demo": false,
+            "read_warning": "正文不可用，仅依据 RSS 摘要；不要推断摘要未提供的细节。",
+            "summary": "WebMix 用于把 web agent 适配到没见过的界面：先在源界面训练一组低秩 adapter，部署时由 scout agent 探索目标站点并写成简短 manual，轻量 router 据此预测混合系数、组合出新 adapter。适配只需一次 scouting 与一次前向，无需在目标上做梯度更新，也不用重训。作者用 Qwen 与 Llama 两类模型在 TimeWarp 域迁移与版本迁移、WebArena-Lite-v2 上评测：三种设置持平或优于上下文学习与 LoRA 基线，TimeWarp 域迁移上比最佳基线平均高约 8 个百分点，且在已见界面上仍保持领先。10 月 19 日公告。",
+            "why_it_matters": "对用开源模型本地部署 agent 的团队，这种“组合已有 adapter、只做一次前向”的路线比在每站点收集数据重训便宜；8 个百分点是绝对差，不是相对提升。",
+            "topic": "Agent 适配 / 开源模型",
+            "relevance": 2
+          },
+          {
+            "id": "9f9467f75484ebfa07d2",
+            "title": "ECHOES: Seeing Beyond the Current Image via Recursive History Compression and Privileged On-Policy Distillation",
+            "url": "https://arxiv.org/abs/2610.22408",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": null,
+            "first_published_at": null,
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "feed_summary",
+            "demo": false,
+            "read_warning": "正文不可用，仅依据 RSS 摘要；不要推断摘要未提供的细节。",
+            "summary": "ECHOES 让长程 GUI agent 在部署时不再保留历史截图：用 Compression-Think-Action 格式递归更新文本历史状态并进行推理；训练时以同一模型在特权多图输入下作教师，对学生轨迹做 token 级 on-policy 蒸馏；PMF Gap 引导的 OPD-RL 动态平衡蒸馏与任务奖励，并周期性更新教师。作者还发布从真实 GUI agent 失败轨迹构建的 ECHOESBMK，用于评测视觉感知与跨模态状态保持。四个 GUI 基准与 ECHOESBMK 上报告任务表现与记忆保真度提升，且不保留历史截图仍有竞争力，对未见视觉规划任务有正零样本迁移。10 月 19 日公告。",
+            "why_it_matters": "如果你的 agent 靠截图维护状态，视觉 token 会推高本地推理成本与上下文占用；该文给出用文本历史替代的可行方向，但摘要未给具体基准分数，需看正文再评估。",
+            "topic": "GUI Agent / 推理成本",
+            "relevance": 2
+          }
+        ],
+        "demo": false,
+        "generated_at": "2026-10-19T13:03:36.098040+00:00",
+        "sources_checked": [
+          "arxiv",
+          "google",
+          "huggingface",
+          "openai",
+          "techcrunch"
+        ],
+        "warnings": [],
+        "preferences": {
+          "name": "Token 对照验收工程师",
+          "role": "后端工程师",
+          "topics": [
+            "AI 编程",
+            "Agent",
+            "开源模型",
+            "AI 产品"
+          ],
+          "keywords": [
+            "工具调用",
+            "本地部署"
+          ]
+        },
+        "summary_review": {
+          "status": "checked",
+          "items": [
+            {
+              "article_id": "8cad1d7071d358947cb2",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "五个领域、四模型、六提示策略、三架构、78%/40%、不到 10% 与 5 至 22 倍 token 均与原文一致；10 月 15 日首次提交、10 月 19 日公告也与元数据一致。",
+              "evidence_quotes": [
+                "Across five domains (two of them new, all released with the paper), four models, six prompting strategies and three agent architectures, the best configuration solves 78% of the solvable tasks offline but only 40% online, where agents mostly act without inspecting the state.",
+                "Unsolvable tasks are recognised in under 10% of episodes, and heavier prompting strategies use 5 to 22 times as many tokens as direct prompting with no clear gain."
+              ]
+            },
+            {
+              "article_id": "bf13a92368f50af68cba",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "11.8%、1.3%、12.9 与 8.7 个百分点、五套基准及公告日期均一致；首次提交日期确实未提供。",
+              "evidence_quotes": [
+                "Purely LLM-based diagnosis, lacking a formal ground truth, often fails to spot these errors, and its ungrounded critiques cause regressions in 11.8% of initially correct specifications in our experiments.",
+                "We propose DRAGO, a repair framework that replaces this ungrounded critique with deterministic, formalism-specific diagnosis, and retains a rewrite only when the diagnosed error weight strictly decreases under a reference-free acceptance predicate.",
+                "Across five benchmarks spanning logical reasoning (SMT-LIB2), constraint programming (MiniZinc), and planning (PDDL), DRAGO cuts regressions by nearly an order of magnitude, to 1.3%, while improving answer accuracy by 12.9 percentage points over zero-shot formalization and 8.7 percentage points over LLM-diagnostic repair, averaged across benchmarks."
+              ]
+            },
+            {
+              "article_id": "7cc78127c883714f76f3",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "36 篇会议论文、133 个实验表格与图、20 个问题、复查支持关闭及部分未验证等均与原文一致；公告日期符合元数据。",
+              "evidence_quotes": [
+                "A structured checklist records reproduction instructions and limitations; a two-stage workflow on GitHub connects agent checks to author clarification, revision, and agent reassessment. The agent separately assesses whether results have been reproduced and whether authors need to provide clarification or make repairs, while human reviewers approve requests and decide whether concerns are resolved.",
+                "We deployed the system across 36 conference papers and 133 experimental tables and figures, raising 20 issues after human review. Further checks supported closing all the issues, although full reproduction remained unverified in some cases."
+              ]
+            },
+            {
+              "article_id": "6ec636eceffcfb5999d5",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "scout、manual、router、无目标梯度更新、三种设置、约 8 个百分点和已见界面保持领先均一致；公告日期符合元数据。",
+              "evidence_quotes": [
+                "At deployment, a scout agent explores the target interface and summarizes its observations into a compact manual. A lightweight router uses this manual to predict mixing coefficients over the adapter bank, which combine the existing adapters into a new one for inference. Adapting to a new interface takes only a scouting run and a forward pass, without gradient updates on the target.",
+                "With Qwen and Llama models, we evaluate domain transfer on TimeWarp and WebArena-Lite-v2, and version transfer on TimeWarp. In all three settings, WebMix matches or outperforms in-context learning and LoRA baselines, often matching the average success of specialists trained directly on those interfaces. On TimeWarp domain transfer, it gains about 8 percentage points on average over the best baseline with both models.",
+                "These gains do not come at the cost of seen interfaces, where WebMix keeps its lead, and extend to version transfer."
+              ]
+            },
+            {
+              "article_id": "9f9467f75484ebfa07d2",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "CTA、特权多图教师、token 级 on-policy 蒸馏、PMF Gap/OPD-RL、ECHOESBMK 及实验结论均与原文一致；公告日期符合元数据。",
+              "evidence_quotes": [
+                "Specifically, ECHOES adopts a Compression-Think-Action (CTA) format to recursively update a textual history state and reason. The same model, given privileged multi-image inputs, serves as a teacher that provides dense token-level on-policy distillation on student-generated CTA rollouts.",
+                "Our Perception-Memory Fidelity (PMF) Gap-guided OPD-RL framework dynamically balances privileged distillation and task-reward optimization, with periodic teacher updates supporting continued improvement.",
+                "We further introduce ECHOESBMK, a fine-grained diagnostic benchmark derived from real GUI agent failure trajectories to jointly evaluate visual perception and cross-modal state retention. Experiments on four GUI benchmarks and ECHOESBMK demonstrate substantial gains in task performance and memory fidelity."
+              ]
+            }
+          ],
+          "model_calls": 2,
+          "source_chars_limit": 5000
+        }
+      },
+      "pre_review_brief": {
+        "title": "AI 工程简报｜Agent 规划的线上落差、规格修复与复现审计",
+        "overview": "本次覆盖：OpenAI、Google、Hugging Face 三个源过去 24 小时无新条目；TechCrunch 2 条（Anthropic 股份公益基金、Disney 招募 Character.AI 员工）属资本/并购人事，按排除词与偏好未选。arXiv 35 条候选中选 5 条与 Agent、工具调用、AI 编程、本地部署直接相关的研究，均来自 10 月 19 日公告流（仅 8cad 给出 10 月 15 日首次提交日期，其余首次提交日期未提供）。历史简报已推送的 MCP 授权注入、代码 Agent 过程奖励等条目本次未重复。",
+        "items": [
+          {
+            "id": "8cad1d7071d358947cb2",
+            "title": "Testing the Planning Claims of LLM-Based Agents against Formal Semantics",
+            "url": "https://arxiv.org/abs/2610.22469",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": "2026-10-15T17:47:30+00:00",
+            "first_published_at": "2026-10-15T17:47:30+00:00",
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "abstract",
+            "demo": false,
+            "publication_kind": "preprint",
+            "summary": "论文用隐藏的 PDDL 模型作为判据检验 LLM agent 的“规划”说法：自然语言任务背后有形式化模型决定每个动作是否可用、目标是否达成、是否根本无解。作者在 5 个领域（2 个为新发布）、4 个模型、6 种提示策略、3 种 agent 架构上评测：最佳配置离线可解任务成功率 78%，在线仅 40%，原因是 agent 多数情况下不检查状态就行动；无解任务在不到 10% 的 episode 中被识别；更重的提示策略消耗 5 至 22 倍 token 却无明显收益。论文 10 月 15 日首次提交，10 月 19 日进入 arXiv 公告流。",
+            "why_it_matters": "你在验收工具调用链路时，若只看离线规划或端到端成功率，会被 78% 与 40% 的落差误导；该文还给出“加 prompt/加推理步骤”不划算的量化对照（5–22 倍 token）。",
+            "topic": "Agent 评测 / 工具调用",
+            "relevance": 3
+          },
+          {
+            "id": "bf13a92368f50af68cba",
+            "title": "Repairing LLM-Generated Specifications with Deterministic Diagnosis",
+            "url": "https://arxiv.org/abs/2610.22568",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": null,
+            "first_published_at": null,
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "feed_summary",
+            "demo": false,
+            "read_warning": "正文不可用，仅依据 RSS 摘要；不要推断摘要未提供的细节。",
+            "summary": "针对 LLM 生成的规格“能跑但语义错”，DRAGO 用形式化系统专属的确定性诊断替代 LLM 自评，并且只有当诊断出的错误权重在无参考接受判据下严格下降时才保留改写。实验称纯 LLM 诊断会让 11.8% 原本正确的规格变差；在覆盖 SMT-LIB2、MiniZinc、PDDL 的 5 套基准上，回归率降到 1.3%（原文称“降低近一个数量级”），平均准确率比零样本形式化高 12.9 个百分点、比 LLM 诊断式修复高 8.7 个百分点。论文 10 月 19 日公告，首次提交日期未提供。",
+            "why_it_matters": "给“LLM 写配置/规格 → 求解器校验”的流水线一个可照搬的模式：确定性诊断 + 单调改进才接受；注意 12.9/8.7 是百分点差，不是相对提升。",
+            "topic": "AI 编程 / 形式化验证",
+            "relevance": 3
+          },
+          {
+            "id": "7cc78127c883714f76f3",
+            "title": "Author-in-the-loop Agentic Reproducibility Auditing for a Machine Learning Conference",
+            "url": "https://arxiv.org/abs/2610.22465",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": null,
+            "first_published_at": null,
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "feed_summary",
+            "demo": false,
+            "read_warning": "正文不可用，仅依据 RSS 摘要；不要推断摘要未提供的细节。",
+            "summary": "论文描述一个“作者在环”的 agent 复现审计系统：结构化清单记录复现步骤与限制，GitHub 上两阶段流程把 agent 检查与作者澄清、修订、复审串起来；agent 分别判断结果是否被复现、作者是否需要澄清或修复，人类评审员批准请求并裁定问题是否解决。系统在 36 篇会议论文、133 个实验表格与图上的部署中，人工复核后提出 20 个问题，后续复查支持全部关闭，但部分案例的完整复现仍未验证；作者还用完整/空白清单的重复审计考察作者声明如何影响 agent 调查。10 月 19 日公告。",
+            "why_it_matters": "这是代码 agent 接入真实评审流程的案例：20/20 问题关闭不等于可复现，值得照抄其“检查通过”与“结果已复现”分开记录的设计。",
+            "topic": "代码 Agent / 复现审计",
+            "relevance": 3
+          },
+          {
+            "id": "6ec636eceffcfb5999d5",
+            "title": "Don't Retrain, Remix: Adaptation of Web Agents using Mixture Hypernetworks",
+            "url": "https://arxiv.org/abs/2610.22539",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": null,
+            "first_published_at": null,
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "feed_summary",
+            "demo": false,
+            "read_warning": "正文不可用，仅依据 RSS 摘要；不要推断摘要未提供的细节。",
+            "summary": "WebMix 用于把 web agent 适配到没见过的界面：先在源界面训练一组低秩 adapter，部署时由 scout agent 探索目标站点并写成简短 manual，轻量 router 据此预测混合系数、组合出新 adapter。适配只需一次 scouting 与一次前向，无需在目标上做梯度更新，也不用重训。作者用 Qwen 与 Llama 两类模型在 TimeWarp 域迁移与版本迁移、WebArena-Lite-v2 上评测：三种设置持平或优于上下文学习与 LoRA 基线，TimeWarp 域迁移上比最佳基线平均高约 8 个百分点，且在已见界面上仍保持领先。10 月 19 日公告。",
+            "why_it_matters": "对用开源模型本地部署 agent 的团队，这种“组合已有 adapter、只做一次前向”的路线比在每站点收集数据重训便宜；8 个百分点是绝对差，不是相对提升。",
+            "topic": "Agent 适配 / 开源模型",
+            "relevance": 2
+          },
+          {
+            "id": "9f9467f75484ebfa07d2",
+            "title": "ECHOES: Seeing Beyond the Current Image via Recursive History Compression and Privileged On-Policy Distillation",
+            "url": "https://arxiv.org/abs/2610.22408",
+            "source_id": "arxiv",
+            "source": "arXiv cs.AI / cs.LG",
+            "published_at": null,
+            "first_published_at": null,
+            "announced_at": "2026-10-19T04:00:00+00:00",
+            "updated_at": null,
+            "feed_entry_at": "2026-10-19T04:00:00+00:00",
+            "time_basis": "feed_announcement",
+            "evidence_kind": "feed_summary",
+            "demo": false,
+            "read_warning": "正文不可用，仅依据 RSS 摘要；不要推断摘要未提供的细节。",
+            "summary": "ECHOES 让长程 GUI agent 在部署时不再保留历史截图：用 Compression-Think-Action 格式递归更新文本历史状态并进行推理；训练时以同一模型在特权多图输入下作教师，对学生轨迹做 token 级 on-policy 蒸馏；PMF Gap 引导的 OPD-RL 动态平衡蒸馏与任务奖励，并周期性更新教师。作者还发布从真实 GUI agent 失败轨迹构建的 ECHOESBMK，用于评测视觉感知与跨模态状态保持。四个 GUI 基准与 ECHOESBMK 上报告任务表现与记忆保真度提升，且不保留历史截图仍有竞争力，对未见视觉规划任务有正零样本迁移。10 月 19 日公告。",
+            "why_it_matters": "如果你的 agent 靠截图维护状态，视觉 token 会推高本地推理成本与上下文占用；该文给出用文本历史替代的可行方向，但摘要未给具体基准分数，需看正文再评估。",
+            "topic": "GUI Agent / 推理成本",
+            "relevance": 2
+          }
+        ],
+        "demo": false,
+        "generated_at": "2026-10-19T13:03:36.098040+00:00",
+        "sources_checked": [
+          "arxiv",
+          "google",
+          "huggingface",
+          "openai",
+          "techcrunch"
+        ],
+        "warnings": [],
+        "preferences": {
+          "name": "Token 对照验收工程师",
+          "role": "后端工程师",
+          "topics": [
+            "AI 编程",
+            "Agent",
+            "开源模型",
+            "AI 产品"
+          ],
+          "keywords": [
+            "工具调用",
+            "本地部署"
+          ]
+        }
+      },
+      "review_audit": {
+        "model_result": {
+          "overview": "本次覆盖：OpenAI、Google、Hugging Face 三个源过去 24 小时无新条目；TechCrunch 2 条（Anthropic 股份公益基金、Disney 招募 Character.AI 员工）属资本/并购人事，按排除词与偏好未选。arXiv 35 条候选中选 5 条与 Agent、工具调用、AI 编程、本地部署直接相关的研究，均来自 10 月 19 日公告流（仅 8cad 给出 10 月 15 日首次提交日期，其余首次提交日期未提供）。历史简报已推送的 MCP 授权注入、代码 Agent 过程奖励等条目本次未重复。",
+          "items": [
+            {
+              "article_id": "8cad1d7071d358947cb2",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "五个领域、四模型、六提示策略、三架构、78%/40%、不到 10% 与 5 至 22 倍 token 均与原文一致；10 月 15 日首次提交、10 月 19 日公告也与元数据一致。",
+              "evidence_quotes": [
+                "Across five domains (two of them new, all released with the paper), four models, six prompting strategies and three agent architectures, the best configuration solves 78% of the solvable tasks offline but only 40% online, where agents mostly act without inspecting the state.",
+                "Unsolvable tasks are recognised in under 10% of episodes, and heavier prompting strategies use 5 to 22 times as many tokens as direct prompting with no clear gain."
+              ]
+            },
+            {
+              "article_id": "bf13a92368f50af68cba",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "11.8%、1.3%、12.9 与 8.7 个百分点、五套基准及公告日期均一致；首次提交日期确实未提供。",
+              "evidence_quotes": [
+                "Purely LLM-based diagnosis, lacking a formal ground truth, often fails to spot these errors, and its ungrounded critiques cause regressions in 11.8% of initially correct specifications in our experiments.",
+                "We propose DRAGO, a repair framework that replaces this ungrounded critique with deterministic, formalism-specific diagnosis, and retains a rewrite only when the diagnosed error weight strictly decreases under a reference-free acceptance predicate.",
+                "Across five benchmarks spanning logical reasoning (SMT-LIB2), constraint programming (MiniZinc), and planning (PDDL), DRAGO cuts regressions by nearly an order of magnitude, to 1.3%, while improving answer accuracy by 12.9 percentage points over zero-shot formalization and 8.7 percentage points over LLM-diagnostic repair, averaged across benchmarks."
+              ]
+            },
+            {
+              "article_id": "7cc78127c883714f76f3",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "36 篇会议论文、133 个实验表格与图、20 个问题、复查支持关闭及部分未验证等均与原文一致；公告日期符合元数据。",
+              "evidence_quotes": [
+                "A structured checklist records reproduction instructions and limitations; a two-stage workflow on GitHub connects agent checks to author clarification, revision, and agent reassessment. The agent separately assesses whether results have been reproduced and whether authors need to provide clarification or make repairs, while human reviewers approve requests and decide whether concerns are resolved.",
+                "We deployed the system across 36 conference papers and 133 experimental tables and figures, raising 20 issues after human review. Further checks supported closing all the issues, although full reproduction remained unverified in some cases."
+              ]
+            },
+            {
+              "article_id": "6ec636eceffcfb5999d5",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "scout、manual、router、无目标梯度更新、三种设置、约 8 个百分点和已见界面保持领先均一致；公告日期符合元数据。",
+              "evidence_quotes": [
+                "At deployment, a scout agent explores the target interface and summarizes its observations into a compact manual. A lightweight router uses this manual to predict mixing coefficients over the adapter bank, which combine the existing adapters into a new one for inference. Adapting to a new interface takes only a scouting run and a forward pass, without gradient updates on the target.",
+                "With Qwen and Llama models, we evaluate domain transfer on TimeWarp and WebArena-Lite-v2, and version transfer on TimeWarp. In all three settings, WebMix matches or outperforms in-context learning and LoRA baselines, often matching the average success of specialists trained directly on those interfaces. On TimeWarp domain transfer, it gains about 8 percentage points on average over the best baseline with both models.",
+                "These gains do not come at the cost of seen interfaces, where WebMix keeps its lead, and extend to version transfer."
+              ]
+            },
+            {
+              "article_id": "9f9467f75484ebfa07d2",
+              "verdict": "supported",
+              "corrected_summary": null,
+              "reason": "CTA、特权多图教师、token 级 on-policy 蒸馏、PMF Gap/OPD-RL、ECHOESBMK 及实验结论均与原文一致；公告日期符合元数据。",
+              "evidence_quotes": [
+                "Specifically, ECHOES adopts a Compression-Think-Action (CTA) format to recursively update a textual history state and reason. The same model, given privileged multi-image inputs, serves as a teacher that provides dense token-level on-policy distillation on student-generated CTA rollouts.",
+                "Our Perception-Memory Fidelity (PMF) Gap-guided OPD-RL framework dynamically balances privileged distillation and task-reward optimization, with periodic teacher updates supporting continued improvement.",
+                "We further introduce ECHOESBMK, a fine-grained diagnostic benchmark derived from real GUI agent failure trajectories to jointly evaluate visual perception and cross-modal state retention. Experiments on four GUI benchmarks and ECHOESBMK demonstrate substantial gains in task performance and memory fidelity."
+              ]
+            }
+          ]
+        },
+        "validation_errors": [
+          "9f9467f75484ebfa07d2：摘要复核引用的证据并非原文连续片段或超过450字符，简报暂不推送"
+        ]
+      },
+      "candidate_count": 37,
+      "candidate_ids": [
+        "33da8aabe6e16f93a795",
+        "71e1590c6c971a337879",
+        "aa178b575bb249be9aef",
+        "dd5a28f9c533e0ee2ccc",
+        "3a93b1c8699f7e1580fd",
+        "0b0024271a7c2b5987bb",
+        "d2da03dd040aaeefea30",
+        "9f9467f75484ebfa07d2",
+        "4c5e025cfc8f17ca9a46",
+        "c75b08a745837bc4fd9e",
+        "fdd7c1296f918924cf03",
+        "5d023c2a1961329c95c3",
+        "5d02f5b2e0fc2d4c525a",
+        "dd2a6493f55037eee5a5",
+        "a6b428c98c5e6d1d2289",
+        "a6f4da06fdba108994ec",
+        "5f9cc4741ffa08d59cab",
+        "456c7c8f7dcbfa062e61",
+        "1cc7c278b01af9771804",
+        "fa74b0cc3895cd40e05a",
+        "7cc78127c883714f76f3",
+        "9233c0fbe4fb6e2520e4",
+        "8cad1d7071d358947cb2",
+        "28b96783ce883a7e7f40",
+        "1cf7caf1e3962092517f",
+        "531156a59b9f298428c8",
+        "2ffe5ada9085e1add46b",
+        "6ec636eceffcfb5999d5",
+        "bf28c7aa2007aa01571b",
+        "61649a8ae4c58021cbc4",
+        "878235a76bf9396d7302",
+        "bf13a92368f50af68cba",
+        "17fb1b78ebadcb40daac",
+        "af9bbc2d1c0b8017291c",
+        "15e1c3b827bd5c829282",
+        "8e0becaa31e92e597767",
+        "2f51df856d85f4fbb4e7"
+      ],
+      "states": {
+        "excluded": 32,
+        "selected": 5
+      },
+      "sources_checked": [
+        "arxiv",
+        "google",
+        "huggingface",
+        "openai",
+        "techcrunch"
+      ],
+      "read_status": {
+        "8cad1d7071d358947cb2": "read",
+        "bf13a92368f50af68cba": "rss_only",
+        "7cc78127c883714f76f3": "rss_only",
+        "6ec636eceffcfb5999d5": "rss_only",
+        "9f9467f75484ebfa07d2": "rss_only"
+      },
+      "tool_sequence": [
+        "read_file",
+        "read_file",
+        "list_sources",
+        "fetch_news",
+        "fetch_news",
+        "fetch_news",
+        "fetch_news",
+        "fetch_news",
+        "read_article",
+        "read_article",
+        "read_article",
+        "read_article",
+        "read_article",
+        "record_article_states",
+        "submit_brief"
+      ],
+      "tool_errors": [],
+      "calls": [
+        {
+          "call": 1,
+          "phase": "generation",
+          "started": 508267.437,
+          "message_chars": 1395,
+          "working_snapshots": 0,
+          "state_counts": {},
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 0.73,
+          "usage": {
+            "prompt_tokens": 2124,
+            "completion_tokens": 90,
+            "total_tokens": 2214,
+            "prompt_tokens_details": {
+              "cached_tokens": 1920
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "prompt_cache_hit_tokens": 1920,
+            "prompt_cache_miss_tokens": 204
+          },
+          "response_id": "e743711f-67ea-401a-8691-0c52310513c7",
+          "model": "deepseek-flash",
+          "tool_names": [
+            "read_file",
+            "read_file",
+            "list_sources"
+          ],
+          "finish_reasons": [
+            "tool_calls"
+          ]
+        },
+        {
+          "call": 2,
+          "phase": "generation",
+          "started": 508268.765,
+          "message_chars": 5721,
+          "working_snapshots": 0,
+          "state_counts": {},
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 1.28,
+          "usage": {
+            "prompt_tokens": 3692,
+            "completion_tokens": 190,
+            "total_tokens": 3882,
+            "prompt_tokens_details": {
+              "cached_tokens": 2176
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 61
+            },
+            "prompt_cache_hit_tokens": 2176,
+            "prompt_cache_miss_tokens": 1516
+          },
+          "response_id": "daa8b207-f822-4285-8a23-5aa14f8a388b",
+          "model": "deepseek-flash",
+          "tool_names": [
+            "fetch_news",
+            "fetch_news",
+            "fetch_news"
+          ],
+          "finish_reasons": [
+            "tool_calls"
+          ]
+        },
+        {
+          "call": 3,
+          "phase": "generation",
+          "started": 508270.296,
+          "message_chars": 7252,
+          "working_snapshots": 0,
+          "state_counts": {},
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 0.72,
+          "usage": {
+            "prompt_tokens": 4145,
+            "completion_tokens": 83,
+            "total_tokens": 4228,
+            "prompt_tokens_details": {
+              "cached_tokens": 3840
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 11
+            },
+            "prompt_cache_hit_tokens": 3840,
+            "prompt_cache_miss_tokens": 305
+          },
+          "response_id": "93e2efaa-aefb-41a4-be5a-2c9d275675af",
+          "model": "deepseek-flash",
+          "tool_names": [
+            "fetch_news",
+            "fetch_news"
+          ],
+          "finish_reasons": [
+            "tool_calls"
+          ]
+        },
+        {
+          "call": 4,
+          "phase": "generation",
+          "started": 508271.703,
+          "message_chars": 77784,
+          "working_snapshots": 1,
+          "state_counts": {
+            "pending": 37
+          },
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 10.14,
+          "usage": {
+            "prompt_tokens": 19386,
+            "completion_tokens": 1916,
+            "total_tokens": 21302,
+            "prompt_tokens_details": {
+              "cached_tokens": 16896
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 1705
+            },
+            "prompt_cache_hit_tokens": 16896,
+            "prompt_cache_miss_tokens": 2490
+          },
+          "response_id": "9b6da0c8-6d5b-499b-9d33-b676a2861115",
+          "model": "deepseek-flash",
+          "tool_names": [
+            "read_article",
+            "read_article",
+            "read_article",
+            "read_article",
+            "read_article"
+          ],
+          "finish_reasons": [
+            "tool_calls"
+          ]
+        },
+        {
+          "call": 5,
+          "phase": "generation",
+          "started": 508281.968,
+          "message_chars": 80191,
+          "working_snapshots": 1,
+          "state_counts": {
+            "pending": 37
+          },
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 33.03,
+          "usage": {
+            "prompt_tokens": 21756,
+            "completion_tokens": 7227,
+            "total_tokens": 28983,
+            "prompt_tokens_details": {
+              "cached_tokens": 6528
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 4790
+            },
+            "prompt_cache_hit_tokens": 6528,
+            "prompt_cache_miss_tokens": 15228
+          },
+          "response_id": "56c465c2-c91e-410d-b746-263bb0a46a1f",
+          "model": "deepseek-flash",
+          "tool_names": [
+            "record_article_states"
+          ],
+          "finish_reasons": [
+            "tool_calls"
+          ]
+        },
+        {
+          "call": 6,
+          "phase": "generation",
+          "started": 508315.046,
+          "message_chars": 31980,
+          "working_snapshots": 1,
+          "state_counts": {
+            "excluded": 32,
+            "selected": 5
+          },
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 7.8,
+          "usage": {
+            "prompt_tokens": 18124,
+            "completion_tokens": 1550,
+            "total_tokens": 19674,
+            "prompt_tokens_details": {
+              "cached_tokens": 2048
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 38
+            },
+            "prompt_cache_hit_tokens": 2048,
+            "prompt_cache_miss_tokens": 16076
+          },
+          "response_id": "e7554d55-e856-4eac-85dd-e55edad191db",
+          "model": "deepseek-flash",
+          "tool_names": [
+            "submit_brief"
+          ],
+          "finish_reasons": [
+            "tool_calls"
+          ]
+        },
+        {
+          "call": 7,
+          "phase": "generation",
+          "started": 508322.89,
+          "message_chars": 35133,
+          "working_snapshots": 1,
+          "state_counts": {
+            "excluded": 32,
+            "selected": 5
+          },
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 1.75,
+          "usage": {
+            "prompt_tokens": 19719,
+            "completion_tokens": 218,
+            "total_tokens": 19937,
+            "prompt_tokens_details": {
+              "cached_tokens": 19584
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "prompt_cache_hit_tokens": 19584,
+            "prompt_cache_miss_tokens": 135
+          },
+          "response_id": "24585ae0-47c3-4fef-94cb-3037de243e85",
+          "model": "deepseek-flash",
+          "tool_names": [],
+          "finish_reasons": [
+            "stop"
+          ]
+        },
+        {
+          "call": 8,
+          "phase": "summary_review",
+          "started": 508324.64,
+          "message_chars": 10629,
+          "working_snapshots": 0,
+          "state_counts": {},
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 24.92,
+          "usage": {
+            "prompt_tokens": 2969,
+            "completion_tokens": 6497,
+            "total_tokens": 9466,
+            "prompt_tokens_details": {
+              "cached_tokens": 128
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 5169
+            },
+            "prompt_cache_hit_tokens": 128,
+            "prompt_cache_miss_tokens": 2841
+          },
+          "response_id": "978d2f3c-82fb-45c6-8049-649ff2ad2123",
+          "model": "deepseek-flash",
+          "tool_names": [],
+          "finish_reasons": [
+            "stop"
+          ]
+        },
+        {
+          "call": 9,
+          "phase": "summary_review",
+          "started": 508349.562,
+          "message_chars": 16184,
+          "working_snapshots": 0,
+          "state_counts": {},
+          "excluded_text_absent": true,
+          "http_status": 200,
+          "elapsed_seconds": 9.2,
+          "usage": {
+            "prompt_tokens": 4378,
+            "completion_tokens": 2396,
+            "total_tokens": 6774,
+            "prompt_tokens_details": {
+              "cached_tokens": 2944
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 1128
+            },
+            "prompt_cache_hit_tokens": 2944,
+            "prompt_cache_miss_tokens": 1434
+          },
+          "response_id": "36e08ec2-de1a-48dd-95bb-ed124fed7e04",
+          "model": "deepseek-flash",
+          "tool_names": [],
+          "finish_reasons": [
+            "stop"
+          ]
+        }
+      ],
+      "generation": {
+        "attempted_calls": 7,
+        "metered_calls": 7,
+        "unmetered_attempts": 0,
+        "input_tokens": 88946,
+        "output_tokens": 11274,
+        "total_tokens": 100220,
+        "cache_read_tokens": 52992,
+        "reasoning_output_tokens": 6605,
+        "uncached_input_tokens": 35954
+      },
+      "summary_review": {
+        "attempted_calls": 2,
+        "metered_calls": 2,
+        "unmetered_attempts": 0,
+        "input_tokens": 7347,
+        "output_tokens": 8893,
+        "total_tokens": 16240,
+        "cache_read_tokens": 3072,
+        "reasoning_output_tokens": 6297,
+        "uncached_input_tokens": 4275
+      },
+      "all_phases": {
+        "attempted_calls": 9,
+        "metered_calls": 9,
+        "unmetered_attempts": 0,
+        "input_tokens": 96293,
+        "output_tokens": 20167,
+        "total_tokens": 116460,
+        "cache_read_tokens": 56064,
+        "reasoning_output_tokens": 12902,
+        "uncached_input_tokens": 40229
+      },
+      "checks": {
+        "nonempty_brief": true,
+        "within_limit": true,
+        "no_history_duplicates": true,
+        "no_demo": true,
+        "all_successful_calls_metered": true,
+        "excluded_text_absent": true
+      },
+      "material_archive_path": "data\\acceptance\\tokens-20261020T085942Z\\prefilter_and_context\\data\\materials\\127f853bd0e54b9db929003423f61b29.json",
+      "request_archive_path": "data\\acceptance\\tokens-20261020T085942Z\\prefilter_and_context\\requests.jsonl"
+    }
+  ],
+  "comparisons": [
+    {
+      "base": "baseline",
+      "changed": "context_only",
+      "completed_metered_pair": true,
+      "generation": {
+        "input_tokens_reduction_percent": 3.64,
+        "output_tokens_reduction_percent": -92.35,
+        "total_tokens_reduction_percent": -0.49
+      },
+      "summary_review": {
+        "input_tokens_reduction_percent": -116.99,
+        "output_tokens_reduction_percent": -144.69,
+        "total_tokens_reduction_percent": -129.66
+      },
+      "all_phases": {
+        "input_tokens_reduction_percent": 0.42,
+        "output_tokens_reduction_percent": -110.15,
+        "total_tokens_reduction_percent": -6.45
+      }
+    },
+    {
+      "base": "context_only",
+      "changed": "prefilter_and_context",
+      "completed_metered_pair": true,
+      "generation": {
+        "input_tokens_reduction_percent": 24.65,
+        "output_tokens_reduction_percent": -6.55,
+        "total_tokens_reduction_percent": 22.08
+      },
+      "summary_review": {
+        "input_tokens_reduction_percent": -0.74,
+        "output_tokens_reduction_percent": -28.2,
+        "total_tokens_reduction_percent": -14.13
+      },
+      "all_phases": {
+        "input_tokens_reduction_percent": 23.17,
+        "output_tokens_reduction_percent": -15.12,
+        "total_tokens_reduction_percent": 18.47
+      }
+    },
+    {
+      "base": "baseline",
+      "changed": "prefilter_and_context",
+      "completed_metered_pair": true,
+      "generation": {
+        "input_tokens_reduction_percent": 27.39,
+        "output_tokens_reduction_percent": -104.94,
+        "total_tokens_reduction_percent": 21.7
+      },
+      "summary_review": {
+        "input_tokens_reduction_percent": -118.6,
+        "output_tokens_reduction_percent": -213.69,
+        "total_tokens_reduction_percent": -162.1
+      },
+      "all_phases": {
+        "input_tokens_reduction_percent": 23.49,
+        "output_tokens_reduction_percent": -141.93,
+        "total_tokens_reduction_percent": 13.21
+      }
+    }
+  ],
+  "updated_at": "2026-10-20T09:03:20.742961+00:00"
+}

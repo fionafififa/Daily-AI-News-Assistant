@@ -1,0 +1,90 @@
+{
+  "changed_existing_files": [
+    "app/summary_review.py",
+    "tests/test_summary_review.py"
+  ],
+  "all_other_existing_code_and_config_unchanged": true,
+  "same_fixture": true,
+  "same_benchmark_script": true,
+  "original_failure_replay": {
+    "captured_response_unchanged": true,
+    "original_top_level_keys": [
+      "overview",
+      "articles"
+    ],
+    "status": "checked",
+    "items": 5,
+    "canonical_model_result_keys": [
+      "overview",
+      "items"
+    ],
+    "extra_model_calls": 0
+  },
+  "test_command": "uv run --locked --group dev python -m pytest -q",
+  "test_result": "94 passed in 14.50s",
+  "report_sha256": "6717ce62005c4347484f67a3d739e6af3195e82905393bc1a6836c9e7b91c22d",
+  "arms": [
+    {
+      "arm": "baseline",
+      "status": "completed",
+      "checks": {
+        "same_raw_sources": true,
+        "all_42_input_entries_obtained": true,
+        "provider_totals_match": true,
+        "all_calls_metered": true
+      },
+      "captured_initial_review_keys": [],
+      "validation_errors": [],
+      "all_phase_tokens": 134193,
+      "material_archive_sha256": "b57f6cdcca53f736f5712050fb0939487ca2008d33d7d6b26118267e1f9dde5e",
+      "request_archive_sha256": "40c2267fdea462d3a0ff8dd173d6667871e4fce9922ff707a1f6bcf81940618b"
+    },
+    {
+      "arm": "context_only",
+      "status": "completed",
+      "checks": {
+        "same_raw_sources": true,
+        "all_42_input_entries_obtained": true,
+        "provider_totals_match": true,
+        "all_calls_metered": true
+      },
+      "captured_initial_review_keys": [
+        [
+          "overview",
+          "items"
+        ]
+      ],
+      "validation_errors": [
+        "bf13a92368f50af68cba：摘要复核引用的证据并非原文连续片段或超过450字符，简报暂不推送"
+      ],
+      "all_phase_tokens": 142849,
+      "material_archive_sha256": "7676942458347d7e38242d2096c407dba323207c886b1df7ccd5a991ba7d40f6",
+      "request_archive_sha256": "3b8220b78ac38ece182316ed8c3ed01ea3f151e618e5d911e8a90a3cc8fadb65"
+    },
+    {
+      "arm": "prefilter_and_context",
+      "status": "completed",
+      "checks": {
+        "same_raw_sources": true,
+        "all_42_input_entries_obtained": true,
+        "provider_totals_match": true,
+        "all_calls_metered": true,
+        "exact_37_eligible_candidates": true
+      },
+      "captured_initial_review_keys": [
+        [
+          "overview",
+          "items"
+        ]
+      ],
+      "validation_errors": [
+        "9f9467f75484ebfa07d2：摘要复核引用的证据并非原文连续片段或超过450字符，简报暂不推送"
+      ],
+      "all_phase_tokens": 116460,
+      "material_archive_sha256": "0471a2ea7d1f89f9d6dab859ebc3740296ce6a7865bf5fea3ed30f643214ec11",
+      "request_archive_sha256": "42e328d3a0c8c6fd1d13f65142c57ec188746847e7c92938ce2d7e3f01fb9b4d"
+    }
+  ],
+  "total_metered_calls": 28,
+  "total_consumed_tokens": 393502
+}

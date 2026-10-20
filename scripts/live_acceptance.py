@@ -34,16 +34,33 @@ class ModelObservations(BaseCallbackHandler):
         self.starts = {}
         self.responses = []
         self.phases = {}
+        self.request_materials = {}
 
     def on_chat_model_start(self, serialized, messages, *, run_id, **kwargs):
         self.starts[str(run_id)] = time.monotonic()
         self.phases[str(run_id)] = (kwargs.get("metadata") or {}).get("phase", "generation")
+        snapshots = []
+        for message in messages[0]:
+            if isinstance(message.content, str) and message.content.startswith("current_working_materials\n"):
+                snapshots.append(json.loads(message.content.split("\n", 1)[1]))
+        self.request_materials[str(run_id)] = {
+            "actual_input_message_chars": sum(len(str(message.content)) for message in messages[0]),
+            "working_material_snapshots": len(snapshots),
+            "state_counts": snapshots[0]["counts"] if snapshots else {},
+            "excluded_items_have_no_text": all(
+                "text" not in item and "evidence_quotes" not in item
+                for snapshot in snapshots
+                for item in snapshot["articles"]
+                if item["state"] == "excluded"
+            ),
+        }
 
     def on_llm_end(self, response, *, run_id, **kwargs):
         message = response.generations[0][0].message
         self.responses.append(
             {
                 "phase": self.phases.pop(str(run_id), "generation"),
+                **self.request_materials.pop(str(run_id), {}),
                 "duration_seconds": round(
                     time.monotonic() - self.starts.pop(str(run_id), time.monotonic()), 2
                 ),
@@ -55,6 +72,7 @@ class ModelObservations(BaseCallbackHandler):
 
     def on_llm_error(self, error, *, run_id, **kwargs):
         self.starts.pop(str(run_id), None)
+        self.request_materials.pop(str(run_id), None)
         self.responses.append(
             {"error_type": type(error).__name__, "phase": self.phases.pop(str(run_id), "generation")}
         )
@@ -142,12 +160,15 @@ async def accept(settings, output_dir, max_scenarios, resume_path=None):
                 "config.py",
                 "summary_review.py",
                 "article_time.py",
+                "working_context.py",
+                "schemas.py",
             )
         },
         "dependencies": {name: version(name) for name in ("langchain", "langchain-openai", "fastapi")},
         "model": settings.model,
         "mode": "live",
         "delivery": "inbox",
+        "working_context_enabled": settings.working_context_enabled,
         "data_dir": str(settings.data_dir),
         "semantic_review": "pending",
         "scenarios": [],
@@ -208,6 +229,9 @@ async def accept(settings, output_dir, max_scenarios, resume_path=None):
                 "selected_evidence": [box.candidates[key] for key in sorted(evidence_ids)] if box else [],
                 "pre_review_brief": draft,
                 "review_audit": getattr(box, "review_audit", None),
+                "article_states": box.article_states if box else {},
+                "context_observations": box.context_observations if box else [],
+                "material_archive_path": str(box.material_archive_path) if box else None,
                 "content_review": "pending" if items else "not_exercised_empty_brief",
             }
             report["scenarios"].append(result)
