@@ -19,6 +19,7 @@ async def test_demo_generation_inbox_and_history_dedup(settings, store, user):
     assert finished["status"] == "completed", finished
     assert len(finished["brief"]["items"]) == 2
     assert finished["delivery_status"] == "sent"
+    assert any(trace["tool"] == "fetch_news" and trace["status"] == "ok" for trace in store.traces(run["id"]))
     assert store.notifications(user["id"])[0]["run_id"] == run["id"]
     await service.deliver(run["id"])
     assert len(store.notifications(user["id"])) == 1

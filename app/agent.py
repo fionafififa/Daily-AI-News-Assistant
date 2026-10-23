@@ -1,6 +1,5 @@
 """The production agent uses LangChain's model-selected tool loop without a business DAG."""
 
-import asyncio
 import json
 
 from langchain.agents import create_agent
@@ -91,7 +90,7 @@ async def run_demo(toolbox):
     tools = {tool.name: tool for tool in toolbox.tools}
 
     async def call(name, **arguments):
-        return await asyncio.to_thread(tools[name].invoke, arguments)
+        return await tools[name].ainvoke(arguments)
 
     await call("list_dir", path=".")
     raw_profile = await call("read_file", path="profile.json")

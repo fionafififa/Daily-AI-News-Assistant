@@ -60,10 +60,12 @@ def test_comparison_requires_completed_runs_and_complete_usage_and_allows_negati
         assert row["all_phases"]["total_tokens_reduction_percent"] is None
 
 
-def test_frozen_news_never_mutates_original_and_missing_body_is_explicit():
+async def test_frozen_news_never_mutates_original_and_missing_body_is_explicit():
     fixture = {"feeds": {"arxiv": [{"id": "paper", "text": "original feed"}]}, "read_cache": {}}
     client = SnapshotNews(fixture)
-    client.fetch("arxiv")[0]["text"] = "mutated by a tool"
-    assert client.fetch("arxiv")[0]["text"] == "original feed"
+    receipt = await client.fetch("arxiv")
+    receipt[0]["text"] = "mutated by a tool"
+    receipt = await client.fetch("arxiv")
+    assert receipt[0]["text"] == "original feed"
     with pytest.raises(OSError, match="RSS evidence"):
-        client.read({"id": "paper"})
+        await client.read({"id": "paper"})

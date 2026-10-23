@@ -22,7 +22,7 @@ def test_extracts_first_submission_and_revision_without_overwriting_announcement
     assert "announced_at" not in metadata
 
 
-def test_arxiv_recent_announcement_keeps_old_original_date_and_abstract_only():
+async def test_arxiv_recent_announcement_keeps_old_original_date_and_abstract_only():
     date = "Mon, 19 Oct 2026 04:00:00 GMT"
     rss = f"""<rss version="2.0"><channel><title>AI</title><item><title>Paper</title>
     <link>https://arxiv.org/abs/2610.22373</link><pubDate>{date}</pubDate>
@@ -33,13 +33,14 @@ def test_arxiv_recent_announcement_keeps_old_original_date_and_abstract_only():
             lambda request: httpx.Response(200, text=rss if request.url.host == "rss.arxiv.org" else PAGE)
         ),
     )
-    item = client.fetch("arxiv")[0]
+    item = (await client.fetch("arxiv"))[0]
     assert item["published_at"] is None
     assert item["announced_at"] == "2026-10-19T04:00:00+00:00"
-    text = client.read(item)
+    text = await client.read(item)
     assert item["first_published_at"].startswith("2026-07-27")
     assert freshness_time(item).startswith("2026-10-19")
     assert "Irrelevant" not in text
+    assert item["evidence_kind"] == "abstract"
     assert "首次提交：2026-07-27" in date_labels(item)
 
 

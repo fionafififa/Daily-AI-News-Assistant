@@ -71,10 +71,10 @@ class SnapshotNews:
     def __init__(self, fixture):
         self.fixture = fixture
 
-    def fetch(self, source_id):
+    async def fetch(self, source_id):
         return copy.deepcopy(self.fixture["feeds"][source_id])
 
-    def read(self, article):
+    async def read(self, article):
         cached = self.fixture["read_cache"].get(article["id"])
         if cached is None:
             raise OSError("No verified original in frozen snapshot; use labelled RSS evidence")

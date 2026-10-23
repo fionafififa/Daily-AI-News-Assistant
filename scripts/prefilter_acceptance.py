@@ -36,7 +36,7 @@ class FrozenNews:
     def __init__(self, fixture):
         self.fixture = fixture
 
-    def fetch(self, source_id):
+    async def fetch(self, source_id):
         stamp = (datetime.fromisoformat(self.fixture["now"]) - timedelta(hours=1)).isoformat()
         return [
             {
@@ -51,7 +51,7 @@ class FrozenNews:
             for item in self.fixture["feeds"][source_id]
         ]
 
-    def read(self, item):
+    async def read(self, item):
         item["first_published_at"] = self.fixture["read"]["first_published_at"]
         return self.fixture["read"]["text"]
 

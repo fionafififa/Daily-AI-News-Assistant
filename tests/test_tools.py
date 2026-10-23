@@ -96,24 +96,24 @@ def test_large_trace_arguments_still_valid_json(toolbox):
     assert "truncated_preview" in toolbox.store.traces(toolbox.run["id"])[0]["arguments"]
 
 
-def test_feed_failure_empty_feed_and_partial_coverage_are_distinct(toolbox):
+async def test_feed_failure_empty_feed_and_partial_coverage_are_distinct(toolbox):
     toolbox.run["mode"] = "live"
 
     class Client:
-        def fetch(self, source_id):
+        async def fetch(self, source_id):
             if source_id == "openai":
                 raise ConnectionError("source unreachable")
             return []
 
     toolbox.client = Client()
     tools = {tool.name: tool for tool in toolbox.tools}
-    failure = tools["fetch_news"].invoke({"source_id": "openai"})
+    failure = await tools["fetch_news"].ainvoke({"source_id": "openai"})
     assert "error" in failure
     rejected = tools["submit_brief"].invoke(
         {"title": "测试简报", "overview": "没有匹配的新新闻。", "selections": []}
     )
     assert "error" in rejected and toolbox.accepted is None
-    success = tools["fetch_news"].invoke({"source_id": "huggingface"})
+    success = await tools["fetch_news"].ainvoke({"source_id": "huggingface"})
     assert success["count"] == 0 and "error" not in success
     accepted = tools["submit_brief"].invoke(
         {"title": "测试简报", "overview": "可用来源中没有匹配的新新闻。", "selections": []}

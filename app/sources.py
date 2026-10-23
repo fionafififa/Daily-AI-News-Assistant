@@ -1,5 +1,6 @@
 """Small RSS adapters. No credentials, arbitrary URLs, or paywall bypasses."""
 
+import asyncio
 import hashlib
 import re
 from datetime import UTC, datetime, timedelta
@@ -84,38 +85,53 @@ def allowed_url(url, domains):
 
 
 class NewsClient:
-    def __init__(self, now=None, transport=None):
+    def __init__(self, now=None, transport=None, *, download_timeout=30, retry_delay=0.2):
         self.now = now or datetime.now(UTC)
         self.transport = transport
+        self.download_timeout = download_timeout
+        self.retry_delay = retry_delay
 
-    def download(self, url, domains):
-        # Re-check every redirect; RSS links cannot cause requests to localhost or arbitrary hosts.
-        with httpx.Client(
-            timeout=12,
-            follow_redirects=False,
-            transport=self.transport,
-            headers={"User-Agent": "DailyAINewsSample/0.1 (RSS reader)"},
-        ) as client:
-            for _ in range(4):
-                if not allowed_url(url, domains):
-                    raise ValueError("来源链接不在允许域名内")
-                with client.stream("GET", url) as response:
-                    if response.is_redirect:
-                        url = urljoin(url, response.headers["location"])
-                        continue
-                    response.raise_for_status()
-                    chunks, size = [], 0
-                    for chunk in response.iter_bytes():
-                        size += len(chunk)
-                        if size > 2_000_000:
-                            raise ValueError("来源响应超过 2 MB")
-                        chunks.append(chunk)
-                    return b"".join(chunks)
-            raise ValueError("来源重定向次数过多")
+    async def download(self, url, domains):
+        """Retry HTTPX timeouts only; bound redirects, body size and total download time."""
+        # This deadline includes all attempts, redirects and retry delays.
+        async with asyncio.timeout(self.download_timeout):
+            async with httpx.AsyncClient(
+                timeout=12,
+                follow_redirects=False,
+                transport=self.transport,
+                headers={"User-Agent": "DailyAINewsSample/0.1 (RSS reader)"},
+            ) as client:
+                for attempt in range(3):
+                    try:
+                        return await self._download_once(client, url, domains)
+                    except httpx.TimeoutException:
+                        if attempt == 2:
+                            raise
+                        # The response has closed before waiting. Cancellation propagates.
+                        await asyncio.sleep(self.retry_delay * 2**attempt)
 
-    def fetch(self, source_id):
+    async def _download_once(self, client, url, domains):
+        # Each attempt starts from the original URL; validate every redirect target.
+        for _ in range(4):
+            if not allowed_url(url, domains):
+                raise ValueError("来源链接不在允许域名内")
+            async with client.stream("GET", url) as response:
+                if response.is_redirect:
+                    url = urljoin(url, response.headers["location"])
+                    continue
+                response.raise_for_status()
+                chunks, size = [], 0
+                async for chunk in response.aiter_bytes():
+                    size += len(chunk)
+                    if size > 2_000_000:
+                        raise ValueError("来源响应超过 2 MB")
+                    chunks.append(chunk)
+                return b"".join(chunks)
+        raise ValueError("来源重定向次数过多")
+
+    async def fetch(self, source_id):
         source = SOURCES[source_id]
-        payload = self.download(source["url"], source["domains"])
+        payload = await self.download(source["url"], source["domains"])
         parsed = feedparser.parse(payload)
         if not parsed.version:
             raise ValueError("返回内容不是有效 RSS/Atom")
@@ -170,9 +186,9 @@ class NewsClient:
             )
         return sorted(articles, key=lambda item: item["feed_entry_at"], reverse=True)[:40]
 
-    def read(self, article):
+    async def read(self, article):
         source = SOURCES[article["source_id"]]
-        payload = self.download(article["url"], source["domains"])
+        payload = await self.download(article["url"], source["domains"])
         soup = BeautifulSoup(payload, "html.parser")
         article.update(extract_dates(soup, article["source_id"]))
         main = soup.find("article") or soup.find("main") or soup

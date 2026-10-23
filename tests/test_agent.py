@@ -27,10 +27,10 @@ async def test_real_create_agent_follows_model_chosen_tools_and_recovers(setting
     run = store.new_run(user["id"], "live")
 
     class Client:
-        def fetch(self, source_id):
+        async def fetch(self, source_id):
             return [sample_article()]
 
-        def read(self, article):
+        async def read(self, article):
             return article["text"]
 
     box = Toolbox(settings, store, run, user, Client())

@@ -1,6 +1,7 @@
 """Tools are capabilities, not a prescribed workflow. All are exposed to create_agent."""
 
 import copy
+import inspect
 import os
 import re
 import shlex
@@ -74,21 +75,28 @@ class Toolbox:
         ]
         # Audit quotes belong in storage, not in every future model request.
         (self.root / "history.json").write_text(dumps(history_for_model), encoding="utf-8")
-        self.tools = [
-            StructuredTool.from_function(self.instrument(fn))
-            for fn in (
-                self.list_dir,
-                self.read_file,
-                self.search_content,
-                self.write_file,
-                self.bash,
-                self.list_sources,
-                self.fetch_news,
-                self.read_article,
-                self.record_article_states,
-                self.submit_brief,
-            )
-        ]
+        self.tools = []
+
+        for fn in (
+            self.list_dir,
+            self.read_file,
+            self.search_content,
+            self.write_file,
+            self.bash,
+            self.list_sources,
+            self.fetch_news,
+            self.read_article,
+            self.record_article_states,
+            self.submit_brief,
+        ):
+            wrapped = self.instrument(fn)
+            # 选择注册入口
+            if inspect.iscoroutinefunction(wrapped):
+                tool = StructuredTool.from_function(coroutine=wrapped)
+            else:
+                tool = StructuredTool.from_function(func=wrapped)
+
+            self.tools.append(tool)
 
     def instrument(self, function):
         @wraps(function)
@@ -116,7 +124,38 @@ class Toolbox:
                 )
                 return result
 
-        return wrapped
+        @wraps(function)
+        async def async_wrapped(*args, **kwargs):
+            with self.lock:
+                if not self.active or time.monotonic() > self.deadline:
+                    raise ToolBudgetExceeded("任务已结束或超时")
+                self.calls += 1
+                if self.calls > self.settings.max_tool_calls:
+                    raise ToolBudgetExceeded("达到工具调用次数上限")
+                start = time.monotonic()
+                status = "ok"
+            try:
+                result = await function(*args, **kwargs)
+            except Exception as exc:
+                status = "error"
+                result = {"error": f"{type(exc).__name__}: {str(exc)[:350]}"}
+            with self.lock:
+                self.store.trace(
+                    self.run["id"],
+                    function.__name__,
+                    kwargs,
+                    result,
+                    status,
+                    round((time.monotonic() - start) * 1000),
+                )
+            return result
+
+        if inspect.iscoroutinefunction(function):
+            # 返回 async_wrapped 函数本身
+            return async_wrapped
+        else:
+            # 返回 wrapped 函数本身
+            return wrapped
 
     def resolve(self, path, write=False):
         candidate = Path(path)
@@ -254,7 +293,7 @@ class Toolbox:
             ]
         }
 
-    def fetch_news(self, source_id: str) -> dict:
+    async def fetch_news(self, source_id: str) -> dict:
         """Fetch one chosen RSS source's last 24 hours. Call again with another source if useful.
 
         Unknown dates and older items are excluded. A successful empty feed is not a source failure.
@@ -265,7 +304,9 @@ class Toolbox:
         if source_id not in SOURCES:
             raise ValueError("未知来源，请先使用 list_sources")
         try:
-            articles = demo_articles(self.now) if self.run["mode"] == "demo" else self.client.fetch(source_id)
+            articles = (
+                demo_articles(self.now) if self.run["mode"] == "demo" else await self.client.fetch(source_id)
+            )
         except Exception as exc:
             self.source_errors[source_id] = f"{type(exc).__name__}: 来源获取失败"
             raise ValueError(self.source_errors[source_id]) from exc
@@ -304,7 +345,7 @@ class Toolbox:
             "window_hours": 24,
         }
 
-    def read_article(self, article_id: str) -> dict:
+    async def read_article(self, article_id: str) -> dict:
         """Read a fetched article's original text before summarizing; accepts known IDs only.
 
         If the page is unavailable, RSS evidence is returned explicitly as a fallback.
@@ -326,7 +367,7 @@ class Toolbox:
             self.save_materials()
             return item
         try:
-            item["text"] = self.client.read(item)
+            item["text"] = await self.client.read(item)
             if item.get("evidence_kind") != "abstract":
                 item["evidence_kind"] = "article"
             self.article_reads[article_id] = "read"

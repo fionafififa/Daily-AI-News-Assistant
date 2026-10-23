@@ -1,15 +1,15 @@
 """Run: python -m scripts.check_sources. Prints metadata only; never calls a model."""
 
+import asyncio
 import json
-from concurrent.futures import ThreadPoolExecutor
 from datetime import UTC, datetime
 
 from app.sources import SOURCES, NewsClient
 
 
-def check(source_id):
+async def check(source_id):
     try:
-        articles = NewsClient().fetch(source_id)
+        articles = await NewsClient().fetch(source_id)
         return {
             "source": source_id,
             "status": "ok",
@@ -20,12 +20,22 @@ def check(source_id):
         return {"source": source_id, "status": "error", "error": f"{type(exc).__name__}: {str(exc)[:180]}"}
 
 
-if __name__ == "__main__":
-    with ThreadPoolExecutor(max_workers=5) as pool:
-        print(
-            json.dumps(
-                {"checked_at": datetime.now(UTC).isoformat(), "sources": list(pool.map(check, SOURCES))},
-                ensure_ascii=False,
-                indent=2,
-            )
+async def main():
+    semaphore = asyncio.Semaphore(5)
+
+    async def limited_check(source_id):
+        async with semaphore:
+            return await check(source_id)
+
+    results = await asyncio.gather(*(limited_check(source_id) for source_id in SOURCES))
+    print(
+        json.dumps(
+            {"checked_at": datetime.now(UTC).isoformat(), "sources": results},
+            ensure_ascii=False,
+            indent=2,
         )
+    )
+
+
+if __name__ == "__main__":
+    asyncio.run(main())

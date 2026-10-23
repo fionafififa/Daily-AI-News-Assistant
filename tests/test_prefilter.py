@@ -10,10 +10,10 @@ from app.schemas import ArticleDecision, Selection
 from scripts.prefilter_acceptance import QUOTE, build_box, load_fixture, run_case
 
 
-def test_first_pass_exact_candidates_counts_history_scope_and_full_audit(tmp_path):
+async def test_first_pass_exact_candidates_counts_history_scope_and_full_audit(tmp_path):
     fixture = load_fixture()
     box = build_box(fixture, tmp_path)
-    receipts = [box.fetch_news(source) for source in fixture["feeds"]]
+    receipts = [await box.fetch_news(source) for source in fixture["feeds"]]
     assert [(r["raw_count"], r["count"]) for r in receipts] == [(10, 5), (4, 2), (1, 1)]
     assert list(box.candidates) == fixture["expected"]["candidate_ids"]
     reasons = Counter()
@@ -56,11 +56,11 @@ def test_title_gate_is_literal_conservative_and_escapes_regex(title, terms, expe
 
 
 @pytest.mark.parametrize("state", ["selected", "excluded"])
-def test_cross_source_and_repeat_fetch_preserve_verified_material_and_decisions(tmp_path, state):
+async def test_cross_source_and_repeat_fetch_preserve_verified_material_and_decisions(tmp_path, state):
     fixture = load_fixture()
     box = build_box(fixture, tmp_path)
-    box.fetch_news("huggingface")
-    box.read_article("cross-en")
+    await box.fetch_news("huggingface")
+    await box.read_article("cross-en")
     box.record_article_states(
         [
             ArticleDecision(
@@ -75,9 +75,11 @@ def test_cross_source_and_repeat_fetch_preserve_verified_material_and_decisions(
         copy.deepcopy(box.candidates["cross-en"]),
         copy.deepcopy(box.article_states["cross-en"]),
     )
-    assert box.fetch_news("techcrunch")["count"] == 2
+    receipt = await box.fetch_news("techcrunch")
+    assert receipt["count"] == 2
     fixture["feeds"]["huggingface"][0]["text"] = "REFETCH_CHANGED_RSS Original shorter feed text changed."
-    assert box.fetch_news("huggingface")["count"] == 0
+    receipt = await box.fetch_news("huggingface")
+    assert receipt["count"] == 0
     assert box.candidates["cross-en"] == original
     assert box.article_states["cross-en"] == decision
     assert box.article_reads["cross-en"] == "read"
@@ -88,18 +90,19 @@ def test_cross_source_and_repeat_fetch_preserve_verified_material_and_decisions(
 
 
 @pytest.mark.parametrize("article_id", ["history-id", "history-url-new-id", "history-title-new-id"])
-def test_disabled_prefilter_still_has_final_history_guard(tmp_path, article_id):
+async def test_disabled_prefilter_still_has_final_history_guard(tmp_path, article_id):
     box = build_box(load_fixture(), tmp_path, enabled=False, working_context=False)
-    assert box.fetch_news("huggingface")["count"] == 10
+    receipt = await box.fetch_news("huggingface")
+    assert receipt["count"] == 10
     with pytest.raises(ValueError, match="近期已推送"):
         box.submit_brief(
             "最终校验", "即使关闭预筛选也不允许推送重复历史。", [Selection(**selection(article_id))]
         )
 
 
-def test_disabled_prefilter_still_rejects_duplicate_urls_and_exclusions_at_submit(tmp_path):
+async def test_disabled_prefilter_still_rejects_duplicate_urls_and_exclusions_at_submit(tmp_path):
     box = build_box(load_fixture(), tmp_path, enabled=False, working_context=False)
-    box.fetch_news("huggingface")
+    await box.fetch_news("huggingface")
     with pytest.raises(ValueError, match="重复新闻"):
         box.submit_brief(
             "最终校验",
@@ -113,10 +116,11 @@ def test_disabled_prefilter_still_rejects_duplicate_urls_and_exclusions_at_submi
         box.submit_brief("最终校验", "关闭预筛选仍须校验排除词。", [Selection(**selection("excluded-zh"))])
 
 
-def test_arxiv_old_first_submission_with_fresh_announcement_can_be_submitted(tmp_path):
+async def test_arxiv_old_first_submission_with_fresh_announcement_can_be_submitted(tmp_path):
     fixture = load_fixture()
     box = build_box(fixture, tmp_path)
-    assert box.fetch_news("arxiv")["count"] == 1
+    receipt = await box.fetch_news("arxiv")
+    assert receipt["count"] == 1
     item = box.candidates["arxiv-announced"]
     box.record_article_states(
         [
@@ -141,11 +145,11 @@ def test_arxiv_old_first_submission_with_fresh_announcement_can_be_submitted(tmp
     assert box.accepted["items"][0]["announced_at"] == "2026-10-20T02:00:00+00:00"
 
 
-def test_all_filtered_is_successful_coverage_and_can_produce_empty_brief(tmp_path):
+async def test_all_filtered_is_successful_coverage_and_can_produce_empty_brief(tmp_path):
     fixture = load_fixture()
     fixture["feeds"]["huggingface"] = [fixture["feeds"]["huggingface"][5]]
     box = build_box(fixture, tmp_path)
-    receipt = box.fetch_news("huggingface")
+    receipt = await box.fetch_news("huggingface")
     assert receipt["raw_count"] == 1 and receipt["count"] == 0
     assert receipt["prefilter"]["reasons"] == {"excluded_title": 1}
     assert box.successful_sources == {"huggingface"} and not box.source_errors

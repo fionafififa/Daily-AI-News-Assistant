@@ -17,13 +17,13 @@ QUOTE = "The release adds verified tool retry with a configurable retry budget."
 
 
 class News:
-    def fetch(self, source_id):
+    async def fetch(self, source_id):
         return [
             sample_article(f"a{i:02d}") | {"text": f"FEED_ONLY_{i:02d} " + "source material " * 300}
             for i in range(1, 41)
         ]
 
-    def read(self, article):
+    async def read(self, article):
         return QUOTE + " ORIGINAL_BODY_ONLY " + "verified original material " * 300
 
 
@@ -35,12 +35,12 @@ def context_text(messages):
     return dumps([message_record(message) for message in messages])
 
 
-def test_rebuild_removes_excluded_text_keeps_pending_evidence_dates_and_full_archive(toolbox):
+async def test_rebuild_removes_excluded_text_keeps_pending_evidence_dates_and_full_archive(toolbox):
     toolbox.client = News()
     toolbox.run["mode"] = "live"
-    fetched = toolbox.fetch_news("huggingface")
+    fetched = await toolbox.fetch_news("huggingface")
     original = copy.deepcopy(fetched)
-    read = copy.deepcopy(toolbox.read_article("a01"))
+    read = copy.deepcopy(await toolbox.read_article("a01"))
     toolbox.candidates["a01"]["first_published_at"] = "2026-07-27"
     toolbox.candidates["a01"]["announced_at"] = "2026-10-19T04:00:00+00:00"
     toolbox.record_article_states(
@@ -72,10 +72,10 @@ def test_rebuild_removes_excluded_text_keeps_pending_evidence_dates_and_full_arc
     assert archived["states"]["a02"]["state"] == "excluded"
 
 
-def test_state_batch_validation_is_atomic_and_rejects_invented_evidence(toolbox):
+async def test_state_batch_validation_is_atomic_and_rejects_invented_evidence(toolbox):
     toolbox.run["mode"] = "live"
     toolbox.client = News()
-    toolbox.fetch_news("huggingface")
+    await toolbox.fetch_news("huggingface")
     for decisions in (
         [decide("a01", "excluded"), decide("missing", "excluded")],
         [decide("a01", "selected")],
@@ -88,27 +88,27 @@ def test_state_batch_validation_is_atomic_and_rejects_invented_evidence(toolbox)
 
 
 @pytest.mark.parametrize("state", ["selected", "excluded"])
-def test_reread_reopens_material_and_refetch_does_not_destroy_evidence(toolbox, state):
+async def test_reread_reopens_material_and_refetch_does_not_destroy_evidence(toolbox, state):
     toolbox.run["mode"] = "live"
     toolbox.client = News()
-    toolbox.fetch_news("huggingface")
-    toolbox.read_article("a01")
+    await toolbox.fetch_news("huggingface")
+    await toolbox.read_article("a01")
     toolbox.record_article_states([decide("a01", state, quotes=[QUOTE] if state == "selected" else [])])
-    toolbox.fetch_news("huggingface")
+    await toolbox.fetch_news("huggingface")
     assert toolbox.candidates["a01"]["text"].startswith(QUOTE)
     assert toolbox.article_states["a01"]["state"] == state
-    toolbox.read_article("a01")
+    await toolbox.read_article("a01")
     assert toolbox.article_states["a01"]["state"] == "to_read"
     assert "ORIGINAL_BODY_ONLY" in working_materials(toolbox)["articles"][0]["text"]
 
 
-def test_submit_requires_selected_state_when_rebuilding_is_enabled(toolbox):
+async def test_submit_requires_selected_state_when_rebuilding_is_enabled(toolbox):
     toolbox.run["mode"] = "live"
     toolbox.client = News()
-    toolbox.fetch_news("huggingface")
+    await toolbox.fetch_news("huggingface")
     with pytest.raises(ValueError, match="入选理由"):
         toolbox.submit_brief("测试简报", "符合用户偏好的更新内容。", [Selection(**selection("a01"))])
-    toolbox.read_article("a01")
+    await toolbox.read_article("a01")
     toolbox.record_article_states([decide("a01", "selected", quotes=[QUOTE])])
     assert toolbox.submit_brief("测试简报", "符合用户偏好的更新内容。", [Selection(**selection("a01"))])[
         "accepted"
@@ -225,17 +225,17 @@ async def test_actual_http_requests_follow_state_and_model_selected_order(settin
     assert "FEED_ONLY_02" in archive["articles"]["a02"]["text"]
 
 
-def test_forty_article_materials_shrink_after_explicit_decisions(toolbox):
+async def test_forty_article_materials_shrink_after_explicit_decisions(toolbox):
     toolbox.run["mode"] = "live"
     toolbox.client = News()
-    fetched = copy.deepcopy(toolbox.fetch_news("huggingface"))
+    fetched = copy.deepcopy(await toolbox.fetch_news("huggingface"))
     messages = [
         HumanMessage(content="整理每日新闻"),
         AIMessage(content="", tool_calls=[{"id": "fetch", "name": "fetch_news", "args": {}}]),
         ToolMessage(content=dumps(fetched), name="fetch_news", tool_call_id="fetch"),
     ]
     before = context_text(rebuild_messages(messages, toolbox))
-    toolbox.read_article("a01")
+    await toolbox.read_article("a01")
     toolbox.record_article_states(
         [decide("a01", "selected", quotes=[QUOTE]), decide("a02", "to_read", "需要阅读原文")]
         + [decide(f"a{i:02d}", "excluded", "与用户订阅无关") for i in range(3, 41)]
