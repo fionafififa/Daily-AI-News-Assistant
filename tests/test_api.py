@@ -1,9 +1,12 @@
 import time
 
+import pytest
 from fastapi.testclient import TestClient
 
 from app.main import create_app
 from app.schemas import Subscription
+
+pytestmark = pytest.mark.parametrize("settings", ["sqlite", "postgresql"], indirect=True)
 
 
 def test_subscription_generation_and_history_api(settings):
@@ -22,7 +25,12 @@ def test_subscription_generation_and_history_api(settings):
         deadline = time.monotonic() + 10
         while time.monotonic() < deadline:
             detail = client.get(f"/api/runs/{rid}").json()
-            if detail["status"] in {"completed", "failed"} and detail["delivery_status"] != "pending":
+            if detail["status"] in {"completed", "failed"} and detail["delivery_status"] in {
+                "sent",
+                "failed",
+                "unknown",
+                "not_sent",
+            }:
                 break
             time.sleep(0.05)
         assert detail["status"] == "completed", detail

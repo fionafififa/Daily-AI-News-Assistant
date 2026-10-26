@@ -1,38 +1,55 @@
 import asyncio
 import json
+import logging
 from contextlib import asynccontextmanager
 from urllib.parse import urlsplit
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
+from sqlalchemy.exc import SQLAlchemyError
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
+from .async_storage import call_store
 from .config import ROOT, Settings
 from .schemas import Subscription
 from .service import NewsService
 from .sources import SOURCES
-from .storage import Store
+from .storage import create_store
+
+logger = logging.getLogger(__name__)
 
 
 def create_app(settings=None):
     settings = settings or Settings.load()
-    store = Store(settings.data_dir)
+    store = create_store(settings)
     service = NewsService(settings, store)
 
     @asynccontextmanager
     async def lifespan(app):
-        store.recover()
-        if settings.mode == "demo" and not store.users():
-            store.save_user(Subscription(name="示例订阅", excludes=["融资"], enabled=False).model_dump())
-        if settings.scheduler_enabled:
-            service.spawn(service.scheduler())
-        yield
-        await service.close()
+        try:
+            await call_store(store.ensure_ready)
+            await call_store(store.recover)
+            if settings.mode == "demo" and not await call_store(store.users):
+                await call_store(
+                    store.save_user,
+                    Subscription(name="示例订阅", excludes=["融资"], enabled=False).model_dump(),
+                )
+            if settings.scheduler_enabled:
+                service.spawn(service.scheduler())
+            yield
+        finally:
+            await service.close()
+            await call_store(store.close)
 
     app = FastAPI(title="每日 AI 新闻助手", version="0.1.0", lifespan=lifespan)
     app.state.store, app.state.service, app.state.settings = store, service, settings
     app.add_middleware(TrustedHostMiddleware, allowed_hosts=["localhost", "127.0.0.1", "[::1]", "testserver"])
+
+    @app.exception_handler(SQLAlchemyError)
+    async def database_error(request: Request, exc: SQLAlchemyError):
+        logger.error("Database request failed: %s", type(exc).__name__)
+        return JSONResponse({"detail": "数据库操作失败，请稍后重试。"}, status_code=503)
 
     @app.middleware("http")
     async def local_app_guard(request: Request, call_next):
@@ -65,12 +82,13 @@ def create_app(settings=None):
 
     @app.get("/health")
     def health():
-        return {"status": "ok", "mode": settings.mode}
+        return {"status": "ok", "mode": settings.mode, "storage_backend": store.backend}
 
     @app.get("/api/status")
     def status():
         return {
             "mode": settings.mode,
+            "storage_backend": store.backend,
             "model": settings.model if settings.mode == "live" else None,
             "model_ready": settings.mode == "demo" or bool(settings.api_key),
             "smtp_ready": bool(settings.smtp_host and settings.smtp_from),
@@ -95,10 +113,13 @@ def create_app(settings=None):
 
     @app.post("/api/users/{user_id}/generate", status_code=202)
     async def generate(user_id: str):
-        require_user(user_id)
+        await call_store(require_user, user_id)
         if settings.mode == "live" and not settings.api_key:
             raise HTTPException(503, "真实模式尚未配置 OPENAI_API_KEY；请修改 .env 后重启。")
-        run = service.enqueue(user_id)
+        try:
+            run = await service.enqueue(user_id)
+        except KeyError:
+            raise HTTPException(404, "订阅不存在") from None
         if not run:
             raise HTTPException(409, "已有任务正在生成，请等待完成")
         return run
@@ -114,7 +135,7 @@ def create_app(settings=None):
 
     @app.post("/api/runs/{run_id}/retry-delivery", status_code=202)
     async def retry_delivery(run_id: str):
-        run = require_run(run_id)
+        run = await call_store(require_run, run_id)
         if run["status"] != "completed" or run["delivery_status"] not in {"failed", "unknown"}:
             raise HTTPException(409, "此任务不需要重试推送")
         service.spawn(service.deliver(run_id))
@@ -122,7 +143,7 @@ def create_app(settings=None):
 
     @app.get("/api/users/{user_id}/events")
     async def events(user_id: str, request: Request, after: int = 0):
-        require_user(user_id)
+        await call_store(require_user, user_id)
         try:
             cursor = max(after, int(request.headers.get("last-event-id", "0")))
         except ValueError:
@@ -131,7 +152,7 @@ def create_app(settings=None):
         async def stream():
             nonlocal cursor
             while not await request.is_disconnected():
-                messages = store.notifications(user_id, cursor)
+                messages = await call_store(store.notifications, user_id, cursor)
                 for message in messages:
                     cursor = message["id"]
                     yield f"id: {cursor}\nevent: brief\ndata: {json.dumps(message, ensure_ascii=False)}\n\n"

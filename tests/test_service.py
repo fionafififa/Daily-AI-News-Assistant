@@ -1,8 +1,12 @@
 import asyncio
 from datetime import UTC, datetime
 
+import pytest
+
 from app.schemas import Subscription
 from app.service import NewsService
+
+pytestmark = pytest.mark.parametrize("settings", ["sqlite", "postgresql"], indirect=True)
 
 
 async def drain(service):
@@ -12,8 +16,8 @@ async def drain(service):
 
 async def test_demo_generation_inbox_and_history_dedup(settings, store, user):
     service = NewsService(settings, store)
-    run = service.enqueue(user["id"])
-    assert service.enqueue(user["id"]) is None  # Concurrent manual request is refused.
+    run = await service.enqueue(user["id"])
+    assert await service.enqueue(user["id"]) is None  # Concurrent manual request is refused.
     await drain(service)
     finished = store.run(run["id"])
     assert finished["status"] == "completed", finished
@@ -23,7 +27,7 @@ async def test_demo_generation_inbox_and_history_dedup(settings, store, user):
     assert store.notifications(user["id"])[0]["run_id"] == run["id"]
     await service.deliver(run["id"])
     assert len(store.notifications(user["id"])) == 1
-    second = service.enqueue(user["id"])
+    second = await service.enqueue(user["id"])
     await drain(service)
     assert store.run(second["id"])["brief"]["items"] == []
     assert len(store.runs(user["id"])) == 2
@@ -57,7 +61,7 @@ async def test_timeout_is_failure_not_empty_brief(settings, store, user):
         await asyncio.sleep(1)
 
     service = NewsService(settings, store, live_runner=hanging_runner)
-    run = service.enqueue(user["id"])
+    run = await service.enqueue(user["id"])
     await drain(service)
     finished = store.run(run["id"])
     assert finished["status"] == "failed"
@@ -82,7 +86,7 @@ async def test_smtp_failure_keeps_brief_and_retry_does_not_regenerate(settings, 
 
     monkeypatch.setattr("app.service.send_email", send)
     service = NewsService(settings, store)
-    run = service.enqueue(user["id"])
+    run = await service.enqueue(user["id"])
     await drain(service)
     finished = store.run(run["id"])
     assert finished["status"] == "completed"

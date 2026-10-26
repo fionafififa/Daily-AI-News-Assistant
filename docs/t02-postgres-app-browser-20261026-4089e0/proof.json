@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "user_id": "6855b99f9fce4e219b15bebdc7d557c9",
+  "checks": [
+    "create_subscription",
+    "generate",
+    "preference_filtering",
+    "exclusion",
+    "SSE_push",
+    "tool_trace",
+    "desktop",
+    "mobile_no_overflow",
+    "edit_preferences",
+    "history",
+    "reload_persistence",
+    "process_restart_persistence"
+  ],
+  "browser_errors": [],
+  "storage_backend": "postgresql",
+  "process_restart_persistence": true,
+  "sqlite_file_created": false
+}

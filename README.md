@@ -1,6 +1,6 @@
 # 每日 AI 新闻助手
 
-一个本地运行的小项目：**Python + LangChain `create_agent` + FastAPI + SQLite + 原生 HTML/JS**。
+一个本地运行的小项目：**Python + LangChain `create_agent` + FastAPI + SQLite / PostgreSQL + 原生 HTML/JS**。
 
 填写身份、订阅话题与关键词，按用户时区每天生成简报，推送到站内收件箱，也可以配置邮件。每条新闻包含事实摘要、与你的关系、来源和发布时间。
 
@@ -29,7 +29,26 @@ python -m venv .venv
 
 macOS / Linux 将 `.venv/Scripts/python` 改为 `.venv/bin/python`。
 
-默认数据保存在项目 `data/` 下，关掉页面不会清空。重启服务后订阅和历史仍保留。
+默认订阅与历史保存在项目 `data/` 下的 SQLite 数据库中，关掉页面不会清空。启用 PostgreSQL 后，四张业务表统一保存到 PostgreSQL，研究材料与任务工作目录仍使用 `data/`。重启服务后数据仍保留。
+
+## 使用 PostgreSQL
+
+先启动 PostgreSQL，再在现有 `.env` 中设置：
+
+```dotenv
+DATABASE_URL=postgresql+psycopg://ai_news:ai_news_dev@127.0.0.1:5432/ai_news
+```
+
+在项目目录执行迁移并启动：
+
+```powershell
+uv run --locked python -m alembic upgrade head
+./run.ps1
+```
+
+`DATABASE_URL` 为空时使用 SQLite；设置 PostgreSQL 地址后，订阅、生成任务、工具记录和通知全部切换。`/health` 与 `/api/status` 的 `storage_backend` 应显示 `postgresql`，连接地址和密码不会返回页面。配置了 PostgreSQL 后，连接失败或缺少迁移会明确失败，不会自动切回 SQLite。
+
+本地已有 `.env` 已在 T02 接入时配置。原来的 SQLite 历史仍保存在旧文件中；为控制开发成本，当前范围不开发旧数据导入功能。切换 PostgreSQL 后，页面读取该库中的数据。T02 已完成，接入过程、错误语义与复现步骤见 [PostgreSQL 完整业务接入](docs/t02-postgres-application.md)。
 
 ## 演示与真实模式
 
@@ -73,7 +92,7 @@ flowchart LR
   B -->|模型选择工具及参数| C[执行工具 / 记录日志]
   C -->|结果或错误反馈| B
   B -->|模型结束| D[结构校验 / 最终摘要批量复核]
-  D --> E[SQLite 历史 / 站内推送 / 可选邮件]
+  D --> E[数据库历史 / 站内推送 / 可选邮件]
 ```
 
 定时、输入校验、输出校验、持久化和推送是普通业务代码；研究阶段的工具选择与结束由模型控制。默认单次 180 秒、最多 24 次工具调用，模型请求最多重试一次，防止失控循环。
@@ -106,8 +125,6 @@ flowchart LR
 - [arXiv cs.AI / cs.LG](https://rss.arxiv.org/rss/cs.AI+cs.LG)，研究偏好时使用
 
 代码负责：时间窗口、URL 归一化、重复文章、用户排除词的字面匹配、条数上限、来源 ID 和日期校验。缺少时间的内容不入选；正文获取失败时可以使用有明确标记的 RSS 摘要。
-
-RSS 与正文下载使用异步 HTTP。每次下载最多尝试 3 次，仅重试 HTTPX 超时；两次重试前分别异步等待 0.2 秒、0.4 秒，全部尝试、重定向和等待共享 30 秒总时限。HTTP 状态错误、域名违规、响应超限和非法内容不重试。取消请求会向上传播并释放响应及客户端；每轮重新从原始 URL 开始，并逐跳检查允许域名。
 
 模型负责：跨语言语义相关性、同一事件跨媒体合并、排除话题的语义判断、事实摘要和个性化理由。提交时只接受本次真实获取的文章 ID，标题、链接和时间从来源记录复制。相关性低于 2（直接相关）的候选不允许提交。
 
@@ -149,7 +166,7 @@ arXiv 的 RSS 公告时间只决定是否进入最近 24 小时的候选，不�
 
 - 在页面开启「每日自动简报」，选择时间和 IANA 时区。
 - 后台每 30 秒检查一次；到达当天指定时间后触发。启动晚了会补当天任务，不补发全部历史日期。
-- SQLite 的唯一约束保证同一用户、同一天只自动创建一次任务；已有生成任务时不重复排队。
+- 数据库的唯一约束保证同一用户、同一天只自动创建一次任务；已有生成任务时不重复排队。
 - 同时最多生成 2 份简报；页面显示排队、生成中、完成、失败状态。
 - **本地服务需要保持运行。** 不依赖浏览器保持打开，也没有代替你设置系统开机启动。
 - 站内推送通过持久化通知 + SSE 实现；页面断开后重连可以补收。浏览器弹窗通知需要用户授权且页面保持打开。
@@ -182,7 +199,10 @@ app/
   article_time.py  首次发布、修订与 RSS 公告的独立时间口径
   summary_review.py 最终摘要的批量事实复核与引用校验
   service.py       调度、任务状态、超时、推送协调
-  storage.py       SQLite 数据与并发约束
+  storage.py       SQLite 存储、序列化与后端选择
+  postgres_store.py PostgreSQL 完整存储与原子推送抢占
+  database.py      PostgreSQL 连接配置
+  async_storage.py 同步数据库操作的异步调用边界
   delivery.py      邮件文本/HTML 和 SMTP
   schemas.py       订阅、简报字段校验
   config.py        环境变量配置
@@ -203,6 +223,15 @@ uv run python -m scripts.check_sources
 uv run --locked --group dev python -m scripts.prefilter_acceptance
 ```
 
+启用真实 PostgreSQL 集成测试：
+
+```powershell
+$env:TEST_POSTGRES_URL = 'postgresql+psycopg://ai_news:ai_news_dev@127.0.0.1:5432/ai_news'
+uv run pytest -q -W error::RuntimeWarning
+```
+
+测试为每个 PostgreSQL 用例建立并清理独立临时数据库，不向当前业务表写入测试数据。普通测试无需数据库时可不设置 `TEST_POSTGRES_URL`，对应集成用例会显式跳过。
+
 浏览器验收（先运行 demo 服务，会新建一个测试订阅）：
 
 ```powershell
@@ -213,8 +242,6 @@ uv run python -m scripts.browser_smoke --url http://127.0.0.1:8765
 测试中的模型使用模拟 HTTP 服务，**实际执行 `ChatOpenAI` → `create_agent` → 工具 → 模型返回**的完整协议；验证两种不同工具顺序、错误反馈与模型结束行为。SMTP 使用本地收件服务器，不向真实邮箱发信。
 
 基础验收见 [`docs/verification.md`](docs/verification.md)。真实模型修复复测与 Token 对比见 [`docs/review-fixes-acceptance-2026-10-19.md`](docs/review-fixes-acceptance-2026-10-19.md)。
-
-异步请求与错误处理的完成范围、重试和取消验证及复现命令见 [T01 验收记录](docs/t01-async-acceptance-2026-10-23.md)。
 
 预筛选与上下文整理的真实模型消耗对照见 [2026-10-20 Token 验收](docs/token-acceptance-2026-10-20.md)：三组使用同一份冻结真实新闻和历史，按 API usage 区分生成、复核、缓存和推理用量。联合方案的生成 Token 下降，但复核失败，端到端验收未通过；仅开启上下文整理的一次运行总 Token 增加。结果保留全部失败消耗，不把消息字符缩减当作实际 Token 节省。
 

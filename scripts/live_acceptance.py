@@ -187,7 +187,7 @@ async def accept(settings, output_dir, max_scenarios, resume_path=None):
             print(json.dumps({"event": "scenario_start", "scenario": name}, ensure_ascii=False), flush=True)
             start = time.monotonic()
             model_start = len(observations.responses)
-            run = service.enqueue(user["id"])
+            run = await service.enqueue(user["id"])
             await asyncio.gather(*list(service.tasks))
             finished = store.run(run["id"])
             box = boxes.get(run["id"])

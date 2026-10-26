@@ -1,0 +1,46 @@
+INFO:     Started server process [7136]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:49820 (Press CTRL+C to quit)
+INFO:     127.0.0.1:54812 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51769 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51769 - "GET /static/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63752 - "GET /static/app.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63752 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63752 - "GET /api/users HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63752 - "GET /api/users/9b86bb0e994f4d54a8253b44f95cbf5f/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51769 - "GET /api/users/9b86bb0e994f4d54a8253b44f95cbf5f/events?after=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63752 - "POST /api/users HTTP/1.1" 201 Created
+INFO:     127.0.0.1:63752 - "GET /api/users HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62543 - "GET /api/users/6855b99f9fce4e219b15bebdc7d557c9/events?after=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63752 - "GET /api/users/6855b99f9fce4e219b15bebdc7d557c9/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63752 - "POST /api/users/6855b99f9fce4e219b15bebdc7d557c9/generate HTTP/1.1" 202 Accepted
+INFO:     127.0.0.1:63752 - "GET /api/users/6855b99f9fce4e219b15bebdc7d557c9/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63752 - "GET /api/runs/65df916ab3e94c00ac30702ddbe99119 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63752 - "GET /api/users/6855b99f9fce4e219b15bebdc7d557c9/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63752 - "GET /api/runs/65df916ab3e94c00ac30702ddbe99119 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63752 - "PUT /api/users/6855b99f9fce4e219b15bebdc7d557c9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63752 - "GET /api/users HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60858 - "GET /api/users/6855b99f9fce4e219b15bebdc7d557c9/events?after=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63752 - "GET /api/users/6855b99f9fce4e219b15bebdc7d557c9/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63752 - "GET /api/runs/65df916ab3e94c00ac30702ddbe99119 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63752 - "POST /api/users/6855b99f9fce4e219b15bebdc7d557c9/generate HTTP/1.1" 202 Accepted
+INFO:     127.0.0.1:63752 - "GET /api/users/6855b99f9fce4e219b15bebdc7d557c9/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63752 - "GET /api/runs/b115e9bd7eda4b56acbc801833bb5087 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63752 - "GET /api/users/6855b99f9fce4e219b15bebdc7d557c9/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63752 - "GET /api/runs/b115e9bd7eda4b56acbc801833bb5087 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63752 - "GET /api/runs/65df916ab3e94c00ac30702ddbe99119 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63752 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63752 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63752 - "GET /api/users HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61071 - "GET /api/users/6855b99f9fce4e219b15bebdc7d557c9/events?after=1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63752 - "GET /api/users/6855b99f9fce4e219b15bebdc7d557c9/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64637 - "GET /api/users/6855b99f9fce4e219b15bebdc7d557c9/runs HTTP/1.1" 200 OK
+INFO:     Started server process [15932]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:49820 (Press CTRL+C to quit)
+INFO:     127.0.0.1:64686 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64688 - "GET /api/users/6855b99f9fce4e219b15bebdc7d557c9/runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64690 - "GET /api/users HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64692 - "GET /health HTTP/1.1" 200 OK

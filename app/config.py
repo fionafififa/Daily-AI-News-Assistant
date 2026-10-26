@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parent.parent
 class Settings:
     mode: str = "demo"
     data_dir: Path = ROOT / "data"
+    database_url: str = ""
     api_key: str = ""
     base_url: str = "https://api.openai.com/v1"
     model: str = "gpt-4.1-mini"
@@ -39,6 +40,7 @@ class Settings:
         return cls(
             mode=mode,
             data_dir=(raw_dir if raw_dir.is_absolute() else ROOT / raw_dir).resolve(),
+            database_url=os.getenv("DATABASE_URL", ""),
             api_key=os.getenv("OPENAI_API_KEY", ""),
             base_url=os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1"),
             model=os.getenv("OPENAI_MODEL", "gpt-4.1-mini"),

@@ -1,4 +1,4 @@
-"""SQLite is the source of truth; each operation uses a short-lived connection."""
+"""SQLite storage, shared serialization helpers, and explicit backend selection."""
 
 import json
 import sqlite3
@@ -17,6 +17,8 @@ def dumps(value):
 
 
 class Store:
+    backend = "sqlite"
+
     def __init__(self, data_dir: Path):
         data_dir.mkdir(parents=True, exist_ok=True)
         self.path = data_dir / "news.sqlite3"
@@ -187,3 +189,18 @@ class Store:
                     (run_id,),
                 ).rowcount
             )
+
+    def ensure_ready(self):
+        """SQLite tables are initialized in the constructor."""
+
+    def close(self):
+        """SQLite operations already close their short-lived connections."""
+
+
+def create_store(settings):
+    if settings.database_url:
+        from .database import create_postgres_engine
+        from .postgres_store import PostgresStore
+
+        return PostgresStore(create_postgres_engine(settings.database_url))
+    return Store(settings.data_dir)

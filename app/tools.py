@@ -16,6 +16,7 @@ from pathlib import Path
 from langchain_core.tools import StructuredTool
 
 from .article_time import freshness_time
+from .async_storage import call_store
 from .prefilter import HistoryIndex, NewsPrefilter, url_key
 from .schemas import ArticleDecision, BriefSubmission, Selection
 from .sources import SOURCES, NewsClient, demo_articles, normalized_title
@@ -139,15 +140,19 @@ class Toolbox:
             except Exception as exc:
                 status = "error"
                 result = {"error": f"{type(exc).__name__}: {str(exc)[:350]}"}
-            with self.lock:
-                self.store.trace(
-                    self.run["id"],
-                    function.__name__,
-                    kwargs,
-                    result,
-                    status,
-                    round((time.monotonic() - start) * 1000),
-                )
+
+            def record_trace():
+                with self.lock:
+                    self.store.trace(
+                        self.run["id"],
+                        function.__name__,
+                        kwargs,
+                        result,
+                        status,
+                        round((time.monotonic() - start) * 1000),
+                    )
+
+            await call_store(record_trace)
             return result
 
         if inspect.iscoroutinefunction(function):
